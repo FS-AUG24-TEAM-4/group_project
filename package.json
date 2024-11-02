@@ -9,9 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
-    "fix-style": "npm run format & npm run lint",
-    "prepare": "husky install"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
@@ -46,8 +44,8 @@
     "@types/react-dom": "^18.3.0",
     "@types/react-slick": "^0.23.13",
     "@types/react-transition-group": "^4.4.10",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -62,7 +60,7 @@
     "globals": "^15.11.0",
     "husky": "^9.1.6",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.3",
+    "typescript": "^5.6.3",
     "vite": "^5.4.1"
   }
 }
