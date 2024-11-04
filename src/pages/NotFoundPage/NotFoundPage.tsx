@@ -1,5 +1,5 @@
-import { PrimaryButton } from '@/components/PrimaryButton';
-import { Paths } from '@/types';
+import { PrimaryButton } from '@/components';
+import { Paths } from '@/enums';
 
 import styles from './style.module.scss';
 

@@ -1,9 +1,8 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import App from './App';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { PhonesPage } from './pages/PhonesPage';
-import { Paths } from './types';
+import { Paths } from './enums';
+import { PhonesPage, NotFoundPage } from './pages';
 
 export const Root = () => {
   return (

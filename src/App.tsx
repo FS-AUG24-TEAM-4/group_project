@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import styles from './App.module.scss';
-import { Container } from './components/Container';
+import { Container } from './components';
 
 
 function App() {

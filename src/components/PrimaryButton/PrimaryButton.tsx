@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
-import { PrimaryButtons } from '@/types';
+import { PrimaryButtons } from '@/enums';
 
 import styles from './styles.module.scss';
 
