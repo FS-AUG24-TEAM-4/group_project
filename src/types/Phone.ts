@@ -1,17 +1,28 @@
 export interface Phone {
-  id: number;
+  id: string;
+  category: string;
+  namespaceId: string;
   name: string;
+  capacityAvailable: string[];
+  capacity: string;
+  priceRegular: number;
+  priceDiscount?: number;
+  colorsAvailable: string[];
+  color: string;
+  images: string[];
   description: Array<{
     title: string;
     text: string[];
   }>;
-  priceRegular: number;
-  priceDiscount?: number;
-  color: string;
-  colorsAvailable: string[];
-  capacityAvailable: string[];
-  images: string[];
+  screen: string;
+  resolution: string;
+  processor: string;
+  ram: string;
+  camera: string;
+  zoom: string;
+  cell: string[];
 }
+
 
 export interface PhoneState {
   phones: Phone[];
