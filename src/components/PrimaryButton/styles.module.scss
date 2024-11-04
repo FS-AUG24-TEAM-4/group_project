@@ -8,7 +8,6 @@
   justify-content: center;
 
   border-radius: 8px;
-  background-color: $accent;
 
   font-size: 14px;
   font-weight: 400;
@@ -16,8 +15,9 @@
   line-height: 21px;
 
   color: $white;
+  background-color: $accent;
 
-  transition: box-shadow 0.3s;
+  transition: box-shadow $effectDuration;
 
   &:hover {
     box-shadow: 0px 3px 13px 0px $shadow;
