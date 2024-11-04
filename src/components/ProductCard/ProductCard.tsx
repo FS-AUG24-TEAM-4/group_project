@@ -1,9 +1,11 @@
-import classNames from 'classnames';
 import { useState } from 'react';
 
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
+import { PrimaryButtons } from '../../enums/PrimaryButtons';
+import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
+import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 
 export const ProductCard = () => {
   const [clickedBuy, setClickedBuy] = useState(false);
@@ -39,21 +41,23 @@ export const ProductCard = () => {
       </div>
 
       <div className={styles.buttons}>
-        <button
+        <PrimaryButton
+          type={PrimaryButtons.CART}
           onClick={() => setClickedBuy(!clickedBuy)}
-          className={classNames(styles.buy_button, { [styles.active]: clickedBuy })}
+          isActive={clickedBuy}
         >
           {clickedBuy ? 'Added' : 'Add to cart'}
-        </button>
-        <button
+        </PrimaryButton>
+
+        <FavoritesButton
           onClick={() => setClickedFav(!clickedFav)}
-          className={classNames(styles.favorites_button, { [styles.active]: clickedFav })}
+          isActive={clickedFav}
         >
           <img
             src={clickedFav ? filledIcon : blankIcon}
             alt="Add to favorites"
           />
-        </button>
+        </FavoritesButton>
       </div>
     </article>
   );
