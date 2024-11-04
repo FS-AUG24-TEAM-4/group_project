@@ -1,5 +1,7 @@
+import { BurgerMenu } from "./components/BurgerMenu/BurgerMenu";
+
 function App() {
-  return <div></div>;
+  return <BurgerMenu />;
 }
 
 export default App;
