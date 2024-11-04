@@ -1,6 +1,7 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/reset';
 @import '../../assets/styles/mixins';
+@import '../../assets/styles/_font.scss';
 
 .card {
   display: flex;
@@ -106,6 +107,7 @@ align-items: center;
 .value {
   font-size: 12px;
   color: $primary;
+  font-weight: 600;
 }
 
 .buttons {
@@ -137,6 +139,7 @@ align-items: center;
     border-color $effectDuration;
 
   &:hover {
+    cursor: pointer;
     box-shadow: 0px 3px 13px 0px $shadow;
   }
 
@@ -171,20 +174,25 @@ align-items: center;
   justify-content: center;
   transition: border-color $effectDuration;
   box-sizing: border-box;
+  background-color: $white;
 
   &:hover {
     border-color: $primary;
+    cursor: pointer;
   }
 
   &:active {
+    background-color: $white;
     border-color: $elements;
   }
 
   &.active {
     border-color:  $elements;
     transition: border-color $effectDuration;
+    
 
     &:hover {
+
       border-color: $primary;
     }
   }

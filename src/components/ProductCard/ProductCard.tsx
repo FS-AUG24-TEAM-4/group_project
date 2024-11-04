@@ -39,23 +39,21 @@ export const ProductCard = () => {
       </div>
 
       <div className={styles.buttons}>
-        <a
-          href="#"
+        <button
           onClick={() => setClickedBuy(!clickedBuy)}
           className={classNames(styles.buy_button, { [styles.active]: clickedBuy })}
         >
           {clickedBuy ? 'Added' : 'Add to cart'}
-        </a>
-        <a href="#"
+        </button>
+        <button
           onClick={() => setClickedFav(!clickedFav)}
           className={classNames(styles.favorites_button, { [styles.active]: clickedFav })}
         >
           <img
             src={clickedFav ? filledIcon : blankIcon}
             alt="Add to favorites"
-
           />
-        </a>
+        </button>
       </div>
     </article>
   );
