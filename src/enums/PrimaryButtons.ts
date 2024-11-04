@@ -1,5 +1,5 @@
 export enum PrimaryButtons {
-    CART,
-    ITEMCART,
-    CHECKOUT,
+  CART,
+  ITEMCART,
+  CHECKOUT,
 }

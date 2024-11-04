@@ -1,10 +1,18 @@
-import { ProductCard } from './components/ProductCard/ProductCard';
+import { Outlet } from 'react-router-dom';
+
+import styles from './App.module.scss';
+import { Container } from './components';
+
 
 function App() {
   return (
-    <div>
-      <ProductCard />
-    </div>
+    <>
+      <main className={styles.main}>
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
+    </>
   );
 }
 
