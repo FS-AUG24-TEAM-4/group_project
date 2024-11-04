@@ -1,5 +1,5 @@
 {
-  "name": "group-project",
+"name": "group-project",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,10 +7,12 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+   "format": "prettier . --ignore-path .gitignore --write",
+    "lint": "eslint . --ignore-path .gitignore --fix",
+    "fix-style": "npm run format & npm run lint",
+    "prepare": "husky install",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
-    "prepare": "husky"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
