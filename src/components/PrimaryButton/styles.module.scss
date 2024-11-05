@@ -1,0 +1,82 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.button {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 21px;
+  color: $white;
+  background-color: $accent;
+  transition:
+    box-shadow $effectDuration,
+    color $effectDuration,
+    background-color $effectDuration,
+    border-color $effectDuration;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 3px 13px 0px $shadow;
+  }
+
+  &:active {
+    border: 1px solid $elements;
+    color: $accent;
+    background-color: $white;
+  }
+}
+
+.buttonCart {
+  min-width: 98px;
+  height: 40px;
+
+  &.active {
+    border-color: $elements;
+    color: $accent;
+    background-color: $white;
+  }
+
+  @include onTablet {
+    min-width: 125px;
+  }
+
+  @include onDesktop {
+    min-width: 160px;
+  }
+
+  .selected {
+    border-color: $elements;
+    transition: border-color $effectDuration;
+
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}
+
+.buttonCheckout {
+  width: 320px;
+  height: 48px;
+}
+
+.buttonItemCart {
+  width: 263px;
+  height: 48px;
+}
+
+.buttonHome {
+  width: 160px;
+  height: 50px;
+
+  @include onTablet {
+    width: 200px;
+    height: 60px;
+  }
+}
