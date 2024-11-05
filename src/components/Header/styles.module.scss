@@ -1,11 +1,11 @@
-@import '../../assets/styles/variables.scss';
+@import '/src/assets/styles/variables.scss';
 
 .header {
     display: flex;
     justify-content: space-between;
     padding: 0 24px;
 
-    border-bottom: 1px solid $color-light-grey;
+    border-bottom: 1px solid $secondary;
 }
 
 .navContainer {
