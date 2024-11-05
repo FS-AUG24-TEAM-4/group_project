@@ -1,19 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PhoneState, RootState } from '@/types/Phone';
-
-import { AppDispatch } from '../app/store';
+import { AppDispatch, RootState } from '../app/store';
 import {
   loadPhonesStart,
   loadPhonesSuccess,
   loadPhonesFailure,
-} from '../features/phones/phoneSlicer';
+} from '../features/phones/phoneSlice';
 
 export const usePhones = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { phones, loading, error } = useSelector(
-    (state: RootState): PhoneState => state.phones,
+    (state: RootState) => state.phones,
   );
 
   const fetchPhones = () => {

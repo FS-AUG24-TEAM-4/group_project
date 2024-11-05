@@ -1,6 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Phone, initialState } from '../../types/Phone';
+import { Phone} from '../../types/Phone';
+
+interface PhoneState {
+  phones: Phone[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: PhoneState = {
+  phones: [],
+  loading: false,
+  error: null,
+};
 
 const phoneSlice = createSlice({
   name: 'phones',
