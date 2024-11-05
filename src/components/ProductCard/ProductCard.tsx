@@ -20,7 +20,11 @@ export const ProductCard = () => {
           className={styles.picture}
         />
       </a>
-      <h2 className={styles.title}>Apple iPhone 14 Pro 128GB Silver (MQ023)</h2>
+      <a href="#">
+        <h2 className={styles.title}>
+          Apple iPhone 14 Pro 128GB Silver (MQ023)
+        </h2>
+      </a>
       <div className={styles.price}>
         <p className={styles.actual_price}>$999</p>
         <p className={styles.old_price}>$1199</p>

@@ -1,7 +1,5 @@
 @import '../../assets/styles/variables';
-@import '../../assets/styles/reset';
 @import '../../assets/styles/mixins';
-@import '../../assets/styles/_font.scss';
 
 .card {
   display: flex;
@@ -63,6 +61,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   height: 42px;
+
+  transition: transform $effectDuration ease; 
+
+  &:hover {
+    transform: scale(1.05);
+  } 
 }
 
 .price {

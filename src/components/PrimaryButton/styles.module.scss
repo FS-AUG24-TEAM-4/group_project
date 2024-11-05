@@ -31,7 +31,6 @@
 }
 
 .buttonCart {
-  @extend .button;
   min-width: 100px;
   height: 40px;
   border: 1px solid transparent;
@@ -62,19 +61,16 @@
 }
 
 .buttonCheckout {
-  @extend .button;
   width: 320px;
   height: 48px;
 }
 
 .buttonItemCart {
-  @extend .button;
   width: 263px;
   height: 48px;
 }
 
 .buttonHome {
-  @extend .button;
   width: 160px;
   height: 50px;
 
