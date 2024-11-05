@@ -121,7 +121,7 @@ module.exports = {
     '.eslintrc.cjs',
     'vite.config.ts',
     'src/vite-env.d.ts',
-    'vite.config.d.ts'
+    'vite.config.d.ts',
   ],
   settings: {
     react: {
