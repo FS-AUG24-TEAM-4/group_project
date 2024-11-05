@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { HeaderNavigationLinks } from '@/constants';
+import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
@@ -15,14 +16,14 @@ export const Header = () => {
             </Link>
             <Navigation links={HeaderNavigationLinks}/>
         </div>
-        <div>
+        <div className={styles.iconLinksContainer}>
             <Link 
-              to="/favorites" 
+              to={Paths.FAVORITES}
               className={cn(styles.iconLink, styles.favorites)}
             >
             </Link>
             <Link 
-              to="/cart" 
+              to={Paths.CART}
               className={cn(styles.iconLink, styles.shopingBag)}
             >
             </Link>

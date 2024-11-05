@@ -1,18 +1,20 @@
+import { Paths } from '@/enums'
+
 export const HeaderNavigationLinks = [
     {
         title: 'Home',
-        route: '/',
+        route: Paths.HOME,
     },
     {
         title: 'Phones',
-        route: '/phones',
+        route: Paths.PHONES,
     },
     {
         title: 'Tablets',
-        route: '/tablets',
+        route: Paths.TABLETS,
     },
     {
         title: 'Accessories',
-        route: '/accessories',
+        route: Paths.ACCESSORIES,
     }
 ]
