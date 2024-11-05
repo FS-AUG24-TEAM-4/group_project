@@ -14,7 +14,7 @@ export const PhonesList = () => {
   return (
     <div>
       {phones.map(phone => (
-        <ProductCard key={phone.id} phone={phone} />
+        <ProductCard key={phone.id} product={phone} />
       ))}
     </div>
   );
