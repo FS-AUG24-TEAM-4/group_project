@@ -1,7 +1,9 @@
 export enum Paths {
   HOME = '/',
   PHONES = '/phones',
+  NOT_FOUND = '*',
   TABLETS = '/tablets',
   ACCESSORIES = '/accessories',
-  NOT_FOUND = '*',
+  FAVORITES = '/favorites',
+  CART = '/cart',
 }
