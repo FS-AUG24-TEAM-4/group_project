@@ -4,12 +4,12 @@ import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { Phone } from '../../types/Phone';
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
+import { Device } from '@/types/Device';
 
 interface ProductCardProps {
-  phone: Phone;
+  phone: Device;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ phone }) => {
