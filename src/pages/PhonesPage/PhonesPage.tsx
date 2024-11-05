@@ -1,7 +1,5 @@
-import { PhonesList } from "@/components/PhonesList/PhonesList";
+import { PhonesList } from '@/components/PhonesList/PhonesList';
 
 export const PhonesPage = () => {
-  return (
-    <PhonesList />
-  );
-}
+  return <PhonesList />;
+};

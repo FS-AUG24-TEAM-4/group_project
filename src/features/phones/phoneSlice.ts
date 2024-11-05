@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { Phone} from '../../types/Phone';
+import { Phone } from '../../types/Phone';
 
 interface PhoneState {
   phones: Phone[];
@@ -19,16 +18,25 @@ const phoneSlice = createSlice({
   initialState,
   reducers: {
     loadPhonesStart(state) {
-      state.loading = true;
-      state.error = null;
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
     },
     loadPhonesSuccess(state, action: PayloadAction<Phone[]>) {
-      state.loading = false;
-      state.phones = action.payload;
+      return {
+        ...state,
+        loading: false,
+        phones: action.payload,
+      };
     },
     loadPhonesFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.error = action.payload;
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     },
   },
 });
