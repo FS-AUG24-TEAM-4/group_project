@@ -17,7 +17,7 @@ export const BurgerMenu = () => {
               src={logo}
               alt="nice-gadgets_logo"
             />
-          </NavLink> 
+          </NavLink>
 
           <div className={styles.burger__header__button}>
             <img
@@ -29,7 +29,10 @@ export const BurgerMenu = () => {
         </header>
 
         <nav className={styles.burger__nav}>
-          <NavLink className={styles.burger__nav__links__active} to={Paths.HOME}>
+          <NavLink
+            className={styles.burger__nav__links__active}
+            to={Paths.HOME}
+          >
             Home
           </NavLink>
 
@@ -37,17 +40,11 @@ export const BurgerMenu = () => {
             Phones
           </NavLink>
 
-          <NavLink
-            className={styles.burger__nav__links}
-            to={Paths.TABLETS}
-          >
+          <NavLink className={styles.burger__nav__links} to={Paths.TABLETS}>
             Tablets
           </NavLink>
 
-          <NavLink
-            className={styles.burger__nav__links}
-            to={Paths.ACCESSORIES}
-          >
+          <NavLink className={styles.burger__nav__links} to={Paths.ACCESSORIES}>
             Accessories
           </NavLink>
         </nav>
@@ -65,7 +62,10 @@ export const BurgerMenu = () => {
           />
         </NavLink>
 
-        <NavLink to="/group_project/cart" className={styles.burger__footer__links}>
+        <NavLink
+          to="/group_project/cart"
+          className={styles.burger__footer__links}
+        >
           <img
             className={styles.burger__footer__links__cart}
             src={cart}
