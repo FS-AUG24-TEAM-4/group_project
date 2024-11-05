@@ -3,23 +3,21 @@ import close_menu_icon from '../../assets/icons/close-menu-icon.png';
 import fav from '../../assets/icons/fav-icon.png';
 import logo from '../../assets/icons/logo.png';
 import cart from '../../assets/icons/shop-cart-icon.png';
-
-{
-  /* all 'a' tags gonna be rewrote on NavLink */
-}
+import { Paths } from '@/enums';
+import { NavLink } from 'react-router-dom';
 
 export const BurgerMenu = () => {
   return (
     <menu className={styles.burger}>
       <div className={styles.container}>
         <header className={styles.burger__header}>
-          <a className={styles.burger__header__img} href="/group_project/">
+          <NavLink className={styles.burger__header__img} to={Paths.HOME}>
             <img
               className={styles.burger__logo}
               src={logo}
               alt="nice-gadgets_logo"
             />
-          </a>
+          </NavLink> 
 
           <div className={styles.burger__header__button}>
             <img
@@ -31,33 +29,33 @@ export const BurgerMenu = () => {
         </header>
 
         <nav className={styles.burger__nav}>
-          <a className={styles.burger__nav__links__active} href="/">
+          <NavLink className={styles.burger__nav__links__active} to={Paths.HOME}>
             Home
-          </a>
+          </NavLink>
 
-          <a className={styles.burger__nav__links} href="/group_project/phones">
+          <NavLink className={styles.burger__nav__links} to={Paths.PHONES}>
             Phones
-          </a>
+          </NavLink>
 
-          <a
+          <NavLink
             className={styles.burger__nav__links}
-            href="/group_project/tablets"
+            to={Paths.TABLETS}
           >
             Tablets
-          </a>
+          </NavLink>
 
-          <a
+          <NavLink
             className={styles.burger__nav__links}
-            href="/group_project/accessories"
+            to={Paths.ACCESSORIES}
           >
             Accessories
-          </a>
+          </NavLink>
         </nav>
       </div>
 
       <footer className={styles.burger__footer}>
-        <a
-          href="/group_project/fav"
+        <NavLink
+          to="/group_project/fav"
           className={styles.burger__footer__links__active}
         >
           <img
@@ -65,15 +63,15 @@ export const BurgerMenu = () => {
             src={fav}
             alt="fav-icon"
           />
-        </a>
+        </NavLink>
 
-        <a href="/group_project/cart" className={styles.burger__footer__links}>
+        <NavLink to="/group_project/cart" className={styles.burger__footer__links}>
           <img
             className={styles.burger__footer__links__cart}
             src={cart}
             alt="cart-icon"
           />
-        </a>
+        </NavLink>
       </footer>
     </menu>
   );

@@ -1,21 +1,13 @@
-* {
+.burger {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Mont', sans-serif;
-}
-
-a {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-
-.burger {
   display: flex;
+  position: absolute;
   justify-content: space-between;
   flex-direction: column;
   height: 100vh;
+  width: 100%;
+  left: 0;
 
   &__logo {
     width: 64px;
@@ -112,6 +104,7 @@ a {
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor: pointer;
 
     &__icon {
       height: 10px;
