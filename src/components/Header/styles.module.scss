@@ -1,0 +1,95 @@
+@import '/src/assets/styles/variables';
+@import '/src/assets/styles/mixins';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    padding-left: 16px;
+
+    box-shadow: 0 1px 0 0 $elements;
+
+    @include onDesktop {
+        height: 64px;
+        padding-left: 24px;
+    }
+}
+
+.navContainer {
+    display: flex;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 36px;
+
+    @include onDesktop {
+        margin-right: 48px;
+    }
+}
+
+.logoImage {
+    display: flex;
+    align-items: center;
+
+    width: 64px;
+    height: 22px;
+
+    @include onDesktop {
+        width: 80px;
+        height: 28px;
+    }
+}
+
+.iconLinksContainer{
+    display: flex;
+    height: 100%;
+}
+
+.iconLink {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 100%;
+    box-shadow: -1px 0 0 0 $elements;
+
+    @include onDesktop {
+        width: 64px;
+    }
+}
+
+.favorites, .shopingBag {
+    display: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+
+        transform: translate(-50%, -50%);
+        transition: transform $effectDuration;
+    }
+
+    &:hover {
+        &::after {
+            transform: translate(-50% , -50%) scale(1.4);
+        }
+    }
+
+    @include onTablet {
+        display: block;
+    }
+}
+
+.favorites::after {
+    background-image: url(/src/assets/images/icons/favorites-blank.svg);
+}
+
+.shopingBag::after {
+    background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+}
