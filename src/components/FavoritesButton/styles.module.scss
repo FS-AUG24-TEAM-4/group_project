@@ -1,0 +1,35 @@
+@import '../../assets/styles/variables';
+
+.favorites_button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: solid 1px $icons;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $white;
+
+  transition: border-color $effectDuration;
+
+  &:hover {
+    border-color: $primary;
+    cursor: pointer;
+  }
+
+  &:active {
+    border-color: $elements;
+  }
+
+  &.active {
+    border-color: $elements;
+    transition: border-color $effectDuration;
+
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}

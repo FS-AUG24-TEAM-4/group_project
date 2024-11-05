@@ -1,50 +1,46 @@
-# React + TypeScript + Vite
+# Nice Gadgets - Online Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** and **TypeScript**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Purpose
 
-## Expanding the ESLint configuration
+Create a fast, responsive, user-friendly, and accessible online store that makes it easy to browse, sort, and purchase gadgets.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- **React**: For building user interfaces and managing component state.
+- **TypeScript**: For static typing, ensuring more reliable and robust code.
+- **Vite**: For fast project setup and optimization.
+- **SCSS**: For styling and custom design.
+- **ESLint + Prettier**: To maintain code quality and consistency.
+- **GitHub Actions**: For automating the deployment process.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+## Key Features
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+- **Product Browsing**: A simple interface to view all available gadgets.
+- **Sorting and Filtering**: Convenient search options by categories, prices, ratings, and more.
+- **Product Details**: Each gadget has a dedicated page with detailed information.
+- **Cart and Checkout**: Users can add items to their cart and proceed to checkout.
+- **Reviews**: Users can leave feedback about products.
+
+---
+
+## Project Setup Overview
+
+To set up the Nice Gadgets online store project, we followed these main steps:
+
+1. **Initialize the Project**: Created a new Vite project with React and TypeScript.
+2. **Install Dependencies**: Installed required packages using `npm install`.
+3. **Configure ESLint and Prettier**: Set up ESLint for code quality and Prettier for code formatting.
+4. **Add SCSS Support**: Installed SCSS for styling.
+5. **Set Up Deployment**: Configured GitHub Actions for automated deployment.
+6. **Set Up Husky**: Installed Husky for managing Git hooks and ensuring code quality before commits.
+7. **Auto-Deploy on GitHub Pages**: Configured the project to automatically deploy to GitHub Pages upon new commits.
+
+These steps helped create a solid foundation for developing our online store.

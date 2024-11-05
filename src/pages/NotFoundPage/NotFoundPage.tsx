@@ -3,7 +3,6 @@ import { Paths } from '@/enums';
 
 import styles from './style.module.scss';
 
-
 export const NotFoundPage = () => {
   return (
     <div className={styles.wrapper}>

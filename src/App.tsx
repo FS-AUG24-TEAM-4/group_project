@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 
 import { Container, Header, Footer } from './components';
 
-
 function App() {
   return (
     <>
