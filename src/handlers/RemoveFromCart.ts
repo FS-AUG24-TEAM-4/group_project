@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { removeFromCart } from '../features/Cart/CartSlice';
+import { removeFromCart } from '../features/сart/CartSlice';
 
 export const useRemoveFromCartButton = (itemId: string) => {
   const dispatch = useDispatch();

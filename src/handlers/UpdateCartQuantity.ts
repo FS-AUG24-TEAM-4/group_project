@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { updateQuantity } from '../features/Cart/CartSlice';
-
+import { updateQuantity } from '../features/сart/CartSlice';
 
 export const useUpdateCartQuantity = (itemId: string) => {
   const dispatch = useDispatch();

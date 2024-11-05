@@ -5,11 +5,20 @@ export const PhonesList = () => {
   const { phones, loading, error } = usePhones();
 
   if (loading) {
-    return <p>Loading...</p>
-  };
+    return <p>Loading...</p>;
+  }
+
   if (error) {
-    return <p>{error}</p>
-  };
+    return <p>{error}</p>;
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div>

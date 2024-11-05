@@ -17,20 +17,22 @@ export const usePhones = () => {
   const fetchPhones = () => {
     dispatch(loadPhonesStart());
 
-    fetch('http://localhost:3000/group_project/api/phones.json')
+    fetch('/group_project/api/phones.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch phones');
         }
+
         return response.json();
       })
       .then(data => {
         dispatch(loadPhonesSuccess(data));
       })
-      .catch((error: Error) => {
-        dispatch(loadPhonesFailure(error.message));
+      .catch((catchedError: Error) => {
+        dispatch(loadPhonesFailure(catchedError.message));
       });
   };
+
   useEffect(() => {
     fetchPhones();
   }, [dispatch]);

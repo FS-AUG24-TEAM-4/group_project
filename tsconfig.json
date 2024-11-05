@@ -30,5 +30,6 @@
     "vite.config.js",
     ".eslintrc.json"
   ],
+  "exclude": ["vite.config.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

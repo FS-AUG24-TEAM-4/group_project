@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import cartReducer from '../features/Cart/CartSlice';
+import cartReducer from '../features/сart/CartSlice';
 import phonesReducer from '../features/phones/phoneSlice';
 
 const cartPersistConfig = {
@@ -11,7 +11,6 @@ const cartPersistConfig = {
 };
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
-
 
 export const store = configureStore({
   reducer: {

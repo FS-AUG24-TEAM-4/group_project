@@ -15,11 +15,12 @@
   line-height: 21px;
   color: $white;
   background-color: $accent;
-  transition: box-shadow $effectDuration, 
-              color $effectDuration, 
-              background-color $effectDuration, 
-              border-color $effectDuration;
-  
+  transition:
+    box-shadow $effectDuration,
+    color $effectDuration,
+    background-color $effectDuration,
+    border-color $effectDuration;
+
   &:hover {
     cursor: pointer;
     box-shadow: 0px 3px 13px 0px $shadow;

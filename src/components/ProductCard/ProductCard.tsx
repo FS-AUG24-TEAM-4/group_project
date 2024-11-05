@@ -8,6 +8,7 @@ import { useAddCartButton } from '../../handlers/AddToCart';
 import { Product } from '../../types/Phone';
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
+import { useRemoveFromCartButton } from '@/handlers/RemoveFromCart';
 
 interface ProductCardProps {
   product: Product;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [clickedBuy, setClickedBuy] = useState(false);
   const [clickedFav, setClickedFav] = useState(false);
+  const handleRemoveFromCart = useRemoveFromCartButton(product.id);
 
   const handleAddToCart = useAddCartButton(product);
 
@@ -79,6 +81,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             alt="Add to favorites"
           />
         </FavoritesButton>
+
+        <button
+          onClick={handleRemoveFromCart}
+          style={{
+            background: 'none',
+            border: '1px solid #ccc',
+            padding: '5px',
+            marginTop: '10px',
+            cursor: 'pointer',
+          }}
+        >
+          Remove from cart
+        </button>
       </div>
     </article>
   );
