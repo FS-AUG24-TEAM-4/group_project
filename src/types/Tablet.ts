@@ -21,4 +21,4 @@ export interface Tablet {
   camera: string;
   zoom: string;
   cell: string[];
-};
+}

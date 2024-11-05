@@ -19,4 +19,4 @@ export interface Accessories {
   processor: string;
   ram: string;
   cell: string[];
-};
+}
