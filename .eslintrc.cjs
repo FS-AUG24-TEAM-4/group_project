@@ -11,7 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
-  ],
+  ],  
   overrides: [
     {
       files: ['**/*.spec.jsx'],

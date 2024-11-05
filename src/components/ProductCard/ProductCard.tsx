@@ -4,11 +4,11 @@ import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { useAddCartButton } from '../../handlers/AddToCart';
+import { useAddCartButton } from '../../hooks/useAddToCart';
 import { Product } from '../../types/Phone';
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
-import { useRemoveFromCartButton } from '@/handlers/RemoveFromCart';
+import { useRemoveFromCartButton } from '@/hooks/useRemoveFromCart';
 
 interface ProductCardProps {
   product: Product;

@@ -22,7 +22,7 @@ export const PhonesList = () => {
 
   return (
     <div>
-      {phones.map(phone => (
+      {phones.slice(0, 5).map(phone => (
         <ProductCard key={phone.id} product={phone} />
       ))}
     </div>
