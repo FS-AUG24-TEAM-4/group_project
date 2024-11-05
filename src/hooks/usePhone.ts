@@ -17,7 +17,7 @@ export const usePhones = () => {
   const fetchPhones = () => {
     dispatch(loadPhonesStart());
 
-    fetch('http://localhost:3000/group_project/api/phones.json')
+    fetch('/group_project/api/phones.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch phones');
