@@ -1,0 +1,143 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.card {
+  display: flex;
+  width: 212px;
+  height: 439px;
+  padding: 32px;
+  
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 1px solid $elements;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  @include onTablet {
+    width: 237px;
+    height: 512px;
+  }
+
+  @include onDesktop {
+    width: 272px;
+    height: 506px;
+  }
+}
+
+.picture {
+  display: block;
+  width: 148px;
+  height: 129px;
+  margin: auto; 
+
+  object-fit: contain; 
+
+  transition: transform $effectDuration ease; 
+
+  @include onTablet {
+    height: 173px;
+  }
+
+  @include onDesktop {
+    width: 208px;
+    height: 196px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  } 
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  margin-top: 24px;
+  margin-bottom: 8px;
+  height: 42px;
+
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 21px;
+  text-overflow: ellipsis;
+  
+  color: $primary;
+
+  overflow: hidden;
+
+  transition: transform $effectDuration ease; 
+
+  &:hover {
+    transform: scale(1.05);
+  } 
+}
+
+.price {
+display: flex;
+margin-bottom: 8px;
+align-items: center;
+gap: 8px;
+}
+
+.actual_price {
+  line-height: 30.8px;
+  font-weight: 800;
+  font-size: 22px;
+  color: $primary;
+}
+
+.old_price {
+  position: relative;
+
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28.12px;
+  text-decoration: none;
+
+  color: $secondary;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 49%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+
+    background-color: $secondary;
+    transform: translateY(-50%);
+    mix-blend-mode: color-dodge;
+  }
+}
+
+.line {
+  margin-bottom: 16px;
+  border: 0.5px solid $elements;
+}
+
+.specs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.label {
+  font-size: 12px;
+  color: $secondary;
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+
