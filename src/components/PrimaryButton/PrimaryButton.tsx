@@ -10,7 +10,7 @@ interface Props {
     onClick?: () => void;
     type?: PrimaryButtons;
     to?: string;
-    isActive: boolean;
+    isActive?: boolean;
 }
 
 export const PrimaryButton: FC<Props> = ({ children, onClick, type, to, isActive }) => {
