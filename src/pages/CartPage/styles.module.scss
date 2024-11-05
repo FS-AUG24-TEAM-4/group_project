@@ -1,0 +1,94 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.wrapper {
+  padding: 24px 0 56px;
+
+  @include onTablet {
+    padding: 40px 0 64px;
+  }
+}
+
+.buttonBack {
+  width: 66px;
+  height: 16px;
+  padding: 0;
+  margin-bottom: 24px;
+
+  border: none;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  color: $secondary;
+  background-color: $bg;
+
+  background-image: url(/src/assets/images/icons/arrow-left.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+
+  cursor: pointer;
+  outline: none;
+
+  @include onTablet {
+    margin-bottom: 16px;
+  }
+}
+
+
+.title {
+  margin-bottom: 32px;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -1%;
+}
+
+.cardList {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.card {
+  min-width: 288px;
+  height: 160px;
+  background-color: green;
+}
+
+.checkout {
+  border: 1px solid $elements;
+  border-radius: 16px;
+
+  text-align: center;
+
+  &Top {
+    padding: 24px 24px 16px;
+
+    border-bottom: 1px solid $elements;
+  }
+}
+
+.totalCost {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: -1%;
+
+  color: $primary;
+}
+
+.itemsCount {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+
+  color: $secondary;
+}
+
+.buttonCheckout {
+  padding: 16px 24px 24px;
+}
