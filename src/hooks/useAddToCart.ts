@@ -3,7 +3,7 @@ import { useDispatch /* useSelector */ } from 'react-redux';
 
 // import { RootState } from '@/app/store';
 
-import { addToCart } from '../features/сart/CartSlice';
+import { addToCart, toggleClickedBuy } from '../features/сart/CartSlice';
 import { Product } from '../types/Phone';
 
 export const useAddCartButton = (product: Product) => {
@@ -12,6 +12,7 @@ export const useAddCartButton = (product: Product) => {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    dispatch(toggleClickedBuy(product.id));
   };
 
   // Use an effect to log the cart whenever it updates

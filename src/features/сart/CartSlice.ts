@@ -3,6 +3,8 @@ import { Product } from '@/types/Phone';
 
 interface CartItem extends Product {
   quantity: number;
+  clickedBuy: boolean;
+  clickedFav?: boolean;
 }
 
 interface CartState {
@@ -19,20 +21,25 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
+      const existingItem = state.items[product.id];
+
+      const updatedItem = existingItem
+        ? {
+            ...existingItem,
+            quantity: existingItem.quantity + 1,
+            clickedBuy: true,
+          }
+        : { ...product, quantity: 1, clickedBuy: true };
 
       return {
         ...state,
         items: {
           ...state.items,
-          [product.id]: state.items[product.id]
-            ? {
-                ...state.items[product.id],
-                quantity: state.items[product.id].quantity + 1,
-              }
-            : { ...product, quantity: 1 },
+          [product.id]: updatedItem,
         },
       };
     },
+
     updateQuantity: (
       state,
       action: PayloadAction<{ itemId: string; quantity: number }>,
@@ -61,8 +68,23 @@ const cartSlice = createSlice({
         items: newItems,
       };
     },
+    toggleClickedBuy: (state, action: PayloadAction<string>) => {
+      const productId = action.payload;
+
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [productId]: {
+            ...state.items[productId],
+            clickedBuy: !state.items[productId]?.clickedBuy,
+          },
+        },
+      };
+    },
   },
 });
 
-export const { addToCart, updateQuantity, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateQuantity, removeFromCart, toggleClickedBuy } =
+  cartSlice.actions;
 export default cartSlice.reducer;

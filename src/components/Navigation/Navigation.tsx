@@ -28,10 +28,7 @@ export const Navigation: FC<Props> = ({ links, isFooter = false }) => {
               {link.title}
             </Link>
           ) : (
-            <NavLink
-              to={link.route}
-              className={getLinkClassName}
-            >
+            <NavLink to={link.route} className={getLinkClassName}>
               {link.title}
             </NavLink>
           )}
