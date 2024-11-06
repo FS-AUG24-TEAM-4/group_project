@@ -2,47 +2,64 @@
 @import '../../assets/styles/mixins';
 
 .card {
-  display: flex;
-  width: 212px;
-  height: 439px;
-  padding: 32px;
-
-  flex-direction: column;
-  justify-content: space-between;
-
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-areas:
+    'delete image title'
+    'controls controls price';
+  align-items: center;
+  justify-items: center;
+  min-width: 288px;
+  padding: 24px;
   border: 1px solid $elements;
-  border-radius: 8px;
+  border-radius: 16px;
   box-sizing: border-box;
+  position: relative;
+  padding: 16px;
 
   @include onTablet {
-    width: 237px;
-    height: 512px;
+    width: 592px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   @include onDesktop {
-    width: 272px;
-    height: 506px;
+    width: 752px;
+  }
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: delete;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background-image: url('src/assets/images/icons/close.svg');
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  padding: 0;
+  appearance: none;
+
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.4);
   }
 }
 
 .picture {
-  display: block;
-  width: 148px;
-  height: 129px;
-  margin: auto;
-
+  grid-area: image;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-
   transition: transform $effectDuration ease;
-
-  @include onTablet {
-    height: 173px;
-  }
-
-  @include onDesktop {
-    width: 208px;
-    height: 196px;
-  }
 
   &:hover {
     transform: scale(1.05);
@@ -50,92 +67,109 @@
 }
 
 .title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-
-  margin-top: 24px;
-  margin-bottom: 8px;
-  height: 42px;
-
-  font-weight: 100;
+  grid-area: title;
+  font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  text-overflow: ellipsis;
-
   color: $primary;
-
-  overflow: hidden;
+  margin: 0;
+  padding-left: 16px;
+ 
 
   transition: transform $effectDuration ease;
+
+  @include onTablet {
+    width: 128px;
+    height: 64px;
+  }
+
+  @include onDesktop {
+    width: 752px;
+  }
 
   &:hover {
     transform: scale(1.05);
   }
 }
 
-.price {
+// .controls_container {
+//   grid-area: controls;
+//   display: flex;
+//   align-items: center;
+//   gap: 16px;
+//   padding-left: 16px;
+// }
+
+.buttons {
   display: flex;
-  margin-bottom: 8px;
   align-items: center;
   gap: 8px;
 }
 
+.quantity_button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $elements;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.quantity {
+  font-size: 14px;
+  min-width: 20px;
+  text-align: center;
+}
+
 .actual_price {
-  line-height: 30.8px;
+  grid-area: price;
   font-weight: 800;
   font-size: 22px;
   color: $primary;
+  margin: 0;
 }
 
-.old_price {
-  position: relative;
-
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 28.12px;
-  text-decoration: none;
-
-  color: $secondary;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 49%;
-    left: 0;
-    width: 100%;
-    height: 2px;
-
-    background-color: $secondary;
-    transform: translateY(-50%);
-    mix-blend-mode: color-dodge;
-  }
-}
-
-.line {
-  margin-bottom: 16px;
-  border: 0.5px solid $elements;
-}
-
-.specs {
+.increase {
+  background-image: url('src/assets/images/icons/plus.svg');
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: $white;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid $icons;
+  border-radius: 50%;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-weight: 400;
+  align-items: center;
+  justify-content: center;
 }
 
-.label {
-  font-size: 12px;
-  color: $secondary;
-}
-
-.value {
-  font-size: 12px;
-  font-weight: 600;
-  color: $primary;
-}
-
-.buttons {
+.decrease {
+  background-image: url('src/assets/images/icons/minus.svg');
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: $white;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid $icons;
+  border-radius: 50%;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
 }
