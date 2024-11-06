@@ -3,11 +3,10 @@ import { useState } from 'react';
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
-import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { useAddCartButton } from '../../handlers/AddToCart';
+import { PrimaryButtons } from '../../enums';
 import { Product } from '../../types/Phone';
-import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
+import { useAddCartButton, useRemoveFromCartButton } from '../../hooks';
+import { FavoritesButton, PrimaryButton } from '../index';
 
 interface ProductCardProps {
   product: Product;
@@ -17,7 +16,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [clickedBuy, setClickedBuy] = useState(false);
   const [clickedFav, setClickedFav] = useState(false);
 
+  const handleRemoveFromCart = useRemoveFromCartButton(product.id);
+
   const handleAddToCart = useAddCartButton(product);
+
+  const handleClick = clickedBuy ? handleRemoveFromCart : handleAddToCart;
 
   return (
     <article className={styles.card}>
@@ -63,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           type={PrimaryButtons.CART}
           onClick={() => {
             setClickedBuy(!clickedBuy);
-            handleAddToCart();
+            handleClick();
           }}
           isActive={clickedBuy}
         >

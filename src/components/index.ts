@@ -1,4 +1,5 @@
 export * from './Container';
 export * from './PrimaryButton';
-export * from './Header';
-export * from './Footer';
+export * from './FavoritesButton';
+export * from './PhonesList';
+export * from './ProductCard';

@@ -6,15 +6,20 @@
   padding: 0;
   align-items: center;
   justify-content: center;
+
   border-radius: 8px;
   border: 1px solid transparent;
   box-sizing: border-box;
+
+  font-family: inherit;
   font-size: 14px;
   font-weight: 400;
   text-decoration: none;
   line-height: 21px;
+
   color: $white;
   background-color: $accent;
+  
   transition:
     box-shadow $effectDuration,
     color $effectDuration,
