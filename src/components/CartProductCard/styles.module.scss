@@ -2,62 +2,63 @@
 @import '../../assets/styles/mixins';
 
 .card {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  grid-template-areas:
-    'delete image title'
-    'controls controls price';
-  align-items: center;
-  justify-items: center;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
   min-width: 288px;
-  padding: 24px;
+  padding: 24px 16px 16px 16px;
   border: 1px solid $elements;
   border-radius: 16px;
-  box-sizing: border-box;
   position: relative;
-  padding: 16px;
 
   @include onTablet {
-    width: 592px;
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-  }
-
-  @include onDesktop {
-    width: 752px;
+    padding: 24px;
   }
 }
 
-.deleteButton {
+.containerDeleteImgTitle {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
+}
+
+.containerCancelImg {
+  display: flex;
   justify-content: center;
-  grid-area: delete;
+  align-items: center;
+  gap: 16px;
+}
+
+.containerButtonsPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteButton {
   cursor: pointer;
   width: 16px;
   height: 16px;
   background-image: url('src/assets/images/icons/close.svg');
   background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   border: none;
-  outline: none;
-  padding: 0;
-  appearance: none;
 
-  transition: transform $effectDuration ease;
+  transition:
+    background-image $effectDuration ease,
+    transform $effectDuration ease;
 
   &:hover {
     transform: scale(1.4);
+    background-image: url('src/assets/images/icons/close-active.svg');
   }
 }
 
 .picture {
-  grid-area: image;
   width: 80px;
-  height: 80px;
+  height: 72px;
   object-fit: contain;
   transition: transform $effectDuration ease;
 
@@ -67,7 +68,6 @@
 }
 
 .title {
-  grid-area: title;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
@@ -78,12 +78,7 @@
   transition: transform $effectDuration ease;
 
   @include onTablet {
-    width: 128px;
-    height: 64px;
-  }
-
-  @include onDesktop {
-    width: 752px;
+    margin-right: 24px;
   }
 
   &:hover {
@@ -91,44 +86,19 @@
   }
 }
 
-// .controls_container {
-//   grid-area: controls;
-//   display: flex;
-//   align-items: center;
-//   gap: 16px;
-//   padding-left: 16px;
-// }
-
 .buttons {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
+  margin-right: 32px;
 
-.quantity_button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid $elements;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  @include onTablet {
+    margin-right: 0;
+  }
 }
 
 .quantity {
-  font-size: 14px;
-  min-width: 20px;
+  min-width: 32px;
   text-align: center;
-}
-
-.actual_price {
-  grid-area: price;
-  font-weight: 800;
-  font-size: 22px;
-  color: $primary;
-  margin: 0;
 }
 
 .increase {
@@ -142,14 +112,6 @@
   background-position: center;
   border: 1px solid $icons;
   border-radius: 50%;
-  outline: none;
-  padding: 0;
-  appearance: none;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .decrease {
@@ -163,12 +125,18 @@
   background-position: center;
   border: 1px solid $icons;
   border-radius: 50%;
-  outline: none;
-  padding: 0;
-  appearance: none;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  &.active {
+    border: 1px solid $elements;
+    background-image: url('src/assets/images/icons/inactive-minus.svg');
+  }
+}
+
+.actual_price {
+  font-weight: 800;
+  font-size: 22px;
+
+  @include onTablet {
+    margin-left: 53px;
+  }
 }
