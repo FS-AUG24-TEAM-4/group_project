@@ -1,13 +1,9 @@
-import { CartItem } from '@/features/сart/CartSlice';
+import { CartItem } from '@/features/Cart/CartSlice';
 
-export const getTotalCost = (cartItems: Record<string, CartItem>) => {
-  let total = 0;
-
-  for (const nameId in cartItems) {
-    const cartItem = cartItems[nameId];
-
-    total += Number(cartItem.priceDiscount) * cartItem.quantity;
-  }
-
-  return total;
+export const getTotalCost = (products: CartItem[]) => {
+  return products.reduce(
+    (acc, product) =>
+      acc + (product.priceDiscount || product.priceRegular) * product.quantity,
+    0,
+  );
 };

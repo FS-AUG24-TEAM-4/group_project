@@ -98,6 +98,9 @@
 }
 
 .checkout {
+  position: sticky;
+  top: 20px;
+
   height: 190px;
 
   grid-column: 1/-1;

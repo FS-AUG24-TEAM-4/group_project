@@ -6,11 +6,16 @@ import { PrimaryButtons } from '@/enums';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 import { getTotalCost } from '@/utils/getTotalCost';
+import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
+import { getCartProducts } from '@/utils/getCartProducts';
+import { getCartProductsQuantity } from '@/utils/getCartProductsQuantity';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
 
-  const totalCost = getTotalCost(cart.items);
+  const cartProducts = getCartProducts(cart.items);
+  const totalCost = getTotalCost(cartProducts);
+  const quantity = getCartProductsQuantity(cartProducts);
 
   const navigate = useNavigate();
 
@@ -24,15 +29,15 @@ export const CartPage = () => {
       <h1 className={styles.title}>Cart</h1>
 
       <div className={styles.cardList}>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
-        <div className={styles.card}></div>
+        {cartProducts.map(product => (
+          <CartProductCard product={product} key={product.id} />
+        ))}
       </div>
 
       <div className={styles.checkout}>
         <div className={styles.checkoutTop}>
           <p className={styles.totalCost}>${totalCost}</p>
-          <p className={styles.itemsCount}>Total for 3 items</p>
+          <p className={styles.itemsCount}>{`Total for ${quantity} items`}</p>
         </div>
 
         <div className={styles.buttonCheckout}>
