@@ -23,13 +23,13 @@
 }
 
 .arrow-top::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    transform: translate(-50%, -50%);
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
 
-    background-image: url(/src/assets/images/icons/arrow-top.svg);
-  }
+  background-image: url(/src/assets/images/icons/arrow-top.svg);
+}
