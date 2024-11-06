@@ -3,14 +3,13 @@ import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { useAddCartButton } from '../../hooks/useAddToCart';
-import { Product } from '../../types/Phone';
+import { useAddCartButton } from '../../hooks/useCart';
+import { Product } from '../../types/Product';
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
-import { useRemoveFromCartButton } from '@/hooks/useRemoveFromCart';
 import { RootState } from '@/app/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleClickedBuy } from '@/features/сart/CartSlice';
+import { toggleClickedBuy } from '@/features/сart/сartSlice';
 
 interface ProductCardProps {
   product: Product;
@@ -22,7 +21,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
   const [clickedFav, setClickedFav] = useState(false);
-  const handleRemoveFromCart = useRemoveFromCartButton(product.id);
 
   const handleAddToCart = useAddCartButton(product);
 
@@ -86,19 +84,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             alt="Add to favorites"
           />
         </FavoritesButton>
-
-        <button
-          onClick={handleRemoveFromCart}
-          style={{
-            background: 'none',
-            border: '1px solid #ccc',
-            padding: '5px',
-            marginTop: '10px',
-            cursor: 'pointer',
-          }}
-        >
-          Remove from cart
-        </button>
       </div>
     </article>
   );

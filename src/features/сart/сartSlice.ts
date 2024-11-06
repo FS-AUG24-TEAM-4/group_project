@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '@/types/Phone';
-
-interface CartItem extends Product {
-  quantity: number;
-  clickedBuy: boolean;
-  clickedFav?: boolean;
-}
+import { Product } from '@/types/Product';
+import { CartItem } from '@/types/cartItem';
 
 interface CartState {
   items: Record<string, CartItem>;
@@ -58,6 +53,7 @@ const cartSlice = createSlice({
         },
       };
     },
+
     removeFromCart: (state, action: PayloadAction<string>) => {
       const newItems = { ...state.items };
 
@@ -68,6 +64,7 @@ const cartSlice = createSlice({
         items: newItems,
       };
     },
+
     toggleClickedBuy: (state, action: PayloadAction<string>) => {
       const productId = action.payload;
 
