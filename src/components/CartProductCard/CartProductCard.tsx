@@ -2,6 +2,7 @@ import { Phone } from '@/types/Phone';
 import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
+
 interface INCartProductCard {
   phone: Phone;
 }
@@ -30,15 +31,15 @@ export const CartProductCard: FC<INCartProductCard> = ({ phone }) => {
       <div className={styles.containerButtonsPrice}>
         <div className={styles.buttons}>
           <button
-            disabled={count === 1 ? true : false}
-            className={classNames(styles.decrease, {
+            disabled={count === 1}
+            className={classNames(styles.button, styles.decrease, {
               [styles.active]: count === 1,
             })}
             onClick={() => setCount(prev => prev - 1)}
           ></button>
           <span className={styles.quantity}>{count}</span>
           <button
-            className={styles.increase}
+            className={classNames(styles.button, styles.increase)}
             onClick={() => setCount(prev => prev + 1)}
           ></button>
         </div>
