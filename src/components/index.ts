@@ -5,3 +5,4 @@ export * from './PhonesList';
 export * from './ProductCard';
 export * from './Footer';
 export * from './Header';
+export * from './CartProductCard';

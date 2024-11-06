@@ -5,10 +5,12 @@ import { PrimaryButton } from '@/components';
 import { PrimaryButtons } from '@/enums';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
-import { getTotalCost } from '@/utils/getTotalCost';
+import {
+  getTotalCost,
+  getCartProducts,
+  getCartProductsQuantity,
+} from '@/utils';
 import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
-import { getCartProducts } from '@/utils/getCartProducts';
-import { getCartProductsQuantity } from '@/utils/getCartProductsQuantity';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
