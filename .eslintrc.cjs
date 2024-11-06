@@ -57,7 +57,9 @@ module.exports = {
     'arrow-parens': 0,
     'no-param-reassign': [2, { props: true }],
     'padding-line-between-statements': [
-      2,
+      'error',
+      { blankLine: 'always', prev: 'import', next: '*' },
+      { blankLine: 'any', prev: 'import', next: 'import' },
       { blankLine: 'always', prev: '*', next: 'return' },
       { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
       {
@@ -103,7 +105,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
-    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/indent': ['warn', 2],
     '@typescript-eslint/ban-types': [
       'error',
       {
@@ -115,6 +117,8 @@ module.exports = {
     ],
 
     'import/extensions': 'off',
+
+    'import/no-extraneous-dependencies': 'off',
   },
   ignorePatterns: [
     'dist',

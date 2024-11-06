@@ -1,0 +1,140 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 288px;
+  padding: 24px 16px 16px 16px;
+  border: 1px solid $elements;
+  border-radius: 16px;
+  position: relative;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 24px;
+  }
+}
+
+.containerDeleteImgTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.containerCancelImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.containerButtonsPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteButton {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background-image: url('src/assets/images/icons/close.svg');
+  background-color: transparent;
+  border: none;
+
+  transition:
+    background-image $effectDuration ease,
+    transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.4);
+    background-image: url('src/assets/images/icons/close-active.svg');
+  }
+}
+
+.picture {
+  width: 80px;
+  height: 72px;
+  object-fit: contain;
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: $primary;
+  margin: 0;
+  padding-left: 16px;
+
+  transition: transform $effectDuration ease;
+
+  @include onTablet {
+    margin-right: 24px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 32px;
+
+  @include onTablet {
+    margin-right: 0;
+  }
+}
+
+.quantity {
+  min-width: 32px;
+  text-align: center;
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: $white;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid $icons;
+  border-radius: 50%;
+  transition: transform $effectDuration ease;
+
+  &.increase {
+    background-image: url('src/assets/images/icons/plus.svg');
+  }
+
+  &.decrease {
+    background-image: url('src/assets/images/icons/minus.svg');
+
+    &.active {
+      border: 1px solid $elements;
+      background-image: url('src/assets/images/icons/inactive-minus.svg');
+    }
+  }
+
+  &:hover {
+    border: 1px solid $primary;
+  }
+}
+
+.actual_price {
+  font-weight: 800;
+  font-size: 22px;
+
+  @include onTablet {
+    margin-left: 53px;
+  }
+}
