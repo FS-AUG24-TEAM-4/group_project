@@ -57,7 +57,9 @@ module.exports = {
     'arrow-parens': 0,
     'no-param-reassign': [2, { props: true }],
     'padding-line-between-statements': [
-      2,
+      'error',
+      { blankLine: 'always', prev: 'import', next: '*' },
+      { blankLine: 'any', prev: 'import', next: 'import' },
       { blankLine: 'always', prev: '*', next: 'return' },
       { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
       {
