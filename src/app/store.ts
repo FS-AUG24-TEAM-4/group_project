@@ -12,7 +12,6 @@ const cartPersistConfig = {
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
 
-
 export const store = configureStore({
   reducer: {
     phones: phonesReducer,

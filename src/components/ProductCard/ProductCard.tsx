@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { PrimaryButtons } from '../../enums';
-import { Product } from '../../types/Phone';
+import { Product } from '../../types/Product';
 import { useAddCartButton, useRemoveFromCartButton } from '../../hooks';
 import { FavoritesButton, PrimaryButton } from '../index';
 

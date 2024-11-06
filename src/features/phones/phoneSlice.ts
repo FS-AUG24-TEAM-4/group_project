@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Product } from '../../types/Phone';
+import { Product } from '../../types/Product';
 
 interface PhoneState {
   phones: Product[];
@@ -25,7 +25,7 @@ const phoneSlice = createSlice({
         error: null,
       };
     },
-    loadPhonesSuccess(state, action: PayloadAction<Phone[]>) {
+    loadPhonesSuccess(state, action: PayloadAction<Product[]>) {
       return {
         ...state,
         loading: false,
