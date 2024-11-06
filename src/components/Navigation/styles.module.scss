@@ -1,0 +1,71 @@
+@import '/src/assets/styles/variables';
+@import '/src/assets/styles/mixins';
+
+.nav {
+  display: none;
+
+  @include onTablet {
+    display: flex;
+    gap: 32px;
+  }
+
+  @include onDesktop {
+    gap: 64px;
+  }
+}
+
+.navFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include onTablet {
+    flex-direction: row;
+  }
+
+  @include onDesktop {
+    gap: 105px;
+  }
+}
+
+.navLink {
+  height: 48px;
+
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  line-height: 48px;
+  color: $secondary;
+  text-transform: uppercase;
+
+  transition: color $effectDuration;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &.isActive {
+    position: relative;
+    color: $primary;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      height: 3px;
+      width: 100%;
+      background-color: $primary;
+    }
+  }
+
+  @include onDesktop {
+    height: 64px;
+    line-height: 64px;
+  }
+}
+
+.navLinkFooter {
+  height: auto;
+  line-height: 11px;
+}

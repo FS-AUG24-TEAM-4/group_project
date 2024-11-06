@@ -1,16 +1,17 @@
 import { Outlet } from 'react-router-dom';
-import styles from './App.module.scss';
-import { Container } from './components';
-// import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
+
+import { Container, Header, Footer } from './components';
 
 function App() {
   return (
     <>
-      <main className={styles.main}>
+      <Header />
+      <main>
         <Container>
           <Outlet />
         </Container>
       </main>
+      <Footer />
     </>
   );
 }
