@@ -1,2 +1,2 @@
-export * from './header-navigatin-links';
-export * from './footer-navigatin-links';
+export * from './header-navigation-links';
+export * from './footer-navigation-links';

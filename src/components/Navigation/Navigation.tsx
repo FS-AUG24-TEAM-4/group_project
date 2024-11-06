@@ -20,11 +20,14 @@ type Props = {
 
 export const Navigation: FC<Props> = ({ links, isFooter = false }) => {
   return (
-    <nav className={styles.nav}>
+    <nav className={cn(styles.nav, { [styles.navFooter]: isFooter })}>
       {links.map(link => (
         <Fragment key={link.route}>
           {isFooter ? (
-            <Link to={link.route} className={styles.navLink}>
+            <Link
+              to={link.route}
+              className={cn(styles.navLink, styles.navLinkFooter)}
+            >
               {link.title}
             </Link>
           ) : (
