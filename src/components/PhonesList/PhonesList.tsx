@@ -13,12 +13,22 @@ import { getSearchWith } from '@/utils/getSearchWith';
 import { useSearchParams } from 'react-router-dom';
 
 export const PhonesList = () => {
+  const [searchParams] = useSearchParams();
   const { phones, loading, error } = usePhones();
   const { products } = useProducts();
-  const [sort, setSort] = useState<SortType>(SortType.NONE);
   const [, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   // const [itemsPerPage, setItemsPerPage] = useState(15);
+
+  const sortingParams = [
+    { value: SortType.NONE, label: 'None' },
+    { value: SortType.NEWEST, label: 'Newest' },
+    { value: SortType.OLDEST, label: 'Oldest' },
+    { value: SortType.PRICE_HIGH, label: 'Price high' },
+    { value: SortType.PRICE_LOW, label: 'Price low' },
+  ];
+
+  const sortParams = searchParams.get('sort') || SortType.NONE;
 
   function handlePageChange(page: number) {
     setCurrentPage(page);
@@ -37,16 +47,19 @@ export const PhonesList = () => {
     return <p>{error}</p>;
   }
 
-  // const sort = searchParams.get('sort');
+  const handleSortingDropdownValue = () => {
+    const currentParams = sortingParams.find(
+      param => param.value === sortParams,
+    );
 
-  const sortedPhones = sortDevices(phones, sort, products);
-  const sortingParams = [
-    { value: SortType.NONE, label: 'None' },
-    { value: SortType.NEWEST, label: 'Newest' },
-    { value: SortType.OLDEST, label: 'Oldest' },
-    { value: SortType.PRICE_HIGH, label: 'Price high' },
-    { value: SortType.PRICE_LOW, label: 'Price low' },
-  ];
+    if (currentParams) {
+      return currentParams.value === SortType.NONE ? null : currentParams;
+    }
+
+    return null;
+  };
+
+  const sortedPhones = sortDevices(phones, sortParams, products);
 
   const customSortingStylesForDropdown = {
     control: (provided: object) => ({
@@ -81,10 +94,9 @@ export const PhonesList = () => {
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
+            value={handleSortingDropdownValue()}
             onChange={value => {
               if (value) {
-                setSort(value!.value);
-
                 setSearchParams(currentParams => {
                   const sortParam =
                     value.value === SortType.NONE ? null : value.value;

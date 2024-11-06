@@ -12,7 +12,7 @@ const getPriceOfDevice = (device: Device, products: Product[]) => {
 
 export const sortDevices = (
   phonesList: Device[],
-  sortType: SortType,
+  sortType: SortType | string,
   products: Product[],
 ) => {
   if (sortType) {
