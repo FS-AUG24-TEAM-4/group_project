@@ -7,11 +7,27 @@ import { useState } from 'react';
 import { SortType } from '@/enums/SortType';
 import { useProducts } from '@/hooks/useProducts';
 import Select from 'react-select';
+import ResponsivePagination from 'react-responsive-pagination';
+import './pagination.scss';
+import { getSearchWith } from '@/utils/getSearchWith';
+import { useSearchParams } from 'react-router-dom';
 
 export const PhonesList = () => {
   const { phones, loading, error } = usePhones();
   const { products } = useProducts();
   const [sort, setSort] = useState<SortType>(SortType.NONE);
+  const [, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(15);
+
+  function handlePageChange(page: number) {
+    setCurrentPage(page);
+    setSearchParams(currentParams => {
+      const settingPage = page >= 2 ? page.toString() : null;
+
+      return getSearchWith(currentParams, { page: settingPage });
+    });
+  }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -21,6 +37,8 @@ export const PhonesList = () => {
     return <p>{error}</p>;
   }
 
+  // const sort = searchParams.get('sort');
+
   const sortedPhones = sortDevices(phones, sort, products);
   const sortingParams = [
     { value: SortType.NONE, label: 'None' },
@@ -29,42 +47,6 @@ export const PhonesList = () => {
     { value: SortType.PRICE_HIGH, label: 'Price high' },
     { value: SortType.PRICE_LOW, label: 'Price low' },
   ];
-
-  // type ProvidedControl = {
-  //   '&:hover': 'borderCOlor: "#2684FF"';
-  //   alignItems: 'center';
-  //   backgroundColor: 'hsl(0, 0%, 100%)';
-  //   borderColor: '#2684FF';
-  //   borderRadius: 4;
-  //   borderStyle: 'solid';
-  //   borderWidth: 1;
-  //   boxShadow: '0 0 0 1px #2684FF';
-  //   boxSizing: 'border-box';
-  //   cursor: 'default';
-  //   display: 'flex';
-  //   flexWrap: 'wrap';
-  //   justifyContent: 'space-between';
-  //   label: 'control';
-  //   minHeight: 38;
-  //   outline: '0 !important';
-  //   position: 'relative';
-  //   transition: 'all 100ms';
-  // };
-
-  // type ProvidedOption = {
-  //   ':active': 'backgroundColor: "#B2D4FF"';
-  //   WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)';
-  //   backgroundColor: 'transparent';
-  //   boxSizing: 'border-box';
-  //   color: 'inherit';
-  //   cursor: 'default';
-  //   display: 'block';
-  //   fontSize: 'inherit';
-  //   label: 'option';
-  //   padding: '8px 12px';
-  //   userSelect: 'none';
-  //   width: '100%';
-  // };
 
   const customSortingStylesForDropdown = {
     control: (provided: object) => ({
@@ -78,6 +60,8 @@ export const PhonesList = () => {
       ...provided,
     }),
   };
+
+  const totalPages = 5;
 
   return (
     <div className={styles.container}>
@@ -97,7 +81,18 @@ export const PhonesList = () => {
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
-            onChange={value => setSort(value!.value)}
+            onChange={value => {
+              if (value) {
+                setSort(value!.value);
+
+                setSearchParams(currentParams => {
+                  const sortParam =
+                    value.value === SortType.NONE ? null : value.value;
+
+                  return getSearchWith(currentParams, { sort: sortParam });
+                });
+              }
+            }}
           />
         </div>
       </div>
@@ -109,6 +104,12 @@ export const PhonesList = () => {
           ))}
         </article>
       )}
+
+      <ResponsivePagination
+        total={totalPages}
+        current={currentPage}
+        onPageChange={page => handlePageChange(page)}
+      />
     </div>
   );
 };

@@ -15,35 +15,39 @@ export const sortDevices = (
   sortType: SortType,
   products: Product[],
 ) => {
-  switch (sortType) {
-    case SortType.NEWEST:
-      return [...phonesList].sort(
-        (phone1, phone2) =>
-          getYearOfDevice(phone2, products) - getYearOfDevice(phone1, products),
-      );
+  if (sortType) {
+    switch (sortType) {
+      case SortType.NEWEST:
+        return [...phonesList].sort(
+          (phone1, phone2) =>
+            getYearOfDevice(phone2, products) -
+            getYearOfDevice(phone1, products),
+        );
 
-    case SortType.OLDEST:
-      return [...phonesList].sort(
-        (phone1, phone2) =>
-          getYearOfDevice(phone1, products) - getYearOfDevice(phone2, products),
-      );
+      case SortType.OLDEST:
+        return [...phonesList].sort(
+          (phone1, phone2) =>
+            getYearOfDevice(phone1, products) -
+            getYearOfDevice(phone2, products),
+        );
 
-    case SortType.PRICE_HIGH:
-      return [...phonesList].sort(
-        (phone1, phone2) =>
-          getPriceOfDevice(phone2, products) -
-          getPriceOfDevice(phone1, products),
-      );
+      case SortType.PRICE_HIGH:
+        return [...phonesList].sort(
+          (phone1, phone2) =>
+            getPriceOfDevice(phone2, products) -
+            getPriceOfDevice(phone1, products),
+        );
 
-    case SortType.PRICE_LOW:
-      return [...phonesList].sort(
-        (phone1, phone2) =>
-          getPriceOfDevice(phone1, products) -
-          getPriceOfDevice(phone2, products),
-      );
+      case SortType.PRICE_LOW:
+        return [...phonesList].sort(
+          (phone1, phone2) =>
+            getPriceOfDevice(phone1, products) -
+            getPriceOfDevice(phone2, products),
+        );
 
-    default:
-      break;
+      default:
+        break;
+    }
   }
 
   return phonesList;
