@@ -8,8 +8,15 @@ h6,
 p,
 ul {
   margin: 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  outline: none;
 }
