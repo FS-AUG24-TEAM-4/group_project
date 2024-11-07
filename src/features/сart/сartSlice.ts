@@ -16,15 +16,8 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
-      const existingItem = state.items[product.id];
 
-      const updatedItem = existingItem
-        ? {
-            ...existingItem,
-            quantity: existingItem.quantity + 1,
-            clickedBuy: true,
-          }
-        : { ...product, quantity: 1, clickedBuy: true };
+      const updatedItem = { ...product, quantity: 1, clickedBuy: true };
 
       return {
         ...state,

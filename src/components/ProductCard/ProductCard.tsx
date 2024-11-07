@@ -3,12 +3,12 @@ import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { useAddCartButton } from '../../hooks/useCart';
+import { useAddCartButton, useRemoveFromCartButton } from '../../hooks/useCart';
 import { Product } from '../../types/Product';
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { RootState } from '@/app/store';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
 
 interface ProductCardProps {
@@ -16,13 +16,23 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const dispatch = useDispatch();
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
   const [clickedFav, setClickedFav] = useState(false);
 
+  const handleRemoveFromCart = useRemoveFromCartButton(product.id);
+
   const handleAddToCart = useAddCartButton(product);
+
+  const handleClick = () => {
+    if (clickedBuy) {
+      handleRemoveFromCart();
+      toggleClickedBuy(product.id);
+    } else {
+      handleAddToCart();
+    }
+  };
 
   return (
     <article className={styles.card}>
@@ -67,8 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <PrimaryButton
           type={PrimaryButtons.CART}
           onClick={() => {
-            handleAddToCart();
-            dispatch(toggleClickedBuy(product.id));
+            handleClick();
           }}
           isActive={clickedBuy}
         >
