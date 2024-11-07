@@ -14,11 +14,13 @@ function App() {
   return (
     <>
       {burgerstatus ? (
-        <BurgerMenu />
+        <>
+          <Header />
+          <BurgerMenu />
+        </>
       ) : (
         <>
           <Header />
-
           <main className={styles.main}>
             <Container>
               <Outlet />

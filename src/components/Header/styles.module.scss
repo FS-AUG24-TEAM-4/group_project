@@ -103,6 +103,22 @@
   }
 }
 
+.burgerMenuActive {
+  display: inline-block;
+  width: 48px;
+  height: 100%;
+  box-shadow: -1px 0 0 0 $elements;
+  display: block;
+  background-image: url(/src/assets/icons/close-burger-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  @include onTablet {
+    display: none;
+  }
+}
+
 .favorites::after {
   background-image: url(/src/assets/images/icons/favorites-blank.svg);
 }

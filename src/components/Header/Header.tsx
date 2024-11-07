@@ -7,16 +7,28 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
+import { RootState } from '@/app/store';
 
 export const Header = () => {
   const dispatch = useDispatch();
+  const burgerstatus = useSelector(
+    (state: RootState) => state.burger.burgerStatus,
+  );
 
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
-        <Link to={Paths.HOME} className={styles.logo}>
+        <Link
+          onClick={() => {
+            if (burgerstatus) {
+              dispatch(changeBurgerState());
+            }
+          }}
+          to={Paths.HOME}
+          className={styles.logo}
+        >
           <img
             src={logo}
             alt="Nice gadgets logo"
@@ -36,7 +48,10 @@ export const Header = () => {
         ></Link>
         <div
           onClick={() => dispatch(changeBurgerState())}
-          className={cn(styles.iconLink, styles.burgerMenu)}
+          className={cn(styles.iconLink, {
+            [styles.burgerMenu]: !burgerstatus,
+            [styles.burgerMenuActive]: burgerstatus,
+          })}
         ></div>
       </div>
     </header>

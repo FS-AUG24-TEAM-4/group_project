@@ -1,12 +1,27 @@
 import styles from './styles.module.scss';
-import close_menu_icon from '../../assets/icons/close-menu-icon.png';
 import fav from '../../assets/icons/fav-icon.png';
-import logo from '../../assets/icons/logo.png';
 import cart from '../../assets/icons/shop-cart-icon.png';
 import { Paths } from '@/enums';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
+import classNames from 'classnames';
+
+const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
+  return classNames(styles.burger__nav__links, {
+    [styles.burger__nav__links__active]: isActive,
+  });
+};
+
+const getActiveNavLinkOnBurgerFooter = ({
+  isActive,
+}: {
+  isActive: boolean;
+}) => {
+  return classNames(styles.burger__footer__links, {
+    [styles.burger__footer__links__active]: isActive,
+  });
+};
 
 export const BurgerMenu = () => {
   const dispatch = useDispatch();
@@ -14,44 +29,36 @@ export const BurgerMenu = () => {
   return (
     <menu className={styles.burger}>
       <div className={styles.container}>
-        <header className={styles.burger__header}>
-          <NavLink className={styles.burger__header__img} to={Paths.HOME}>
-            <img
-              className={styles.burger__logo}
-              src={logo}
-              alt="nice-gadgets_logo"
-            />
-          </NavLink>
-
-          <div
-            onClick={() => dispatch(changeBurgerState())}
-            className={styles.burger__header__button}
-          >
-            <img
-              className={styles.burger__header__button__icon}
-              src={close_menu_icon}
-              alt="close-menu-icon"
-            />
-          </div>
-        </header>
-
         <nav className={styles.burger__nav}>
           <NavLink
-            className={styles.burger__nav__links__active}
+            onClick={() => dispatch(changeBurgerState())}
+            className={getActiveNavLinkOnBurger}
             to={Paths.HOME}
           >
             Home
           </NavLink>
 
-          <NavLink className={styles.burger__nav__links} to={Paths.PHONES}>
+          <NavLink
+            onClick={() => dispatch(changeBurgerState())}
+            className={getActiveNavLinkOnBurger}
+            to={Paths.PHONES}
+          >
             Phones
           </NavLink>
 
-          <NavLink className={styles.burger__nav__links} to={Paths.TABLETS}>
+          <NavLink
+            onClick={() => dispatch(changeBurgerState())}
+            className={getActiveNavLinkOnBurger}
+            to={Paths.TABLETS}
+          >
             Tablets
           </NavLink>
 
-          <NavLink className={styles.burger__nav__links} to={Paths.ACCESSORIES}>
+          <NavLink
+            onClick={() => dispatch(changeBurgerState())}
+            className={getActiveNavLinkOnBurger}
+            to={Paths.ACCESSORIES}
+          >
             Accessories
           </NavLink>
         </nav>
@@ -59,8 +66,9 @@ export const BurgerMenu = () => {
 
       <footer className={styles.burger__footer}>
         <NavLink
-          to="/group_project/fav"
-          className={styles.burger__footer__links__active}
+          onClick={() => dispatch(changeBurgerState())}
+          to="/fav"
+          className={getActiveNavLinkOnBurgerFooter}
         >
           <img
             className={styles.burger__footer__links__fav}
@@ -70,8 +78,9 @@ export const BurgerMenu = () => {
         </NavLink>
 
         <NavLink
-          to="/group_project/cart"
-          className={styles.burger__footer__links}
+          onClick={() => dispatch(changeBurgerState())}
+          to="/cart"
+          className={getActiveNavLinkOnBurgerFooter}
         >
           <img
             className={styles.burger__footer__links__cart}
