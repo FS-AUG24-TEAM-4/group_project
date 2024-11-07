@@ -126,7 +126,7 @@ module.exports = {
     'vite.config.ts',
     'src/vite-env.d.ts',
     'vite.config.d.ts',
-    '!src/**/*'
+    '!src/**/*',
   ],
   settings: {
     react: {
