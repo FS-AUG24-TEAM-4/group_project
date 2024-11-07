@@ -1,8 +1,8 @@
+/* eslint-disable max-len */
 import { useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { PrimaryButton } from '@/components';
-import { PrimaryButtons } from '@/enums';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 import {
@@ -11,6 +11,9 @@ import {
   getCartProductsQuantity,
 } from '@/utils';
 import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
+import { PrimaryButtons } from '@/enums/PrimaryButtons';
+import { useState } from 'react';
+import { ModalWindowCheckout } from '@/components/ModalWindowCheckout/ModalWindowCheckout';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -20,6 +23,18 @@ export const CartPage = () => {
   const quantity = getCartProductsQuantity(cartProducts);
 
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickCheckout = () => {
+    setIsModalOpen(true);
+    document.body.classList.add('no-scroll');
+  };
+
+  const handleClickCancel = () => {
+    setIsModalOpen(false);
+    document.body.classList.remove('no-scroll');
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -43,7 +58,18 @@ export const CartPage = () => {
         </div>
 
         <div className={styles.buttonCheckout}>
-          <PrimaryButton type={PrimaryButtons.CHECKOUT}>Checkout</PrimaryButton>
+          <PrimaryButton
+            type={PrimaryButtons.CHECKOUT}
+            onClick={handleClickCheckout}
+          >
+            Checkout
+          </PrimaryButton>
+
+          <ModalWindowCheckout
+            isOpen={isModalOpen}
+            onClickCancel={handleClickCancel}
+            setIsModalOpen={setIsModalOpen}
+          />
         </div>
       </div>
     </div>

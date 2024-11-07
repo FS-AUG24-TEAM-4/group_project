@@ -14,7 +14,7 @@
 }
 
 .modal__content {
-  background-color: white;
+  background-color: $white;
   padding: 20px;
   border-radius: 10px;
 
@@ -35,14 +35,14 @@
 }
 
 .modal__tableContainer {
-  max-height: 200px;
+  max-height: 160px;
   overflow-y: auto;
   margin-bottom: 20px;
 }
 
 .modal__table {
   width: 100%;
-  border-collapse: collapse;
+  border-spacing: 0;
 
   th,
   td {
@@ -53,7 +53,9 @@
   }
 
   th {
-    background-color: $elements;
+    background-color: $accent;
+    font-weight: 400;
+    color: $white;
   }
 }
 

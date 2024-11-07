@@ -1,6 +1,10 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/mixins';
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .wrapper {
   padding: 24px 0 56px;
 

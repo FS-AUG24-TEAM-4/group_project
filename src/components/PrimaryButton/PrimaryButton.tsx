@@ -30,6 +30,7 @@ export const PrimaryButton: FC<Props> = ({
         [styles.buttonCart]: type === PrimaryButtons.CART,
         [styles.buttonItemCart]: type === PrimaryButtons.ITEMCART,
         [styles.buttonCheckout]: type === PrimaryButtons.CHECKOUT,
+        [styles.buttonCancelCheckout]: type === PrimaryButtons.CANCELCHECKOUT,
         [styles.active]: isActive,
       })}
       onClick={onClick}
