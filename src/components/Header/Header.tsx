@@ -7,8 +7,12 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
+import { useDispatch } from 'react-redux';
+import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -30,6 +34,10 @@ export const Header = () => {
           to={Paths.CART}
           className={cn(styles.iconLink, styles.shopingBag)}
         ></Link>
+        <div
+          onClick={() => dispatch(changeBurgerState())}
+          className={cn(styles.iconLink, styles.burgerMenu)}
+        ></div>
       </div>
     </header>
   );

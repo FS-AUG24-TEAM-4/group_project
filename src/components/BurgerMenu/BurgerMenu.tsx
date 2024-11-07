@@ -5,8 +5,12 @@ import logo from '../../assets/icons/logo.png';
 import cart from '../../assets/icons/shop-cart-icon.png';
 import { Paths } from '@/enums';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 
 export const BurgerMenu = () => {
+  const dispatch = useDispatch();
+
   return (
     <menu className={styles.burger}>
       <div className={styles.container}>
@@ -19,7 +23,10 @@ export const BurgerMenu = () => {
             />
           </NavLink>
 
-          <div className={styles.burger__header__button}>
+          <div
+            onClick={() => dispatch(changeBurgerState())}
+            className={styles.burger__header__button}
+          >
             <img
               className={styles.burger__header__button__icon}
               src={close_menu_icon}
