@@ -1,7 +1,7 @@
+import { Device } from '@/types/Device';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '@/types/Product';
 
-export interface CartItem extends Product {
+export interface CartItem extends Device {
   quantity: number;
 }
 
@@ -17,7 +17,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToCart: (state, action: PayloadAction<Device>) => {
       const product = action.payload;
 
       return {

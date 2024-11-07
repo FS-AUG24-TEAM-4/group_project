@@ -1,10 +1,10 @@
-import { Product } from '@/types/Product';
 import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
+import { Device } from '@/types/Device';
 
 interface INCartProductCard {
-  product: Product;
+  product: Device;
 }
 
 export const CartProductCard: FC<INCartProductCard> = ({ product }) => {

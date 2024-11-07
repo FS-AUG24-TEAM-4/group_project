@@ -25,7 +25,7 @@ export const CartPage = () => {
     <div className={styles.wrapper}>
       <button className={styles.buttonBack} onClick={() => navigate(-1)}>
         <div className={styles.buttonBackIcon}></div>
-        Back
+        <span className={styles.textButtonBack}>Back</span>
       </button>
 
       <h1 className={styles.title}>Cart</h1>

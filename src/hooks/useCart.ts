@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../features/сart/сartSlice';
 import { addToCart } from '../features/сart/сartSlice';
-import { Product } from '../types/Product';
 import { updateQuantity } from '../features/сart/сartSlice';
+import { Device } from '@/types/Device';
 
-export const useAddCartButton = (product: Product) => {
+export const useAddCartButton = (product: Device) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
