@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
@@ -13,14 +12,24 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [clickedBuy, setClickedBuy] = useState(false);
+  const clickedBuy = useSelector(
+    (state: RootState) => state.cart.items[product.id]?.clickedBuy,
+  );
+  
   const [clickedFav, setClickedFav] = useState(false);
 
   const handleRemoveFromCart = useRemoveFromCartButton(product.id);
 
   const handleAddToCart = useAddCartButton(product);
 
-  const handleClick = clickedBuy ? handleRemoveFromCart : handleAddToCart;
+  const handleClick = () => {
+    if (clickedBuy) {
+      handleRemoveFromCart();
+      toggleClickedBuy(product.id);
+    } else {
+      handleAddToCart();
+    }
+  };
 
   return (
     <article className={styles.card}>
@@ -65,7 +74,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <PrimaryButton
           type={PrimaryButtons.CART}
           onClick={() => {
-            setClickedBuy(!clickedBuy);
             handleClick();
           }}
           isActive={clickedBuy}
