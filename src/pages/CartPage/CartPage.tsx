@@ -25,15 +25,18 @@ export const CartPage = () => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCartEmpty, setIsCartEmpty] = useState(!cartProducts.length);
 
   const handleClickCheckout = () => {
     setIsModalOpen(true);
-    document.body.classList.add('no-scroll');
   };
 
   const handleClickCancel = () => {
     setIsModalOpen(false);
-    document.body.classList.remove('no-scroll');
+  };
+
+  const handleCartEmpty = () => {
+    setIsCartEmpty(true);
   };
 
   return (
@@ -45,33 +48,41 @@ export const CartPage = () => {
 
       <h1 className={styles.title}>Cart</h1>
 
-      <div className={styles.cardList}>
-        {cartProducts.map(product => (
-          <CartProductCard product={product} key={product.id} />
-        ))}
-      </div>
+      {isCartEmpty ? (
+        <p className={styles.emptyCart}>Your cart is empty.</p>
+      ) : (
+        <>
+          <div className={styles.cardList}>
+            {cartProducts.map(product => (
+              <CartProductCard product={product} key={product.id} />
+            ))}
+          </div>
+          <div className={styles.checkout}>
+            <div className={styles.checkoutTop}>
+              <p className={styles.totalCost}>${totalCost}</p>
+              <p
+                className={styles.itemsCount}
+              >{`Total for ${quantity} items`}</p>
+            </div>
 
-      <div className={styles.checkout}>
-        <div className={styles.checkoutTop}>
-          <p className={styles.totalCost}>${totalCost}</p>
-          <p className={styles.itemsCount}>{`Total for ${quantity} items`}</p>
-        </div>
+            <div className={styles.buttonCheckout}>
+              <PrimaryButton
+                type={PrimaryButtons.CHECKOUT}
+                onClick={handleClickCheckout}
+              >
+                Checkout
+              </PrimaryButton>
 
-        <div className={styles.buttonCheckout}>
-          <PrimaryButton
-            type={PrimaryButtons.CHECKOUT}
-            onClick={handleClickCheckout}
-          >
-            Checkout
-          </PrimaryButton>
-
-          <ModalWindowCheckout
-            isOpen={isModalOpen}
-            onClickCancel={handleClickCancel}
-            setIsModalOpen={setIsModalOpen}
-          />
-        </div>
-      </div>
+              <ModalWindowCheckout
+                isOpen={isModalOpen}
+                onClickCancel={handleClickCancel}
+                setIsModalOpen={setIsModalOpen}
+                onCartEmpty={handleCartEmpty}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

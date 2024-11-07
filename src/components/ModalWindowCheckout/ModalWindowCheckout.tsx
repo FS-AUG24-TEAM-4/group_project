@@ -13,6 +13,7 @@ import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
 interface PropsModalWindow {
   isOpen: boolean;
   onClickCancel: () => void;
+  onCartEmpty: () => void;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -20,6 +21,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
   isOpen,
   onClickCancel,
   setIsModalOpen,
+  onCartEmpty,
 }) => {
   const cart = useSelector((state: RootState) => state.cart);
   const cartItems = getCartProducts(cart.items);
@@ -33,9 +35,12 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
   const handleRemoveOnConfirm = () => {
     setIsModalOpen(false);
     setIsSuccessModalOpen(true);
+
     setTimeout(() => {
       navigate(Paths.HOME);
+      onCartEmpty();
     }, 3000);
+
     cartItems.forEach(cartItem => {
       handleRemove(cartItem.id);
     });
