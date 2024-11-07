@@ -1,6 +1,7 @@
 @import '../../assets/styles/mixins';
 
 .container {
+  padding-top: 24px;
   display: flex;
   justify-self: center;
   flex-direction: column;
