@@ -6,6 +6,9 @@ import { PrimaryButtons } from '../../enums';
 import { Product } from '../../types/Product';
 import { useAddCartButton, useRemoveFromCartButton } from '../../hooks';
 import { FavoritesButton, PrimaryButton } from '../index';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
+import { toggleClickedBuy } from '@/features/сart/сartSlice';
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +18,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
-  
+
   const [clickedFav, setClickedFav] = useState(false);
 
   const handleRemoveFromCart = useRemoveFromCartButton(product.id);
