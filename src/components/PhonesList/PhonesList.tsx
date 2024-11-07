@@ -1,22 +1,21 @@
-import { usePhones } from '../../hooks/usePhone';
-import { ProductCard } from '../ProductCard/ProductCard';
+// import { usePhones } from '../../hooks/usePhone';
+// import { ModalWindow } from '../ModalWindow/ModalWindow';
+// import { ProductCard } from '../ProductCard/ProductCard';
 
-export const PhonesList = () => {
-  const { phones, loading, error } = usePhones();
+// export const PhonesList = () => {
+//   const { phones, loading, error } = usePhones();
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+//   if (loading) {
+//     return <p>Loading...</p>;
+//   }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+//   if (error) {
+//     return <p>{error}</p>;
+//   }
 
-  return (
-    <div>
-      {phones.map(phone => (
-        <ProductCard key={phone.id} phone={phone} />
-      ))}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <ModalWindow />
+//     </div>
+//   );
+// };

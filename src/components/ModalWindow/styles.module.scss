@@ -1,0 +1,89 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  @include onDesktop {
+    width: 500px;
+  }
+}
+
+.modal__title {
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.modal__tableContainer {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.modal__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid $elements;
+    padding: 8px;
+    text-align: left;
+    max-width: 1800px;
+  }
+
+  th {
+    background-color: $elements;
+  }
+}
+
+.modal__total {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 20px;
+
+  span:last-child {
+    margin-left: 10px;
+  }
+}
+
+.confirm,
+.cancel {
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid $primary;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.confirm {
+  background-color: $primary;
+  color: $white;
+}
+
+.cancel {
+  background-color: white;
+  color: $primary;
+}
