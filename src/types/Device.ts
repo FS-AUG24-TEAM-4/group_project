@@ -1,4 +1,4 @@
-export interface Phone {
+export interface Device {
   id: string;
   category: string;
   namespaceId: string;
@@ -18,7 +18,7 @@ export interface Phone {
   resolution: string;
   processor: string;
   ram: string;
-  camera: string;
-  zoom: string;
+  camera?: string;
+  zoom?: string;
   cell: string[];
 }

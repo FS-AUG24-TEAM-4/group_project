@@ -1,13 +1,13 @@
-import { Phone } from '@/types/Phone';
 import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
+import { Device } from '@/types/Device';
 
 interface INCartProductCard {
-  phone: Phone;
+  product: Device;
 }
 
-export const CartProductCard: FC<INCartProductCard> = ({ phone }) => {
+export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
   const [count, setCount] = useState(1);
 
   return (
@@ -17,14 +17,14 @@ export const CartProductCard: FC<INCartProductCard> = ({ phone }) => {
           <button className={styles.deleteButton}></button>
           <a href="#">
             <img
-              src={phone.images[0]}
-              alt={phone.name}
+              src={product.images[0]}
+              alt={product.name}
               className={styles.picture}
             />
           </a>
         </div>
         <a href="#">
-          <h2 className={styles.title}>{phone.name}</h2>
+          <h2 className={styles.title}>{product.name}</h2>
         </a>
       </div>
 
@@ -45,7 +45,7 @@ export const CartProductCard: FC<INCartProductCard> = ({ phone }) => {
         </div>
 
         <p className={styles.actual_price}>
-          ${phone.priceDiscount || phone.priceRegular}
+          ${product.priceDiscount || product.priceRegular}
         </p>
       </div>
     </article>

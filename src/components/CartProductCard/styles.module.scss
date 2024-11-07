@@ -10,6 +10,8 @@
   border-radius: 16px;
   position: relative;
 
+  background-color: $white;
+
   @include onTablet {
     flex-direction: row;
     justify-content: space-between;
@@ -35,6 +37,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
 }
 
 .deleteButton {
@@ -133,8 +136,5 @@
 .actual_price {
   font-weight: 800;
   font-size: 22px;
-
-  @include onTablet {
-    margin-left: 53px;
-  }
+  width: 80px;
 }
