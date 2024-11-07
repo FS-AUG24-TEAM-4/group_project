@@ -219,7 +219,7 @@ export const PhonesList = () => {
       {paginationOfDevice && (
         <article className={styles.phones_list}>
           {paginationOfDevice.map(phone => (
-            <ProductCard key={phone.id} phone={phone} />
+            <ProductCard key={phone.id} product={phone} />
           ))}
         </article>
       )}

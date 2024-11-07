@@ -1,64 +1,84 @@
 import { useState } from 'react';
-
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
-import { PrimaryButtons } from '../../enums/PrimaryButtons';
-import { FavoritesButton } from '../FavoritesButton/FavoritesButton';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
+import { PrimaryButtons } from '../../enums';
+import { useAddCartButton, useRemoveFromCartButton } from '../../hooks';
+import { FavoritesButton, PrimaryButton } from '../index';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
+import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { Device } from '@/types/Device';
 
 interface ProductCardProps {
-  phone: Device;
+  product: Device;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ phone }) => {
-  const [clickedBuy, setClickedBuy] = useState(false);
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const clickedBuy = useSelector(
+    (state: RootState) => state.cart.items[product.id]?.clickedBuy,
+  );
+
   const [clickedFav, setClickedFav] = useState(false);
+
+  const handleRemoveFromCart = useRemoveFromCartButton(product.id);
+
+  const handleAddToCart = useAddCartButton(product);
+
+  const handleClick = () => {
+    if (clickedBuy) {
+      handleRemoveFromCart();
+      toggleClickedBuy(product.id);
+    } else {
+      handleAddToCart();
+    }
+  };
 
   return (
     <article className={styles.card}>
       <a href="#">
         <img
-          src={phone.images[0]}
-          alt={phone.name}
+          src={product.images[0]}
+          alt={product.name}
           className={styles.picture}
         />
       </a>
 
       <a href="#">
-        <h2 className={styles.title}>{phone.name}</h2>
+        <h2 className={styles.title}>{product.name}</h2>
       </a>
 
       <div className={styles.price}>
         <p className={styles.actual_price}>
-          ${phone.priceDiscount || phone.priceRegular}
+          ${product.priceDiscount || product.priceRegular}
         </p>
-        {phone.priceDiscount && (
-          <p className={styles.old_price}>${phone.priceRegular}</p>
+        {product.priceDiscount && (
+          <p className={styles.old_price}>${product.priceRegular}</p>
         )}
       </div>
 
       <div className={styles.line}></div>
       <div className={styles.specs}>
         <p className={styles.label}>Screen</p>
-        <p className={styles.value}>{phone.screen.replace(`'`, `''`)}</p>
+        <p className={styles.value}>{product.screen.replace(`'`, `''`)}</p>
       </div>
 
       <div className={styles.specs}>
         <p className={styles.label}>Capacity</p>
-        <p className={styles.value}>{phone.capacity.replace('GB', '')} GB</p>
+        <p className={styles.value}>{product.capacity.replace('GB', '')} GB</p>
       </div>
 
       <div className={styles.specs}>
         <p className={styles.label}>RAM</p>
-        <p className={styles.value}>{phone.ram.replace('GB', '')} GB</p>
+        <p className={styles.value}>{product.ram.replace('GB', '')} GB</p>
       </div>
 
       <div className={styles.buttons}>
         <PrimaryButton
           type={PrimaryButtons.CART}
-          onClick={() => setClickedBuy(!clickedBuy)}
+          onClick={() => {
+            handleClick();
+          }}
           isActive={clickedBuy}
         >
           {clickedBuy ? 'Added' : 'Add to cart'}

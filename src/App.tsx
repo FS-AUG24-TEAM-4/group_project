@@ -4,6 +4,7 @@ import { Container, Header, Footer } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
 import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
+import styles from './App.module.scss';
 
 function App() {
   const burgerstatus = useSelector(
@@ -18,7 +19,7 @@ function App() {
         <>
           <Header />
 
-          <main>
+          <main className={styles.main}>
             <Container>
               <Outlet />
             </Container>

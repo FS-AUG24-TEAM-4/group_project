@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App';
 import { Paths } from './enums';
 import { PhonesPage, NotFoundPage } from './pages';
+import { CartPage } from './pages/CartPage';
 
 export const Root = () => {
   return (
@@ -12,6 +13,8 @@ export const Root = () => {
           <Route path={Paths.PHONES}>
             <Route index element={<PhonesPage />} />
           </Route>
+
+          <Route path={Paths.CART} element={<CartPage />} />
 
           <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
         </Route>
