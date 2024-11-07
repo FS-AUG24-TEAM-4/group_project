@@ -6,10 +6,11 @@ import { sortDevices } from '@/utils/sortDevices';
 import { SortType } from '@/enums/SortType';
 import { useProducts } from '@/hooks/useProducts';
 import Select from 'react-select';
-// import './pagination.scss';
 import { getSearchWith } from '@/utils/getSearchWith';
 import { useSearchParams } from 'react-router-dom';
-// import { scrollToTop } from '@/utils/scrollToTop';
+import { scrollToTop } from '@/utils/scrollToTop';
+import Pagination from '@mui/material/Pagination';
+import { PaginationItem } from '@mui/material';
 
 export const PhonesList = () => {
   const [searchParams] = useSearchParams();
@@ -47,19 +48,19 @@ export const PhonesList = () => {
     lastDeviceIndex,
   );
 
-  // function handlePageChange(page: number) {
-  //   scrollToTop();
+  function handlePageChange(page: number) {
+    scrollToTop();
 
-  //   setTimeout(
-  //     () =>
-  //       setSearchParams(currentParams => {
-  //         const settingPage = page >= 2 ? page.toString() : null;
+    setTimeout(
+      () =>
+        setSearchParams(currentParams => {
+          const settingPage = page >= 2 ? page.toString() : null;
 
-  //         return getSearchWith(currentParams, { page: settingPage });
-  //       }),
-  //     800,
-  //   );
-  // }
+          return getSearchWith(currentParams, { page: settingPage });
+        }),
+      800,
+    );
+  }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -159,7 +160,7 @@ export const PhonesList = () => {
     }),
   };
 
-  // const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
+  const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
 
   return (
     <div className={styles.container}>
@@ -223,6 +224,51 @@ export const PhonesList = () => {
           ))}
         </article>
       )}
+
+      <Pagination
+        count={totalPages}
+        onChange={(_event, page: number) => handlePageChange(page)}
+        siblingCount={isPhone ? 0 : 1}
+        boundaryCount={1}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '64px',
+        }}
+        renderItem={item => {
+          if (!item.page) {
+            return;
+          }
+
+          return (
+            <PaginationItem
+              sx={{
+                border: '1px solid #e2e6e9',
+                color: '#0f0f11',
+                minHeight: '40px',
+                minWidth: '40px',
+                borderRadius: '20px',
+                '&:hover': {
+                  borderColor: '#0f0f11',
+                  backgroundColor: '#fff',
+                },
+                '&:active': {
+                  color: '#fff',
+                  backgroundColor: '#0f0f11',
+                },
+                '&.Mui-selected': {
+                  color: '#ffffff',
+                  backgroundColor: '#0f0f11',
+                  '&:hover': {
+                    backgroundColor: '#0f0f11',
+                  },
+                },
+              }}
+              {...item}
+            />
+          );
+        }}
+      />
     </div>
   );
 };
