@@ -1,32 +1,41 @@
+@import '/src/assets/styles/mixins';
+
 .pagination {
+  max-width: 248px;
+  align-self: center;
   justify-content: center;
   display: flex;
   padding-left: 0;
   list-style: none;
-  margin: 0;
+  margin-bottom: 64px;
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
 }
 
 .page-item .page-link {
-  position: relative;
   display: block;
   margin: 0 2px;
   min-height: 40px;
   min-width: 40px;
   border-radius: 20px;
   text-align: center;
+  font-weight: 600;
+  font-size: 14px;
   line-height: 40px;
-  color: #007bff;
+  color: #0f0f11;
   text-decoration: none;
+  border: 1px solid #e2e6e9;
 }
 
 .page-item a.page-link:hover {
-  background-color: #cccccc;
+  border-color: #0f0f11;
 }
 
 .page-item.active .page-link {
-  font-weight: 700;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #0f0f11;
 }
 
 .page-item.disabled .page-link {

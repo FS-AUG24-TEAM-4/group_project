@@ -38,6 +38,8 @@
 .dropdowns {
   margin-bottom: 24px;
   width: fit-content;
+  display: flex;
+  gap: 16px;
 }
 
 .sort_by_text {
@@ -53,6 +55,7 @@
   grid-template-columns: repeat(1, auto);
   row-gap: 40px;
   column-gap: 16px;
+  margin-bottom: 40px;
 
   @include onTablet {
     grid-template-columns: repeat(2, auto);
