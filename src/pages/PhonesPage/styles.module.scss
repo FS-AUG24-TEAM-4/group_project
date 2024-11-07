@@ -1,0 +1,50 @@
+@import '../../assets/styles/mixins';
+
+.container {
+  padding-top: 24px;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+}
+
+.bread__img {
+  width: 93px;
+  height: 16px;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.counter_text {
+  color: #89939a;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  margin-bottom: 32px;
+}
+
+.dropdowns {
+  margin-bottom: 24px;
+  width: fit-content;
+  display: flex;
+  gap: 16px;
+}
+
+.sort_by_text {
+  font-size: 12px;
+  line-height: 15.34px;
+  color: #89939a;
+  margin-bottom: 4px;
+}

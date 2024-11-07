@@ -1,11 +1,15 @@
-import styles from './styles.module.scss';
-import fav from '../../assets/icons/fav-icon.png';
-import cart from '../../assets/icons/shop-cart-icon.png';
-import { Paths } from '@/enums';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import classNames from 'classnames';
+
+import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
+
+import fav from '../../../src/assets/images/icons/favorites-blank.svg';
+import cart from '../../../src/assets/images/icons/shopping-bag-blank.svg';
+
+import { Paths } from '@/enums';
+
+import styles from './styles.module.scss';
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {

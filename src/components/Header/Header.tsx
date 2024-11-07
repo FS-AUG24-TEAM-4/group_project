@@ -1,15 +1,15 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
+import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
+import { Navigation } from '../Navigation';
+import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
 
-import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
-import { RootState } from '@/app/store';
 
 export const Header = () => {
   const dispatch = useDispatch();
