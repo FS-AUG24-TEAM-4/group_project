@@ -6,11 +6,10 @@ import { sortDevices } from '@/utils/sortDevices';
 import { SortType } from '@/enums/SortType';
 import { useProducts } from '@/hooks/useProducts';
 import Select from 'react-select';
-import ResponsivePagination from 'react-responsive-pagination';
-import './pagination.scss';
+// import './pagination.scss';
 import { getSearchWith } from '@/utils/getSearchWith';
 import { useSearchParams } from 'react-router-dom';
-import { scrollToTop } from '@/utils/scrollToTop';
+// import { scrollToTop } from '@/utils/scrollToTop';
 
 export const PhonesList = () => {
   const [searchParams] = useSearchParams();
@@ -48,19 +47,19 @@ export const PhonesList = () => {
     lastDeviceIndex,
   );
 
-  function handlePageChange(page: number) {
-    scrollToTop();
+  // function handlePageChange(page: number) {
+  //   scrollToTop();
 
-    setTimeout(
-      () =>
-        setSearchParams(currentParams => {
-          const settingPage = page >= 2 ? page.toString() : null;
+  //   setTimeout(
+  //     () =>
+  //       setSearchParams(currentParams => {
+  //         const settingPage = page >= 2 ? page.toString() : null;
 
-          return getSearchWith(currentParams, { page: settingPage });
-        }),
-      800,
-    );
-  }
+  //         return getSearchWith(currentParams, { page: settingPage });
+  //       }),
+  //     800,
+  //   );
+  // }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -160,7 +159,7 @@ export const PhonesList = () => {
     }),
   };
 
-  const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
+  // const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
 
   return (
     <div className={styles.container}>
@@ -224,12 +223,6 @@ export const PhonesList = () => {
           ))}
         </article>
       )}
-
-      <ResponsivePagination
-        total={totalPages}
-        current={currentPage}
-        onPageChange={page => handlePageChange(page)}
-      />
     </div>
   );
 };
