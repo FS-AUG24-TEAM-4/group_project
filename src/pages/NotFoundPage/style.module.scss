@@ -5,10 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin: 0 auto;
   max-width: 800px;
-  padding-top: 320px;
+  padding: 380px 0 130px;
 
   text-align: center;
 
@@ -17,10 +16,10 @@
   background-image: url('public/img/page-not-found.png');
   background-repeat: no-repeat;
   background-size: auto 280px;
-  background-position: center top;
+  background-position: center 100px;
 
   @include onTablet {
-    padding-top: 390px;
+    padding-top: 450px;
 
     background-size: auto 350px;
   }
