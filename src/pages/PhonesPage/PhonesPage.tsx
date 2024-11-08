@@ -39,11 +39,11 @@ export const PhonesPage = () => {
   ];
 
   const itemsPerPage = [
-    { value: 10, label: '10' },
-    { value: 15, label: '15' },
-    { value: 20, label: '20' },
-    { value: 35, label: '35' },
-    { value: 50, label: '50' },
+    { value: 12, label: '12' },
+    { value: 24, label: '24' },
+    { value: 36, label: '36' },
+    { value: 48, label: '48' },
+    { value: 60, label: '60' },
   ];
 
   const sortParams = searchParams.get('sort') || SortType.NONE;
@@ -107,6 +107,7 @@ export const PhonesPage = () => {
     height: '40px',
     border: '1px solid #B4BDC3',
     borderRadius: '8px',
+    cursor: 'pointer',
   };
 
   const customSortingStylesForDropdown = {
@@ -142,6 +143,7 @@ export const PhonesPage = () => {
     height: '40px',
     border: '1px solid #B4BDC3',
     borderRadius: '8px',
+    cursor: 'pointer',
   };
 
   const customItemDisplayStylesForDropdown = {
