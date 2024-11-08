@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { AppDispatch, RootState } from '@/app/store';
 import {
   loadProductsFailure,
