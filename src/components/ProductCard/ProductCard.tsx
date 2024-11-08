@@ -11,6 +11,7 @@ import { Device } from '@/types/Device';
 import { PrimaryButtons } from '@/enums';
 
 import { useCart } from '@/hooks/useCart';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Device;
@@ -40,17 +41,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <a href="#">
+      <Link to={`/phones/${product.id}`}>
         <img
           src={product.images[0]}
           alt={product.name}
           className={styles.picture}
         />
-      </a>
+      </Link>
 
-      <a href="#">
+      <Link to={`/phones/${product.id}`}>
         <h2 className={styles.title}>{product.name}</h2>
-      </a>
+      </Link>
 
       <div className={styles.price}>
         <p className={styles.actual_price}>
