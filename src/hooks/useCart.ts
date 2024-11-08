@@ -2,12 +2,12 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../features/сart/сartSlice';
 import { addToCart } from '../features/сart/сartSlice';
 import { updateQuantity } from '../features/сart/сartSlice';
-import { Device } from '@/types/Device';
+import { Product } from '@/types/Product';
 
 export const useCart = () => {
   const dispatch = useDispatch();
 
-  const addCartButton = (product: Device) => {
+  const addCartButton = (product: Product) => {
     const handleAddToCart = () => {
       dispatch(addToCart(product));
     };

@@ -1,6 +1,6 @@
-import { Device } from './Product';
+import { Product } from './Product';
 
-export interface CartItem extends Device {
+export interface CartItem extends Product {
   quantity: number;
   clickedBuy: boolean;
 }

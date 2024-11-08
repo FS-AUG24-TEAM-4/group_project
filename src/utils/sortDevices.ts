@@ -1,43 +1,21 @@
 import { SortType } from '@/enums/SortType';
-import { Device } from '@/types/Product';
-import { Product } from '@/types/Device';
-
-const getYearOfDevice = (device: Device, products: Product[]) => {
-  return products.find(product => product.itemId === device.id)?.year || 0;
-};
-
-const getPriceOfDevice = (device: Device, products: Product[]) => {
-  return products.find(product => product.itemId === device.id)?.price || 0;
-};
+import { Product } from '@/types/Product';
 
 export const sortDevices = (
-  deviceList: Device[],
+  deviceList: Product[],
   sortType: SortType | string,
-  products: Product[],
 ) => {
   if (sortType) {
-    return [...deviceList].sort((device1: Device, device2: Device) => {
+    return [...deviceList].sort((device1: Product, device2: Product) => {
       switch (sortType) {
         case SortType.NEWEST:
-          return (
-            getYearOfDevice(device2, products) -
-            getYearOfDevice(device1, products)
-          );
+          return device2.year - device1.year;
         case SortType.OLDEST:
-          return (
-            getYearOfDevice(device1, products) -
-            getYearOfDevice(device2, products)
-          );
+          return device1.year - device2.year;
         case SortType.PRICE_HIGH:
-          return (
-            getPriceOfDevice(device2, products) -
-            getPriceOfDevice(device1, products)
-          );
+          return device2.price - device1.price;
         case SortType.PRICE_LOW:
-          return (
-            getPriceOfDevice(device1, products) -
-            getPriceOfDevice(device2, products)
-          );
+          return device1.price - device2.price;
         default:
           return 0;
       }

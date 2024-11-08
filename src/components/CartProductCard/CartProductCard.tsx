@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { Device } from '@/types/Product';
+import { Product } from '@/types/Product';
 
 interface INCartProductCard {
-  product: Device;
+  product: Product;
 }
 
 export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
@@ -17,7 +17,7 @@ export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
           <button className={styles.deleteButton}></button>
           <a href="#">
             <img
-              src={product.images[0]}
+              src={product.image}
               alt={product.name}
               className={styles.picture}
             />
@@ -45,7 +45,7 @@ export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
         </div>
 
         <p className={styles.actual_price}>
-          ${product.priceDiscount || product.priceRegular}
+          ${product.price || product.fullPrice}
         </p>
       </div>
     </article>

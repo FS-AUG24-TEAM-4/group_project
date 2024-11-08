@@ -15,12 +15,16 @@ import bread__img from '../../assets/breadcrumbs-img/Breadcrumbs.png';
 import { SortType } from '@/enums/SortType';
 
 import styles from './styles.module.scss';
+import { Product } from '@/types/Product';
 
 export const PhonesPage = () => {
-  const [searchParams] = useSearchParams();
-  const { phones, loading, error } = usePhones();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { loading, error } = usePhones();
   const { products } = useProducts();
-  const [, setSearchParams] = useSearchParams();
+
+  const newPhones = products.filter(
+    (product: Product) => product.category === 'phones',
+  );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -50,7 +54,7 @@ export const PhonesPage = () => {
   const currentPage = Number(searchParams.get('page')) || 1;
   const devicesPerPage = searchParams.get('devicesPerPage') || '12';
 
-  const sortedPhones = sortDevices(phones, sortParams, products);
+  const sortedPhones = sortDevices(newPhones, sortParams);
 
   const lastDeviceIndex = currentPage * +devicesPerPage;
   const firstDeviceIndex = lastDeviceIndex - +devicesPerPage;
