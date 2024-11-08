@@ -1,0 +1,24 @@
+@import '../../assets/styles/mixins';
+
+.phones_list {
+  justify-content: center;
+  grid-template-columns: repeat(1, auto);
+  row-gap: 40px;
+  column-gap: 16px;
+
+  display: grid;
+
+  margin-bottom: 40px;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @include onTabletWide {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(4, auto);
+  }
+}

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import styles from './styles.module.scss';
+import blankIcon from '../../assets/images/icons/favorites-blank.svg';
+import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { useSelector } from 'react-redux';
 
 import { FavoritesButton, PrimaryButton } from '../index';
@@ -7,9 +10,6 @@ import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { Device } from '@/types/Device';
 import { PrimaryButtons } from '@/enums';
 
-import styles from './styles.module.scss';
-import filledIcon from '../../assets/images/icons/favorites-filled.svg';
-import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import { useCart } from '@/hooks/useCart';
 
 interface ProductCardProps {

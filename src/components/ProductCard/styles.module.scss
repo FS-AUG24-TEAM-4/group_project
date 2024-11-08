@@ -3,8 +3,8 @@
 
 .card {
   display: flex;
-  width: 212px;
-  height: 439px;
+  width: 287px;
+  height: 440px;
   padding: 32px;
 
   flex-direction: column;
@@ -23,8 +23,13 @@
   }
 
   @include onTablet {
-    width: 237px;
-    height: 512px;
+    width: 288px;
+    height: 506px;
+  }
+
+  @include onTabletWide {
+    width: 229px;
+    height: 506px;
   }
 
   @include onDesktop {

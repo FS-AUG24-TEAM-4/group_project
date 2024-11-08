@@ -1,0 +1,57 @@
+@import '/src/assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.container {
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
+
+  display: flex;
+
+  padding-top: 24px;
+  width: fit-content;
+}
+
+.bread__img {
+  width: 93px;
+  height: 16px;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 8px;
+
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.counter_text {
+  margin-bottom: 32px;
+
+  color: $secondary;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.dropdowns {
+  display: flex;
+  gap: 16px;
+
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.sort_by_text {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  line-height: 15.34px;
+  color: $secondary;
+}

@@ -1,5 +1,6 @@
-import { Device } from '@/types/Device';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { Device } from '@/types/Device';
 
 interface PhoneState {
   phones: Device[];

@@ -7,12 +7,9 @@ import { Paths } from '@/enums';
 import { Navigation } from '../Navigation';
 import { IconButton } from '../IconButton';
 import styles from './styles.module.scss';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 export const Footer = () => {
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
@@ -26,7 +23,7 @@ export const Footer = () => {
         <Navigation links={FooterNavigationLinks} isFooter={true} />
         <div className={styles.backToTopContainer}>
           <span className={styles.backToTopLabel}>Back to top</span>
-          <IconButton icon="arrow-top" onClick={handleScrollToTop} />
+          <IconButton icon="arrow-top" onClick={scrollToTop} />
         </div>
       </div>
     </footer>

@@ -1,4 +1,4 @@
-import { Device } from './Device';
+import { Device } from './Product';
 
 export interface CartItem extends Device {
   quantity: number;
