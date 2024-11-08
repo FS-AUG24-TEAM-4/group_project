@@ -91,7 +91,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
             <div className={styles.modal__actions}>
               <PrimaryButton
                 onClick={handleRemoveOnConfirm}
-                type={PrimaryButtons.CART}
+                type={PrimaryButtons.ITEMCART}
               >
                 Confirm
               </PrimaryButton>
