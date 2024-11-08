@@ -1,20 +1,30 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { Product } from '@/types/Product';
+import { CartItem } from '@/types';
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromCart,
+} from '../../features/сart/сartSlice';
 
 interface INCartProductCard {
-  product: Product;
+  product: CartItem;
 }
 
 export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
-  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  const finalPrice = product.price || product.fullPrice;
 
   return (
     <article className={styles.card}>
       <div className={styles.containerDeleteImgTitle}>
         <div className={styles.containerCancelImg}>
-          <button className={styles.deleteButton}></button>
+          <button
+            className={styles.deleteButton}
+            onClick={() => dispatch(removeFromCart(product.id))}
+          ></button>
           <a href="#">
             <img
               src={product.image}
@@ -31,22 +41,20 @@ export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
       <div className={styles.containerButtonsPrice}>
         <div className={styles.buttons}>
           <button
-            disabled={count === 1}
+            disabled={product.quantity === 1}
             className={classNames(styles.button, styles.decrease, {
-              [styles.active]: count === 1,
+              [styles.active]: product.quantity === 1,
             })}
-            onClick={() => setCount(prev => prev - 1)}
+            onClick={() => dispatch(decreaseQuantity(product.id))}
           ></button>
-          <span className={styles.quantity}>{count}</span>
+          <span className={styles.quantity}>{product.quantity}</span>
           <button
             className={classNames(styles.button, styles.increase)}
-            onClick={() => setCount(prev => prev + 1)}
+            onClick={() => dispatch(increaseQuantity(product.id))}
           ></button>
         </div>
 
-        <p className={styles.actual_price}>
-          ${product.price || product.fullPrice}
-        </p>
+        <p className={styles.actual_price}>${finalPrice * product.quantity}</p>
       </div>
     </article>
   );
