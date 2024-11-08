@@ -2,7 +2,7 @@
 @import '/src/assets/styles/mixins';
 
 .footer {
-  box-shadow: 0 -1px 0 0 $elements;
+  border-top: 1px solid $elements;
 }
 
 .footerContainer {
@@ -10,8 +10,6 @@
   flex-direction: column;
   gap: 32px;
   padding: 32px 16px;
-
-  box-shadow: 0 -1px 0 0 $elements;
 
   @include onTablet {
     flex-direction: row;

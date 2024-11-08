@@ -1,8 +1,7 @@
 @import '/src/assets/styles/variables';
 
 .burger {
-  position: absolute;
-  left: 0;
+  position: relative;
   flex-direction: column;
   justify-content: space-between;
 
