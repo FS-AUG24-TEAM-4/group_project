@@ -1,14 +1,15 @@
 import { FC, useState } from 'react';
-import styles from './styles.module.scss';
-import { PrimaryButton } from '../PrimaryButton';
-import { PrimaryButtons } from '@/enums/PrimaryButtons';
-import { useRemoveFromCartButton } from '@/hooks';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
-import { getCartProducts, getTotalCost } from '@/utils';
 import { useNavigate } from 'react-router-dom';
-import { Paths } from '@/enums';
+
+import { RootState } from '@/app/store';
+import { useRemoveFromCartButton } from '@/hooks';
+import { getCartProducts, getTotalCost } from '@/utils';
+import { PrimaryButtons, Paths } from '@/enums';
+
+import { PrimaryButton } from '../PrimaryButton';
 import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
+import styles from './styles.module.scss';
 
 interface PropsModalWindow {
   isOpen: boolean;
