@@ -1,0 +1,93 @@
+@import '../../assets/styles/mixins';
+
+.container {
+  @include pageGrid;
+
+  .title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .slider {
+    grid-column: 1 / -1;
+    height: 49px;
+    grid-row: 3;
+  }
+
+  .image {
+    grid-column: 1 / -1;
+    height: 288px;
+    grid-row: 2;
+  }
+
+  .optionalSpecs {
+    grid-column: 1 / -1;
+    height: 435px;
+  }
+
+  .description {
+    grid-column: 1 / -1;
+  }
+
+  .techSpecs {
+    grid-column: 1 / -1;
+    height: 296px;
+  }
+
+  .recommended {
+    grid-column: 1 / -1;
+    height: 495px;
+  }
+
+  @include onTablet {
+    .slider {
+      grid-column: 1 / 1;
+      height: 207px;
+      grid-row: inherit;
+    }
+
+    .image {
+      grid-column: 2 / 7;
+      height: 287px;
+    }
+
+    .optionalSpecs {
+      grid-column: 8 / 12;
+      height: 435px;
+    }
+
+    .recommended {
+      height: 577px;
+    }
+  }
+
+  @include onDesktop {
+    .slider {
+      grid-column: 1 / 2;
+      height: 464px;
+    }
+
+    .image {
+      grid-column: 2 / 12;
+      height: 464px;
+    }
+
+    .optionalSpecs {
+      grid-column: 14 / 24;
+      height: 464px;
+    }
+
+    .description {
+      grid-column: 1 / 12;
+    }
+
+    .techSpecs {
+      grid-column: 14 / 24;
+      height: 296px;
+    }
+
+    .recommended {
+      height: 571px;
+    }
+  }
+}

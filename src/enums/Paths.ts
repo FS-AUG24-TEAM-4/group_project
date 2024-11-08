@@ -6,4 +6,5 @@ export enum Paths {
   ACCESSORIES = '/accessories',
   FAVORITES = '/favorites',
   CART = '/cart',
+  PHONE = '/phones/:productId',
 }
