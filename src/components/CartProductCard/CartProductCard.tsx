@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { Device } from '@/types/Product';
+import { Device } from '@/types/Device';
 
 interface INCartProductCard {
   product: Device;
