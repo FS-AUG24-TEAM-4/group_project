@@ -1,7 +1,6 @@
 @import '../../assets/styles/variables';
 
 .iconButton {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +12,8 @@
   border: solid 1px $icons;
 
   background-color: $white;
+  background-repeat: no-repeat;
+  background-position: center;
 
   cursor: pointer;
   transition: border-color $effectDuration;
@@ -22,14 +23,6 @@
   }
 }
 
-.arrow-top::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 16px;
-  height: 16px;
-  transform: translate(-50%, -50%);
-
+.arrow-top {
   background-image: url(/src/assets/images/icons/arrow-top.svg);
 }
