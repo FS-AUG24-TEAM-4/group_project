@@ -17,7 +17,7 @@ export const useProducts = () => {
   const fetchProducts = () => {
     dispatch(loadProductsStart());
 
-    fetch('http://localhost:3000/group_project/api/products.json')
+    fetch('/group_project/api/products.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch products');
