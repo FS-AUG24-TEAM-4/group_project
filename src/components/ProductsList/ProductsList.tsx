@@ -9,7 +9,7 @@ interface Props {
   paginationOfDevice: Product[];
 }
 
-export const PhonesList: React.FC<Props> = ({ paginationOfDevice }) => {
+export const ProductsList: React.FC<Props> = ({ paginationOfDevice }) => {
   return (
     <article className={styles.phones_list}>
       {paginationOfDevice.map(phone => (

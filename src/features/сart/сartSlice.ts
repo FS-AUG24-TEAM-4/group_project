@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartItem } from '@/types/cartItem';
-import { Product } from '@/types/Product';
+import { CartItem, Product } from '@/types';
 
 interface CartState {
   items: Record<string, CartItem>;

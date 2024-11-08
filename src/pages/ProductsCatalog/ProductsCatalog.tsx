@@ -3,12 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from '@mui/material';
 
-import { PhonesList } from '@/components/PhonesList/PhonesList';
 import { useProducts } from '@/hooks/useProducts';
-import { usePhones } from '../../hooks/usePhone';
-import { sortDevices } from '@/utils/sortDevices';
-import { getSearchWith } from '@/utils/getSearchWith';
-import { scrollToTop } from '@/utils/scrollToTop';
+import { sortDevices, scrollToTop, getSearchWith } from '@/utils';
 
 import bread__img from '../../assets/breadcrumbs-img/Breadcrumbs.png';
 
@@ -16,23 +12,45 @@ import { SortType } from '@/enums/SortType';
 
 import styles from './styles.module.scss';
 import { Product } from '@/types/Product';
+import { FC } from 'react';
+import { ProductsList } from '@/components/ProductsList';
+import { DeviceCategory } from '@/enums';
 
-export const PhonesPage = () => {
+type ProductsCatalogProps = {
+  category: DeviceCategory;
+};
+
+export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { loading, error } = usePhones();
   const { products } = useProducts();
 
-  const newPhones = products.filter(
-    (product: Product) => product.category === 'phones',
-  );
+  const productsOnPage = products.filter((product: Product) => {
+    switch (category) {
+      case 'phones':
+        return product.category === DeviceCategory.PHONES;
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+      case 'tablets':
+        return product.category === DeviceCategory.TABLETS;
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+      default:
+        return product.category === DeviceCategory.ACCESSORIES;
+    }
+  });
+
+  const getTitle = (titleCategory: DeviceCategory) => {
+    switch (titleCategory) {
+      case DeviceCategory.PHONES:
+        return 'Mobile phones';
+      case DeviceCategory.TABLETS:
+        return 'Tablets';
+      case DeviceCategory.ACCESSORIES:
+        return 'Accessories';
+      default:
+        return 'Products';
+    }
+  };
+
+  const title = getTitle(category);
 
   const sortingParams = [
     { value: SortType.NONE, label: 'None' },
@@ -54,7 +72,7 @@ export const PhonesPage = () => {
   const currentPage = Number(searchParams.get('page')) || 1;
   const devicesPerPage = searchParams.get('devicesPerPage') || '12';
 
-  const sortedPhones = sortDevices(newPhones, sortParams);
+  const sortedPhones = sortDevices(productsOnPage, sortParams);
 
   const lastDeviceIndex = currentPage * +devicesPerPage;
   const firstDeviceIndex = lastDeviceIndex - +devicesPerPage;
@@ -180,7 +198,7 @@ export const PhonesPage = () => {
         alt="breadcrumbs-img"
       />
 
-      <h1 className={styles.title}>Mobile phones</h1>
+      <h1 className={styles.title}>{title}</h1>
 
       <p className={styles.counter_text}>{sortedPhones.length} models</p>
 
@@ -230,7 +248,7 @@ export const PhonesPage = () => {
       </div>
 
       {paginationOfDevice && (
-        <PhonesList paginationOfDevice={paginationOfDevice} />
+        <ProductsList paginationOfDevice={paginationOfDevice} />
       )}
 
       <Pagination

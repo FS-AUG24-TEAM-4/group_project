@@ -1,3 +1,4 @@
 export * from './NotFoundPage';
-export * from './PhonesPage';
+export * from './CartPage';
+export * from './ProductsCatalog';
 export * from './ProductPage';

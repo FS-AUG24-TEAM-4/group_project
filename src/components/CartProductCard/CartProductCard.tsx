@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 import classNames from 'classnames';
 import { Product } from '@/types/Product';
 
-
 interface INCartProductCard {
   product: Product;
 }
