@@ -1,22 +1,21 @@
-import { usePhones } from '../../hooks/usePhone';
+import React from 'react';
+
 import { ProductCard } from '../ProductCard/ProductCard';
 
-export const PhonesList = () => {
-  const { phones, loading, error } = usePhones();
+import { Device } from '@/types/Product';
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+import styles from './styles.module.scss';
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+interface Props {
+  paginationOfDevice: Device[];
+}
 
+export const PhonesList: React.FC<Props> = ({ paginationOfDevice }) => {
   return (
-    <div>
-      {phones.map(phone => (
-        <ProductCard key={phone.id} phone={phone} />
+    <article className={styles.phones_list}>
+      {paginationOfDevice.map(phone => (
+        <ProductCard key={phone.id} product={phone} />
       ))}
-    </div>
+    </article>
   );
 };

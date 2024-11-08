@@ -1,0 +1,41 @@
+@import '/src/assets/styles/variables';
+@import '/src/assets/styles/mixins';
+
+.footer {
+  box-shadow: 0 -1px 0 0 $elements;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 16px;
+
+  box-shadow: 0 -1px 0 0 $elements;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 32px 24px;
+  }
+
+  @include onDesktop {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+}
+
+.backToTopContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: center;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  color: $secondary;
+}

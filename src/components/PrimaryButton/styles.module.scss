@@ -62,8 +62,19 @@
 }
 
 .buttonCheckout {
-  width: 320px;
+  width: 100%;
   height: 48px;
+}
+
+.buttonCancelCheckout {
+  @extend .buttonCart;
+  background-color: $white;
+  border-color: $elements;
+  color: $accent;
+
+  &:active {
+    color: $elements;
+  }
 }
 
 .buttonItemCart {

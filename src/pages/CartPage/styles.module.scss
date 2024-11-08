@@ -1,0 +1,160 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.wrapper {
+  padding: 24px 0 56px;
+
+  @include pageGrid;
+
+  @include onTablet {
+    padding: 40px 0 64px;
+  }
+
+  @include onDesktop {
+    padding-bottom: 80px;
+  }
+}
+
+.buttonBack {
+  width: 50px;
+  height: 16px;
+  padding: 0;
+  margin-bottom: 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 1/-1;
+
+  border: none;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  color: $secondary;
+  background-color: $bg;
+
+  cursor: pointer;
+  outline: none;
+
+  transition: color $effectDuration;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &:hover &Icon {
+    transform: translateX(-3px);
+  }
+
+  @include onTablet {
+    margin-bottom: 16px;
+  }
+
+  &Icon {
+    width: 16px;
+    height: 16px;
+
+    background-image: url(/src/assets/images/icons/arrow-left.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    transition: transform $effectDuration;
+  }
+}
+
+.title {
+  margin-bottom: 32px;
+
+  grid-column: 1/-1;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: -1%;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.emptyCart {
+  @extend .title;
+  display: flex;
+  justify-content: center;
+}
+
+.cardList {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  grid-column: 1/-1;
+
+  @include onDesktop {
+    grid-column: 1/17;
+  }
+}
+
+.card {
+  min-width: 288px;
+  height: 160px;
+  background-color: green;
+}
+
+.checkout {
+  position: sticky;
+  top: 20px;
+
+  height: 190px;
+
+  grid-column: 1/-1;
+
+  border: 1px solid $elements;
+  border-radius: 16px;
+
+  text-align: center;
+
+  @include onDesktop {
+    height: 206px;
+
+    grid-column: 17/-1;
+  }
+
+  &Top {
+    padding: 24px 24px 16px;
+
+    border-bottom: 1px solid $elements;
+
+    @include onDesktop {
+      padding-bottom: 24px;
+    }
+  }
+}
+
+.totalCost {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: -1%;
+
+  color: $primary;
+}
+
+.itemsCount {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+
+  color: $secondary;
+}
+
+.buttonCheckout {
+  padding: 16px 24px 24px;
+
+  @include onDesktop {
+    padding-top: 24px;
+  }
+}
