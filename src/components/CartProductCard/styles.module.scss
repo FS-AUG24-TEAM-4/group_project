@@ -44,7 +44,7 @@
   cursor: pointer;
   width: 16px;
   height: 16px;
-  background-image: url('src/assets/images/icons/close.svg');
+  background-image: url('/src/assets/images/icons/close.svg');
   background-color: transparent;
   border: none;
 
@@ -54,7 +54,7 @@
 
   &:hover {
     transform: scale(1.4);
-    background-image: url('src/assets/images/icons/close-active.svg');
+    background-image: url('/src/assets/images/icons/close-active.svg');
   }
 }
 
@@ -116,15 +116,15 @@
   transition: transform $effectDuration ease;
 
   &.increase {
-    background-image: url('src/assets/images/icons/plus.svg');
+    background-image: url('/src/assets/images/icons/plus.svg');
   }
 
   &.decrease {
-    background-image: url('src/assets/images/icons/minus.svg');
+    background-image: url('/src/assets/images/icons/minus.svg');
 
     &.active {
       border: 1px solid $elements;
-      background-image: url('src/assets/images/icons/inactive-minus.svg');
+      background-image: url('/src/assets/images/icons/inactive-minus.svg');
     }
   }
 
