@@ -3,19 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../app/store';
 import {
-  loadPhonesStart,
-  loadPhonesSuccess,
-  loadPhonesFailure,
-} from '../features/phones/phoneSlice';
+  loadProductFailure,
+  loadProductSuccess,
+} from '@/features/phones/productSlice';
+import { loadProductsStart } from '@/features/products/productSlice';
 
 export const usePhones = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { phones, loading, error } = useSelector(
-    (state: RootState) => state.phones,
-  );
+  const {
+    products: phones,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.phones);
 
   const fetchPhones = () => {
-    dispatch(loadPhonesStart());
+    dispatch(loadProductsStart());
 
     fetch('/group_project/api/phones.json')
       .then(response => {
@@ -26,10 +28,10 @@ export const usePhones = () => {
         return response.json();
       })
       .then(data => {
-        dispatch(loadPhonesSuccess(data));
+        dispatch(loadProductSuccess(data));
       })
       .catch((catchedError: Error) => {
-        dispatch(loadPhonesFailure(catchedError.message));
+        dispatch(loadProductFailure(catchedError.message));
       });
   };
 

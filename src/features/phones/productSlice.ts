@@ -1,13 +1,14 @@
-import { Product } from '@/types/Product';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ProductsState {
-  products: Product[];
+import { Device } from '@/types/Device';
+
+interface ProductState {
+  products: Device[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: ProductsState = {
+const initialState: ProductState = {
   products: [],
   loading: false,
   error: null,
@@ -17,7 +18,7 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    loadProductsStart(state) {
+    loadProductStart(state) {
       return {
         ...state,
         loading: true,
@@ -25,7 +26,7 @@ const productSlice = createSlice({
       };
     },
 
-    loadProductsSuccess(state, action: PayloadAction<Product[]>) {
+    loadProductSuccess(state, action: PayloadAction<Device[]>) {
       return {
         ...state,
         loading: false,
@@ -33,7 +34,7 @@ const productSlice = createSlice({
       };
     },
 
-    loadProductsFailure(state, action: PayloadAction<string>) {
+    loadProductFailure(state, action: PayloadAction<string>) {
       return {
         ...state,
         loading: false,
@@ -43,7 +44,10 @@ const productSlice = createSlice({
   },
 });
 
-export const { loadProductsStart, loadProductsSuccess, loadProductsFailure } =
-  productSlice.actions;
+export const {
+  loadProductStart: loadProductStart,
+  loadProductSuccess: loadProductSuccess,
+  loadProductFailure: loadProductFailure,
+} = productSlice.actions;
 
 export default productSlice.reducer;
