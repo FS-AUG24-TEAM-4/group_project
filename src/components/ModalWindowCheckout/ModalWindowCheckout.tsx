@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { RootState } from '@/app/store';
-import { useRemoveFromCartButton } from '@/hooks';
 import { getCartProducts, getTotalCost } from '@/utils';
 import { PrimaryButtons, Paths } from '@/enums';
 
 import { PrimaryButton } from '../PrimaryButton';
 import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
 import styles from './styles.module.scss';
+import { useCart } from '@/hooks';
 
 interface PropsModalWindow {
   isOpen: boolean;
@@ -27,8 +27,8 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
   const cart = useSelector((state: RootState) => state.cart);
   const cartItems = getCartProducts(cart.items);
   const totalAmount = getTotalCost(cartItems);
-
-  const handleRemove = useRemoveFromCartButton();
+  const { removeFromCartButton } = useCart();
+  const handleRemove = removeFromCartButton();
   const navigate = useNavigate();
 
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);

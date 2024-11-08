@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useAddCartButton, useRemoveFromCartButton } from '../../hooks';
 import { FavoritesButton, PrimaryButton } from '../index';
 import { RootState } from '@/app/store';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
@@ -11,6 +10,7 @@ import { PrimaryButtons } from '@/enums';
 import styles from './styles.module.scss';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
+import { useCart } from '@/hooks/useCart';
 
 interface ProductCardProps {
   product: Device;
@@ -23,13 +23,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const [clickedFav, setClickedFav] = useState(false);
 
-  const handleRemoveFromCart = useRemoveFromCartButton();
+  const { addCartButton, removeFromCartButton } = useCart();
 
-  const handleAddToCart = useAddCartButton(product);
+  const handleRemoveFromCart = removeFromCartButton;
+
+  const handleAddToCart = addCartButton(product);
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart(product.id);
+      handleRemoveFromCart();
       toggleClickedBuy(product.id);
     } else {
       handleAddToCart();

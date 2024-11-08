@@ -4,32 +4,32 @@ import { addToCart } from '../features/сart/сartSlice';
 import { updateQuantity } from '../features/сart/сartSlice';
 import { Device } from '@/types/Device';
 
-export const useAddCartButton = (product: Device) => {
+export const useCart = () => {
   const dispatch = useDispatch();
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(product));
+  const addCartButton = (product: Device) => {
+    const handleAddToCart = () => {
+      dispatch(addToCart(product));
+    };
+
+    return handleAddToCart;
   };
 
-  return handleAddToCart;
-};
+  const removeFromCartButton = () => {
+    const handleRemove = (itemId: string) => {
+      dispatch(removeFromCart(itemId));
+    };
 
-export const useRemoveFromCartButton = (itemId: string) => {
-  const dispatch = useDispatch();
-
-  const handleRemove = () => {
-    dispatch(removeFromCart(itemId));
+    return handleRemove;
   };
 
-  return handleRemove;
-};
+  const updateCartQuantity = (itemId: string) => {
+    const handleChangeQuantity = (quantity: number) => {
+      dispatch(updateQuantity({ itemId, quantity }));
+    };
 
-export const useUpdateCartQuantity = (itemId: string) => {
-  const dispatch = useDispatch();
-
-  const handleChangeQuantity = (quantity: number) => {
-    dispatch(updateQuantity({ itemId, quantity }));
+    return handleChangeQuantity;
   };
 
-  return handleChangeQuantity;
+  return { addCartButton, removeFromCartButton, updateCartQuantity };
 };
