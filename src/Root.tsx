@@ -2,7 +2,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import App from './App';
 import { Paths, DeviceCategory } from './enums';
-import { CartPage, ProductsCatalog, NotFoundPage } from './pages';
+import { CartPage, ProductsCatalog, NotFoundPage, ProductPage } from './pages';
 
 export const Root = () => {
   return (
@@ -14,6 +14,7 @@ export const Root = () => {
               index
               element={<ProductsCatalog category={DeviceCategory.PHONES} />}
             />
+            <Route path={Paths.PHONE} element={<ProductPage />} />
           </Route>
           <Route path={Paths.TABLETS}>
             <Route

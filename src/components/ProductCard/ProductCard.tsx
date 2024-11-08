@@ -10,6 +10,7 @@ import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { PrimaryButtons } from '@/enums';
 
 import { useCart } from '@/hooks/useCart';
+import { Link } from 'react-router-dom';
 import { Product } from '@/types/Product';
 
 interface ProductCardProps {
@@ -40,17 +41,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <a href="#">
+      <Link to={`/phones/${product.id}`}>
         <img
           src={product.image}
           alt={product.name}
           className={styles.picture}
         />
-      </a>
+      </Link>
 
-      <a href="#">
+      <Link to={`/phones/${product.id}`}>
         <h2 className={styles.title}>{product.name}</h2>
-      </a>
+      </Link>
 
       <div className={styles.price}>
         <p className={styles.actual_price}>
