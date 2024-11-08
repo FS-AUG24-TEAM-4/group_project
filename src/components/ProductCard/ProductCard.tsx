@@ -25,13 +25,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const { addCartButton, removeFromCartButton } = useCart();
 
-  const handleRemoveFromCart = removeFromCartButton;
+  const handleRemoveFromCart = removeFromCartButton();
 
   const handleAddToCart = addCartButton(product);
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart();
+      handleRemoveFromCart(product.id);
       toggleClickedBuy(product.id);
     } else {
       handleAddToCart();
