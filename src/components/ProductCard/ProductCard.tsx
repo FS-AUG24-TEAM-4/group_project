@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux';
 import { FavoritesButton, PrimaryButton } from '../index';
 import { RootState } from '@/app/store';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
-import { Device } from '@/types/Device';
 import { PrimaryButtons } from '@/enums';
 
 import { useCart } from '@/hooks/useCart';
 import { Link } from 'react-router-dom';
+import { Product } from '@/types/Product';
 
 interface ProductCardProps {
-  product: Device;
+  product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -32,8 +32,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart(product.id);
-      toggleClickedBuy(product.id);
+      handleRemoveFromCart(product.id.toString());
+      toggleClickedBuy(product.itemId);
     } else {
       handleAddToCart();
     }
@@ -43,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <article className={styles.card}>
       <Link to={`/phones/${product.id}`}>
         <img
-          src={product.images[0]}
+          src={product.image}
           alt={product.name}
           className={styles.picture}
         />
@@ -55,10 +55,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       <div className={styles.price}>
         <p className={styles.actual_price}>
-          ${product.priceDiscount || product.priceRegular}
+          ${product.price || product.fullPrice}
         </p>
-        {product.priceDiscount && (
-          <p className={styles.old_price}>${product.priceRegular}</p>
+        {product.price && (
+          <p className={styles.old_price}>${product.fullPrice}</p>
         )}
       </div>
 

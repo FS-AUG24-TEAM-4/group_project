@@ -1,9 +1,9 @@
-import { CartItem } from '@/features/Cart/CartSlice';
+import { CartItem } from '@/types/cartItem';
 
 export const getTotalCost = (products: CartItem[]) => {
   return products.reduce(
     (acc, product) =>
-      acc + (product.priceDiscount || product.priceRegular) * product.quantity,
+      acc + (product.price || product.fullPrice) * product.quantity,
     0,
   );
 };

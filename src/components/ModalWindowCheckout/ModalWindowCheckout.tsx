@@ -10,6 +10,7 @@ import { PrimaryButton } from '../PrimaryButton';
 import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
 import styles from './styles.module.scss';
 import { useCart } from '@/hooks';
+import { CartItem } from '@/types/cartItem';
 
 interface PropsModalWindow {
   isOpen: boolean;
@@ -25,7 +26,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
   onCartEmpty,
 }) => {
   const cart = useSelector((state: RootState) => state.cart);
-  const cartItems = getCartProducts(cart.items);
+  const cartItems: CartItem[] = getCartProducts(cart.items);
   const totalAmount = getTotalCost(cartItems);
   const { removeFromCartButton } = useCart();
   const handleRemove = removeFromCartButton();
@@ -43,7 +44,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
     }, 3000);
 
     cartItems.forEach(cartItem => {
-      handleRemove(cartItem.id);
+      handleRemove(cartItem.id.toString());
     });
   };
 
@@ -71,10 +72,8 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
                       <td>{cartItem.quantity}</td>
                       <td>
                         $
-                        {cartItem.priceDiscount
-                          ? (
-                              cartItem.priceDiscount * cartItem.quantity
-                            ).toFixed(2)
+                        {cartItem.price
+                          ? (cartItem.price * cartItem.quantity).toFixed(2)
                           : 0}
                       </td>
                     </tr>
@@ -91,7 +90,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
             <div className={styles.modal__actions}>
               <PrimaryButton
                 onClick={handleRemoveOnConfirm}
-                type={PrimaryButtons.CART}
+                type={PrimaryButtons.ITEMCART}
               >
                 Confirm
               </PrimaryButton>

@@ -1,54 +1,26 @@
 import { SortType } from '@/enums/SortType';
-import { Device } from '@/types/Product';
-import { Product } from '@/types/Device';
-
-const getYearOfDevice = (device: Device, products: Product[]) => {
-  return products.find(product => product.itemId === device.id)?.year || 0;
-};
-
-const getPriceOfDevice = (device: Device, products: Product[]) => {
-  return products.find(product => product.itemId === device.id)?.price || 0;
-};
+import { Product } from '@/types/Product';
 
 export const sortDevices = (
-  phonesList: Device[],
+  deviceList: Product[],
   sortType: SortType | string,
-  products: Product[],
 ) => {
   if (sortType) {
-    switch (sortType) {
-      case SortType.NEWEST:
-        return [...phonesList].sort(
-          (phone1, phone2) =>
-            getYearOfDevice(phone2, products) -
-            getYearOfDevice(phone1, products),
-        );
-
-      case SortType.OLDEST:
-        return [...phonesList].sort(
-          (phone1, phone2) =>
-            getYearOfDevice(phone1, products) -
-            getYearOfDevice(phone2, products),
-        );
-
-      case SortType.PRICE_HIGH:
-        return [...phonesList].sort(
-          (phone1, phone2) =>
-            getPriceOfDevice(phone2, products) -
-            getPriceOfDevice(phone1, products),
-        );
-
-      case SortType.PRICE_LOW:
-        return [...phonesList].sort(
-          (phone1, phone2) =>
-            getPriceOfDevice(phone1, products) -
-            getPriceOfDevice(phone2, products),
-        );
-
-      default:
-        break;
-    }
+    return [...deviceList].sort((device1: Product, device2: Product) => {
+      switch (sortType) {
+        case SortType.NEWEST:
+          return device2.year - device1.year;
+        case SortType.OLDEST:
+          return device1.year - device2.year;
+        case SortType.PRICE_HIGH:
+          return device2.price - device1.price;
+        case SortType.PRICE_LOW:
+          return device1.price - device2.price;
+        default:
+          return 0;
+      }
+    });
   }
 
-  return phonesList;
+  return deviceList;
 };

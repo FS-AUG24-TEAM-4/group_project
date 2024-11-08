@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { AppDispatch, RootState } from '@/app/store';
 import {
   loadProductsFailure,
@@ -17,7 +16,7 @@ export const useProducts = () => {
   const fetchProducts = () => {
     dispatch(loadProductsStart());
 
-    fetch('http://localhost:3000/group_project/api/products.json')
+    fetch('/group_project/api/products.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch products');

@@ -15,12 +15,16 @@ import bread__img from '../../assets/breadcrumbs-img/Breadcrumbs.png';
 import { SortType } from '@/enums/SortType';
 
 import styles from './styles.module.scss';
+import { Product } from '@/types/Product';
 
 export const PhonesPage = () => {
-  const [searchParams] = useSearchParams();
-  const { phones, loading, error } = usePhones();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { loading, error } = usePhones();
   const { products } = useProducts();
-  const [, setSearchParams] = useSearchParams();
+
+  const newPhones = products.filter(
+    (product: Product) => product.category === 'phones',
+  );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -50,7 +54,7 @@ export const PhonesPage = () => {
   const currentPage = Number(searchParams.get('page')) || 1;
   const devicesPerPage = searchParams.get('devicesPerPage') || '12';
 
-  const sortedPhones = sortDevices(phones, sortParams, products);
+  const sortedPhones = sortDevices(newPhones, sortParams);
 
   const lastDeviceIndex = currentPage * +devicesPerPage;
   const firstDeviceIndex = lastDeviceIndex - +devicesPerPage;
@@ -60,7 +64,7 @@ export const PhonesPage = () => {
     lastDeviceIndex,
   );
 
-  function handlePageChange(page: number) {
+  const handlePageChange = (page: number) => {
     scrollToTop();
 
     setTimeout(
@@ -72,7 +76,7 @@ export const PhonesPage = () => {
         }),
       800,
     );
-  }
+  };
 
   const showSortingDropdownValue = () => {
     const currentParams = sortingParams.find(
@@ -107,6 +111,7 @@ export const PhonesPage = () => {
     height: '40px',
     border: '1px solid #B4BDC3',
     borderRadius: '8px',
+    cursor: 'pointer',
   };
 
   const customSortingStylesForDropdown = {
@@ -142,6 +147,7 @@ export const PhonesPage = () => {
     height: '40px',
     border: '1px solid #B4BDC3',
     borderRadius: '8px',
+    cursor: 'pointer',
   };
 
   const customItemDisplayStylesForDropdown = {
@@ -185,6 +191,7 @@ export const PhonesPage = () => {
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
+            isSearchable={false}
             value={showSortingDropdownValue()}
             onChange={value => {
               if (value) {
@@ -205,6 +212,7 @@ export const PhonesPage = () => {
           <Select
             styles={customItemDisplayStylesForDropdown}
             options={itemsPerPage}
+            isSearchable={false}
             value={showItemsPerPageDropdownValue()}
             onChange={value => {
               if (value) {

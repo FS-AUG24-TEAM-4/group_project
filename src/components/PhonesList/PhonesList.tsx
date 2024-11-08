@@ -2,12 +2,11 @@ import React from 'react';
 
 import { ProductCard } from '../ProductCard/ProductCard';
 
-import { Device } from '@/types/Product';
-
 import styles from './styles.module.scss';
+import { Product } from '@/types/Product';
 
 interface Props {
-  paginationOfDevice: Device[];
+  paginationOfDevice: Product[];
 }
 
 export const PhonesList: React.FC<Props> = ({ paginationOfDevice }) => {
