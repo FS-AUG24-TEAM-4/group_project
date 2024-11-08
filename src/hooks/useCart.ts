@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../features/сart/сartSlice';
-import { addToCart } from '../features/сart/сartSlice';
-import { updateQuantity } from '../features/сart/сartSlice';
+import {
+  removeFromCart,
+  addToCart,
+  updateQuantity,
+} from '../features/сart/сartSlice';
 import { Product } from '@/types/Product';
 
 export const useCart = () => {

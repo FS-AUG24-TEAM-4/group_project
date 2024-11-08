@@ -4,7 +4,6 @@ import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from '@mui/material';
 
 import { useProducts } from '@/hooks/useProducts';
-import { usePhones } from '../../hooks/usePhone';
 import { sortDevices, scrollToTop, getSearchWith } from '@/utils';
 
 import bread__img from '../../assets/breadcrumbs-img/Breadcrumbs.png';
@@ -23,7 +22,6 @@ type ProductsCatalogProps = {
 
 export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { loading, error } = usePhones();
   const { products } = useProducts();
 
   const productsOnPage = products.filter((product: Product) => {
@@ -38,14 +36,6 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         return product.category === DeviceCategory.ACCESSORIES;
     }
   });
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
 
   const getTitle = (titleCategory: DeviceCategory) => {
     switch (titleCategory) {

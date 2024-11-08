@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Device } from '@/types/Device';
+import { Device } from '@/types';
 
 interface ProductState {
   products: Device[];
