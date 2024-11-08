@@ -24,6 +24,7 @@ const productSlice = createSlice({
         error: null,
       };
     },
+
     loadProductsSuccess(state, action: PayloadAction<Product[]>) {
       return {
         ...state,
@@ -31,6 +32,7 @@ const productSlice = createSlice({
         products: action.payload,
       };
     },
+
     loadProductsFailure(state, action: PayloadAction<string>) {
       return {
         ...state,

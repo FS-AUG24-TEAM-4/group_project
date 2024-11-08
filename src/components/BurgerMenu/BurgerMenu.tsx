@@ -3,11 +3,10 @@ import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
+import { HeaderNavigationLinks } from '@/constants';
 
-import fav from '../../../src/assets/images/icons/favorites-blank.svg';
-import cart from '../../../src/assets/images/icons/shopping-bag-blank.svg';
-
-import { Paths } from '@/enums';
+import fav from '@/assets/images/icons/favorites-blank.svg';
+import cart from '@/assets/images/icons/shopping-bag-blank.svg';
 
 import styles from './styles.module.scss';
 
@@ -34,37 +33,16 @@ export const BurgerMenu = () => {
     <menu className={styles.burger}>
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
-          <NavLink
-            onClick={() => dispatch(changeBurgerState())}
-            className={getActiveNavLinkOnBurger}
-            to={Paths.HOME}
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            onClick={() => dispatch(changeBurgerState())}
-            className={getActiveNavLinkOnBurger}
-            to={Paths.PHONES}
-          >
-            Phones
-          </NavLink>
-
-          <NavLink
-            onClick={() => dispatch(changeBurgerState())}
-            className={getActiveNavLinkOnBurger}
-            to={Paths.TABLETS}
-          >
-            Tablets
-          </NavLink>
-
-          <NavLink
-            onClick={() => dispatch(changeBurgerState())}
-            className={getActiveNavLinkOnBurger}
-            to={Paths.ACCESSORIES}
-          >
-            Accessories
-          </NavLink>
+          {HeaderNavigationLinks.map(nav => (
+            <NavLink
+              key={nav.title}
+              onClick={() => dispatch(changeBurgerState())}
+              className={getActiveNavLinkOnBurger}
+              to={nav.route}
+            >
+              {nav.title}
+            </NavLink>
+          ))}
         </nav>
       </div>
 
