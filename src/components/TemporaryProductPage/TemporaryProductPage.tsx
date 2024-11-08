@@ -12,9 +12,9 @@ import { PrimaryButton } from '../PrimaryButton';
 import { PrimaryButtons } from '@/enums';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
-import { useAddCartButton, useRemoveFromCartButton } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { FavoritesButton } from '../FavoritesButton';
+import { useCart } from '@/hooks';
 
 const selectedProduct = {
   id: 'apple-iphone-11-256gb-purple',
@@ -59,6 +59,21 @@ const selectedProduct = {
   cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
 };
 
+const selectedProductForCart = {
+  id: 62,
+  category: 'phones',
+  itemId: 'apple-iphone-11-256gb-purple',
+  name: 'Apple iPhone 11 256GB Purple',
+  fullPrice: 1172,
+  price: 1115,
+  screen: "6.1' IPS",
+  capacity: '256GB',
+  color: 'purple',
+  ram: '4GB',
+  year: 2019,
+  image: 'img/phones/apple-iphone-11/purple/00.webp',
+};
+
 export const TemporaryProductPage = () => {
   const photos = selectedProduct.images;
   const [selectedPhoto, setSelectedPhoto] = useState(photos[0]);
@@ -68,18 +83,21 @@ export const TemporaryProductPage = () => {
 
   const location = useLocation();
 
+  const { addCartButton, removeFromCartButton } = useCart();
+
   const clickedBuy = useSelector(
-    (state: RootState) => state.cart.items[selectedProduct.id]?.clickedBuy,
+    (state: RootState) =>
+      state.cart.items[selectedProductForCart.id]?.clickedBuy,
   );
 
-  const handleRemoveFromCart = useRemoveFromCartButton(selectedProduct.id);
+  const handleRemoveFromCart = removeFromCartButton();
 
-  const handleAddToCart = useAddCartButton(selectedProduct);
+  const handleAddToCart = addCartButton(selectedProductForCart);
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart();
-      toggleClickedBuy(selectedProduct.id);
+      handleRemoveFromCart(selectedProductForCart.id.toString());
+      toggleClickedBuy(selectedProductForCart.itemId);
     } else {
       handleAddToCart();
     }
