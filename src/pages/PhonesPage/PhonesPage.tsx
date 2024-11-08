@@ -60,7 +60,7 @@ export const PhonesPage = () => {
     lastDeviceIndex,
   );
 
-  function handlePageChange(page: number) {
+  const handlePageChange = (page: number) => {
     scrollToTop();
 
     setTimeout(
@@ -72,7 +72,7 @@ export const PhonesPage = () => {
         }),
       800,
     );
-  }
+  };
 
   const showSortingDropdownValue = () => {
     const currentParams = sortingParams.find(
@@ -185,6 +185,7 @@ export const PhonesPage = () => {
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
+            isSearchable={false}
             value={showSortingDropdownValue()}
             onChange={value => {
               if (value) {
@@ -205,6 +206,7 @@ export const PhonesPage = () => {
           <Select
             styles={customItemDisplayStylesForDropdown}
             options={itemsPerPage}
+            isSearchable={false}
             value={showItemsPerPageDropdownValue()}
             onChange={value => {
               if (value) {
