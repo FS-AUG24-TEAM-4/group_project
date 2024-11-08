@@ -44,7 +44,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
     }, 3000);
 
     cartItems.forEach(cartItem => {
-      handleRemove(cartItem.id.toString());
+      handleRemove(cartItem.id);
     });
   };
 

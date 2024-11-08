@@ -55,7 +55,10 @@ module.exports = {
     'brace-style': [2, '1tbs'],
     'arrow-body-style': 0,
     'arrow-parens': 0,
-    'no-param-reassign': [2, { props: true }],
+    'no-param-reassign': [
+      2,
+      { props: true, ignorePropertyModificationsFor: ['state'] },
+    ],
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'import', next: '*' },

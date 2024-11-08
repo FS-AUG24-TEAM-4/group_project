@@ -18,14 +18,14 @@ export const useCart = () => {
   };
 
   const removeFromCartButton = () => {
-    const handleRemove = (itemId: string) => {
+    const handleRemove = (itemId: number) => {
       dispatch(removeFromCart(itemId));
     };
 
     return handleRemove;
   };
 
-  const updateCartQuantity = (itemId: string) => {
+  const updateCartQuantity = (itemId: number) => {
     const handleChangeQuantity = (quantity: number) => {
       dispatch(updateQuantity({ itemId, quantity }));
     };

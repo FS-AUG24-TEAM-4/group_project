@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartItem, Product } from '@/types';
 
 interface CartState {
-  items: Record<string, CartItem>;
+  items: Record<number, CartItem>;
 }
 
 const initialState: CartState = {
@@ -16,65 +16,61 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
 
-      const updatedItem = { ...product, quantity: 1, clickedBuy: true };
-
-      return {
-        ...state,
-        items: {
-          ...state.items,
-          [product.id]: updatedItem,
-        },
-      };
+      if (state.items[product.id]) {
+        state.items[product.id].quantity += 1;
+      } else {
+        state.items[product.id] = { ...product, quantity: 1, clickedBuy: true };
+      }
     },
 
     updateQuantity: (
       state,
-      action: PayloadAction<{ itemId: string; quantity: number }>,
+      action: PayloadAction<{ itemId: number; quantity: number }>,
     ) => {
       const { itemId, quantity } = action.payload;
 
-      if (!state.items[itemId]) {
-        return state;
+      if (state.items[itemId]) {
+        state.items[itemId].quantity = quantity;
       }
-
-      return {
-        ...state,
-        items: {
-          ...state.items,
-          [itemId]: { ...state.items[itemId], quantity },
-        },
-      };
     },
 
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      const newItems = { ...state.items };
-
-      delete newItems[action.payload];
-
-      return {
-        ...state,
-        items: newItems,
-      };
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      delete state.items[action.payload];
     },
 
-    toggleClickedBuy: (state, action: PayloadAction<string>) => {
+    toggleClickedBuy: (state, action: PayloadAction<number>) => {
       const productId = action.payload;
 
-      return {
-        ...state,
-        items: {
-          ...state.items,
-          [productId]: {
-            ...state.items[productId],
-            clickedBuy: !state.items[productId]?.clickedBuy,
-          },
-        },
-      };
+      if (state.items[productId]) {
+        state.items[productId].clickedBuy = !state.items[productId].clickedBuy;
+      }
+    },
+
+    increaseQuantity: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+
+      if (state.items[productId]) {
+        state.items[productId].quantity += 1;
+      }
+    },
+
+    decreaseQuantity: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+
+      if (state.items[productId] && state.items[productId].quantity > 1) {
+        state.items[productId].quantity -= 1;
+      }
     },
   },
 });
 
-export const { addToCart, updateQuantity, removeFromCart, toggleClickedBuy } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  updateQuantity,
+  removeFromCart,
+  toggleClickedBuy,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
