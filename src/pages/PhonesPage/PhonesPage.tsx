@@ -48,7 +48,7 @@ export const PhonesPage = () => {
 
   const sortParams = searchParams.get('sort') || SortType.NONE;
   const currentPage = Number(searchParams.get('page')) || 1;
-  const devicesPerPage = searchParams.get('devicesPerPage') || '10';
+  const devicesPerPage = searchParams.get('devicesPerPage') || '12';
 
   const sortedPhones = sortDevices(phones, sortParams, products);
 
