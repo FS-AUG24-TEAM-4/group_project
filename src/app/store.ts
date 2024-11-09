@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
-import phonesReducer from '../features/phones/productSlice';
 import productReducer from '@/features/products/productSlice';
 import burgerReducer from '@/features/burgermenu/burgerSlice';
-import persistedCartReducer from '..//features/сart/persistedCartReducer';
+import persistedCartReducer from '@/features/сart/persistedCartReducer';
 
 export const store = configureStore({
   reducer: {
-    phones: phonesReducer,
     products: productReducer,
     burger: burgerReducer,
     cart: persistedCartReducer,
