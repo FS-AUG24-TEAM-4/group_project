@@ -1,7 +1,7 @@
-const BASE_URL = import.meta.env.DEV ? '' : '/group_project/';
+const BASE_URL = import.meta.env.DEV ? 'public/' : '/group_project/';
 
 export const PathToJSON = {
-  PHONES: `${BASE_URL}public/api/phones.json`,
-  TABLETS: `${BASE_URL}public/api/tablets.json`,
-  ACCESSORIES: `${BASE_URL}public/api/accessories.json`,
+  PHONES: `${BASE_URL}api/phones.json`,
+  TABLETS: `${BASE_URL}api/tablets.json`,
+  ACCESSORIES: `${BASE_URL}api/accessories.json`,
 } as const;
