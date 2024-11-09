@@ -98,8 +98,8 @@ export const TemporaryProductPage = () => {
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart(selectedProductForCart.id.toString());
-      toggleClickedBuy(selectedProductForCart.itemId);
+      handleRemoveFromCart(selectedProductForCart.id);
+      toggleClickedBuy(selectedProductForCart.id);
     } else {
       handleAddToCart();
     }
