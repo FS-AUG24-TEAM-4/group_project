@@ -16,12 +16,15 @@ export const Root = () => {
             />
             <Route path={Paths.PHONE} element={<ProductPage />} />
           </Route>
+
           <Route path={Paths.TABLETS}>
             <Route
               index
               element={<ProductsCatalog category={DeviceCategory.TABLETS} />}
             />
+            <Route path={Paths.TABLET} element={<ProductPage />} />
           </Route>
+
           <Route path={Paths.ACCESSORIES}>
             <Route
               index
@@ -29,6 +32,7 @@ export const Root = () => {
                 <ProductsCatalog category={DeviceCategory.ACCESSORIES} />
               }
             />
+            <Route path={Paths.ACCESSORIE} element={<ProductPage />} />
           </Route>
           <Route path={Paths.CART} element={<CartPage />} />
 
