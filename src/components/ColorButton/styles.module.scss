@@ -1,0 +1,33 @@
+@import '../../assets/styles/variables';
+
+.wrapper {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid $elements;
+  border-radius: 36px;
+
+  transition: border-color $effectDuration;
+
+  &:hover {
+    border-color: $icons;
+  }
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+
+  border: 2px solid $white;
+  border-radius: 36px;
+
+  cursor: pointer;
+}
+
+.selected {
+  border: 1px solid $primary;
+}

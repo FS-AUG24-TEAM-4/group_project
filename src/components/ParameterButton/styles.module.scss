@@ -1,0 +1,31 @@
+@import '../../assets/styles/variables';
+
+.button {
+  width: 62px;
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid $icons;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+
+  color: $primary;
+  background-color: $white;
+
+  &:hover {
+    border-color: $primary;
+  }
+
+  &Selected {
+    border-color: $primary;
+
+    color: $white;
+    background-color: $primary;
+  }
+}
