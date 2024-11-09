@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.DEV ? '' : '/';
+const BASE_URL = import.meta.env.DEV ? '' : '/group_project/';
 
 export const PathToJSON = {
   PHONES: `${BASE_URL}public/api/phones.json`,
