@@ -7,6 +7,9 @@
   justify-content: center;
 
   display: flex;
+  // that needs for centering on iPhones
+  margin-left: auto;
+  margin-right: auto;
 
   padding-top: 24px;
   width: fit-content;
