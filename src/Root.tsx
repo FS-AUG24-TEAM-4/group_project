@@ -1,14 +1,18 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
-import App from './App';
 import { Paths, DeviceCategory } from './enums';
+
 import { CartPage, ProductsCatalog, NotFoundPage, ProductPage } from './pages';
+import { HomePage } from './pages/HomePage';
+import App from './App';
 
 export const Root = () => {
   return (
     <Router>
       <Routes>
         <Route path={Paths.HOME} element={<App />}>
+          <Route index element={<HomePage />} />
+
           <Route path={Paths.PHONES}>
             <Route
               index
