@@ -15,14 +15,14 @@ export const ProductsList: React.FC<Props> = ({
   paginationOfDevice,
   category,
 }) => {
-  const getProductPath = (productId: number) => {
+  const getProductPath = (itemId: string) => {
     switch (category) {
       case DeviceCategory.PHONES:
-        return `/phones/${productId}`;
+        return `/phones/${itemId}`;
       case DeviceCategory.TABLETS:
-        return `/tablets/${productId}`;
+        return `/tablets/${itemId}`;
       case DeviceCategory.ACCESSORIES:
-        return `/accessories/${productId}`;
+        return `/accessories/${itemId}`;
       default:
         return '/';
     }
@@ -34,7 +34,7 @@ export const ProductsList: React.FC<Props> = ({
         <ProductCard
           key={phone.id}
           product={phone}
-          productPath={getProductPath(phone.id)}
+          productPath={getProductPath(phone.itemId)}
         />
       ))}
     </article>
