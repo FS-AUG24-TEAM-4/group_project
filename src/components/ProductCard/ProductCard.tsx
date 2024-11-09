@@ -15,9 +15,13 @@ import { Product } from '@/types/Product';
 
 interface ProductCardProps {
   product: Product;
+  productPath: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  productPath,
+}) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
@@ -41,7 +45,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <Link to={`/phones/${product.id}`}>
+      <Link to={productPath}>
         <img
           src={product.image}
           alt={product.name}
@@ -49,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
       </Link>
 
-      <Link to={`/phones/${product.id}`}>
+      <Link to={productPath}>
         <h2 className={styles.title}>{product.name}</h2>
       </Link>
 

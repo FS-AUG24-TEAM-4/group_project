@@ -248,7 +248,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       </div>
 
       {paginationOfDevice && (
-        <ProductsList paginationOfDevice={paginationOfDevice} />
+        <ProductsList
+          paginationOfDevice={paginationOfDevice}
+          category={category}
+        />
       )}
 
       <Pagination
