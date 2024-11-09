@@ -2,8 +2,13 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { Paths, DeviceCategory } from './enums';
 
-import { CartPage, ProductsCatalog, NotFoundPage, ProductPage } from './pages';
-import { HomePage } from './pages/HomePage';
+import {
+  CartPage,
+  ProductsCatalog,
+  NotFoundPage,
+  ProductPage,
+  HomePage,
+} from './pages';
 import App from './App';
 
 export const Root = () => {
