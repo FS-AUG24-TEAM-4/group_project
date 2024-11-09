@@ -7,11 +7,12 @@ import { useSelector } from 'react-redux';
 import { FavoritesButton, PrimaryButton } from '../index';
 import { RootState } from '@/app/store';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
-import { PrimaryButtons } from '@/enums';
+import { DeviceCategory, PrimaryButtons } from '@/enums';
 
 import { useCart } from '@/hooks/useCart';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
+import { getSeparetedCapacity } from '@/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -33,6 +34,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const handleRemoveFromCart = removeFromCartButton();
 
   const handleAddToCart = addCartButton(product);
+
+  const location = useLocation();
+
+  const category = location.pathname.split('/')[1];
 
   const handleClick = () => {
     if (clickedBuy) {
@@ -73,13 +78,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       <div className={styles.specs}>
-        <p className={styles.label}>Capacity</p>
-        <p className={styles.value}>{product.capacity.replace('GB', '')} GB</p>
+        {category === DeviceCategory.ACCESSORIES ? (
+          <p className={styles.label}>Size</p>
+        ) : (
+          <p className={styles.label}>Capacity</p>
+        )}
+        <p className={styles.value}>{getSeparetedCapacity(product.capacity)}</p>
       </div>
 
       <div className={styles.specs}>
         <p className={styles.label}>RAM</p>
-        <p className={styles.value}>{product.ram.replace('GB', '')} GB</p>
+        <p className={styles.value}>{getSeparetedCapacity(product.ram)}</p>
       </div>
 
       <div className={styles.buttons}>

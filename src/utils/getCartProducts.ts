@@ -1,4 +1,4 @@
-import { CartItem } from '@/types/cartItem';
+import { CartItem } from '@/types/CartItem';
 
 export const getCartProducts = (cartItems: Record<string, CartItem>) => {
   const cartProducts = [];
