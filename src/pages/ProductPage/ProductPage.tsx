@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { DeviceCategory } from '@/enums';
+import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -15,13 +16,13 @@ export const ProductPage = () => {
 
     switch (category) {
       case DeviceCategory.PHONES:
-        fileName = 'public/api/phones.json';
+        fileName = PathToJSON.PHONES;
         break;
       case DeviceCategory.TABLETS:
-        fileName = 'public/api/tablets.json';
+        fileName = PathToJSON.TABLETS;
         break;
       case DeviceCategory.ACCESSORIES:
-        fileName = 'public/api/accessories.json';
+        fileName = PathToJSON.ACCESSORIES;
         break;
       default:
         return;

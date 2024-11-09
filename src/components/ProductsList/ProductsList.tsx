@@ -5,6 +5,7 @@ import { ProductCard } from '../ProductCard/ProductCard';
 import styles from './styles.module.scss';
 import { Product } from '@/types/Product';
 import { DeviceCategory } from '@/enums';
+import { getProductPath } from '@/utils/getProductPath';
 
 interface Props {
   paginationOfDevice: Product[];
@@ -15,26 +16,13 @@ export const ProductsList: React.FC<Props> = ({
   paginationOfDevice,
   category,
 }) => {
-  const getProductPath = (itemId: string) => {
-    switch (category) {
-      case DeviceCategory.PHONES:
-        return `/phones/${itemId}`;
-      case DeviceCategory.TABLETS:
-        return `/tablets/${itemId}`;
-      case DeviceCategory.ACCESSORIES:
-        return `/accessories/${itemId}`;
-      default:
-        return '/';
-    }
-  };
-
   return (
-    <article className={styles.phones_list}>
-      {paginationOfDevice.map(phone => (
+    <article className={styles.device_list}>
+      {paginationOfDevice.map(device => (
         <ProductCard
-          key={phone.id}
-          product={phone}
-          productPath={getProductPath(phone.itemId)}
+          key={device.id}
+          product={device}
+          productPath={getProductPath(device.itemId, category)}
         />
       ))}
     </article>
