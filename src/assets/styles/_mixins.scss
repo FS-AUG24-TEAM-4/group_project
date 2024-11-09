@@ -29,3 +29,15 @@
     grid-template-columns: repeat(24, 1fr);
   }
 }
+
+@mixin homePageSectionMargins {
+  margin-bottom: 56px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+}

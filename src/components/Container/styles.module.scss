@@ -1,9 +1,11 @@
 @import '/src/assets/styles/mixins';
 
 .container {
-  padding-inline: 16px;
-  // position was added to fix burger menu above the whole page
   position: relative;
+
+  padding-inline: 16px;
+
+  padding-inline: 16px;
 
   @include onTablet {
     padding-inline: 24px;
