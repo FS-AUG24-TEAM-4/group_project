@@ -32,8 +32,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleClick = () => {
     if (clickedBuy) {
-      handleRemoveFromCart(product.id.toString());
-      toggleClickedBuy(product.itemId);
+      handleRemoveFromCart(product.id);
+      toggleClickedBuy(product.id);
     } else {
       handleAddToCart();
     }
