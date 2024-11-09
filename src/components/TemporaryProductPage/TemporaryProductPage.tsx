@@ -1,20 +1,22 @@
 import cn from 'classnames';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { getSeparetedCapacity } from '@/utils';
+import { COLORS } from '@/constants/colors';
+import { PrimaryButtons } from '@/enums';
+import { RootState } from '@/app/store';
+import { toggleClickedBuy } from '@/features/сart/сartSlice';
+import { useCart } from '@/hooks';
+
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { ColorButton } from '../ColorButton';
-import { useLocation } from 'react-router-dom';
-import { COLORS } from '@/constants/colors';
 import { ParameterButton } from '../ParameterButton';
-import { getSeparetedCapacity } from '@/utils/getSeparetedCapacity';
 import { PrimaryButton } from '../PrimaryButton';
-import { PrimaryButtons } from '@/enums';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
-import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { FavoritesButton } from '../FavoritesButton';
-import { useCart } from '@/hooks';
 
 const selectedProduct = {
   id: 'apple-iphone-11-256gb-purple',

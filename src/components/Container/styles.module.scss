@@ -4,8 +4,6 @@
   position: relative;
 
   padding-inline: 16px;
-  // position was added to fix burger menu above the whole page
-  position: relative;
 
   @include onTablet {
     padding-inline: 24px;
