@@ -1,14 +1,23 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
-import App from './App';
 import { Paths, DeviceCategory } from './enums';
-import { CartPage, ProductsCatalog, NotFoundPage, ProductPage } from './pages';
+
+import {
+  CartPage,
+  ProductsCatalog,
+  NotFoundPage,
+  ProductPage,
+  HomePage,
+} from './pages';
+import App from './App';
 
 export const Root = () => {
   return (
     <Router>
       <Routes>
         <Route path={Paths.HOME} element={<App />}>
+          <Route index element={<HomePage />} />
+
           <Route path={Paths.PHONES}>
             <Route
               index
@@ -16,12 +25,15 @@ export const Root = () => {
             />
             <Route path={Paths.PHONE} element={<ProductPage />} />
           </Route>
+
           <Route path={Paths.TABLETS}>
             <Route
               index
               element={<ProductsCatalog category={DeviceCategory.TABLETS} />}
             />
+            <Route path={Paths.TABLET} element={<ProductPage />} />
           </Route>
+
           <Route path={Paths.ACCESSORIES}>
             <Route
               index
@@ -29,6 +41,7 @@ export const Root = () => {
                 <ProductsCatalog category={DeviceCategory.ACCESSORIES} />
               }
             />
+            <Route path={Paths.ACCESSORIE} element={<ProductPage />} />
           </Route>
           <Route path={Paths.CART} element={<CartPage />} />
 

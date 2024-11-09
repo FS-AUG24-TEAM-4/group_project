@@ -8,6 +8,7 @@ import {
   decreaseQuantity,
   removeFromCart,
 } from '../../features/сart/сartSlice';
+import { Link } from 'react-router-dom';
 
 interface INCartProductCard {
   product: CartItem;
@@ -25,17 +26,23 @@ export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
             className={styles.deleteButton}
             onClick={() => dispatch(removeFromCart(product.id))}
           ></button>
-          <a href="#">
+          <Link
+            to={`/${product.category}/${product.itemId}`}
+            className={styles.productLink}
+          >
             <img
               src={product.image}
               alt={product.name}
               className={styles.picture}
             />
-          </a>
+          </Link>
         </div>
-        <a href="#">
+        <Link
+          to={`/${product.category}/${product.itemId}`}
+          className={styles.productLink}
+        >
           <h2 className={styles.title}>{product.name}</h2>
-        </a>
+        </Link>
       </div>
 
       <div className={styles.containerButtonsPrice}>

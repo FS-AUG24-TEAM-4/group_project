@@ -7,17 +7,22 @@ import { useSelector } from 'react-redux';
 import { FavoritesButton, PrimaryButton } from '../index';
 import { RootState } from '@/app/store';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
-import { PrimaryButtons } from '@/enums';
+import { DeviceCategory, PrimaryButtons } from '@/enums';
 
 import { useCart } from '@/hooks/useCart';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
+import { getSeparetedCapacity } from '@/utils';
 
 interface ProductCardProps {
   product: Product;
+  productPath: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  productPath,
+}) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
@@ -30,6 +35,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleAddToCart = addCartButton(product);
 
+  const location = useLocation();
+
+  const category = location.pathname.split('/')[1];
+
   const handleClick = () => {
     if (clickedBuy) {
       handleRemoveFromCart(product.id);
@@ -41,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <Link to={`/phones/${product.id}`}>
+      <Link to={productPath}>
         <img
           src={product.image}
           alt={product.name}
@@ -49,7 +58,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
       </Link>
 
-      <Link to={`/phones/${product.id}`}>
+      <Link to={productPath}>
         <h2 className={styles.title}>{product.name}</h2>
       </Link>
 
@@ -69,13 +78,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       <div className={styles.specs}>
-        <p className={styles.label}>Capacity</p>
-        <p className={styles.value}>{product.capacity.replace('GB', '')} GB</p>
+        {category === DeviceCategory.ACCESSORIES ? (
+          <p className={styles.label}>Size</p>
+        ) : (
+          <p className={styles.label}>Capacity</p>
+        )}
+        <p className={styles.value}>{getSeparetedCapacity(product.capacity)}</p>
       </div>
 
       <div className={styles.specs}>
         <p className={styles.label}>RAM</p>
-        <p className={styles.value}>{product.ram.replace('GB', '')} GB</p>
+        <p className={styles.value}>{getSeparetedCapacity(product.ram)}</p>
       </div>
 
       <div className={styles.buttons}>
