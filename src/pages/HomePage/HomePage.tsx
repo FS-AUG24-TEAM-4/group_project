@@ -1,3 +1,4 @@
+import { CategoriesSection } from '@/components/CategoriesSection';
 import styles from './styles.module.scss';
 
 export const HomePage = () => {
@@ -9,7 +10,9 @@ export const HomePage = () => {
 
       <div className={styles.newModels}></div>
 
-      <div className={styles.categories}></div>
+      <div className={styles.categories}>
+        <CategoriesSection />
+      </div>
 
       <div className={styles.hotPrices}></div>
     </div>

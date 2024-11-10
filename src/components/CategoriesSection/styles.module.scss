@@ -4,14 +4,37 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include onTablet {
+    flex-direction: row;
+
+    gap: 16px;
+  }
+}
+
+.img_title_quantity_container {
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
   margin-bottom: 24px;
+  line-height: 30.8px;
+  font-weight: 700;
+
+  @include onTablet {
+    font-size: 32px;
+    line-height: 41px;
+  }
 }
 
 .category_title {
   margin-bottom: 4px;
+  line-height: 25.56px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .image {
@@ -25,8 +48,21 @@
   &:hover {
     transform: scale(1.05);
   }
+
+  @include onTablet {
+    width: 187px;
+    height: 187px;
+  }
+
+  @include onDesktop {
+    width: 368px;
+    height: 368px;
+  }
 }
 
 .models_quantity {
   margin-bottom: 32px;
+  color: $secondary;
+  line-height: 21px;
+  font-weight: 200;
 }
