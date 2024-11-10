@@ -19,12 +19,14 @@ interface ProductCardProps {
   product: Product;
   productPath: string;
   type?: 'slider' | 'default';
+  discount?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   productPath,
   type = 'default',
+  discount,
 }) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
@@ -74,7 +76,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <p className={styles.actual_price}>
           ${product.price || product.fullPrice}
         </p>
-        {product.price && (
+        {product.price && discount && (
           <p className={styles.old_price}>${product.fullPrice}</p>
         )}
       </div>

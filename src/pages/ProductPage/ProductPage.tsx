@@ -15,6 +15,7 @@ import { BackButton } from '@/components/BackButton';
 import { ParamsSelection } from '@/components/ParamsSelection';
 import { useProducts } from '@/hooks';
 import { AboutSection } from '@/components/AboutSection/AboutSection';
+import { RecommendedList } from '@/components/RecommendedList';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -95,6 +96,13 @@ export const ProductPage = () => {
       <section className={styles.techSpecs}>
         <TechSpecsSection product={device} />
       </section>
+
+      <div className={styles.recommended}>
+        <RecommendedList
+          price={device.priceRegular}
+          category={device.category}
+        />
+      </div>
     </div>
   );
 };

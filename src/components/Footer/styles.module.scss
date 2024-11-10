@@ -5,6 +5,14 @@
   border-top: 1px solid $elements;
 }
 
+.logo {
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .footerContainer {
   display: flex;
   flex-direction: column;

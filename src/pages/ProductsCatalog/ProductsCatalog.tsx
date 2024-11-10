@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/indent */
 import Select from 'react-select';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from '@mui/material';
 
 import { useProducts } from '@/hooks/useProducts';
-import { sortDevices, scrollToTop, getSearchWith } from '@/utils';
+import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
 import { SortType } from '@/enums/SortType';
 
@@ -25,29 +26,16 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
-      case 'phones':
+      case DeviceCategory.PHONES:
         return product.category === DeviceCategory.PHONES;
 
-      case 'tablets':
+      case DeviceCategory.TABLETS:
         return product.category === DeviceCategory.TABLETS;
 
       default:
         return product.category === DeviceCategory.ACCESSORIES;
     }
   });
-
-  const getTitle = (titleCategory: DeviceCategory) => {
-    switch (titleCategory) {
-      case DeviceCategory.PHONES:
-        return 'Mobile phones';
-      case DeviceCategory.TABLETS:
-        return 'Tablets';
-      case DeviceCategory.ACCESSORIES:
-        return 'Accessories';
-      default:
-        return 'Products';
-    }
-  };
 
   const title = getTitle(category);
 
@@ -214,7 +202,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
                   const sortParam =
                     value.value === SortType.NONE ? null : value.value;
 
-                  return getSearchWith(currentParams, { sort: sortParam });
+                  return getSearchWith(currentParams, {
+                    sort: sortParam,
+                    page: '1',
+                  });
                 });
               }
             }}
@@ -231,12 +222,20 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
             value={showItemsPerPageDropdownValue()}
             onChange={value => {
               if (value) {
-                setSearchParams(currentParams => {
-                  const itemsParams = value.value;
+                const newCountOfPages = Math.ceil(
+                  sortedPhones.length / value.value,
+                );
+                const itemsParams = value.value;
+                const newParams = {
+                  devicesPerPage: itemsParams.toString(),
+                  page: (newCountOfPages < currentPage
+                    ? newCountOfPages
+                    : currentPage
+                  ).toString(),
+                };
 
-                  return getSearchWith(currentParams, {
-                    devicesPerPage: itemsParams.toString(),
-                  });
+                setSearchParams(currentParams => {
+                  return getSearchWith(currentParams, newParams);
                 });
               }
             }}
