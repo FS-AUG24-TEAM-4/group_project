@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
-import { Paths } from '@/enums';
+import { DeviceCategory, Paths } from '@/enums';
+import { Product } from '@/types';
+import { FC } from 'react';
+import { getQuantityByCategory } from '@/utils/getQuantityByCategory';
 
-export const CategoriesSection = () => {
+interface CategoriesSectionProps {
+  products: Product[];
+}
+
+export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
   return (
     <>
       <h2 className={styles.title}>Shop by category</h2>
@@ -17,7 +24,9 @@ export const CategoriesSection = () => {
             />
           </Link>
           <h3 className={styles.category_title}>Mobile phones</h3>
-          <div className={styles.models_quantity}>95 models</div>
+          <div className={styles.models_quantity}>
+            {getQuantityByCategory(products, DeviceCategory.PHONES)} models
+          </div>
         </div>
 
         <div className="img_title_quantity_container">
@@ -29,7 +38,9 @@ export const CategoriesSection = () => {
             />
           </Link>
           <h3 className={styles.category_title}>Tablets</h3>
-          <div className={styles.models_quantity}>34 models</div>
+          <div className={styles.models_quantity}>
+            {getQuantityByCategory(products, DeviceCategory.TABLETS)} models
+          </div>
         </div>
 
         <div className="img_title_quantity_container">
@@ -41,7 +52,9 @@ export const CategoriesSection = () => {
             />
           </Link>
           <h3 className={styles.category_title}>Accessories</h3>
-          <div className={styles.models_quantity}>22 models</div>
+          <div className={styles.models_quantity}>
+            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)} models
+          </div>
         </div>
       </section>
     </>

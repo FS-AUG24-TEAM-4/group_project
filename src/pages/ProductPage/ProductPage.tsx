@@ -9,7 +9,10 @@ import { Device } from '@/types';
 
 import { BreadCrumbs } from '@/components/BreadCrumbs';
 import styles from './style.module.scss';
-import { CategoriesSection } from '@/components/CategoriesSection/CategoriesSection';
+import { AboutSection } from '@/components/AboutSection/AboutSection';
+import { TemporaryProductPage } from '@/components/TemporaryProductPage';
+import { RecommendedList } from '@/components/RecommendedList';
+import { TechSpecsSection } from '@/components/TechSpecsSection';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -63,9 +66,21 @@ export const ProductPage = () => {
       <div className={styles.breadCrumbs}>
         <BreadCrumbs productName={product.name} />
       </div>
+      <div className="description">
+        <TemporaryProductPage />
+      </div>
+
+      <div className={styles.description}>
+        <AboutSection description={product.description} />
+      </div>
       <div className={styles.techSpecs}>
-        {/* <TechSpecsSection product={product} /> */}
-        <CategoriesSection />
+        <TechSpecsSection product={product} />
+      </div>
+      <div className={styles.recommended}>
+        <RecommendedList
+          price={product.priceRegular}
+          category={product.category}
+        />
       </div>
     </div>
   );
