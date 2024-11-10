@@ -1,9 +1,17 @@
 /* eslint-disable no-console */
+/* eslint-disable max-len */
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { DeviceCategory } from '@/enums';
 import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+
+import { BreadCrumbs } from '@/components/BreadCrumbs';
+import styles from './style.module.scss';
+import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
+import { AboutSection } from '@/components/AboutSection/AboutSection';
+import { TemporaryProductPage } from '@/components/TemporaryProductPage';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -54,13 +62,19 @@ export const ProductPage = () => {
 
   return (
     <div>
-      <h1>{product.name}</h1>
-      <p>{product.description[0].text.join(' ')}</p>
+      <div className={styles.breadCrumbs}>
+        <BreadCrumbs productName={product.name} />
+      </div>
+      <div className="description">
+        <TemporaryProductPage />
+      </div>
 
-      <img src={product.images[0]} alt={product.name} />
-      <p>
-        {product.priceDiscount ? product.priceDiscount : product.priceRegular}
-      </p>
+      <div className={styles.description}>
+        <AboutSection description={product.description} />
+      </div>
+      <div className={styles.techSpecs}>
+        <TechSpecsSection product={product} />
+      </div>
     </div>
   );
 };

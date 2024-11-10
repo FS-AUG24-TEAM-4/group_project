@@ -13,15 +13,20 @@ import { useCart } from '@/hooks/useCart';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
 import { getSeparetedCapacity } from '@/utils';
+import classNames from 'classnames';
 
 interface ProductCardProps {
   product: Product;
   productPath: string;
+  type?: 'slider' | 'default';
+  discount?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   productPath,
+  type = 'default',
+  discount,
 }) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
@@ -49,7 +54,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <article className={styles.card}>
+    <article
+      className={classNames({
+        [styles.slider_card]: type === 'slider',
+        [styles.card]: type == 'default',
+      })}
+    >
       <Link to={productPath}>
         <img
           src={product.image}
@@ -66,7 +76,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <p className={styles.actual_price}>
           ${product.price || product.fullPrice}
         </p>
-        {product.price && (
+        {product.price && discount && (
           <p className={styles.old_price}>${product.fullPrice}</p>
         )}
       </div>
