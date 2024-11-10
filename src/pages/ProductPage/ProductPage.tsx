@@ -10,6 +10,8 @@ import { Device } from '@/types';
 import { BreadCrumbs } from '@/components/BreadCrumbs';
 import styles from './style.module.scss';
 import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
+import { AboutSection } from '@/components/AboutSection/AboutSection';
+import { TemporaryProductPage } from '@/components/TemporaryProductPage';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -62,6 +64,13 @@ export const ProductPage = () => {
     <div>
       <div className={styles.breadCrumbs}>
         <BreadCrumbs productName={product.name} />
+      </div>
+      <div className="description">
+        <TemporaryProductPage />
+      </div>
+
+      <div className={styles.description}>
+        <AboutSection description={product.description} />
       </div>
       <div className={styles.techSpecs}>
         <TechSpecsSection product={product} />
