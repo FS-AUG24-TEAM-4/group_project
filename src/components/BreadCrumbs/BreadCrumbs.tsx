@@ -5,7 +5,7 @@ import { Paths } from '@/enums';
 import { getCapitalizedWord } from '@/utils';
 
 import styles from './styles.module.scss';
-import homeIcon from '@/assets/images/icons/Home.svg';
+import homeIcon from '@/assets/images/icons/home.svg';
 
 interface Props {
   productName?: string;
