@@ -13,6 +13,7 @@ import { useCart } from '@/hooks/useCart';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
 import { getSeparetedCapacity } from '@/utils';
+import classNames from 'classnames';
 
 interface ProductCardProps {
   product: Product;
@@ -50,10 +51,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
-  const cardClass = type === 'slider' ? styles.slider_card : styles.card;
-
   return (
-    <article className={cardClass}>
+    <article
+      className={classNames({
+        [styles.slider_card]: type === 'slider',
+        [styles.card]: type == 'default',
+      })}
+    >
       <Link to={productPath}>
         <img
           src={product.image}
