@@ -252,6 +252,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       )}
 
       <Pagination
+        page={currentPage}
         count={totalPages}
         onChange={(_event, page: number) => handlePageChange(page)}
         siblingCount={isPhone ? 0 : 1}
