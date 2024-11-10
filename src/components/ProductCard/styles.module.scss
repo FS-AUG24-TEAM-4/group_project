@@ -150,3 +150,20 @@
   gap: 8px;
   justify-content: space-between;
 }
+
+.slider_card {
+  @extend .card;
+  width: 212px;
+
+  @include onTablet {
+    width: 236px;
+  }
+
+  @include onTabletWide {
+    width: 236px;
+  }
+
+  @include onDesktop {
+    width: 272px;
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../assets/styles/variables';
+
+.swiper_slide {
+  width: auto;
+  flex: 0 0 auto;
+  max-width: 300px;
+}
+
+.sliderWrapper {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    gap: 16px;
+  }
+}
