@@ -15,14 +15,69 @@ import { Product } from '@/types/Product';
 import { FC } from 'react';
 import { ProductsList } from '@/components/ProductsList';
 import { DeviceCategory } from '@/enums';
+import Skeleton from '@mui/material/Skeleton';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
 };
 
+const ProductSkeleton = () => (
+  <div className={styles.product_card}>
+    <div className={styles.image_container}>
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        width="148px"
+        height="173px"
+        className={styles.skeleton_image}
+      />
+    </div>
+
+    <div className={styles.title_container}>
+      <Skeleton animation="wave" variant="text" width="100%" height={42} />
+    </div>
+
+    <div className={styles.price_container}>
+      <Skeleton animation="wave" variant="text" width="100px" height={31} />
+    </div>
+
+    <Skeleton
+      variant="text"
+      animation="wave"
+      width="100%"
+      height={1}
+      sx={{ marginBottom: '16px' }}
+    />
+
+    <div className={styles.specs_container}>
+      <Skeleton animation="wave" variant="text" width="100%" height={16} />
+      <Skeleton animation="wave" variant="text" width="100%" height={16} />
+      <Skeleton animation="wave" variant="text" width="100%" height={16} />
+    </div>
+
+    <div className={styles.button_container}>
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        width="100%"
+        height={40}
+        sx={{ borderRadius: '8px' }}
+      />
+    </div>
+  </div>
+);
+
+const SkeletonGrid = ({ itemsCount }: { itemsCount: number }) => (
+  <div className={styles.device_list}>
+    {[...Array(itemsCount)].map((_, index) => (
+      <ProductSkeleton key={index} />
+    ))}
+  </div>
+);
+
 export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -247,7 +302,9 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         </div>
       </div>
 
-      {paginationOfDevice && (
+      {loading ? (
+        <SkeletonGrid itemsCount={Number(devicesPerPage)} />
+      ) : (
         <ProductsList
           paginationOfDevice={paginationOfDevice}
           category={category}

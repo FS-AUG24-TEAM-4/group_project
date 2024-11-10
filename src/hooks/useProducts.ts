@@ -25,7 +25,9 @@ export const useProducts = () => {
         return response.json();
       })
       .then(data => {
-        dispatch(loadProductsSuccess(data));
+        setTimeout(() => {
+          dispatch(loadProductsSuccess(data));
+        }, 2000);
       })
       .catch((catchedError: Error) => {
         dispatch(loadProductsFailure(catchedError.message));
