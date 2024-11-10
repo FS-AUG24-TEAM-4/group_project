@@ -20,6 +20,7 @@ export const ProductsList: React.FC<Props> = ({
     <article className={styles.device_list}>
       {paginationOfDevice.map(device => (
         <ProductCard
+          discount={true}
           key={device.id}
           product={device}
           productPath={getProductPath(device.itemId, category)}
