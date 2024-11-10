@@ -9,10 +9,10 @@ import { Device } from '@/types';
 
 import { BreadCrumbs } from '@/components/BreadCrumbs';
 import styles from './style.module.scss';
-import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
 import { AboutSection } from '@/components/AboutSection/AboutSection';
 import { TemporaryProductPage } from '@/components/TemporaryProductPage';
 import { RecommendedList } from '@/components/RecommendedList';
+import { TechSpecsSection } from '@/components/TechSpecsSection';
 
 export const ProductPage = () => {
   const location = useLocation();

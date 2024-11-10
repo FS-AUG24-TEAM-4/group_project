@@ -1,3 +1,4 @@
+import { CategoriesSection } from '@/components/CategoriesSection';
 import styles from './styles.module.scss';
 import { useProducts } from '@/hooks';
 import { NewModelsSwiper } from '@/components/NewModelsSwiper';
@@ -16,7 +17,9 @@ export const HomePage = () => {
         <NewModelsSwiper products={products} />
       </div>
 
-      <div className={styles.categories}></div>
+      <div className={styles.categories}>
+        <CategoriesSection products={products} />
+      </div>
 
       <div className={styles.hotPrices}>
         <HotPricesSwiper products={products} />

@@ -1,1 +1,1 @@
-export * from '../TechSpecsSection';
+export * from './TechSpecsSection';
