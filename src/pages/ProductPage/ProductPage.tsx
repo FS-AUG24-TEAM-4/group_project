@@ -4,6 +4,7 @@ import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { RecommendedList } from '@/components/RecommendedList';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -61,6 +62,11 @@ export const ProductPage = () => {
       <p>
         {product.priceDiscount ? product.priceDiscount : product.priceRegular}
       </p>
+
+      <RecommendedList
+        price={product.priceRegular}
+        category={product.category}
+      />
     </div>
   );
 };

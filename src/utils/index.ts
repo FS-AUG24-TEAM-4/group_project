@@ -6,3 +6,4 @@ export * from './scrollToTop';
 export * from './sortDevices';
 export * from './getSeparetedCapacity';
 export * from './getProductPath';
+export * from './getRecommendedProducts';
