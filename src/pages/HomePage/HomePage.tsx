@@ -1,10 +1,11 @@
-import { ProductSlider } from '@/components/ProductSlider/ProductSlider';
+import { CategoriesSection } from '@/components/CategoriesSection';
 import styles from './styles.module.scss';
 import { useProducts } from '@/hooks';
+import { NewModelsSwiper } from '@/components/NewModelsSwiper';
+import { HotPricesSwiper } from '@/components/HotPricesSwiper/HotPricesSwiper';
 
 export const HomePage = () => {
   const { products } = useProducts();
-  const newProducts = products.filter(newProduct => newProduct.year >= 2022);
 
   return (
     <div className={styles.wrapper}>
@@ -13,12 +14,16 @@ export const HomePage = () => {
       <div className={styles.slider}></div>
 
       <div className={styles.newModels}>
-        <ProductSlider title="Brand new models" products={newProducts} />
+        <NewModelsSwiper products={products} />
       </div>
 
-      <div className={styles.categories}></div>
+      <div className={styles.categories}>
+        <CategoriesSection products={products} />
+      </div>
 
-      <div className={styles.hotPrices}></div>
+      <div className={styles.hotPrices}>
+        <HotPricesSwiper products={products} />
+      </div>
     </div>
   );
 };

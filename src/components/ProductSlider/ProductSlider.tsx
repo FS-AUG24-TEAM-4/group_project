@@ -12,9 +12,14 @@ import { IconButton } from '../IconButton';
 interface ProductSliderProps {
   products: Product[];
   title: string;
+  discount?: boolean;
 }
 
-export const ProductSlider: FC<ProductSliderProps> = ({ products, title }) => {
+export const ProductSlider: FC<ProductSliderProps> = ({
+  products,
+  title,
+  discount = true,
+}) => {
   const swiperRef = useRef<SwiperRef | null>(null);
 
   if (products.length === 0) {
@@ -55,6 +60,7 @@ export const ProductSlider: FC<ProductSliderProps> = ({ products, title }) => {
               product={product}
               productPath={`/${product.category}/${product.itemId}`}
               type="slider"
+              discount={discount}
             />
           </SwiperSlide>
         ))}
