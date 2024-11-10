@@ -1,0 +1,54 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.techspecs__container {
+  width: 288px;
+
+  @include onTablet {
+    width: 591px;
+  }
+
+  @include onDesktop {
+    width: 512px;
+  }
+}
+
+.techspecs__title {
+  margin-bottom: 16px;
+
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30.8px;
+  color: $primary;
+}
+
+.line {
+  margin-bottom: 25px;
+
+  border: 0.5px solid $elements;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__element {
+    display: flex;
+    justify-content: space-between;
+
+    &__key {
+      color: #89939a;
+      font-weight: 100;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    &__value {
+      color: #0f0f11;
+      font-weight: 100;
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }
+}
