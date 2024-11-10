@@ -239,16 +239,13 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
                   sortedPhones.length / value.value,
                 );
                 const itemsParams = value.value;
-                const newParams =
-                  newCountOfPages < currentPage
-                    ? {
-                        devicesPerPage: itemsParams.toString(),
-                        page: newCountOfPages.toString(),
-                      }
-                    : {
-                        devicesPerPage: itemsParams.toString(),
-                        page: currentPage.toString(),
-                      };
+                const newParams = {
+                  devicesPerPage: itemsParams.toString(),
+                  page: (newCountOfPages < currentPage
+                    ? newCountOfPages
+                    : currentPage
+                  ).toString(),
+                };
 
                 setSearchParams(currentParams => {
                   return getSearchWith(currentParams, newParams);
