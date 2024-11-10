@@ -6,8 +6,6 @@ import { PaginationItem } from '@mui/material';
 import { useProducts } from '@/hooks/useProducts';
 import { sortDevices, scrollToTop, getSearchWith } from '@/utils';
 
-import bread__img from '../../assets/breadcrumbs-img/Breadcrumbs.png';
-
 import { SortType } from '@/enums/SortType';
 
 import styles from './styles.module.scss';
@@ -15,6 +13,7 @@ import { Product } from '@/types/Product';
 import { FC } from 'react';
 import { ProductsList } from '@/components/ProductsList';
 import { DeviceCategory } from '@/enums';
+import { BreadCrumbs } from '@/components/BreadCrumbs';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -192,11 +191,9 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
   return (
     <div className={styles.container}>
-      <img
-        className={styles.bread__img}
-        src={bread__img}
-        alt="breadcrumbs-img"
-      />
+      <div className={styles.breadCrumbs}>
+        <BreadCrumbs />
+      </div>
 
       <h1 className={styles.title}>{title}</h1>
 
