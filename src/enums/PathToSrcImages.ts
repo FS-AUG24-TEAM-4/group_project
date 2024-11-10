@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.DEV ? '' : '/';
+const BASE_URL = import.meta.env.DEV ? '' : '/group_project/';
 
 export const PathToSrcImages = {
   PHONES: `${BASE_URL}src/assets/images/phones.svg`,
