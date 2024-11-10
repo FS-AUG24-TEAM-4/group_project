@@ -11,10 +11,10 @@ interface CategoriesSectionProps {
 
 export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
   return (
-    <>
+    <section>
       <h2 className={styles.title}>Shop by category</h2>
 
-      <section className={styles.container}>
+      <div className={styles.container}>
         <div className="img_title_quantity_container">
           <Link to={Paths.PHONES}>
             <img
@@ -23,7 +23,9 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
               className={styles.image}
             />
           </Link>
+
           <h3 className={styles.category_title}>Mobile phones</h3>
+
           <div className={styles.models_quantity}>
             {getQuantityByCategory(products, DeviceCategory.PHONES)} models
           </div>
@@ -37,7 +39,9 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
               className={styles.image}
             />
           </Link>
+
           <h3 className={styles.category_title}>Tablets</h3>
+
           <div className={styles.models_quantity}>
             {getQuantityByCategory(products, DeviceCategory.TABLETS)} models
           </div>
@@ -51,12 +55,15 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
               className={styles.image}
             />
           </Link>
+
           <h3 className={styles.category_title}>Accessories</h3>
+
           <div className={styles.models_quantity}>
-            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)} models
+            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)}
+            models
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
