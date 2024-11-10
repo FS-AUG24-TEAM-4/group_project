@@ -12,6 +12,7 @@ import styles from './style.module.scss';
 import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
 import { AboutSection } from '@/components/AboutSection/AboutSection';
 import { TemporaryProductPage } from '@/components/TemporaryProductPage';
+import { RecommendedList } from '@/components/RecommendedList';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -74,6 +75,12 @@ export const ProductPage = () => {
       </div>
       <div className={styles.techSpecs}>
         <TechSpecsSection product={product} />
+      </div>
+      <div className={styles.recommended}>
+        <RecommendedList
+          price={product.priceRegular}
+          category={product.category}
+        />
       </div>
     </div>
   );
