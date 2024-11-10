@@ -10,12 +10,22 @@ import { Device } from '@/types';
 import { BreadCrumbs } from '@/components/BreadCrumbs';
 import styles from './style.module.scss';
 import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
+import { ProductPhotosSlider } from '@/components/ProductPhotosSlider';
+import { BackButton } from '@/components/BackButton';
+import { ParamsSelection } from '@/components/ParamsSelection';
+import { useProducts } from '@/hooks';
+import { AboutSection } from '@/components/AboutSection/AboutSection';
 
 export const ProductPage = () => {
   const location = useLocation();
   const category = location.pathname.split('/')[1];
   const slug = location.pathname.split('/')[2];
-  const [product, setProduct] = useState<Device | null>(null);
+  const [device, setDevice] = useState<Device | null>(null);
+  const { products } = useProducts();
+
+  const selectedProduct = products.find(
+    product => product.itemId === device?.id,
+  );
 
   useEffect(() => {
     let fileName = '';
@@ -46,7 +56,7 @@ export const ProductPage = () => {
         .then((data: Device[]) => {
           const foundProduct = data.find(item => item.id === slug);
 
-          setProduct(foundProduct || null);
+          setDevice(foundProduct || null);
         })
         .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
@@ -54,18 +64,37 @@ export const ProductPage = () => {
     }
   }, [category, slug]);
 
-  if (!product) {
+  if (!device) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.breadCrumbs}>
-        <BreadCrumbs productName={product.name} />
+        <BreadCrumbs productName={device.name} />
       </div>
-      <div className={styles.techSpecs}>
-        <TechSpecsSection product={product} />
+
+      <div className={styles.buttonBack}>
+        <BackButton />
       </div>
+
+      <h1 className={styles.title}>{device.name}</h1>
+
+      <section className={styles.sliderWrapper}>
+        <ProductPhotosSlider photos={device.images} productName={device.name} />
+      </section>
+
+      <section className={styles.paramsSelectionWrapper}>
+        <ParamsSelection device={device} cartProduct={selectedProduct!} />
+      </section>
+
+      <section className={styles.about}>
+        <AboutSection description={device.description} />
+      </section>
+
+      <section className={styles.techSpecs}>
+        <TechSpecsSection product={device} />
+      </section>
     </div>
   );
 };

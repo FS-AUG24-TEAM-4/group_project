@@ -3,15 +3,6 @@
 
 .about {
   display: block;
-  width: 287px;
-
-  @include onTablet {
-    width: 592px;
-  }
-
-  @include onDesktop {
-    width: 560px;
-  }
 }
 
 .title {

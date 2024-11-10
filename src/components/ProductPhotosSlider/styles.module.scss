@@ -1,0 +1,81 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.slider {
+  width: max-content;
+
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+
+  @include onTablet {
+    column-gap: 16px;
+  }
+}
+
+.mainPhoto {
+  width: 288px;
+  height: 288px;
+  margin-bottom: 16px;
+  padding: 6px;
+
+  grid-column: 1/2;
+
+  background-color: $white;
+
+  object-fit: contain;
+
+  @include onTablet {
+    grid-column: -1/-2;
+  }
+
+  @include onDesktop {
+    width: 464px;
+    height: 464px;
+  }
+}
+
+.secondaryPhotos {
+  display: flex;
+  column-gap: 8px;
+
+  grid-column: 1/-1;
+
+  @include onTablet {
+    flex-direction: column;
+    grid-column: 1/1;
+    grid-row: 1/2;
+    row-gap: 8px;
+  }
+}
+
+.secondaryPhoto {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+
+  border: 1px solid $elements;
+  border-radius: 4px;
+
+  background-color: $white;
+
+  object-fit: contain;
+
+  cursor: pointer;
+
+  transition: border-color $effectDuration;
+
+  &:hover,
+  &Selected {
+    border-color: $primary;
+  }
+
+  @include onTablet {
+    width: 36px;
+    height: 36px;
+  }
+
+  @include onDesktop {
+    width: 80px;
+    height: 80px;
+  }
+}

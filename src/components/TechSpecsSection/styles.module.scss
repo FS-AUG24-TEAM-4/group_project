@@ -1,18 +1,6 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/mixins';
 
-.techspecs__container {
-  width: 288px;
-
-  @include onTablet {
-    width: 591px;
-  }
-
-  @include onDesktop {
-    width: 512px;
-  }
-}
-
 .techspecs__title {
   margin-bottom: 16px;
 

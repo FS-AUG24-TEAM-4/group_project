@@ -1,37 +1,60 @@
+@import '../../assets/styles/variables';
 @import '../../assets/styles/mixins';
 
 .container {
+  padding: 24px 0 56px;
+
   @include pageGrid;
 
-  .title {
-    grid-column: 1 / -1;
-    grid-row: 1;
+  @include onTablet {
+    padding-bottom: 64px;
   }
 
-  .slider {
-    grid-column: 1 / -1;
-    height: 49px;
-    grid-row: 3;
+  @include onDesktop {
+    padding-bottom: 80px;
   }
 
-  .image {
+  .sliderWrapper {
     grid-column: 1 / -1;
-    height: 288px;
-    grid-row: 2;
+
+    margin-bottom: 40px;
+
+    @include onTablet {
+      grid-column: 1/8;
+      column-gap: 16px;
+    }
+
+    @include onDesktop {
+      grid-column: 1/13;
+    }
   }
 
-  .optionalSpecs {
-    grid-column: 1 / -1;
-    height: 435px;
+  .paramsSelectionWrapper {
+    grid-column: 1/-1;
+
+    @include onTablet {
+      grid-column: 8/-1;
+    }
+  
+    @include onDesktop {
+      grid-column: 14/21;
+    }
   }
 
-  .description {
+  .about {
     grid-column: 1 / -1;
+
+    @include onDesktop {
+      grid-column: 1 / 13;
+    }
   }
 
   .techSpecs {
     grid-column: 1 / -1;
-    height: 296px;
+
+    @include onDesktop {
+      grid-column: 14 / -1;
+    }
   }
 
   .recommended {
@@ -40,16 +63,6 @@
   }
 
   @include onTablet {
-    .slider {
-      grid-column: 1 / 1;
-      height: 207px;
-      grid-row: inherit;
-    }
-
-    .image {
-      grid-column: 2 / 7;
-      height: 287px;
-    }
 
     .optionalSpecs {
       grid-column: 8 / 12;
@@ -62,11 +75,6 @@
   }
 
   @include onDesktop {
-    .slider {
-      grid-column: 1 / 2;
-      height: 464px;
-    }
-
     .image {
       grid-column: 2 / 12;
       height: 464px;
@@ -75,10 +83,6 @@
     .optionalSpecs {
       grid-column: 14 / 24;
       height: 464px;
-    }
-
-    .description {
-      grid-column: 1 / 12;
     }
 
     .techSpecs {
@@ -92,10 +96,27 @@
   }
 }
 
-.breadCumbs {
+.breadCrumbs {
+  grid-column: 1 / -1;
   margin-bottom: 24px;
 
   @include onTablet {
     margin-bottom: 40px;
   }
+}
+
+.title {
+  grid-column: 1 / -1;
+
+  margin-bottom: 32px;
+
+  @include onTablet {
+    margin-bottom: 40px;
+  }
+}
+
+.buttonBack {
+  grid-column: 1 / -1;
+  
+  margin-bottom: 16px;
 }
