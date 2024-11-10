@@ -13,15 +13,18 @@ import { useCart } from '@/hooks/useCart';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
 import { getSeparetedCapacity } from '@/utils';
+import classNames from 'classnames';
 
 interface ProductCardProps {
   product: Product;
   productPath: string;
+  type?: 'slider' | 'default';
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   productPath,
+  type = 'default',
 }) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
@@ -49,7 +52,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <article className={styles.card}>
+    <article
+      className={classNames({
+        [styles.slider_card]: type === 'slider',
+        [styles.card]: type == 'default',
+      })}
+    >
       <Link to={productPath}>
         <img
           src={product.image}

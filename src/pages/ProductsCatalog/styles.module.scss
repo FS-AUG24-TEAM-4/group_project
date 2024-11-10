@@ -7,15 +7,19 @@
   justify-content: center;
 
   display: flex;
+  // that needs for centering on iPhones
+  margin: 0 auto;
 
   padding-top: 24px;
   width: fit-content;
 }
 
-.bread__img {
-  width: 93px;
-  height: 16px;
+.breadCrumbs {
   margin-bottom: 24px;
+
+  @include onTablet {
+    margin-bottom: 40px;
+  }
 }
 
 .title {
