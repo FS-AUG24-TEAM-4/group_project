@@ -1,9 +1,13 @@
 /* eslint-disable no-console */
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { DeviceCategory } from '@/enums';
 import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+
+import { BreadCrumbs } from '@/components/BreadCrumbs';
+import styles from './style.module.scss';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -54,10 +58,16 @@ export const ProductPage = () => {
 
   return (
     <div>
+      <div className={styles.breadCrumbs}>
+        <BreadCrumbs productName={product.name} />
+      </div>
+
       <h1>{product.name}</h1>
+
       <p>{product.description[0].text.join(' ')}</p>
 
       <img src={product.images[0]} alt={product.name} />
+
       <p>
         {product.priceDiscount ? product.priceDiscount : product.priceRegular}
       </p>

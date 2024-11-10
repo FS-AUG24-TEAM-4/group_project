@@ -12,10 +12,12 @@
   width: fit-content;
 }
 
-.bread__img {
-  width: 93px;
-  height: 16px;
+.breadCumbs {
   margin-bottom: 24px;
+
+  @include onTablet {
+    margin-bottom: 40px;
+  }
 }
 
 .title {
