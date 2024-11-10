@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import Select from 'react-select';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
@@ -214,7 +215,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
                   const sortParam =
                     value.value === SortType.NONE ? null : value.value;
 
-                  return getSearchWith(currentParams, { sort: sortParam });
+                  return getSearchWith(currentParams, {
+                    sort: sortParam,
+                    page: '1',
+                  });
                 });
               }
             }}
@@ -231,12 +235,23 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
             value={showItemsPerPageDropdownValue()}
             onChange={value => {
               if (value) {
-                setSearchParams(currentParams => {
-                  const itemsParams = value.value;
+                const newCountOfPages = Math.ceil(
+                  sortedPhones.length / value.value,
+                );
+                const itemsParams = value.value;
+                const newParams =
+                  newCountOfPages < currentPage
+                    ? {
+                        devicesPerPage: itemsParams.toString(),
+                        page: newCountOfPages.toString(),
+                      }
+                    : {
+                        devicesPerPage: itemsParams.toString(),
+                        page: currentPage.toString(),
+                      };
 
-                  return getSearchWith(currentParams, {
-                    devicesPerPage: itemsParams.toString(),
-                  });
+                setSearchParams(currentParams => {
+                  return getSearchWith(currentParams, newParams);
                 });
               }
             }}
