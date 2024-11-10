@@ -1,7 +1,7 @@
-const BASE_URL = import.meta.env.DEV ? '' : '/group_project/';
+const BASE_URL = import.meta.env.DEV ? 'src/' : '/group_project/';
 
 export const PathToSrcImages = {
-  PHONES: `${BASE_URL}src/assets/images/phones.svg`,
-  TABLETS: `${BASE_URL}src/assets/images/tablets.svg`,
-  ACCESSORIES: `${BASE_URL}src/assets/images/accessories.svg`,
+  PHONES: `${BASE_URL}assets/images/phones.svg`,
+  TABLETS: `${BASE_URL}assets/images/tablets.svg`,
+  ACCESSORIES: `${BASE_URL}assets/images/accessories.svg`,
 } as const;
