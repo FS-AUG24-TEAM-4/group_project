@@ -1,0 +1,32 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 24px;
+}
+
+.category_title {
+  margin-bottom: 4px;
+}
+
+.image {
+  width: 288px;
+  height: 288px;
+  border-radius: 8px;
+
+  margin-bottom: 24px;
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.models_quantity {
+  margin-bottom: 32px;
+}
