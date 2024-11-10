@@ -191,7 +191,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.breadCumbs}>
+      <div className={styles.breadCrumbs}>
         <BreadCrumbs />
       </div>
 
