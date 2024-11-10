@@ -1,0 +1,54 @@
+@import '../../assets/styles/variables';
+
+.swiper_slide {
+  width: auto;  // Автоматична ширина слайдів
+  flex: 0 0 auto;  // Це дозволяє слайду займати простір, відповідно до контенту
+  max-width: 300px;  // Максимальна ширина слайду (можна коригувати)
+}
+
+.sliderWrapper {
+  padding: 20px 0;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    gap: 8px;
+  }
+
+  .button {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    background-color: $white;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid $icons;
+    border-radius: 50%;
+    transition: transform $effectDuration ease;
+  
+    &.increase {
+      background-image: url('/src/assets/images/icons/arrow-right.svg');
+    }
+  
+    &.decrease {
+      background-image: url('/src/assets/images/icons/arrow-left.svg');
+    }
+  
+    &:hover {
+      border: 1px solid $primary;
+    }
+  }
+}
