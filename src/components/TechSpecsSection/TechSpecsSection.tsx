@@ -2,6 +2,7 @@ import { Device } from '@/types';
 import React from 'react';
 import styles from './styles.module.scss';
 import { renderRightKeyOfTechSpecs } from '@/utils/renderRIghtKeyOfTechSpecs';
+import { getSeparetedCapacity } from '@/utils';
 
 interface Props {
   product: Device;
@@ -12,8 +13,8 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
     Screen: product.screen,
     Resolution: product.resolution,
     Processor: product.processor,
-    RAM: product.ram,
-    Memory: product.capacity,
+    RAM: getSeparetedCapacity(product.ram),
+    Memory: getSeparetedCapacity(product.capacity),
     Camera: product.camera,
     Zoom: product.zoom,
     Cell: product.cell,
@@ -23,9 +24,6 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
     const howManyCams = specsObj.Camera.split('+').length;
 
     switch (howManyCams) {
-      case 1:
-        break;
-
       case 2:
         specsObj.Camera = `${specsObj.Camera} (Dual)`;
         break;

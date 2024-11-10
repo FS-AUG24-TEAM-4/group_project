@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ import { Device } from '@/types';
 
 import { BreadCrumbs } from '@/components/BreadCrumbs';
 import styles from './style.module.scss';
+import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
 
 export const ProductPage = () => {
   const location = useLocation();
@@ -61,16 +63,9 @@ export const ProductPage = () => {
       <div className={styles.breadCrumbs}>
         <BreadCrumbs productName={product.name} />
       </div>
-
-      <h1>{product.name}</h1>
-
-      <p>{product.description[0].text.join(' ')}</p>
-
-      <img src={product.images[0]} alt={product.name} />
-
-      <p>
-        {product.priceDiscount ? product.priceDiscount : product.priceRegular}
-      </p>
+      <div className={styles.techSpecs}>
+        <TechSpecsSection product={product} />
+      </div>
     </div>
   );
 };
