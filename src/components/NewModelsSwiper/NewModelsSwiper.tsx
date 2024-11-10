@@ -12,5 +12,11 @@ export const NewModelsSwiper: FC<ProductSliderProps> = ({ products }) => {
     product => product.year === latestYear,
   );
 
-  return <ProductSlider products={latestProducts} title="Brand new models" />;
+  return (
+    <ProductSlider
+      products={latestProducts}
+      title="Brand new models"
+      discount={false}
+    />
+  );
 };
