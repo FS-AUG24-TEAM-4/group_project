@@ -53,7 +53,8 @@ export const ProductSlider: FC<ProductSliderProps> = ({ products, title }) => {
           <SwiperSlide className={styles.swiper_slide} key={product.id}>
             <ProductCard
               product={product}
-              productPath={`${product.category}/${product.itemId}`}
+              productPath={`/${product.category}/${product.itemId}`}
+              type="slider"
             />
           </SwiperSlide>
         ))}

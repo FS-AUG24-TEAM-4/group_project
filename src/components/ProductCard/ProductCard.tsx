@@ -17,11 +17,13 @@ import { getSeparetedCapacity } from '@/utils';
 interface ProductCardProps {
   product: Product;
   productPath: string;
+  type?: 'slider' | 'default';
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   productPath,
+  type = 'default',
 }) => {
   const clickedBuy = useSelector(
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
@@ -48,8 +50,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
+  const cardClass = type === 'slider' ? styles.slider_card : styles.card;
+
   return (
-    <article className={styles.card}>
+    <article className={cardClass}>
       <Link to={productPath}>
         <img
           src={product.image}
