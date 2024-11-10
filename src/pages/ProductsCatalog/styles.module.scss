@@ -90,7 +90,7 @@
 
   @include onTabletWide {
     width: 229px;
-    height:  100%;
+    height: 100%;
   }
 
   @include onDesktop {
@@ -103,8 +103,6 @@
   justify-content: center;
   margin: 0 auto;
   width: 148px;
-
-
 }
 
 .skeleton_image {
