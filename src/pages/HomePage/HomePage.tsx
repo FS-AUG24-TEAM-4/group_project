@@ -17,7 +17,7 @@ export const HomePage = () => {
       </div>
 
       <div className={styles.categories}>
-        <CategoriesSection products={products}/>
+        <CategoriesSection products={products} />
       </div>
 
       <div className={styles.hotPrices}></div>
