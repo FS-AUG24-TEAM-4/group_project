@@ -68,7 +68,7 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <section className={styles.techspecs__container}>
+    <div>
       <h3 className={styles.techspecs__title}>Tech specs</h3>
       <div className={styles.line}></div>
 
@@ -90,6 +90,6 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
           }
         })}
       </ul>
-    </section>
+    </div>
   );
 };

@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-import { useNavigate } from 'react-router-dom';
-
 import styles from './styles.module.scss';
 import { PrimaryButton } from '@/components';
 import { useSelector } from 'react-redux';
@@ -13,7 +11,8 @@ import {
 import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
 import { PrimaryButtons } from '@/enums/PrimaryButtons';
 import { useState } from 'react';
-import { ModalWindowCheckout } from '@/components/ModalWindowCheckout/ModalWindowCheckout';
+import { ModalWindowCheckout } from '@/components/ModalWindowCheckout';
+import { BackButton } from '@/components/BackButton';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -21,8 +20,6 @@ export const CartPage = () => {
   const cartProducts = getCartProducts(cart.items);
   const totalCost = getTotalCost(cartProducts);
   const quantity = getCartProductsQuantity(cartProducts);
-
-  const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartEmpty, setIsCartEmpty] = useState(!cartProducts.length);
@@ -41,10 +38,9 @@ export const CartPage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <button className={styles.buttonBack} onClick={() => navigate(-1)}>
-        <div className={styles.buttonBackIcon}></div>
-        <span className={styles.textButtonBack}>Back</span>
-      </button>
+      <div className={styles.backButton}>
+        <BackButton />
+      </div>
 
       <h1 className={styles.title}>Cart</h1>
 

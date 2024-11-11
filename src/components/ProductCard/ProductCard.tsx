@@ -12,7 +12,7 @@ import { DeviceCategory, PrimaryButtons } from '@/enums';
 import { useCart } from '@/hooks/useCart';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
-import { getSeparetedCapacity } from '@/utils';
+import { getSeparetedCapacity, scrollToTop } from '@/utils';
 import classNames from 'classnames';
 
 interface ProductCardProps {
@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         [styles.card]: type == 'default',
       })}
     >
-      <Link to={productPath}>
+      <Link to={productPath} onClick={() => scrollToTop()}>
         <img
           src={product.image}
           alt={product.name}
@@ -68,7 +68,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
       </Link>
 
-      <Link to={productPath}>
+      <Link to={productPath} onClick={() => scrollToTop()}>
         <h2 className={styles.title}>{product.name}</h2>
       </Link>
 

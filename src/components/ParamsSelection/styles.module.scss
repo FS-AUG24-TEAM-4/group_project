@@ -1,108 +1,6 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/mixins';
 
-.wrapper {
-  @include pageGrid;
-}
-
-.slider {
-  width: max-content;
-  margin-bottom: 40px;
-
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-column: 1/-1;
-
-  @include onTablet {
-    grid-column: 1/8;
-    column-gap: 16px;
-  }
-
-  @include onDesktop {
-    grid-column: 1/13;
-  }
-}
-
-.mainPhoto {
-  width: 288px;
-  height: 288px;
-  margin-bottom: 16px;
-  padding: 6px;
-
-  grid-column: 1/2;
-
-  background-color: $white;
-
-  object-fit: contain;
-
-  @include onTablet {
-    grid-column: -1/-2;
-  }
-
-  @include onDesktop {
-    width: 464px;
-    height: 464px;
-  }
-}
-
-.secondaryPhotos {
-  display: flex;
-  column-gap: 8px;
-
-  grid-column: 1/-1;
-
-  @include onTablet {
-    flex-direction: column;
-    grid-column: 1/1;
-    grid-row: 1/2;
-    row-gap: 8px;
-  }
-}
-
-.secondaryPhoto {
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-
-  border: 1px solid $elements;
-  border-radius: 4px;
-
-  background-color: $white;
-
-  object-fit: contain;
-
-  cursor: pointer;
-
-  transition: border-color $effectDuration;
-
-  &:hover,
-  &Selected {
-    border-color: $primary;
-  }
-
-  @include onTablet {
-    width: 36px;
-    height: 36px;
-  }
-
-  @include onDesktop {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-.selection {
-  grid-column: 1/-1;
-
-  @include onTablet {
-    grid-column: 8/-1;
-  }
-
-  @include onDesktop {
-    grid-column: 14/21;
-  }
-}
-
 .subtitle {
   margin-bottom: 8px;
   display: inline-block;
@@ -185,7 +83,7 @@
   font-weight: 500;
   font-size: 22px;
   line-height: 28.12px;
-  text-decoration: none;
+  text-decoration: line-through;
 
   color: $secondary;
   background-color: $bg;
@@ -193,14 +91,12 @@
   &::before {
     content: '';
     position: absolute;
-    top: 49%;
-    left: 0;
+    top: 47%;
     width: 100%;
     height: 2px;
 
     background-color: $secondary;
     transform: translateY(-50%);
-    mix-blend-mode: color-dodge;
   }
 }
 
@@ -211,10 +107,6 @@
   column-gap: 8px;
 }
 
-.params {
-  margin-bottom: 56px;
-}
-
 .paramWrapper {
   margin-bottom: 8px;
   display: flex;
@@ -223,14 +115,14 @@
 
 .param {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 15px;
 
   color: $secondary;
 
   &Value {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 15px;
   }
 }
