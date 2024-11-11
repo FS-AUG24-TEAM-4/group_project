@@ -2,20 +2,30 @@
 @import '../../assets/styles/mixins';
 
 .wrapper {
-  display: flex;
-  justify-self: center;
-  flex-direction: column;
-  justify-content: center;
-
   padding: 24px 0 64px;
   margin: 0 auto;
-  width: fit-content;
+
+  &.wrapperFilled {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: fit-content;
+  }
+
+  @include onTablet {
+    margin: 0;
+  }
 
   @include onDesktop {
     padding-bottom: 80px;
+    
+    &.wrapperFilled {
+      justify-self: start;
+    }
   }
 }
-
 .breadCrumbs {
   margin-bottom: 24px;
 

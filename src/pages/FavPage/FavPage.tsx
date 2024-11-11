@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '@/app/store';
@@ -11,15 +12,21 @@ export const FavPage = () => {
 
   const favProducts = getFavoritesProducts(fav.items);
 
+  const isFavEmpty = !!favProducts.length;
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={cn(styles.wrapper, {
+        [styles.wrapperFilled]: isFavEmpty,
+      })}
+    >
       <div className={styles.breadCrumbs}>
         <BreadCrumbs />
       </div>
 
       <h1 className={styles.title}>Favorites</h1>
 
-      {!!favProducts.length ? (
+      {isFavEmpty ? (
         <>
           <p className={styles.counter_text}>{favProducts.length} models</p>
 
