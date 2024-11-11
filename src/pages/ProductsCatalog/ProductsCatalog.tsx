@@ -1,16 +1,16 @@
-import Select from 'react-select';
+import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from '@mui/material';
+import Select from 'react-select';
+import Pagination from '@mui/material/Pagination';
 
-import { useProducts } from '@/hooks/useProducts';
+import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
+import { useProducts } from '@/hooks';
 import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
-import styles from './styles.module.scss';
-import { Product } from '@/types/Product';
-import { FC } from 'react';
+import { Product } from '@/types';
 import { DeviceCategory, SortType } from '@/enums';
-import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
+import styles from './styles.module.scss';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
