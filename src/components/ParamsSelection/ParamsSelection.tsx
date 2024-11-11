@@ -1,20 +1,24 @@
-import { Device, Product } from '@/types';
-import styles from './styles.module.scss';
 import { FC, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useCart } from '@/hooks';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
+
+import { useCart } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
-import { getSeparetedCapacity } from '@/utils';
+import { getSeparetedCapacity, replaceParamsInPathname } from '@/utils';
 import { COLORS } from '@/constants/colors';
-import { ColorButton } from '../ColorButton';
-import { ParameterButton } from '../ParameterButton';
-import { PrimaryButton } from '../PrimaryButton';
 import { PrimaryButtons } from '@/enums';
-import { FavoritesButton } from '../FavoritesButton';
-import blankIcon from '../../assets/images/icons/favorites-blank.svg';
-import filledIcon from '../../assets/images/icons/favorites-filled.svg';
+import { Device, Product } from '@/types';
+
+import styles from './styles.module.scss';
+import {
+  ParameterButton,
+  PrimaryButton,
+  FavoritesButton,
+  ColorButton,
+} from '../index';
+import blankIcon from '@/assets/images/icons/favorites-blank.svg';
+import filledIcon from '@/assets/images/icons/favorites-filled.svg';
 
 interface Props {
   device: Device;
@@ -92,9 +96,10 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
         <div className={styles.paramsButtons}>
           {device.capacityAvailable.map(capacity => {
-            const pathname = location.pathname.replace(
-              device.capacity.replace('GB', 'gb'),
-              capacity.replace('GB', 'gb'),
+            const pathname = replaceParamsInPathname(
+              location.pathname,
+              device.capacity,
+              capacity,
             );
 
             const validCapacity = getSeparetedCapacity(capacity);
@@ -129,7 +134,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           onClick={handleClick}
           isActive={clickedBuy}
         >
-          {clickedBuy ? 'Added to cart' : 'Add to cart'}
+          {clickedBuy ? 'Added' : 'Add to cart'}
         </PrimaryButton>
 
         <FavoritesButton

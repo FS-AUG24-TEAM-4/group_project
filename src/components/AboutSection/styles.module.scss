@@ -19,7 +19,7 @@
   border: 0.5px solid $elements;
 }
 
-.sections {
+.sections:not(:last-child) {
   margin-bottom: 32px;
 }
 

@@ -13,86 +13,6 @@
   @include onDesktop {
     padding-bottom: 80px;
   }
-
-  .sliderWrapper {
-    grid-column: 1 / -1;
-
-    margin-bottom: 40px;
-
-    @include onTablet {
-      grid-column: 1/8;
-      column-gap: 16px;
-    }
-
-    @include onDesktop {
-      grid-column: 1/13;
-    }
-  }
-
-  .paramsSelectionWrapper {
-    grid-column: 1/-1;
-
-    @include onTablet {
-      grid-column: 8/-1;
-    }
-
-    @include onDesktop {
-      grid-column: 14/21;
-    }
-  }
-
-  .about {
-    grid-column: 1 / -1;
-
-    @include onDesktop {
-      grid-column: 1 / 13;
-    }
-  }
-
-  .techSpecs {
-    grid-column: 1 / -1;
-
-    @include onDesktop {
-      grid-column: 14 / -1;
-    }
-  }
-
-  .recommended {
-    grid-column: 1 / -1;
-    height: 495px;
-  }
-
-  @include onTablet {
-    .optionalSpecs {
-      grid-column: 8 / 12;
-      height: 435px;
-    }
-
-    .recommended {
-      height: 577px;
-    }
-  }
-
-  @include onDesktop {
-    .image {
-      grid-column: 2 / 12;
-      height: 464px;
-    }
-
-    .optionalSpecs {
-      grid-column: 14 / 24;
-      height: 464px;
-    }
-
-    .techSpecs {
-      grid-column: 14 / 24;
-      height: 296px;
-    }
-
-    .recommended {
-      height: 571px;
-    }
-  }
 }
 
 .breadCrumbs {
@@ -118,4 +38,68 @@
   grid-column: 1 / -1;
 
   margin-bottom: 16px;
+}
+
+.sliderWrapper {
+  grid-column: 1 / -1;
+
+  margin-bottom: 40px;
+
+  @include onTablet {
+    grid-column: 1/8;
+    column-gap: 16px;
+    margin-bottom: 0;
+  }
+
+  @include onDesktop {
+    grid-column: 1/13;
+    margin-bottom: 80px;
+  }
+}
+
+.paramsSelectionWrapper {
+  grid-column: 1/-1;
+  margin-bottom: 56px;
+
+  @include onTablet {
+    grid-column: 8/-1;
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    grid-column: 14/21;
+    margin-bottom: 0;
+  }
+}
+
+.about {
+  grid-column: 1 / -1;
+  margin-bottom: 56px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    grid-column: 1 / 13;
+    margin-bottom: 80px;
+  }
+}
+
+.techSpecs {
+  grid-column: 1 / -1;
+  margin-bottom: 56px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    grid-column: 14 / -1;
+    margin-bottom: 0;
+  }
+}
+
+.recommended {
+  grid-column: 1 / -1;
 }

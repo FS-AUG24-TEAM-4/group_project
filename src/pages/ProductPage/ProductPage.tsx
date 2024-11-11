@@ -6,16 +6,18 @@ import { useLocation } from 'react-router-dom';
 import { DeviceCategory } from '@/enums';
 import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
-
-import { BreadCrumbs } from '@/components/BreadCrumbs';
-import styles from './style.module.scss';
-import { TechSpecsSection } from '@/components/TechSpecsSection/TechSpecsSection';
-import { ProductPhotosSlider } from '@/components/ProductPhotosSlider';
-import { BackButton } from '@/components/BackButton';
-import { ParamsSelection } from '@/components/ParamsSelection';
 import { useProducts } from '@/hooks';
-import { AboutSection } from '@/components/AboutSection/AboutSection';
-import { RecommendedList } from '@/components/RecommendedList';
+
+import styles from './style.module.scss';
+import {
+  BreadCrumbs,
+  TechSpecsSection,
+  ProductPhotosSlider,
+  BackButton,
+  ParamsSelection,
+  AboutSection,
+  RecommendedList,
+} from '@/components';
 
 export const ProductPage = () => {
   const location = useLocation();

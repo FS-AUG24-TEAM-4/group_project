@@ -10,3 +10,4 @@ export * from './getRecommendedProducts';
 export * from './getCapitalizedWord';
 export * from './getQuantityByCategory';
 export * from './getTitle';
+export * from './replaceParamsInPathname';
