@@ -1,26 +1,51 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/mixins';
 
-.picture {
-  display: block;
-  width: 148px;
-  height: 129px;
-  margin: auto;
+.wrapper {
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
 
-  object-fit: contain;
-
-  transition: transform $effectDuration ease;
-
-  @include onTablet {
-    height: 173px;
-  }
+  padding: 24px 0 64px;
+  margin: 0 auto;
+  width: fit-content;
 
   @include onDesktop {
-    width: 208px;
-    height: 196px;
-  }
-
-  &:hover {
-    transform: scale(1.05);
+    padding-bottom: 80px;
   }
 }
+
+.breadCrumbs {
+  margin-bottom: 24px;
+
+  @include onTablet {
+    margin-bottom: 40px;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+
+  grid-column: 1/-1;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: -1%;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.counter_text {
+  margin-bottom: 32px;
+
+  color: $secondary;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
