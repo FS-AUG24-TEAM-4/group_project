@@ -60,17 +60,19 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
         </div>
 
         <div className={styles.colorsButtons}>
-          {device.colorsAvailable.map(color => {
-            const validCurrentColor = device.color.replaceAll(' ', '-');
-            const validColor = color.replaceAll(' ', '-');
+          {[...device.colorsAvailable].sort().map(color => {
+            const validCurrentColor = device.color.replaceAll(' ', '');
+            const validColor = color.replaceAll(' ', '');
+            const currentPathnameColor = device.color.replaceAll(' ', '-');
+            const pathnameColor = color.replaceAll(' ', '-');
 
             const visibleColor = COLORS[validColor as keyof typeof COLORS]
               ? COLORS[validColor as keyof typeof COLORS]
               : validColor;
 
             const pathname = location.pathname.replace(
-              validCurrentColor,
-              validColor,
+              currentPathnameColor,
+              pathnameColor,
             );
 
             const isSelected = validColor === validCurrentColor;
