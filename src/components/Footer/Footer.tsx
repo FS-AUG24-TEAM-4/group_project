@@ -18,6 +18,7 @@ export const Footer = () => {
             src={logo}
             alt="Nice gadgets logo"
             className={styles.logoImage}
+            onClick={scrollToTop}
           ></img>
         </Link>
         <Navigation links={FooterNavigationLinks} isFooter={true} />

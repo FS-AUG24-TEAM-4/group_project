@@ -33,7 +33,9 @@ export const useProducts = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    if (!products.length) {
+      fetchProducts();
+    }
   }, [dispatch]);
 
   return { products, loading, error };

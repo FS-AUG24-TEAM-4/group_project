@@ -3,19 +3,10 @@
 
 .about {
   display: block;
-  width: 287px;
-
-  @include onTablet {
-    width: 592px;
-  }
-
-  @include onDesktop {
-    width: 560px;
-  }
 }
 
 .title {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 
   font-weight: 700;
   font-size: 22px;
@@ -28,7 +19,7 @@
   border: 0.5px solid $elements;
 }
 
-.sections {
+.sections:not(:last-child) {
   margin-bottom: 32px;
 }
 

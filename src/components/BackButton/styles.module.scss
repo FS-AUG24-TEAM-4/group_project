@@ -1,0 +1,48 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.buttonBack {
+  width: 50px;
+  height: 16px;
+  padding: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 1/-1;
+
+  border: none;
+
+  color: $secondary;
+  background-color: $bg;
+
+  cursor: pointer;
+  outline: none;
+
+  transition: color $effectDuration;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &:hover &Icon {
+    transform: translateX(-3px);
+  }
+
+  &Icon {
+    width: 16px;
+    height: 16px;
+
+    background-image: url(/src/assets/images/icons/arrow-left.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    transition: transform $effectDuration;
+  }
+}
+
+.textButtonBack {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
