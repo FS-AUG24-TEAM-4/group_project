@@ -4,6 +4,7 @@ import { DeviceCategory, Paths } from '@/enums';
 import { Product } from '@/types';
 import { FC } from 'react';
 import { getQuantityByCategory } from '@/utils/getQuantityByCategory';
+import { PathToSrcImages } from '@/enums/PathToSrcImages';
 
 interface CategoriesSectionProps {
   products: Product[];
@@ -18,7 +19,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
         <div className="img_title_quantity_container">
           <Link to={Paths.PHONES}>
             <img
-              src="src/assets/images/phones.svg"
+              src={PathToSrcImages.PHONES}
               alt="Phone image"
               className={styles.image}
             />
@@ -34,7 +35,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
         <div className="img_title_quantity_container">
           <Link to={Paths.TABLETS}>
             <img
-              src="src/assets/images/tablets.svg"
+              src={PathToSrcImages.TABLETS}
               alt="Tablet image"
               className={styles.image}
             />
@@ -50,7 +51,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
         <div className="img_title_quantity_container">
           <Link to={Paths.ACCESSORIES}>
             <img
-              src="src/assets/images/accessories.svg"
+              src={PathToSrcImages.ACCESSORIES}
               alt="Accessories image"
               className={styles.image}
             />

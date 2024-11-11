@@ -10,6 +10,7 @@ import {
   HomePage,
 } from './pages';
 import App from './App';
+import { FavPage } from './pages/FavPage/FavPage';
 
 export const Root = () => {
   return (
@@ -43,6 +44,7 @@ export const Root = () => {
             />
             <Route path={Paths.ACCESSORIE} element={<ProductPage />} />
           </Route>
+          <Route path={Paths.FAVORITES} element={<FavPage />} />
           <Route path={Paths.CART} element={<CartPage />} />
 
           <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
