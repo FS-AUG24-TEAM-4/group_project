@@ -5,18 +5,18 @@
   width: max-content;
 
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(1, auto);
 
   @include onTablet {
+    grid-template-columns: repeat(2, auto);
     column-gap: 16px;
   }
 }
 
 .mainPhoto {
-  width: 288px;
-  height: 288px;
+  width: 274px;
+  height: 274px;
   margin-bottom: 16px;
-  padding: 6px;
 
   grid-column: 1/2;
 
@@ -29,8 +29,8 @@
   }
 
   @include onDesktop {
-    width: 464px;
-    height: 464px;
+    width: 442px;
+    height: 442px;
   }
 }
 

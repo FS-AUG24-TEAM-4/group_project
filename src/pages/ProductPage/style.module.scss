@@ -43,6 +43,9 @@
 .sliderWrapper {
   grid-column: 1 / -1;
 
+  display: flex;
+  justify-content: center;
+
   margin-bottom: 40px;
 
   @include onTablet {
