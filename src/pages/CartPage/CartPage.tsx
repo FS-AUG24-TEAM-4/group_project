@@ -45,7 +45,9 @@ export const CartPage = () => {
       <h1 className={styles.title}>Cart</h1>
 
       {isCartEmpty ? (
-        <p className={styles.emptyCart}>Your cart is empty.</p>
+        <div className={styles.emptyCart}>
+          <p>Your cart is empty.</p>
+        </div>
       ) : (
         <>
           <div className={styles.cardList}>
