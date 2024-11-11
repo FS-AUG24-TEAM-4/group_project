@@ -1,0 +1,43 @@
+@import '../../assets/styles/mixins';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  width: 320px;
+  height: 320px;
+
+  @include onTablet {
+    width: 490px;
+    height: 190px;
+  }
+
+  @include onDesktop {
+    width: 1040px;
+    height: 400px;
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.firstSlide {
+  background-image: url(/src/assets/images/banners/iphone-14-pro-banner.png);
+}
+
+.secondSlide {
+  background-image: url(/src/assets/images/banners/apple-watch-banner.png);
+}
+
+.thirdSlide {
+  background-image: url(/src/assets/images/banners/ipad-banner.png);
+}
