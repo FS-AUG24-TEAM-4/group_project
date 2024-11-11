@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 import Select from 'react-select';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
