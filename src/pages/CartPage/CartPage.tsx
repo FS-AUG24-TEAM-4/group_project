@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import cn from 'classnames';
 
 import { RootState } from '@/app/store';
 import {
@@ -41,8 +42,22 @@ export const CartPage = () => {
     setIsCartEmpty(true);
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={cn(styles.wrapper, { [styles.wrapperWithModal]: isModalOpen })}
+    >
       <div className={styles.backButton}>
         <BackButton />
       </div>
