@@ -99,12 +99,12 @@ export const ProductPage = () => {
         <TechSpecsSection product={device} />
       </section>
 
-      <div className={styles.recommended}>
+      <section className={styles.recommended}>
         <RecommendedList
           price={device.priceRegular}
           category={device.category}
         />
-      </div>
+      </section>
     </div>
   );
 };

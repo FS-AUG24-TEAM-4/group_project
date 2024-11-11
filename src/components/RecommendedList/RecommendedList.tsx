@@ -21,11 +21,9 @@ export const RecommendedList: React.FC<Props> = ({ price, category }) => {
   }, [price, category, products]);
 
   return (
-    <section>
-      <ProductSlider
-        title="You may also like"
-        products={recommendedProducts}
-      ></ProductSlider>
-    </section>
+    <ProductSlider
+      title="You may also like"
+      products={recommendedProducts}
+    ></ProductSlider>
   );
 };

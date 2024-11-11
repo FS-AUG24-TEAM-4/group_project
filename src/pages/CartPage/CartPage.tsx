@@ -11,8 +11,8 @@ import {
 import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
 import { PrimaryButtons } from '@/enums/PrimaryButtons';
 import { useState } from 'react';
-import { ModalWindowCheckout } from '@/components/ModalWindowCheckout/ModalWindowCheckout';
-import { BackButton } from '@/components/BackButton/BackButton';
+import { ModalWindowCheckout } from '@/components/ModalWindowCheckout';
+import { BackButton } from '@/components/BackButton';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);

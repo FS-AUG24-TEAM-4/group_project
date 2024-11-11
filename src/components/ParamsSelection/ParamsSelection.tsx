@@ -11,14 +11,12 @@ import { PrimaryButtons } from '@/enums';
 import { Device, Product } from '@/types';
 
 import styles from './styles.module.scss';
-import {
-  ParameterButton,
-  PrimaryButton,
-  FavoritesButton,
-  ColorButton,
-} from '../index';
 import blankIcon from '@/assets/images/icons/favorites-blank.svg';
 import filledIcon from '@/assets/images/icons/favorites-filled.svg';
+import { ColorButton } from '../ColorButton';
+import { ParameterButton } from '../ParameterButton';
+import { PrimaryButton } from '../PrimaryButton';
+import { FavoritesButton } from '../FavoritesButton';
 
 interface Props {
   device: Device;
