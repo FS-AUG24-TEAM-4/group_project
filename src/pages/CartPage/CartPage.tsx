@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import cn from 'classnames';
 
 import { RootState } from '@/app/store';
 import {
@@ -55,9 +54,7 @@ export const CartPage = () => {
   }, [isModalOpen]);
 
   return (
-    <div
-      className={cn(styles.wrapper, { [styles.wrapperWithModal]: isModalOpen })}
-    >
+    <div className={styles.wrapper}>
       <div className={styles.backButton}>
         <BackButton />
       </div>
