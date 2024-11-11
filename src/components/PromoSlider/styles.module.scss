@@ -1,9 +1,21 @@
 @import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
 
 .wrapper {
+  position: relative;
+  margin-bottom: 8px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include onTablet {
+    column-gap: 20px;
+  }
+
+  @include onDesktop {
+    column-gap: 16px;
+  }
 }
 
 .slider {
@@ -25,19 +37,63 @@
   width: 100%;
   height: 100%;
 
+  border-radius: 8px;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
+.video {
+  width: 100%;
+
+  border-radius: 8px;
+
+  object-fit: cover;
+}
+
 .firstSlide {
-  background-image: url(/src/assets/images/banners/iphone-14-pro-banner.png);
+  @include onTablet {
+    background-image: url(/src/assets/images/banners/iphone-14-pro-banner.png);
+  }
 }
 
 .secondSlide {
-  background-image: url(/src/assets/images/banners/apple-watch-banner.png);
+  @include onTablet {
+    background-image: url(/src/assets/images/banners/apple-watch-banner.png);
+  }
 }
 
 .thirdSlide {
-  background-image: url(/src/assets/images/banners/ipad-banner.png);
+  @include onTablet {
+    background-image: url(/src/assets/images/banners/ipad-banner.png);
+  }
+}
+
+:global(.swiper) {
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  column-gap: 4px;
+}
+
+:global(.swiper-pagination-bullet) {
+  width: 24px;
+  height: 24px;
+
+  padding: 10px 5px;
+
+  border-radius: 0;
+
+  background-color: $primary;
+  background-clip: content-box;
+
+  cursor: pointer;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: $primary;
 }
