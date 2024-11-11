@@ -10,10 +10,12 @@
 
   border: 1px solid $icons;
   border-radius: 4px;
+  padding: 0 1px;
 
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
+  text-wrap-mode: nowrap;
 
   color: $primary;
   background-color: $white;
