@@ -7,15 +7,11 @@ import { PaginationItem } from '@mui/material';
 import { useProducts } from '@/hooks/useProducts';
 import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
-import { SortType } from '@/enums/SortType';
-
 import styles from './styles.module.scss';
 import { Product } from '@/types/Product';
 import { FC } from 'react';
-import { ProductsList } from '@/components/ProductsList';
-import { DeviceCategory } from '@/enums';
-import { BreadCrumbs } from '@/components';
-import SkeletonGrid from '@/components/Skeleton/Skeleton';
+import { DeviceCategory, SortType } from '@/enums';
+import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;

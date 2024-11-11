@@ -5,11 +5,11 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import styles from './style.module.scss';
-import { ProductCard } from '../ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard';
 import { Product } from '@/types/Product';
 import { IconButton } from '../IconButton';
 import { useProducts } from '@/hooks';
-import SkeletonGrid from '../Skeleton/Skeleton';
+import { SkeletonGrid } from '../Skeleton';
 
 interface ProductSliderProps {
   products: Product[];

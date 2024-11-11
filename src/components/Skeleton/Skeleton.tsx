@@ -1,12 +1,12 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Skeleton } from '@mui/material';
 import styles from './styles.module.scss';
 
 const ProductSkeleton = () => {
   const useViewport = () => {
-    const [width, setWidth] = React.useState(window.innerWidth);
+    const [width, setWidth] = useState(window.innerWidth);
 
-    React.useEffect(() => {
+    useEffect(() => {
       const handleWindowResize = () => setWidth(window.innerWidth);
 
       window.addEventListener('resize', handleWindowResize);
@@ -87,12 +87,10 @@ const ProductSkeleton = () => {
   );
 };
 
-const SkeletonGrid = ({ itemsCount }: { itemsCount: number }) => (
+export const SkeletonGrid = ({ itemsCount }: { itemsCount: number }) => (
   <div className={styles.grid}>
     {[...Array(itemsCount)].map((_, index) => (
       <ProductSkeleton key={index} />
     ))}
   </div>
 );
-
-export default SkeletonGrid;
