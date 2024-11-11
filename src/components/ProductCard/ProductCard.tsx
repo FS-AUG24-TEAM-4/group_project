@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './styles.module.scss';
 import blankIcon from '../../assets/images/icons/favorites-blank.svg';
 import filledIcon from '../../assets/images/icons/favorites-filled.svg';
@@ -14,6 +13,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Product } from '@/types/Product';
 import { getSeparetedCapacity } from '@/utils';
 import classNames from 'classnames';
+import { useFavorites } from '@/hooks';
 
 interface ProductCardProps {
   product: Product;
@@ -32,16 +32,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     (state: RootState) => state.cart.items[product.id]?.clickedBuy,
   );
 
-  const [clickedFav, setClickedFav] = useState(false);
-
   const { addCartButton, removeFromCartButton } = useCart();
+
+  const { toggleFavorite } = useFavorites();
+  const { handleToggleFavorite, isFavorite } = toggleFavorite(product);
 
   const handleRemoveFromCart = removeFromCartButton();
 
   const handleAddToCart = addCartButton(product);
 
   const location = useLocation();
-
   const category = location.pathname.split('/')[1];
 
   const handleClick = () => {
@@ -104,20 +104,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className={styles.buttons}>
         <PrimaryButton
           type={PrimaryButtons.CART}
-          onClick={() => {
-            handleClick();
-          }}
+          onClick={handleClick}
           isActive={clickedBuy}
         >
           {clickedBuy ? 'Added' : 'Add to cart'}
         </PrimaryButton>
 
-        <FavoritesButton
-          onClick={() => setClickedFav(!clickedFav)}
-          isActive={clickedFav}
-        >
+        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
           <img
-            src={clickedFav ? filledIcon : blankIcon}
+            src={isFavorite ? filledIcon : blankIcon}
             alt="Add to favorites"
           />
         </FavoritesButton>
