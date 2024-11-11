@@ -1,15 +1,34 @@
 /* eslint-disable no-console */
+/* eslint-disable max-len */
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { DeviceCategory } from '@/enums';
 import { PathToJSON } from '@/enums/PathToJSON';
 import { Device } from '@/types';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useProducts } from '@/hooks';
+
+import styles from './style.module.scss';
+import {
+  BreadCrumbs,
+  TechSpecsSection,
+  ProductPhotosSlider,
+  BackButton,
+  ParamsSelection,
+  AboutSection,
+  RecommendedList,
+} from '@/components';
 
 export const ProductPage = () => {
   const location = useLocation();
   const category = location.pathname.split('/')[1];
   const slug = location.pathname.split('/')[2];
-  const [product, setProduct] = useState<Device | null>(null);
+  const [device, setDevice] = useState<Device | null>(null);
+  const { products } = useProducts();
+
+  const selectedProduct = products.find(
+    product => product.itemId === device?.id,
+  );
 
   useEffect(() => {
     let fileName = '';
@@ -40,7 +59,7 @@ export const ProductPage = () => {
         .then((data: Device[]) => {
           const foundProduct = data.find(item => item.id === slug);
 
-          setProduct(foundProduct || null);
+          setDevice(foundProduct || null);
         })
         .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
@@ -48,19 +67,44 @@ export const ProductPage = () => {
     }
   }, [category, slug]);
 
-  if (!product) {
+  if (!device) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>{product.description[0].text.join(' ')}</p>
+    <div className={styles.container}>
+      <div className={styles.breadCrumbs}>
+        <BreadCrumbs productName={device.name} />
+      </div>
 
-      <img src={product.images[0]} alt={product.name} />
-      <p>
-        {product.priceDiscount ? product.priceDiscount : product.priceRegular}
-      </p>
+      <div className={styles.buttonBack}>
+        <BackButton />
+      </div>
+
+      <h1 className={styles.title}>{device.name}</h1>
+
+      <section className={styles.sliderWrapper}>
+        <ProductPhotosSlider photos={device.images} productName={device.name} />
+      </section>
+
+      <section className={styles.paramsSelectionWrapper}>
+        <ParamsSelection device={device} cartProduct={selectedProduct!} />
+      </section>
+
+      <section className={styles.about}>
+        <AboutSection description={device.description} />
+      </section>
+
+      <section className={styles.techSpecs}>
+        <TechSpecsSection product={device} />
+      </section>
+
+      <section className={styles.recommended}>
+        <RecommendedList
+          price={device.priceRegular}
+          category={device.category}
+        />
+      </section>
     </div>
   );
 };

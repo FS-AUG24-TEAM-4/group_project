@@ -15,52 +15,11 @@
   }
 }
 
-.buttonBack {
-  width: 50px;
-  height: 16px;
-  padding: 0;
+.backButton {
   margin-bottom: 24px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  grid-column: 1/-1;
-
-  border: none;
-
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-
-  color: $secondary;
-  background-color: $bg;
-
-  cursor: pointer;
-  outline: none;
-
-  transition: color $effectDuration;
-
-  &:hover {
-    color: $primary;
-  }
-
-  &:hover &Icon {
-    transform: translateX(-3px);
-  }
 
   @include onTablet {
     margin-bottom: 16px;
-  }
-
-  &Icon {
-    width: 16px;
-    height: 16px;
-
-    background-image: url(/src/assets/images/icons/arrow-left.svg);
-    background-repeat: no-repeat;
-    background-position: left center;
-
-    transition: transform $effectDuration;
   }
 }
 
@@ -81,9 +40,29 @@
 }
 
 .emptyCart {
-  @extend .title;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding-top: 300px;
+
+  grid-column: 1/-1;
+
+  font-weight: 600;
+  font-size: 25px;
+
+  background-image: url('/public/img/cart-is-empty.png');
+  background-repeat: no-repeat;
+  background-size: auto 280px;
+  background-position: center top;
+
+  @include onTablet {
+    padding-top: 340px;
+
+    font-size: 32px;
+
+    background-size: auto 310px;
+  }
 }
 
 .cardList {

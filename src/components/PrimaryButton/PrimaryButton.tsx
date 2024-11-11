@@ -31,6 +31,7 @@ export const PrimaryButton: FC<Props> = ({
         [styles.buttonItemCart]: type === PrimaryButtons.ITEMCART,
         [styles.buttonCheckout]: type === PrimaryButtons.CHECKOUT,
         [styles.buttonCancelCheckout]: type === PrimaryButtons.CANCELCHECKOUT,
+        [styles.buttonItemCartConfirm]: type === PrimaryButtons.CONFIRMCHECKOUT,
         [styles.active]: isActive,
       })}
       onClick={onClick}

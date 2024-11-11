@@ -6,3 +6,8 @@ export * from './scrollToTop';
 export * from './sortDevices';
 export * from './getSeparetedCapacity';
 export * from './getProductPath';
+export * from './getRecommendedProducts';
+export * from './getCapitalizedWord';
+export * from './getQuantityByCategory';
+export * from './getTitle';
+export * from './replaceParamsInPathname';

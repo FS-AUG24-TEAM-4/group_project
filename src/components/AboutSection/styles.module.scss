@@ -1,0 +1,40 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.about {
+  display: block;
+}
+
+.title {
+  margin-bottom: 16px;
+
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30.8px;
+  color: $primary;
+}
+
+.line {
+  margin-bottom: 32px;
+  border: 0.5px solid $elements;
+}
+
+.sections:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.section_title {
+  margin-bottom: 16px;
+
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25.56px;
+  color: $primary;
+}
+
+.section_text {
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 21px;
+  color: $secondary;
+}
