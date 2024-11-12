@@ -10,6 +10,7 @@ import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
 
 import styles from './styles.module.scss';
+import { AuthButton } from '../AuthButton/AuthButton';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export const Header = () => {
           to={Paths.CART}
           className={cn(styles.iconLink, styles.shopingBag)}
         ></Link>
+        <AuthButton className={styles.iconLink} />
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

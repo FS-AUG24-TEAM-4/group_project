@@ -4,6 +4,7 @@ import { auth, googleProvider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import GoogleIcon from '../../assets/images/icons/GoogleIcon.svg';
+import { ModalWindowError } from '@/components/ModalWindowError';
 
 export const GoogleAuth: React.FC = () => {
   const navigate = useNavigate();
@@ -11,11 +12,11 @@ export const GoogleAuth: React.FC = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      alert('Signed in with Google!');
+      <ModalWindowError text={'Signed in with Google!'} />;
 
       navigate('/');
     } catch (error) {
-      throw new Error(`Google sign-in error: ${error}`);
+      <ModalWindowError text={`Google sign-in error: ${error}`} />;
     }
   };
 

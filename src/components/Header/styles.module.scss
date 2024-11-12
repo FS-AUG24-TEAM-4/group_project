@@ -66,7 +66,9 @@
 }
 
 .favorites,
-.shopingBag {
+.shopingBag,
+.login,
+.logout {
   display: none;
 
   &::after {
@@ -129,5 +131,13 @@
 }
 
 .shopingBag::after {
+  background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+}
+
+.login::after {
+  background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+}
+
+.logout::after {
   background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
 }

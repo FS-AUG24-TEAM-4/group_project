@@ -1,0 +1,39 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.logout {
+  display: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+
+    transform: translate(-50%, -50%);
+    transition: transform $effectDuration;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &:hover {
+    &::after {
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
+
+  @include onTablet {
+    display: block;
+  }
+}
+
+.logout::after {
+  background-image: url(/src/assets/images/icons/Door.svg);
+  background-repeat: no-repeat;
+}

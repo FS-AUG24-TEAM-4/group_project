@@ -4,6 +4,7 @@ import { auth, githubProvider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import GitHubIcon from '../../assets/images/icons/GitHubIcon.svg';
 import styles from './style.module.scss';
+import { ModalWindowError } from '@/components/ModalWindowError';
 
 export const GitHubAuth: React.FC = () => {
   const navigate = useNavigate();
@@ -11,10 +12,10 @@ export const GitHubAuth: React.FC = () => {
   const handleGitHubSignIn = async () => {
     try {
       await signInWithPopup(auth, githubProvider);
-      alert('Signed in with GitHub!');
+      <ModalWindowError text={'Signed in with GitHub!'} />;
       navigate('/');
     } catch (error) {
-      alert(`GitHub sign-in error: ${error}`);
+      <ModalWindowError text={`GitHub sign-in error: ${error}`} />;
     }
   };
 

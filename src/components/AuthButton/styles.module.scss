@@ -1,0 +1,37 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.login {
+  display: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+
+    transform: translate(-50%, -50%);
+    transition: transform $effectDuration;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &:hover {
+    &::after {
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
+
+  @include onTablet {
+    display: block;
+  }
+}
+
+.login::after {
+  background-image: url(/src/assets/images/icons/Key.svg);
+  background-repeat: no-repeat;
+}

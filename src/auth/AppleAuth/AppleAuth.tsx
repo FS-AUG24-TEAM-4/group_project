@@ -4,6 +4,7 @@ import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import AppleIcon from '../../assets/images/icons/AppleIcon.svg';
+import { ModalWindowError } from '@/components/ModalWindowError';
 
 export const AppleAuth: React.FC = () => {
   const appleProvider = new OAuthProvider('apple.com');
@@ -12,10 +13,10 @@ export const AppleAuth: React.FC = () => {
   const handleAppleSignIn = async () => {
     try {
       await signInWithPopup(auth, appleProvider);
-      alert('Signed in with Apple!');
+      <ModalWindowError text={'Signed in with Apple!'} />;
       navigate('/');
     } catch (error) {
-      throw new Error(`Apple sign-in error: ${error}`);
+      <ModalWindowError text={`Apple sign-in error: ${error}`} />;
     }
   };
 
