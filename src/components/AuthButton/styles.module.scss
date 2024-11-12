@@ -1,5 +1,6 @@
-@import '../../assets/styles/variables';
-@import '../../assets/styles/mixins';
+@import '@/assets/styles/variables';
+@import '@/assets/styles/mixins';
+@import '@/assets/styles/animations';
 
 .login {
   display: none;
@@ -23,10 +24,15 @@
       position: absolute;
       bottom: 0;
       left: 0;
+
       content: '';
+
       height: 3px;
       width: 100%;
+
       background-color: $primary;
+
+      animation: line-grow 0.3s ease-in-out forwards;
     }
   }
 
