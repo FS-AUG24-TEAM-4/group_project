@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
-/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { DeviceCategory } from '@/enums';
-import { PathToJSON } from '@/enums/PathToJSON';
+import { DeviceCategory, PathToJSON } from '@/enums';
 import { Device } from '@/types';
 import { useProducts } from '@/hooks';
 

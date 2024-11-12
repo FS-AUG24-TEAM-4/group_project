@@ -6,6 +6,7 @@ import { getFavoritesProducts } from '@/utils';
 import { BreadCrumbs, ProductsList, EmptyPage } from '@/components';
 
 import styles from './styles.module.scss';
+import { getCountOfProducts } from '@/utils/getCountOfProducts';
 
 export const FavPage = () => {
   const fav = useSelector((state: RootState) => state.favorites);
@@ -28,7 +29,9 @@ export const FavPage = () => {
 
       {isFavEmpty ? (
         <>
-          <p className={styles.counter_text}>{favProducts.length} models</p>
+          <p className={styles.counter_text}>
+            {getCountOfProducts(favProducts)}
+          </p>
 
           <ProductsList paginationOfDevice={favProducts} />
         </>
