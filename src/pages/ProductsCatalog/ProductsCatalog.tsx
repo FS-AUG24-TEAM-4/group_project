@@ -1,20 +1,16 @@
-/* eslint-disable @typescript-eslint/indent */
-import Select from 'react-select';
+import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from '@mui/material';
+import Select from 'react-select';
+import Pagination from '@mui/material/Pagination';
 
-import { useProducts } from '@/hooks/useProducts';
+import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
+import { useProducts } from '@/hooks';
 import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
-import { SortType } from '@/enums/SortType';
-
+import { Product } from '@/types';
+import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
-import { Product } from '@/types/Product';
-import { FC } from 'react';
-import { ProductsList } from '@/components/ProductsList';
-import { DeviceCategory } from '@/enums';
-import { BreadCrumbs } from '@/components/BreadCrumbs';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -22,7 +18,7 @@ type ProductsCatalogProps = {
 
 export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -243,7 +239,9 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         </div>
       </div>
 
-      {paginationOfDevice && (
+      {loading ? (
+        <SkeletonGrid itemsCount={Number(devicesPerPage)} />
+      ) : (
         <ProductsList paginationOfDevice={paginationOfDevice} />
       )}
 

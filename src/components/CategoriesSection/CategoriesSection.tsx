@@ -60,8 +60,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
           <h3 className={styles.category_title}>Accessories</h3>
 
           <div className={styles.models_quantity}>
-            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)}
-            models
+            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)} models
           </div>
         </div>
       </div>

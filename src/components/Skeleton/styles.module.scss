@@ -1,0 +1,111 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.grid {
+  display: grid;
+  gap: 40px 16px;
+  grid-template-columns: repeat(1, 287px);
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, 287px);
+  }
+
+  @include onTabletWide {
+    grid-template-columns: repeat(3, 229px);
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(4, 272px);
+    max-width: 1200px;
+  }
+}
+
+.card {
+  display: flex;
+  width: 287px;
+  height: 440px;
+  padding: 32px;
+  flex-direction: column;
+  border: 1px solid $elements;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: $white;
+
+  @include onTablet {
+    width: 288px;
+    height: 506px;
+  }
+
+  @include onTabletWide {
+    width: 229px;
+    height: 506px;
+  }
+
+  @include onDesktop {
+    width: 272px;
+    height: 506px;
+  }
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.skeleton_image {
+  border-radius: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title_container {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  height: 42px;
+}
+
+.price {
+  margin-bottom: 8px;
+}
+
+.specs_container {
+  margin-bottom: 16px;
+}
+
+.specs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  &:last-child {
+    @include onTablet {
+      margin-bottom: 30px;
+    }
+
+    @include onTabletWide {
+      margin-bottom: 30px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.button_skeleton {
+  border-radius: 8px;
+}

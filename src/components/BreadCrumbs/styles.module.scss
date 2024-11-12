@@ -10,10 +10,6 @@
   display: flex;
   align-items: center;
   column-gap: 8px;
-
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 15px;
 }
 
 .homeIcon {
@@ -31,7 +27,18 @@
 }
 
 .currentPage {
-  font-weight: 500;
+  display: contents;
 
   color: $secondary;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+}
+
+.previousPage {
+  display: contents;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
 }
