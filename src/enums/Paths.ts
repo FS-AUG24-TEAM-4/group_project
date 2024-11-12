@@ -9,4 +9,5 @@ export enum Paths {
   PHONE = '/phones/:productId',
   TABLET = '/tablets/:productId',
   ACCESSORIE = '/accessories/:productId',
+  SEARCH = '/search',
 }

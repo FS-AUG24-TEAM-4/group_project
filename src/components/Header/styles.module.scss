@@ -48,6 +48,30 @@
   }
 }
 
+.searchContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.queryField {
+  border: 1px solid $elements;
+  border-radius: 10px;
+  padding-inline: 5px;
+  opacity: 0;
+  width: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.queryField.visible {
+  width: 200px; // Задайте бажану ширину
+  opacity: 1;
+}
+
+.searchIcon {
+  cursor: pointer;
+}
+
 .iconLinksContainer {
   display: flex;
   height: 100%;

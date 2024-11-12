@@ -11,6 +11,7 @@ import {
   FavPage,
 } from './pages';
 import App from './App';
+import { SearchPage } from './pages/SearchPage/SearchPage';
 
 export const Root = () => {
   return (
@@ -18,6 +19,10 @@ export const Root = () => {
       <Routes>
         <Route path={Paths.HOME} element={<App />}>
           <Route index element={<HomePage />} />
+
+          <Route path={Paths.SEARCH}>
+            <Route index element={<SearchPage />} />
+          </Route>
 
           <Route path={Paths.PHONES}>
             <Route

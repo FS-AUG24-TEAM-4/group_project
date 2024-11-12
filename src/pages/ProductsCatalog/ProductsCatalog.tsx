@@ -14,9 +14,13 @@ import styles from './styles.module.scss';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
+  searchQuery?: string;
 };
 
-export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
+export const ProductsCatalog: FC<ProductsCatalogProps> = ({
+  category,
+  searchQuery = '',
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { products, loading } = useProducts();
 
@@ -28,12 +32,18 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       case DeviceCategory.TABLETS:
         return product.category === DeviceCategory.TABLETS;
 
+      case DeviceCategory.SEARCH:
+        return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+
       default:
         return product.category === DeviceCategory.ACCESSORIES;
     }
   });
 
-  const title = getTitle(category);
+  const title =
+    category === DeviceCategory.SEARCH
+      ? `Search: "${searchQuery}"`
+      : getTitle(category);
 
   const sortingParams = [
     { value: SortType.NONE, label: 'None' },
