@@ -35,7 +35,11 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
   const { addCartButton, removeFromCartButton } = useCart();
 
   const { toggleFavorite } = useFavorites();
-  const { handleToggleFavorite, isFavorite } = toggleFavorite(cartProduct);
+
+  // Перевірка, чи існує `cartProduct` і чи має він властивість `id`
+  const { handleToggleFavorite, isFavorite } = cartProduct
+    ? toggleFavorite(cartProduct)
+    : { handleToggleFavorite: () => {}, isFavorite: false };
 
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products,
@@ -54,8 +58,8 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           const data = await response.json();
 
           dispatch(loadProductsSuccess(data));
-        } catch (errorFething: any) {
-          dispatch(loadProductsFailure(errorFething.message));
+        } catch (errorFetching: any) {
+          dispatch(loadProductsFailure(errorFetching.message));
         }
       }
     };
