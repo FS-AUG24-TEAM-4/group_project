@@ -10,7 +10,7 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { AuthButton } from '../AuthButton/AuthButton';
+import { AuthButton } from '../AuthButton/';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },

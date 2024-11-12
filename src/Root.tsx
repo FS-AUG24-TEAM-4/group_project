@@ -9,10 +9,10 @@ import {
   ProductPage,
   HomePage,
   FavPage,
+  AuthPage,
 } from './pages';
 import App from './App';
 import { AuthProvider } from './auth/AuthContext';
-import { AuthPage } from './pages/AuthPage/AuthPage';
 
 export const Root = () => {
   return (

@@ -1,10 +1,9 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FC, useEffect, useState } from 'react';
-import { auth } from '../../auth/firebase';
+import { auth, Logout } from '../../auth/';
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import { Paths } from '@/enums';
-import { Logout } from '../../auth/Logout/logout';
 
 interface AuthButtonProps {
   className?: string;

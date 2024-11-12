@@ -89,6 +89,7 @@ export const EmailAuth: React.FC = () => {
         onChange={e => setPassword(e.target.value)}
         placeholder="Password"
       />
+
       <div className={styles.buttons}>
         <button onClick={handleSignIn}>Sign In</button>
         <button onClick={handleSignUp}>Sign Up</button>
