@@ -1,18 +1,23 @@
 /* eslint-disable max-len */
-import styles from './styles.module.scss';
-import { PrimaryButton } from '@/components';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import { RootState } from '@/app/store';
 import {
   getTotalCost,
   getCartProducts,
   getCartProductsQuantity,
 } from '@/utils';
-import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
-import { PrimaryButtons } from '@/enums/PrimaryButtons';
-import { useState } from 'react';
-import { ModalWindowCheckout } from '@/components/ModalWindowCheckout';
-import { BackButton } from '@/components/BackButton';
+import { PrimaryButtons } from '@/enums';
+import {
+  ModalWindowCheckout,
+  BackButton,
+  CartProductCard,
+  PrimaryButton,
+  EmptyPage,
+} from '@/components';
+
+import styles from './styles.module.scss';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -36,6 +41,18 @@ export const CartPage = () => {
     setIsCartEmpty(true);
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.backButton}>
@@ -45,9 +62,7 @@ export const CartPage = () => {
       <h1 className={styles.title}>Cart</h1>
 
       {isCartEmpty ? (
-        <div className={styles.emptyCart}>
-          <p>Your cart is empty.</p>
-        </div>
+        <EmptyPage title="Your cart is empty." background="cart" />
       ) : (
         <>
           <div className={styles.cardList}>

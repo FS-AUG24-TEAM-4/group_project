@@ -1,8 +1,12 @@
-import { CategoriesSection } from '@/components/CategoriesSection';
-import styles from './styles.module.scss';
 import { useProducts } from '@/hooks';
-import { NewModelsSwiper } from '@/components/NewModelsSwiper';
-import { HotPricesSwiper } from '@/components/HotPricesSwiper/HotPricesSwiper';
+
+import styles from './styles.module.scss';
+import {
+  NewModelsSwiper,
+  CategoriesSection,
+  HotPricesSwiper,
+  PromoSlider,
+} from '@/components';
 
 export const HomePage = () => {
   const { products } = useProducts();
@@ -11,7 +15,9 @@ export const HomePage = () => {
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Welcome to Nice Gadgets store!</h1>
 
-      <div className={styles.slider}></div>
+      <div className={styles.slider}>
+        <PromoSlider />
+      </div>
 
       <div className={styles.newModels}>
         <NewModelsSwiper products={products} />

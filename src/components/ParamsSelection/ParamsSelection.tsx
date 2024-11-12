@@ -1,12 +1,18 @@
-import { FC, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 
 import { useCart } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
+import {
+  loadProductsStart,
+  loadProductsSuccess,
+  loadProductsFailure,
+} from '@/features/products/productSlice';
 import { getSeparetedCapacity, replaceParamsInPathname } from '@/utils';
-import { COLORS } from '@/constants/colors';
+import { COLORS } from '@/constants';
 import { PrimaryButtons } from '@/enums';
 import { Device, Product } from '@/types';
 
@@ -19,24 +25,43 @@ import { PrimaryButton } from '../PrimaryButton';
 import { FavoritesButton } from '../FavoritesButton';
 
 interface Props {
-  device: Device;
+  device: Device | null;
   cartProduct: Product;
 }
 
 export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
-  const [clickedFav, setClickedFav] = useState(false);
-  const isAccessory = device.category === 'accessories';
-
+  const dispatch = useDispatch();
   const location = useLocation();
-
   const { addCartButton, removeFromCartButton } = useCart();
+  const [clickedFav, setClickedFav] = useState(false);
 
-  const clickedBuy = useSelector(
-    (state: RootState) => state.cart.items[cartProduct.id]?.clickedBuy,
+  const { products, loading, error } = useSelector(
+    (state: RootState) => state.products,
   );
 
-  const handleRemoveFromCart = removeFromCartButton();
+  const clickedBuy = useSelector((state: RootState) =>
+    cartProduct?.id ? state.cart.items[cartProduct.id]?.clickedBuy : false,
+  );
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!products.length) {
+        try {
+          dispatch(loadProductsStart());
+          const response = await fetch('/group_project/api/products.json');
+          const data = await response.json();
+
+          dispatch(loadProductsSuccess(data));
+        } catch (errorFething: any) {
+          dispatch(loadProductsFailure(errorFething.message));
+        }
+      }
+    };
+
+    fetchProducts();
+  }, [dispatch, products.length]);
+
+  const handleRemoveFromCart = removeFromCartButton();
   const handleAddToCart = addCartButton(cartProduct);
 
   const handleClick = () => {
@@ -48,6 +73,19 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
     }
   };
 
+  if (loading) {
+    return <div className={styles.loading}>Loading products...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!device || !cartProduct) {
+    return <div className={styles.loading}>Loading device details...</div>;
+  }
+
+  const isAccessory = device.category === 'accessories';
   const validRam = getSeparetedCapacity(cartProduct.ram);
 
   return (
@@ -55,22 +93,23 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
       <div className={styles.colorsOptions}>
         <div className={styles.colorsSubtitle}>
           <span className={styles.subtitle}>Available colors</span>
-
           <span className={styles.productId}>{`ID: ${device.id}`}</span>
         </div>
 
         <div className={styles.colorsButtons}>
-          {device.colorsAvailable.map(color => {
-            const validCurrentColor = device.color.replaceAll(' ', '-');
-            const validColor = color.replaceAll(' ', '-');
+          {[...device.colorsAvailable].sort().map(color => {
+            const validCurrentColor = device.color.replaceAll(' ', '');
+            const validColor = color.replaceAll(' ', '');
+            const currentPathnameColor = device.color.replaceAll(' ', '-');
+            const pathnameColor = color.replaceAll(' ', '-');
 
             const visibleColor = COLORS[validColor as keyof typeof COLORS]
               ? COLORS[validColor as keyof typeof COLORS]
               : validColor;
 
             const pathname = location.pathname.replace(
-              validCurrentColor,
-              validColor,
+              currentPathnameColor,
+              pathnameColor,
             );
 
             const isSelected = validColor === validCurrentColor;
@@ -88,9 +127,9 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
       </div>
 
       <div className={styles.paramsOptions}>
-        <span
-          className={styles.subtitle}
-        >{`Select ${isAccessory ? 'size' : 'capacity'}`}</span>
+        <span className={styles.subtitle}>
+          {`Select ${isAccessory ? 'size' : 'capacity'}`}
+        </span>
 
         <div className={styles.paramsButtons}>
           {device.capacityAvailable.map(capacity => {
@@ -101,7 +140,6 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
             );
 
             const validCapacity = getSeparetedCapacity(capacity);
-
             const isSelected = capacity === device.capacity;
 
             return (

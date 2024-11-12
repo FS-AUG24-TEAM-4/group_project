@@ -1,16 +1,24 @@
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
-import { Navigation } from '../Navigation';
 import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
 
+import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { AuthButton } from '../AuthButton/AuthButton';
+
+const getIconLinkClassName = (
+  { isActive }: { isActive: boolean },
+  baseClass: string,
+) =>
+  cn(styles.iconLink, baseClass, {
+    [styles.isActive]: isActive,
+  });
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -39,15 +47,17 @@ export const Header = () => {
         <Navigation links={HeaderNavigationLinks} />
       </div>
       <div className={styles.iconLinksContainer}>
-        <Link
+        <NavLink
           to={Paths.FAVORITES}
-          className={cn(styles.iconLink, styles.favorites)}
-        ></Link>
-        <Link
+          className={navData => getIconLinkClassName(navData, styles.favorites)}
+        ></NavLink>
+        <NavLink
           to={Paths.CART}
-          className={cn(styles.iconLink, styles.shoppingBag)}
-        ></Link>
-        <AuthButton className={styles.iconLink} />
+          className={navData =>
+            getIconLinkClassName(navData, styles.shoppingBag)
+          }
+        ></NavLink>
+        <AuthButton className={styles.iconLink} />;
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

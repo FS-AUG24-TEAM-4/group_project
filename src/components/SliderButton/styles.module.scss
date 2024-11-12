@@ -1,0 +1,30 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.button {
+  display: none;
+
+  border: 1px solid $icons;
+  border-radius: 48px;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  transition: border-color $effectDuration;
+
+  &:hover {
+    border-color: $primary;
+  }
+
+  @include onTablet {
+    width: 32px;
+    height: 190px;
+
+    display: block;
+  }
+
+  @include onDesktop {
+    height: 400px;
+  }
+}
