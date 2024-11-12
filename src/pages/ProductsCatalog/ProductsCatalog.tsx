@@ -242,9 +242,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       {loading ? (
         <SkeletonGrid itemsCount={Number(devicesPerPage)} />
       ) : (
-        <ProductsList
-          paginationOfDevice={paginationOfDevice}
-        />
+        <ProductsList paginationOfDevice={paginationOfDevice} />
       )}
 
       <Pagination
