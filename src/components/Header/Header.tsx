@@ -1,9 +1,8 @@
 import cn from 'classnames';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
-import searchIcon from '@/assets/images/icons/search-icon.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
 import { RootState } from '@/app/store';
@@ -13,6 +12,7 @@ import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import InputBase from '@mui/material/InputBase';
+import { useSearchBar } from '@/hooks/useSearchBar';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -23,21 +23,13 @@ const getIconLinkClassName = (
   });
 
 export const Header = () => {
-  const [query, setQuery] = useState('');
-  const navigate = useNavigate();
+  const { query, setQuery, handleSubmit } = useSearchBar();
   const [isSearchVisible, setSearchVisible] = useState(false);
 
   const dispatch = useDispatch();
   const burgerstatus = useSelector(
     (state: RootState) => state.burger.burgerStatus,
   );
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setQuery('');
-
-    return navigate(`${Paths.SEARCH}?searchQuery=${query}`);
-  };
 
   return (
     <header className={styles.header}>
@@ -59,27 +51,33 @@ export const Header = () => {
         </Link>
         <Navigation links={HeaderNavigationLinks} />
       </div>
-      <div className={styles.searchContainer}>
-        <form onSubmit={event => handleSubmit(event)}>
-          <InputBase
-            className={cn(styles.queryField, {
-              [styles.visible]: isSearchVisible,
-            })}
-            placeholder="Search"
-            value={query}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setQuery(event.target.value);
-            }}
-          />
-        </form>
-        <img
-          src={searchIcon}
-          alt="search-icon"
-          onClick={() => setSearchVisible(prev => !prev)}
-          className={styles.searchIcon}
-        />
-      </div>
+
       <div className={styles.iconLinksContainer}>
+        <div className={styles.searchContainer}>
+          <form
+            onSubmit={event => {
+              handleSubmit(event);
+              setSearchVisible(false);
+            }}
+          >
+            <InputBase
+              className={cn(styles.queryField, {
+                [styles.visible]: isSearchVisible,
+              })}
+              placeholder="Search"
+              value={query}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setQuery(event.target.value.trimStart());
+              }}
+            />
+          </form>
+          <div
+            onClick={() => setSearchVisible(prev => !prev)}
+            className={cn(styles.iconLink, {
+              [styles.searchIcon]: true,
+            })}
+          ></div>
+        </div>
         <NavLink
           to={Paths.FAVORITES}
           className={navData => getIconLinkClassName(navData, styles.favorites)}

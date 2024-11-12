@@ -66,12 +66,17 @@
 }
 
 .queryField.visible {
-  width: 200px;
+  display: none;
   opacity: 1;
-}
 
-.searchIcon {
-  cursor: pointer;
+  @include onTabletWide {
+    display: block;
+    width: 150px;
+  }
+
+  @include onDesktop {
+    width: 200px;
+  }
 }
 
 .iconLinksContainer {
@@ -92,6 +97,7 @@
 }
 
 .favorites,
+.searchIcon,
 .shoppingBag {
   display: none;
 
@@ -129,7 +135,6 @@
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/burger-icon.svg);
   background-repeat: no-repeat;
@@ -145,7 +150,6 @@
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/close-burger-icon.svg);
   background-repeat: no-repeat;
@@ -163,4 +167,8 @@
 
 .shoppingBag {
   background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+}
+
+.searchIcon {
+  background-image: url(/src/assets/images/icons/search-icon.svg);
 }

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PaginationItem } from '@mui/material';
+import { InputBase, PaginationItem } from '@mui/material';
 import Select from 'react-select';
 import Pagination from '@mui/material/Pagination';
 
@@ -11,6 +11,7 @@ import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 import { Product } from '@/types';
 import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
+import { useSearchBar } from '@/hooks/useSearchBar';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -23,6 +24,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { products, loading } = useProducts();
+  const { query, setQuery, handleSubmit } = useSearchBar();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -248,6 +250,22 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
           />
         </div>
       </div>
+
+      {category === DeviceCategory.SEARCH && (
+        <form
+          className={styles.pageSearchBar}
+          onSubmit={value => handleSubmit(value)}
+        >
+          <InputBase
+            className={styles.pageSearchBarField}
+            placeholder="Search"
+            value={query}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setQuery(event.target.value.trimStart());
+            }}
+          />
+        </form>
+      )}
 
       {loading ? (
         <SkeletonGrid itemsCount={Number(devicesPerPage)} />
