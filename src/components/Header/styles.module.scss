@@ -64,7 +64,9 @@
   padding-inline: 5px;
   opacity: 0;
   width: 0;
-  transition: width 0.3s ease, opacity 0.3s ease;
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
 
   &__list__off {
     display: none;
