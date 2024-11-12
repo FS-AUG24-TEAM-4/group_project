@@ -11,8 +11,8 @@ import {
 import { CartProductCard } from '@/components/CartProductCard/CartProductCard';
 import { PrimaryButtons } from '@/enums/PrimaryButtons';
 import { useState } from 'react';
-import { ModalWindowCheckout } from '@/components/ModalWindowCheckout/ModalWindowCheckout';
-import { BackButton } from '@/components/BackButton/BackButton';
+import { ModalWindowCheckout } from '@/components/ModalWindowCheckout';
+import { BackButton } from '@/components/BackButton';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -45,7 +45,9 @@ export const CartPage = () => {
       <h1 className={styles.title}>Cart</h1>
 
       {isCartEmpty ? (
-        <p className={styles.emptyCart}>Your cart is empty.</p>
+        <div className={styles.emptyCart}>
+          <p>Your cart is empty.</p>
+        </div>
       ) : (
         <>
           <div className={styles.cardList}>

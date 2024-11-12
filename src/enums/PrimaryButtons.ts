@@ -3,4 +3,5 @@ export enum PrimaryButtons {
   ITEMCART,
   CHECKOUT,
   CANCELCHECKOUT,
+  CONFIRMCHECKOUT,
 }

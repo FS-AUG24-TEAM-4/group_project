@@ -5,9 +5,11 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import styles from './style.module.scss';
-import { ProductCard } from '../ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard';
 import { Product } from '@/types/Product';
 import { IconButton } from '../IconButton';
+import { useProducts } from '@/hooks';
+import { SkeletonGrid } from '../Skeleton';
 
 interface ProductSliderProps {
   products: Product[];
@@ -21,10 +23,7 @@ export const ProductSlider: FC<ProductSliderProps> = ({
   discount = true,
 }) => {
   const swiperRef = useRef<SwiperRef | null>(null);
-
-  if (products.length === 0) {
-    return <p>No products available.</p>;
-  }
+  const { loading } = useProducts();
 
   const handlePrevClick = () => {
     swiperRef.current?.swiper.slidePrev();
@@ -54,16 +53,25 @@ export const ProductSlider: FC<ProductSliderProps> = ({
         grabCursor={true}
         freeMode={true}
       >
-        {products.map(product => (
-          <SwiperSlide className={styles.swiper_slide} key={product.id}>
-            <ProductCard
-              product={product}
-              productPath={`/${product.category}/${product.itemId}`}
-              type="slider"
-              discount={discount}
-            />
-          </SwiperSlide>
-        ))}
+        {loading
+          ? Array.from({ length: 16 }).map((_, index) => (
+              <SwiperSlide
+                className={styles.swiper_slide}
+                key={`skeleton-${index}`}
+              >
+                <SkeletonGrid itemsCount={1} />
+              </SwiperSlide>
+            ))
+          : products.map(product => (
+              <SwiperSlide className={styles.swiper_slide} key={product.id}>
+                <ProductCard
+                  product={product}
+                  productPath={`/${product.category}/${product.itemId}`}
+                  type="slider"
+                  discount={discount}
+                />
+              </SwiperSlide>
+            ))}
       </Swiper>
     </div>
   );

@@ -34,7 +34,10 @@ export const BreadCrumbs: FC<Props> = ({ productName }) => {
                 {productName ? productName : getCapitalizedWord(page)}
               </span>
             ) : (
-              <Link to={pathname.slice(0, pathname.lastIndexOf('/'))}>
+              <Link
+                className={styles.previousPage}
+                to={pathname.slice(0, pathname.lastIndexOf('/'))}
+              >
                 {getCapitalizedWord(page)}
               </Link>
             )}
