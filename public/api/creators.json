@@ -1,0 +1,42 @@
+[
+  {
+    "id": "pikalov-andrii",
+    "name": "Pikalov Andrii",
+    "age": 20,
+    "skills": "Music, Programming",
+    "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
+    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+  },
+  {
+    "id": "vasilyazhenko-dmytro",
+    "name": "Vasilyazhenko Dmytro",
+    "age": 21,
+    "skills": "Programming, video games",
+    "Linkedin": "https://www.linkedin.com/in/nywoo/",
+    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+  },
+  {
+    "id": "omelnyk-valerii",
+    "name": "Omelnyk Valerii",
+    "age": 23,
+    "skills": "Programming",
+    "Linkedin": "https://www.linkedin.com/in/valerii-omelnyk",
+    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+  },
+  {
+    "id": "coldmelnyk",
+    "name": "Yevhenii Melnyk",
+    "age": 23,
+    "skills": "Sound-engineering, Coding",
+    "Linkedin": "https://www.linkedin.com/in/yevhenii-melnyk-a85213312/",
+    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+  },
+  {
+    "id": "pikalov-andrii",
+    "name": "Pikalov Andrii",
+    "age": 20,
+    "skills": "Music, Programming",
+    "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
+    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+  }
+]

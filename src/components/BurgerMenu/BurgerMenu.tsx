@@ -9,10 +9,12 @@ import fav from '@/assets/images/icons/favorites-blank.svg';
 import cart from '@/assets/images/icons/shopping-bag-blank.svg';
 
 import styles from './styles.module.scss';
-import { Indicator } from '../Indicator/Indicator';
+import { Indicator } from '@/components/Indicator';
 import { RootState } from '@/app/store';
 import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Paths } from '@/enums';
+import { LangSelector } from '@/components/LangSelector/LangSelector';
+import { useTranslation } from 'react-i18next';
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
@@ -40,10 +42,13 @@ export const BurgerMenu = () => {
   const cartProducts = getCartProducts(cartItems);
   const cartItemsCount = getCartProductsQuantity(cartProducts);
 
+  const { t } = useTranslation();
+
   return (
     <menu className={styles.burger}>
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
+          <LangSelector />
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}
@@ -51,7 +56,7 @@ export const BurgerMenu = () => {
               className={getActiveNavLinkOnBurger}
               to={nav.route}
             >
-              {nav.title}
+              {t(`${nav.title}`)}
             </NavLink>
           ))}
         </nav>

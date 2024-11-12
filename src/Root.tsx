@@ -9,6 +9,7 @@ import {
   ProductPage,
   HomePage,
   FavPage,
+  CreatorsPage,
 } from './pages';
 import App from './App';
 
@@ -44,8 +45,10 @@ export const Root = () => {
             />
             <Route path={Paths.ACCESSORIE} element={<ProductPage />} />
           </Route>
+
           <Route path={Paths.FAVORITES} element={<FavPage />} />
           <Route path={Paths.CART} element={<CartPage />} />
+          <Route path={Paths.CREATORS} element={<CreatorsPage />} />
 
           <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
         </Route>
