@@ -10,6 +10,8 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
+import { Indicator } from '../Indicator/Indicator';
+import { getCartProducts, getCartProductsQuantity } from '@/utils';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -24,6 +26,13 @@ export const Header = () => {
   const burgerstatus = useSelector(
     (state: RootState) => state.burger.burgerStatus,
   );
+
+  const favItems = useSelector((state: RootState) => state.favorites.items);
+  const favItemsCount = Object.keys(favItems).length;
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartProducts = getCartProducts(cartItems);
+  const cartItemsCount = getCartProductsQuantity(cartProducts);
 
   return (
     <header className={styles.header}>
@@ -46,16 +55,32 @@ export const Header = () => {
         <Navigation links={HeaderNavigationLinks} />
       </div>
       <div className={styles.iconLinksContainer}>
-        <NavLink
-          to={Paths.FAVORITES}
-          className={navData => getIconLinkClassName(navData, styles.favorites)}
-        ></NavLink>
+        <div>
+          <NavLink
+            to={Paths.FAVORITES}
+            className={navData =>
+              getIconLinkClassName(navData, styles.favorites)
+            }
+          >
+            {!!favItemsCount && (
+              <div className={styles.indicator}>
+                <Indicator>{favItemsCount}</Indicator>
+              </div>
+            )}
+          </NavLink>
+        </div>
         <NavLink
           to={Paths.CART}
           className={navData =>
             getIconLinkClassName(navData, styles.shoppingBag)
           }
-        ></NavLink>
+        >
+          {!!cartItemsCount && (
+            <div className={styles.indicator}>
+              <Indicator>{cartItemsCount}</Indicator>
+            </div>
+          )}
+        </NavLink>
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

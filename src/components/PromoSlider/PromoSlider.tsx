@@ -39,6 +39,7 @@ export const PromoSlider = () => {
                 autoPlay
                 muted
                 loop
+                playsInline
               >
                 <source src={adVideo} type="video/mp4" />
               </video>
