@@ -44,7 +44,9 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
 
   const title =
     category === DeviceCategory.SEARCH
-      ? `Search: "${searchQuery}"`
+      ? searchQuery
+        ? `Search: "${searchQuery}"`
+        : 'Search'
       : getTitle(category);
 
   const sortingParams = [

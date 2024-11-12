@@ -13,5 +13,5 @@ export const useSearchBar = () => {
     return navigate(`${Paths.SEARCH}?searchQuery=${query}`);
   };
 
-  return { query, setQuery, handleSubmit };
+  return { query, setQuery, handleSubmit, navigate };
 };

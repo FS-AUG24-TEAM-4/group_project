@@ -1,6 +1,8 @@
 import cn from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import InputBase from '@mui/material/InputBase';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
@@ -10,9 +12,9 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { useState } from 'react';
-import InputBase from '@mui/material/InputBase';
+
 import { useSearchBar } from '@/hooks/useSearchBar';
+import { useProducts } from '@/hooks';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -23,12 +25,17 @@ const getIconLinkClassName = (
   });
 
 export const Header = () => {
-  const { query, setQuery, handleSubmit } = useSearchBar();
+  const { query, setQuery, handleSubmit, navigate } = useSearchBar();
+  const { products } = useProducts();
   const [isSearchVisible, setSearchVisible] = useState(false);
 
   const dispatch = useDispatch();
   const burgerstatus = useSelector(
     (state: RootState) => state.burger.burgerStatus,
+  );
+
+  const foundProducts = products.filter(product =>
+    product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
   );
 
   return (
@@ -76,9 +83,39 @@ export const Header = () => {
                 setQuery(event.target.value.trimStart());
               }}
             />
+            <div
+              className={cn({
+                [styles.queryField__list]: query,
+                [styles.queryField__list__off]: !query,
+              })}
+            >
+              <ul>
+                {foundProducts.map(product => (
+                  <li
+                    className={styles.queryField__list__element}
+                    key={product.id}
+                    onClick={() => {
+                      navigate(`/${product.category}/${product.itemId}`);
+                      setQuery('');
+                      setSearchVisible(false);
+                    }}
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      style={{ height: '40px', marginRight: '8px' }}
+                    />
+                    {product.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </form>
           <div
-            onClick={() => setSearchVisible(prev => !prev)}
+            onClick={() => {
+              setSearchVisible(prev => !prev);
+              setQuery('');
+            }}
             className={cn(styles.iconLink, {
               [styles.searchIcon]: true,
             })}

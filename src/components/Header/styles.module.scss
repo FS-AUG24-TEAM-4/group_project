@@ -64,9 +64,41 @@
   padding-inline: 5px;
   opacity: 0;
   width: 0;
-  transition:
-    width 0.3s ease,
-    opacity 0.3s ease;
+  transition: width 0.3s ease, opacity 0.3s ease;
+
+  &__list__off {
+    display: none;
+  }
+
+  &__list {
+    position: absolute;
+    top: 55px;
+    width: 200px;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid $elements;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    &__element {
+      margin-bottom: 5px;
+      font-size: small;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      transition-duration: 0.5s;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.06);
+      }
+    }
+  }
 }
 
 .queryField.visible {
