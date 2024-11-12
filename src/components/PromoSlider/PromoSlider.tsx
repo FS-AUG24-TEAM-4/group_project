@@ -3,19 +3,22 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
-import styles from './styles.module.scss';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { SliderButton } from '../SliderButton';
-import { SliderButtons } from '@/enums/SliderButtons';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+
+import { Paths, SliderButtons, InnerSliderBtn } from '@/enums';
+
+import styles from './styles.module.scss';
+import { SliderButton } from '../SliderButton';
 import { InnerSliderButton } from '../InnerSliderButton';
-import { Paths } from '@/enums';
+import adVideo from '/src/assets/media/iphone-14-video.mp4';
 
 export const PromoSlider = () => {
   const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
-    <>
+    <div>
       <div className={styles.wrapper}>
         <SliderButton type={SliderButtons.PREV} swiper={swiperRef} />
 
@@ -30,31 +33,41 @@ export const PromoSlider = () => {
           className={styles.slider}
         >
           <SwiperSlide>
-            <video
-              className={cn(styles.slide, styles.video)}
-              autoPlay
-              muted
-              loop
-            >
-              <source
-                src={'./src/assets/media/iphone-14-video.mp4'}
-                type="video/mp4"
-              />
-            </video>
+            <Link to={'/phones/apple-iphone-14-pro-512gb-spaceblack'}>
+              <video
+                className={cn(styles.slide, styles.firstSlide)}
+                autoPlay
+                muted
+                loop
+              >
+                <source src={adVideo} type="video/mp4" />
+              </video>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className={cn(styles.slide, styles.firstSlide)}>
-              <InnerSliderButton path={Paths.PHONES} />
+            <div className={cn(styles.slide, styles.secondSlide)}>
+              <div className={styles.secondSlideBtn}>
+                <InnerSliderButton
+                  path={'/phones/apple-iphone-14-pro-256gb-spaceblack'}
+                  theme={InnerSliderBtn.LIGHT}
+                >
+                  Order now
+                </InnerSliderButton>
+              </div>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className={cn(styles.slide, styles.secondSlide)}></div>
+            <Link to={Paths.ACCESSORIES}>
+              <div className={cn(styles.slide, styles.thirdSlide)}></div>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className={cn(styles.slide, styles.thirdSlide)}></div>
+            <Link to={'/tablets/apple-ipad-pro-11-2021-128gb-spacegray'}>
+              <div className={cn(styles.slide, styles.fourthSlide)}></div>
+            </Link>
           </SwiperSlide>
         </Swiper>
 
@@ -62,6 +75,6 @@ export const PromoSlider = () => {
       </div>
 
       <div className={styles.pagination}></div>
-    </>
+    </div>
   );
 };

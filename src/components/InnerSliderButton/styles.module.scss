@@ -1,20 +1,52 @@
 @import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
 
 .button {
-  position: absolute;
-  top: 280px;
-  left: 60px;
+  display: block;
 
-  width: 200px;
-  height: 60px;
-
-  text-align: center;
-  line-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
 
   border-radius: 48px;
-  border: 1px solid $secondary;
+  border: 1px solid;
 
+  background-color: $slider;
+
+  transition:
+    background-color $effectDuration,
+    border-color $effectDuration;
+
+  &:hover {
+    border-color: $links-active;
+
+    background-color: $links-active;
+  }
+
+  @include onTablet {
+    width: 95px;
+    height: 28px;
+
+    font-size: 7px;
+    font-weight: 400;
+  }
+
+  @include onDesktop {
+    width: 200px;
+    height: 60px;
+
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.dark {
+  color: $primary;
+  border-color: $primary;
+}
+
+.light {
   color: $white;
-  background-color: transparent;
+  border-color: $secondary;
 }
