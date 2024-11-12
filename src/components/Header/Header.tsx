@@ -57,7 +57,7 @@ export const Header = () => {
             getIconLinkClassName(navData, styles.shoppingBag)
           }
         ></NavLink>
-        <AuthButton className={styles.iconLink} />;
+        <AuthButton className={styles.iconLink} />
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

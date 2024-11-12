@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FC, useEffect, useState } from 'react';
 import { auth } from '../../auth/firebase';
 import cn from 'classnames';
@@ -13,6 +13,7 @@ interface AuthButtonProps {
 export const AuthButton: FC<AuthButtonProps> = ({ className }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -26,6 +27,8 @@ export const AuthButton: FC<AuthButtonProps> = ({ className }) => {
     return () => unsubscribe();
   }, [navigate]);
 
+  const isActive = location.pathname === Paths.AUTHENTICATION;
+
   if (isLoggedIn) {
     return <Logout className={className} />;
   }
@@ -34,8 +37,8 @@ export const AuthButton: FC<AuthButtonProps> = ({ className }) => {
     <Link
       to={Paths.AUTHENTICATION}
       className={cn(className, {
-        [styles.logout]: isLoggedIn,
         [styles.login]: !isLoggedIn,
+        [styles.isActive]: isActive,
       })}
     ></Link>
   );

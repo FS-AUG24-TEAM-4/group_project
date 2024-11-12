@@ -3,35 +3,34 @@
 
 .login {
   display: none;
+  background-image: url(/src/assets/images/icons/Key.svg);
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
 
-    transform: translate(-50%, -50%);
-    transition: transform $effectDuration;
-
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  transition: background-size $effectDuration;
 
   &:hover {
+    background-size: 22px 22px;
+  }
+
+  &.isActive {
+    position: relative;
+    color: $primary;
+
     &::after {
-      transform: translate(-50%, -50%) scale(1.4);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      height: 3px;
+      width: 100%;
+      background-color: $primary;
     }
   }
 
   @include onTablet {
     display: block;
   }
-}
-
-.login::after {
-  background-image: url(/src/assets/images/icons/Key.svg);
-  background-repeat: no-repeat;
 }
