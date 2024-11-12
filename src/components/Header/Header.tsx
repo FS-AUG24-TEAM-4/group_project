@@ -10,7 +10,6 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { LangSelector } from '../LangSelector/LangSelector';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -49,8 +48,6 @@ export const Header = () => {
       </div>
 
       <div className={styles.iconLinksContainer}>
-        <LangSelector />
-
         <NavLink
           to={Paths.FAVORITES}
           className={navData => getIconLinkClassName(navData, styles.favorites)}

@@ -24,7 +24,9 @@ export const Footer = () => {
             onClick={scrollToTop}
           ></img>
         </Link>
+
         <Navigation links={FooterNavigationLinks} isFooter={true} />
+
         <div className={styles.backToTopContainer}>
           <span className={styles.backToTopLabel}>{t('toTop')}</span>
           <IconButton icon="arrow-top" onClick={scrollToTop} />

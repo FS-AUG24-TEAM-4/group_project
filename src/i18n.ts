@@ -28,7 +28,7 @@ i18n.use(initReactI18next).init({
         models: 'models',
         model: 'model',
         aboutUs: 'About us',
-        rights: 'Right',
+        rights: 'Rights',
         toTop: 'Back to top',
         screen: 'Screen',
         capacity: 'capacity',
@@ -73,6 +73,7 @@ i18n.use(initReactI18next).init({
         noFavorites: 'No favorites yet',
         emptyCart: 'Your cart is empty',
         notApplicable: 'Not applicable',
+        creators: 'Creators',
         description: `Sorry, we can’t find the page you’re looking for. It may have been
         moved, renamed, or it’s possible the link was incorrect. Please check
         the URL or return to the homepage.`,
@@ -150,6 +151,7 @@ i18n.use(initReactI18next).init({
         noFavorites: 'Немає улюблених товарів',
         emptyCart: 'Ваш кошик порожній',
         notApplicable: 'Не передбачено',
+        creators: 'Автори',
         description: `На жаль, ми не можемо знайти сторінку, яку ви шукаєте. 
         Можливо, її було переміщено, перейменовано або посилання було неправильним. 
         Будь ласка, перевірте URL-адресу або поверніться на головну сторінку.`,

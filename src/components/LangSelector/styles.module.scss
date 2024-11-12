@@ -14,14 +14,14 @@
     width: 64px;
     height: 64px;
   }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .flag {
   transition: transform 0.3s ease;
   width: 28px;
   height: 28px;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
