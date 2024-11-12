@@ -1,8 +1,7 @@
 @import '../../assets/styles/variables';
 
 .button {
-  min-width: 62px;
-  height: 32px;
+  padding: 4px 8px;
 
   display: flex;
   justify-content: center;
@@ -10,7 +9,6 @@
 
   border: 1px solid $icons;
   border-radius: 4px;
-  padding: 0 1px;
 
   font-size: 14px;
   font-weight: 500;
