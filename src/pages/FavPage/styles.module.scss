@@ -2,7 +2,7 @@
 @import '../../assets/styles/mixins';
 
 .wrapper {
-  padding: 24px 0 64px;
+  padding: 24px 0 56px;
   margin: 0 auto;
 
   &.wrapperFilled {
@@ -16,6 +16,7 @@
 
   @include onTablet {
     margin: 0;
+    padding-bottom: 64px;
   }
 
   @include onDesktop {
