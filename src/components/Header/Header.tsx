@@ -13,6 +13,7 @@ import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { Indicator } from '../Indicator';
 import { LangSelector } from '../LangSelector/LangSelector';
+import { AuthButton } from '../AuthButton/';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -89,6 +90,7 @@ export const Header = () => {
           )}
         </NavLink>
 
+        <AuthButton className={styles.iconLink} />
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

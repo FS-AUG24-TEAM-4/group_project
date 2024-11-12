@@ -13,6 +13,7 @@ import { Indicator } from '../Indicator/Indicator';
 import { RootState } from '@/app/store';
 import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Paths } from '@/enums';
+import { LangSelector } from '../LangSelector/LangSelector';
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
@@ -44,6 +45,8 @@ export const BurgerMenu = () => {
     <menu className={styles.burger}>
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
+          <LangSelector />
+
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}

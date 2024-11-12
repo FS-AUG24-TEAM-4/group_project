@@ -7,7 +7,7 @@ import { PrimaryButtons } from '@/enums';
 
 interface Props {
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.FormEvent) => void | Promise<void>;
   type?: PrimaryButtons;
   to?: string;
   isActive?: boolean;
