@@ -88,7 +88,7 @@ i18n.use(initReactI18next).init({
         completePurchase: 'Підтвердіть купівлю',
         None: 'Нічим',
         Newest: 'Новизною',
-        Oldest: 'Настарішими',
+        Oldest: 'Найстарішими',
         PriceHigh: 'Найвищою ціною',
         PriceLow: 'Найнижчою ціною',
         Select: 'Оберіть...',
