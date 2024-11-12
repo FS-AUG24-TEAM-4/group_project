@@ -45,7 +45,7 @@ export const Header = () => {
         ></Link>
         <Link
           to={Paths.CART}
-          className={cn(styles.iconLink, styles.shopingBag)}
+          className={cn(styles.iconLink, styles.shoppingBag)}
         ></Link>
         <AuthButton className={styles.iconLink} />
         <div

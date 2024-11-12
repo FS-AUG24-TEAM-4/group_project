@@ -66,26 +66,31 @@
 }
 
 .favorites,
-.shopingBag,
-.login,
-.logout {
+.shoppingBag {
   display: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
 
-    transform: translate(-50%, -50%);
-    transition: transform $effectDuration;
-  }
+  transition: background-size $effectDuration;
 
   &:hover {
+    background-size: 22px 22px;
+  }
+
+  &.isActive {
+    position: relative;
+    color: $primary;
+
     &::after {
-      transform: translate(-50%, -50%) scale(1.4);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      height: 3px;
+      width: 100%;
+      background-color: $primary;
     }
   }
 
@@ -126,18 +131,10 @@
   }
 }
 
-.favorites::after {
+.favorites {
   background-image: url(/src/assets/images/icons/favorites-blank.svg);
 }
 
-.shopingBag::after {
-  background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
-}
-
-.login::after {
-  background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
-}
-
-.logout::after {
+.shoppingBag {
   background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
 }
