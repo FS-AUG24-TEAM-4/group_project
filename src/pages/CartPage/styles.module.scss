@@ -39,32 +39,6 @@
   }
 }
 
-.emptyCart {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 300px;
-
-  grid-column: 1/-1;
-
-  font-weight: 600;
-  font-size: 25px;
-
-  background-image: url('/public/img/cart-is-empty.png');
-  background-repeat: no-repeat;
-  background-size: auto 280px;
-  background-position: center top;
-
-  @include onTablet {
-    padding-top: 340px;
-
-    font-size: 32px;
-
-    background-size: auto 310px;
-  }
-}
-
 .cardList {
   margin-bottom: 32px;
   display: flex;

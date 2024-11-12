@@ -8,9 +8,9 @@ import {
   NotFoundPage,
   ProductPage,
   HomePage,
+  FavPage,
 } from './pages';
 import App from './App';
-import { FavPage } from './pages/FavPage/FavPage';
 
 export const Root = () => {
   return (

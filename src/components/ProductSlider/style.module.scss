@@ -4,7 +4,15 @@
 .swiper_slide {
   width: auto;
   flex: 0 0 auto;
-  max-width: 300px;
+  max-width: 212px;
+
+  @include onTablet {
+    max-width: 237px;
+  }
+
+  @include onDesktop {
+    max-width: 272px;
+  }
 }
 
 .sliderWrapper {

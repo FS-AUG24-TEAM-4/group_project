@@ -11,3 +11,4 @@ export * from './getCapitalizedWord';
 export * from './getQuantityByCategory';
 export * from './getTitle';
 export * from './replaceParamsInPathname';
+export * from './getFavoritesProducts';
