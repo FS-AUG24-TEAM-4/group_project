@@ -1,9 +1,9 @@
+import cn from 'classnames';
 import { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './styles.module.scss';
-import { InnerSliderBtn } from '@/enums/InnerSliderBtn';
-import cn from 'classnames';
+import { InnerSliderBtn } from '@/enums';
 
 interface Props {
   path: string;

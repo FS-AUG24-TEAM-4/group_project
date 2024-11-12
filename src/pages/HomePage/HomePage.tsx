@@ -1,9 +1,12 @@
-import { CategoriesSection } from '@/components/CategoriesSection';
-import styles from './styles.module.scss';
 import { useProducts } from '@/hooks';
-import { NewModelsSwiper } from '@/components/NewModelsSwiper';
-import { HotPricesSwiper } from '@/components/HotPricesSwiper/HotPricesSwiper';
-import { PromoSlider } from '@/components/PromoSlider';
+
+import styles from './styles.module.scss';
+import {
+  NewModelsSwiper,
+  CategoriesSection,
+  HotPricesSwiper,
+  PromoSlider,
+} from '@/components';
 
 export const HomePage = () => {
   const { products } = useProducts();

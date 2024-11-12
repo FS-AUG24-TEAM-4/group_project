@@ -1,10 +1,10 @@
 import { FC } from 'react';
+import { SwiperRef } from 'swiper/react';
 
 import styles from './styles.module.scss';
 import arrowLeft from '@/assets/images/icons/arrow-left.svg';
 import arrowRight from '@/assets/images/icons/arrow-right.svg';
-import { SliderButtons } from '../../enums/SliderButtons';
-import { SwiperRef } from 'swiper/react';
+import { SliderButtons } from '@/enums';
 
 interface Props {
   type: SliderButtons;
