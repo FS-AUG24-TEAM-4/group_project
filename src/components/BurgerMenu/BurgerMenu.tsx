@@ -13,6 +13,8 @@ import { Indicator } from '../Indicator/Indicator';
 import { RootState } from '@/app/store';
 import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Paths } from '@/enums';
+import { LangSelector } from '../LangSelector/LangSelector';
+import { useTranslation } from 'react-i18next';
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
@@ -31,6 +33,7 @@ const getActiveNavLinkOnBurgerFooter = ({
 };
 
 export const BurgerMenu = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const favItems = useSelector((state: RootState) => state.favorites.items);
@@ -44,6 +47,8 @@ export const BurgerMenu = () => {
     <menu className={styles.burger}>
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
+          <LangSelector />
+
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}
@@ -51,7 +56,7 @@ export const BurgerMenu = () => {
               className={getActiveNavLinkOnBurger}
               to={nav.route}
             >
-              {nav.title}
+              {t(nav.title)}
             </NavLink>
           ))}
         </nav>
