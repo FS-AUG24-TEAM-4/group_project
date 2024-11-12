@@ -5,15 +5,18 @@ import { Product } from '@/types';
 import { FC } from 'react';
 import { getQuantityByCategory } from '@/utils/getQuantityByCategory';
 import { PathToSrcImages } from '@/enums/PathToSrcImages';
+import { useTranslation } from 'react-i18next';
 
 interface CategoriesSectionProps {
   products: Product[];
 }
 
 export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
+  const { t } = useTranslation();
+
   return (
     <section>
-      <h2 className={styles.title}>Shop by category</h2>
+      <h2 className={styles.title}>{t('shopByCategory')}</h2>
 
       <div className={styles.container}>
         <div className="img_title_quantity_container">
@@ -25,10 +28,11 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
             />
           </Link>
 
-          <h3 className={styles.category_title}>Mobile phones</h3>
+          <h3 className={styles.category_title}>{t('phones')}</h3>
 
           <div className={styles.models_quantity}>
-            {getQuantityByCategory(products, DeviceCategory.PHONES)} models
+            {getQuantityByCategory(products, DeviceCategory.PHONES)}{' '}
+            {t('models')}
           </div>
         </div>
 
@@ -41,10 +45,11 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
             />
           </Link>
 
-          <h3 className={styles.category_title}>Tablets</h3>
+          <h3 className={styles.category_title}>{t('tablets')}</h3>
 
           <div className={styles.models_quantity}>
-            {getQuantityByCategory(products, DeviceCategory.TABLETS)} models
+            {getQuantityByCategory(products, DeviceCategory.TABLETS)}{' '}
+            {t('models')}
           </div>
         </div>
 
@@ -57,10 +62,11 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
             />
           </Link>
 
-          <h3 className={styles.category_title}>Accessories</h3>
+          <h3 className={styles.category_title}>{t('accessories')}</h3>
 
           <div className={styles.models_quantity}>
-            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)} models
+            {getQuantityByCategory(products, DeviceCategory.ACCESSORIES)}{' '}
+            {t('models')}
           </div>
         </div>
       </div>

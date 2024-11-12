@@ -10,7 +10,7 @@ import { PrimaryButton } from '../PrimaryButton';
 import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
 import styles from './styles.module.scss';
 import { useCart } from '@/hooks';
-import { CartItem } from '@/types/CartItem';
+import { CartItem } from '@/types';
 
 interface PropsModalWindow {
   isOpen: boolean;

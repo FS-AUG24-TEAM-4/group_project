@@ -8,8 +8,11 @@ import { Navigation } from '../Navigation';
 import { IconButton } from '../IconButton';
 import styles from './styles.module.scss';
 import { scrollToTop } from '@/utils/scrollToTop';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
@@ -23,7 +26,7 @@ export const Footer = () => {
         </Link>
         <Navigation links={FooterNavigationLinks} isFooter={true} />
         <div className={styles.backToTopContainer}>
-          <span className={styles.backToTopLabel}>Back to top</span>
+          <span className={styles.backToTopLabel}>{t('toTop')}</span>
           <IconButton icon="arrow-top" onClick={scrollToTop} />
         </div>
       </div>

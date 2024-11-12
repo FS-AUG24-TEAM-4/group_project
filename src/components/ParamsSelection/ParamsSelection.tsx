@@ -23,6 +23,7 @@ import { ColorButton } from '../ColorButton';
 import { ParameterButton } from '../ParameterButton';
 import { PrimaryButton } from '../PrimaryButton';
 import { FavoritesButton } from '../FavoritesButton';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   device: Device | null;
@@ -30,6 +31,8 @@ interface Props {
 }
 
 export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const location = useLocation();
   const { addCartButton, removeFromCartButton } = useCart();
@@ -92,7 +95,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
     <div>
       <div className={styles.colorsOptions}>
         <div className={styles.colorsSubtitle}>
-          <span className={styles.subtitle}>Available colors</span>
+          <span className={styles.subtitle}>{t('colors')}</span>
           <span className={styles.productId}>{`ID: ${device.id}`}</span>
         </div>
 
@@ -128,7 +131,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
       <div className={styles.paramsOptions}>
         <span className={styles.subtitle}>
-          {`Select ${isAccessory ? 'size' : 'capacity'}`}
+          {`${t('select')} ${isAccessory ? `${t('size')}` : `${t('capacity')}`}`}
         </span>
 
         <div className={styles.paramsButtons}>
@@ -170,7 +173,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           onClick={handleClick}
           isActive={clickedBuy}
         >
-          {clickedBuy ? 'Added' : 'Add to cart'}
+          {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
         <FavoritesButton
@@ -186,22 +189,22 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
       <div className={styles.params}>
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Screen</span>
+          <span className={styles.param}>{t('screen')}</span>
           <span className={styles.paramValue}>{device.screen}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Resolution</span>
+          <span className={styles.param}>{t('resolution')}</span>
           <span className={styles.paramValue}>{device.resolution}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Processor</span>
+          <span className={styles.param}>{t('processor')}</span>
           <span className={styles.paramValue}>{device.processor}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>RAM</span>
+          <span className={styles.param}>{t('ram')}</span>
           <span className={styles.paramValue}>{validRam}</span>
         </div>
       </div>

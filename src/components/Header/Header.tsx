@@ -10,6 +10,7 @@ import { Paths } from '@/enums';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
+import { LangSelector } from '../LangSelector/LangSelector';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -43,19 +44,25 @@ export const Header = () => {
             className={styles.logoImage}
           ></img>
         </Link>
+
         <Navigation links={HeaderNavigationLinks} />
       </div>
+
       <div className={styles.iconLinksContainer}>
+        <LangSelector />
+
         <NavLink
           to={Paths.FAVORITES}
           className={navData => getIconLinkClassName(navData, styles.favorites)}
         ></NavLink>
+
         <NavLink
           to={Paths.CART}
           className={navData =>
             getIconLinkClassName(navData, styles.shoppingBag)
           }
         ></NavLink>
+
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

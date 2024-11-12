@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +17,7 @@ import {
 } from '@/components';
 
 import styles from './styles.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const CartPage = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -25,6 +25,8 @@ export const CartPage = () => {
   const cartProducts = getCartProducts(cart.items);
   const totalCost = getTotalCost(cartProducts);
   const quantity = getCartProductsQuantity(cartProducts);
+
+  const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartEmpty, setIsCartEmpty] = useState(!cartProducts.length);
@@ -59,10 +61,10 @@ export const CartPage = () => {
         <BackButton />
       </div>
 
-      <h1 className={styles.title}>Cart</h1>
+      <h1 className={styles.title}>{t('cart')} </h1>
 
       {isCartEmpty ? (
-        <EmptyPage title="Your cart is empty." background="cart" />
+        <EmptyPage title={t('emptyCart')} background="cart" />
       ) : (
         <>
           <div className={styles.cardList}>
