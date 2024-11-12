@@ -244,7 +244,6 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       ) : (
         <ProductsList
           paginationOfDevice={paginationOfDevice}
-          category={category}
         />
       )}
 

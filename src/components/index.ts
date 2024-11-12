@@ -25,5 +25,6 @@ export * from './HotPricesSwiper';
 export * from './ColorButton';
 export * from './ParameterButton';
 export * from './ProductPhotosSlider';
+export * from './EmptyPage';
 export * from './Skeleton';
 export * from './PromoSlider';
