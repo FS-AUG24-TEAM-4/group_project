@@ -7,9 +7,13 @@ import { Paths } from '@/enums';
 
 interface AuthButtonProps {
   className?: string;
+  type?: 'burger' | 'default';
 }
 
-export const AuthButton: FC<AuthButtonProps> = ({ className }) => {
+export const AuthButton: FC<AuthButtonProps> = ({
+  className,
+  type = 'default',
+}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,6 +42,7 @@ export const AuthButton: FC<AuthButtonProps> = ({ className }) => {
       className={cn(className, {
         [styles.login]: !isLoggedIn,
         [styles.isActive]: isActive,
+        burger__footer__auth: type === 'burger',
       })}
     ></Link>
   );
