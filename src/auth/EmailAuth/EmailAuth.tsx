@@ -94,7 +94,7 @@ export const EmailAuth: React.FC = () => {
 
       <div className={styles.buttons}>
         <PrimaryButton onClick={handleSignIn}>Sign In</PrimaryButton>
-        <PrimaryButton onClick={handleSignUp}>Sign In</PrimaryButton>
+        <PrimaryButton onClick={handleSignUp}>Sign Up</PrimaryButton>
       </div>
     </form>
   );
