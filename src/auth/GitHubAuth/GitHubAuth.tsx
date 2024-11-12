@@ -2,8 +2,8 @@ import React from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, githubProvider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import GitHubIcon from '../../assets/images/icons/GitHubIcon.svg';
-import styles from './style.module.scss';
+import GitHubIcon from '@/assets/images/icons/GitHubIcon.svg';
+import { IconAuthButton } from '@/components/IconAuthButton/IconAuthButton';
 
 export const GitHubAuth: React.FC = () => {
   const navigate = useNavigate();
@@ -19,8 +19,10 @@ export const GitHubAuth: React.FC = () => {
   };
 
   return (
-    <button className={styles.github_auth_button} onClick={handleGitHubSignIn}>
-      <img src={GitHubIcon} alt="GitHub" className={styles.github_icon} />
-    </button>
+    <IconAuthButton
+      iconSrc={GitHubIcon}
+      onClick={handleGitHubSignIn}
+      altText={'GitHubIcon'}
+    />
   );
 };

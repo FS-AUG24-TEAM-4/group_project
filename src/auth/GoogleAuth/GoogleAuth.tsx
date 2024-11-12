@@ -2,8 +2,8 @@ import React from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles.module.scss';
-import GoogleIcon from '../../assets/images/icons/GoogleIcon.svg';
+import GoogleIcon from '@/assets/images/icons/GoogleIcon.svg';
+import { IconAuthButton } from '@/components/IconAuthButton/IconAuthButton';
 
 export const GoogleAuth: React.FC = () => {
   const navigate = useNavigate();
@@ -20,8 +20,10 @@ export const GoogleAuth: React.FC = () => {
   };
 
   return (
-    <button className={styles.google_auth_button} onClick={handleGoogleSignIn}>
-      <img src={GoogleIcon} alt="Google" className={styles.google_icon} />
-    </button>
+    <IconAuthButton
+      iconSrc={GoogleIcon}
+      onClick={handleGoogleSignIn}
+      altText={'GoogleIcon'}
+    />
   );
 };

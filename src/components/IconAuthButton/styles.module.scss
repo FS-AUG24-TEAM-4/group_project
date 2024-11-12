@@ -1,4 +1,4 @@
-.apple_auth_button {
+.authButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,8 @@
     background-color: #f86800;
   }
 
-  .apple_icon {
-    font-size: 24px;
+  .icon {
+    height: 30px;
+    width: 30px;
   }
 }

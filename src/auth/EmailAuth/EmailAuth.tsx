@@ -7,6 +7,8 @@ import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { FirebaseError } from '@firebase/util';
+import { PrimaryButton } from '@/components';
+import { AuthErrors } from '@/enums/AuthErrors';
 
 export const EmailAuth: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -24,19 +26,19 @@ export const EmailAuth: React.FC = () => {
       if (signInError instanceof FirebaseError) {
         switch (signInError.code) {
           case 'auth/invalid-email':
-            alert('Invalid email format.');
+            alert(AuthErrors.INVALID_EMAIL);
             break;
           case 'auth/user-not-found':
-            alert('No user found with this email.');
+            alert(AuthErrors.NO_EMAIL);
             break;
           case 'auth/wrong-password':
-            alert('Incorrect password.');
+            alert(AuthErrors.INCORRECT_PASSWORD);
             break;
           case 'auth/too-many-requests':
-            alert('Too many attempts. Try again later.');
+            alert(AuthErrors.TOO_MANY_REQUESTS);
             break;
           default:
-            alert('Something went wrong. Please try again.');
+            alert(AuthErrors.DEFAULT);
         }
       } else {
         alert(`An unexpected error occurred:, ${signInError}`);
@@ -55,19 +57,19 @@ export const EmailAuth: React.FC = () => {
       if (signUpError instanceof FirebaseError) {
         switch (signUpError.code) {
           case 'auth/email-already-in-use':
-            alert('This email is already registered.');
+            alert(AuthErrors.EMAIL_USED);
             break;
           case 'auth/invalid-email':
-            alert('Invalid email format.');
+            alert(AuthErrors.INVALID_EMAIL);
             break;
           case 'auth/weak-password':
-            alert('Password is too weak. Minimum 6 characters.');
+            alert(AuthErrors.WEAK_PASSWORD);
             break;
           case 'auth/too-many-requests':
-            alert('Too many attempts. Try again later.');
+            alert(AuthErrors.TOO_MANY_REQUESTS);
             break;
           default:
-            alert('Something went wrong. Please try again.');
+            alert(AuthErrors.DEFAULT);
         }
       } else {
         alert(`An unexpected error occurred:, ${signUpError}`);
@@ -91,8 +93,8 @@ export const EmailAuth: React.FC = () => {
       />
 
       <div className={styles.buttons}>
-        <button onClick={handleSignIn}>Sign In</button>
-        <button onClick={handleSignUp}>Sign Up</button>
+        <PrimaryButton onClick={handleSignIn}>Sign In</PrimaryButton>
+        <PrimaryButton onClick={handleSignUp}>Sign In</PrimaryButton>
       </div>
     </form>
   );
