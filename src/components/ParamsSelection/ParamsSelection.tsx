@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 
-import { useCart } from '@/hooks';
+import { useCart, useFavorites } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import {
   loadProductsStart,
@@ -33,7 +33,13 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { addCartButton, removeFromCartButton } = useCart();
-  const [clickedFav, setClickedFav] = useState(false);
+
+  const { toggleFavorite } = useFavorites();
+
+  // Перевірка, чи існує `cartProduct` і чи має він властивість `id`
+  const { handleToggleFavorite, isFavorite } = cartProduct
+    ? toggleFavorite(cartProduct)
+    : { handleToggleFavorite: () => {}, isFavorite: false };
 
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products,
@@ -52,8 +58,8 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           const data = await response.json();
 
           dispatch(loadProductsSuccess(data));
-        } catch (errorFething: any) {
-          dispatch(loadProductsFailure(errorFething.message));
+        } catch (errorFetching: any) {
+          dispatch(loadProductsFailure(errorFetching.message));
         }
       }
     };
@@ -173,12 +179,9 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           {clickedBuy ? 'Added' : 'Add to cart'}
         </PrimaryButton>
 
-        <FavoritesButton
-          onClick={() => setClickedFav(!clickedFav)}
-          isActive={clickedFav}
-        >
+        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
           <img
-            src={clickedFav ? filledIcon : blankIcon}
+            src={isFavorite ? filledIcon : blankIcon}
             alt="Add to favorites"
           />
         </FavoritesButton>
