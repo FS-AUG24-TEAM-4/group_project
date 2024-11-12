@@ -1,0 +1,120 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.wrapper {
+  margin-bottom: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include onTablet {
+    column-gap: 20px;
+  }
+
+  @include onDesktop {
+    column-gap: 16px;
+  }
+}
+
+.slider {
+  width: 100%;
+  height: 320px;
+
+  @include onTablet {
+    width: 490px;
+    height: 190px;
+  }
+
+  @include onDesktop {
+    width: 1040px;
+    height: 400px;
+  }
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 8px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.firstSlide {
+  object-fit: cover;
+}
+
+.secondSlide {
+  background-image: url(/src/assets/images/banners/iphone-14-pro-mobile.png);
+
+  @include onTablet {
+    background-image: url(/src/assets/images/banners/iphone-14-pro-banner.png);
+  }
+}
+
+.secondSlideBtn {
+  position: absolute;
+
+  display: none;
+
+  @include onTablet {
+    top: 133px;
+    left: 27px;
+
+    display: block;
+  }
+
+  @include onDesktop {
+    top: 280px;
+    left: 60px;
+  }
+}
+
+.thirdSlide {
+  background-image: url(/src/assets/images/banners/apple-watch-banner.png);
+  background-position: 87%;
+
+  @include onTablet {
+    background-position: center center;
+  }
+}
+
+.fourthSlide {
+  background-image: url(/src/assets/images/banners/ipad-banner-mobile.png);
+
+  @include onTablet {
+    background-image: url(/src/assets/images/banners/ipad-banner.png);
+  }
+}
+
+:global(.swiper) {
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  column-gap: 4px;
+}
+
+:global(.swiper-pagination-bullet) {
+  width: 24px;
+  height: 24px;
+
+  padding: 10px 5px;
+
+  border-radius: 0;
+
+  background-color: $primary;
+  background-clip: content-box;
+
+  cursor: pointer;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: $primary;
+}
