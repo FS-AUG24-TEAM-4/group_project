@@ -49,9 +49,13 @@
 }
 
 .searchContainer {
-  display: flex;
+  display: none;
   gap: 8px;
   align-items: center;
+
+  @include onTabletWide {
+    display: flex;
+  }
 }
 
 .queryField {
@@ -98,6 +102,7 @@
 
 .favorites,
 .searchIcon,
+.queryFieldMobile,
 .shoppingBag {
   display: none;
 
@@ -128,6 +133,12 @@
 
   @include onTablet {
     display: block;
+  }
+}
+
+.queryFieldMobile {
+  @include onTabletWide {
+    display: none;
   }
 }
 
@@ -170,5 +181,9 @@
 }
 
 .searchIcon {
+  background-image: url(/src/assets/images/icons/search-icon.svg);
+}
+
+.queryFieldMobile {
   background-image: url(/src/assets/images/icons/search-icon.svg);
 }

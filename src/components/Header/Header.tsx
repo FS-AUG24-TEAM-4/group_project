@@ -53,6 +53,12 @@ export const Header = () => {
       </div>
 
       <div className={styles.iconLinksContainer}>
+        <NavLink
+          to={Paths.SEARCH}
+          className={navData =>
+            getIconLinkClassName(navData, styles.queryFieldMobile)
+          }
+        />
         <div className={styles.searchContainer}>
           <form
             onSubmit={event => {
