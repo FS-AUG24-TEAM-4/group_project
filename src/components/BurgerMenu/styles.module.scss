@@ -1,4 +1,5 @@
 @import '/src/assets/styles/variables';
+@import '/src/assets/styles/mixins';
 
 .burger {
   flex-direction: column;
@@ -170,4 +171,11 @@
   justify-content: space-between;
 
   display: flex;
+}
+
+.indicator {
+  position: absolute;
+
+  top: 30%;
+  left: 50%;
 }
