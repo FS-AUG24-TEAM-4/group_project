@@ -4,7 +4,7 @@ import { Product } from '@/types';
 import { DeviceCategory } from '@/enums';
 import { getProductPath } from '@/utils';
 
-import { ProductCard } from '../ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard';
 import styles from './styles.module.scss';
 
 interface Props {
