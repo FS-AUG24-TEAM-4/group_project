@@ -1,0 +1,27 @@
+@import '../../assets/styles/mixins';
+
+.flagButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s;
+
+  box-sizing: border-box;
+  border-left: 1px solid #e2e6e9;
+
+  @include onDesktop {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.flag {
+  transition: transform 0.3s ease;
+  width: 28px;
+  height: 28px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

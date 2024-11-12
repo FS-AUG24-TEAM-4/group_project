@@ -10,7 +10,8 @@ import { PrimaryButton } from '../PrimaryButton';
 import { ModalWindowSuccess } from '../ModalWindowSuccess/ModalWindowSuccess';
 import styles from './styles.module.scss';
 import { useCart } from '@/hooks';
-import { CartItem } from '@/types/CartItem';
+import { CartItem } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 interface PropsModalWindow {
   isOpen: boolean;
@@ -32,6 +33,8 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
   const handleRemove = removeFromCartButton();
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const handleRemoveOnConfirm = () => {
@@ -41,7 +44,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
     setTimeout(() => {
       navigate(Paths.HOME);
       onCartEmpty();
-    }, 3000);
+    }, 2000);
 
     cartItems.forEach(cartItem => {
       handleRemove(cartItem.id);
@@ -53,15 +56,15 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
       {isOpen && (
         <div className={styles.modal}>
           <div className={styles.modal__content}>
-            <h2 className={styles.modal__title}>Complete your purchase</h2>
+            <h2 className={styles.modal__title}>{t('completePurchase')}</h2>
 
             <div className={styles.modal__tableContainer}>
               <table className={styles.modal__table}>
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>{t('product')}</th>
+                    <th>{t('quantity')}</th>
+                    <th>{t('price')}</th>
                   </tr>
                 </thead>
 
@@ -83,7 +86,7 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
             </div>
 
             <div className={styles.modal__total}>
-              <span>TotalPrice:</span>
+              <span>{t('totalPrice')}:</span>
               <span>${totalAmount.toFixed(2)}</span>
             </div>
 
@@ -92,13 +95,13 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
                 onClick={handleRemoveOnConfirm}
                 type={PrimaryButtons.CONFIRMCHECKOUT}
               >
-                Confirm
+                {t('confirm')}
               </PrimaryButton>
               <PrimaryButton
                 onClick={onClickCancel}
                 type={PrimaryButtons.CANCELCHECKOUT}
               >
-                Cancel
+                {t('cancel')}
               </PrimaryButton>
             </div>
           </div>

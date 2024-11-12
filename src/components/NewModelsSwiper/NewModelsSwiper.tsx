@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Product } from '@/types/Product';
+import { Product } from '@/types';
 import { ProductSlider } from '../ProductSlider/ProductSlider';
+import { useTranslation } from 'react-i18next';
 
 interface ProductSliderProps {
   products: Product[];
@@ -8,6 +9,7 @@ interface ProductSliderProps {
 
 export const NewModelsSwiper: FC<ProductSliderProps> = ({ products }) => {
   const latestYear = Math.max(...products.map(product => product.year));
+  const { t } = useTranslation();
   const latestProducts = products.filter(
     product => product.year === latestYear,
   );
@@ -15,7 +17,7 @@ export const NewModelsSwiper: FC<ProductSliderProps> = ({ products }) => {
   return (
     <ProductSlider
       products={latestProducts}
-      title="Brand new models"
+      title={t('newModels')}
       discount={false}
     />
   );
