@@ -1,17 +1,17 @@
 import cn from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
-import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
+import { getCartProducts, getCartProductsQuantity } from '@/utils';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
-import { Indicator } from '../Indicator/Indicator';
-import { getCartProducts, getCartProductsQuantity } from '@/utils';
+import { Indicator } from '../Indicator';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -54,6 +54,7 @@ export const Header = () => {
         </Link>
         <Navigation links={HeaderNavigationLinks} />
       </div>
+
       <div className={styles.iconLinksContainer}>
         <div>
           <NavLink
@@ -69,6 +70,7 @@ export const Header = () => {
             )}
           </NavLink>
         </div>
+
         <NavLink
           to={Paths.CART}
           className={navData =>
@@ -81,6 +83,7 @@ export const Header = () => {
             </div>
           )}
         </NavLink>
+
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {
