@@ -12,6 +12,7 @@ import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { Indicator } from '../Indicator';
+import { LangSelector } from '../LangSelector/LangSelector';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -52,10 +53,14 @@ export const Header = () => {
             className={styles.logoImage}
           ></img>
         </Link>
+
         <Navigation links={HeaderNavigationLinks} />
       </div>
 
       <div className={styles.iconLinksContainer}>
+        <div className={styles.lang}>
+          <LangSelector />
+        </div>
         <div>
           <NavLink
             to={Paths.FAVORITES}

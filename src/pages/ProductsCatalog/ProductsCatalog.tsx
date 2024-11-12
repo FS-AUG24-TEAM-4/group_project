@@ -11,12 +11,15 @@ import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 import { Product } from '@/types';
 import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
 };
 
 export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
+  const { t } = useTranslation();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const { products, loading } = useProducts();
 
@@ -36,11 +39,11 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const title = getTitle(category);
 
   const sortingParams = [
-    { value: SortType.NONE, label: 'None' },
-    { value: SortType.NEWEST, label: 'Newest' },
-    { value: SortType.OLDEST, label: 'Oldest' },
-    { value: SortType.PRICE_HIGH, label: 'Price high' },
-    { value: SortType.PRICE_LOW, label: 'Price low' },
+    { value: SortType.NONE, label: `${t('None')}` },
+    { value: SortType.NEWEST, label: `${t('Newest')}` },
+    { value: SortType.OLDEST, label: `${t('Oldest')}` },
+    { value: SortType.PRICE_HIGH, label: `${t('PriceHigh')}` },
+    { value: SortType.PRICE_LOW, label: `${t('PriceLow')}` },
   ];
 
   const itemsPerPage = [
@@ -181,16 +184,20 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
       <h1 className={styles.title}>{title}</h1>
 
-      <p className={styles.counter_text}>{sortedPhones.length} models</p>
+      <p className={styles.counter_text}>
+        {' '}
+        {sortedPhones.length} {t('models')}
+      </p>
 
       <div className={styles.dropdowns}>
         <div>
-          <p className={styles.sort_by_text}>Sort by</p>
+          <p className={styles.sort_by_text}>{t('Sortby')}</p>
 
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
             isSearchable={false}
+            placeholder={t('Select')}
             value={showSortingDropdownValue()}
             onChange={value => {
               if (value) {
@@ -209,7 +216,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         </div>
 
         <div>
-          <p className={styles.sort_by_text}>Items on page</p>
+          <p className={styles.sort_by_text}>{t('itemsOnPage')}</p>
 
           <Select
             styles={customItemDisplayStylesForDropdown}

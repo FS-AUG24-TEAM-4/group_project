@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Product } from '@/types/Product';
 import { ProductSlider } from '../ProductSlider/ProductSlider';
-import { getTopDiscountProducts } from '@/utils/getTopDiscountProduct';
+import { getTopDiscountProducts } from '@/utils';
+import { useTranslation } from 'react-i18next';
 
 interface ProductSliderProps {
   products: Product[];
@@ -9,6 +10,9 @@ interface ProductSliderProps {
 
 export const HotPricesSwiper: FC<ProductSliderProps> = ({ products }) => {
   const BestDiscountProducts = getTopDiscountProducts(products);
+  const { t } = useTranslation();
 
-  return <ProductSlider products={BestDiscountProducts} title="Hot Prices" />;
+  return (
+    <ProductSlider products={BestDiscountProducts} title={t('hotPrices')} />
+  );
 };
