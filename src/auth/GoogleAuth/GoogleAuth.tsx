@@ -13,7 +13,9 @@ export const GoogleAuth: React.FC = () => {
       await signInWithPopup(auth, googleProvider);
       alert('Signed in with Google!');
 
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
       alert(`Google sign-in error: ${error}`);
     }
