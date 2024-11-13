@@ -49,6 +49,8 @@
 }
 
 .searchContainer {
+  position: relative;
+
   display: none;
   gap: 8px;
   align-items: center;
@@ -56,6 +58,10 @@
   @include onTabletWide {
     display: flex;
   }
+}
+
+.queryFieldContainer {
+  position: relative;
 }
 
 .queryField {
@@ -68,6 +74,16 @@
     width 0.3s ease,
     opacity 0.3s ease;
 
+  &__clearButton {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 3px 5px;
+    color: grey;
+  }
+
   &__list__off {
     display: none;
   }
@@ -76,7 +92,7 @@
     position: absolute;
     top: 55px;
     width: 200px;
-    z-index: 1;
+    z-index: 2;
     background-color: white;
     border: 1px solid $elements;
     border-radius: 8px;
@@ -86,7 +102,7 @@
     &__element {
       margin-bottom: 5px;
       font-size: small;
-      padding: 10px;
+      padding: 8px;
       display: flex;
       align-items: center;
       transition-duration: 0.5s;
@@ -98,6 +114,22 @@
       &:hover {
         cursor: pointer;
         transform: scale(1.06);
+      }
+
+      &__empty {
+        margin-bottom: 5px;
+        font-size: small;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          cursor: default;
+        }
       }
     }
   }
@@ -171,6 +203,8 @@
 }
 
 .queryFieldMobile {
+  display: block;
+
   @include onTabletWide {
     display: none;
   }

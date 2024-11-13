@@ -57,7 +57,7 @@
 .dropdowns {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   width: fit-content;
 }
 
@@ -68,7 +68,17 @@
   color: $secondary;
 }
 
+.pageSearchBar {
+  display: block;
+  position: relative;
+
+  @include onTabletWide {
+    display: none;
+  }
+}
+
 .pageSearchBarField {
+  display: block;
   border: 1px solid #b4bdc3;
   border-radius: 10px;
   padding-inline: 5px;
@@ -78,6 +88,16 @@
   padding-left: 12px;
   margin-bottom: 24px;
   color: hsl(0, 0%, 50%);
+}
+
+.queryField__clearButton {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 3px 5px;
+  color: grey;
 }
 
 .device_list {

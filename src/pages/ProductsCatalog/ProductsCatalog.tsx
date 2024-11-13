@@ -165,13 +165,24 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
               setQuery(event.target.value.trimStart());
             }}
           />
+          {query && (
+            <div
+              className={styles.queryField__clearButton}
+              onClick={() => setQuery('')}
+            >
+              x
+            </div>
+          )}
         </form>
       )}
 
       {loading ? (
         <SkeletonGrid itemsCount={Number(devicesPerPage)} />
       ) : (
-        <ProductsList paginationOfDevice={paginationOfDevice} />
+        <ProductsList
+          paginationOfDevice={paginationOfDevice}
+          category={category}
+        />
       )}
 
       <Pagination

@@ -68,6 +68,7 @@ export const Header = () => {
         />
         <div className={styles.searchContainer}>
           <form
+            className={styles.queryFieldContainer}
             onSubmit={event => {
               handleSubmit(event);
               setSearchVisible(false);
@@ -83,6 +84,14 @@ export const Header = () => {
                 setQuery(event.target.value.trimStart());
               }}
             />
+            {query && (
+              <div
+                className={styles.queryField__clearButton}
+                onClick={() => setQuery('')}
+              >
+                x
+              </div>
+            )}
             <div
               className={cn({
                 [styles.queryField__list]: query,
@@ -90,24 +99,32 @@ export const Header = () => {
               })}
             >
               <ul>
-                {foundProducts.map(product => (
-                  <li
-                    className={styles.queryField__list__element}
-                    key={product.id}
-                    onClick={() => {
-                      navigate(`/${product.category}/${product.itemId}`);
-                      setQuery('');
-                      setSearchVisible(false);
-                    }}
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{ height: '40px', marginRight: '8px' }}
-                    />
-                    {product.name}
+                {foundProducts.length ? (
+                  <>
+                    {foundProducts.map(product => (
+                      <li
+                        className={styles.queryField__list__element}
+                        key={product.id}
+                        onClick={() => {
+                          navigate(`/${product.category}/${product.itemId}`);
+                          setQuery('');
+                          setSearchVisible(false);
+                        }}
+                      >
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          style={{ height: '38px', marginRight: '8px' }}
+                        />
+                        {product.name}
+                      </li>
+                    ))}
+                  </>
+                ) : (
+                  <li className={styles.queryField__list__element__empty}>
+                    No devices found
                   </li>
-                ))}
+                )}
               </ul>
             </div>
           </form>
