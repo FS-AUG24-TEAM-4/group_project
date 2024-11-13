@@ -12,8 +12,10 @@
 }
 
 .modal {
+  height: 130px;
+  font-size: 14px;
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -24,22 +26,4 @@
   gap: 10px;
   justify-content: center;
   margin-top: 20px;
-}
-
-.button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.confirm {
-  background-color: #d9534f;
-  color: #fff;
-}
-
-.cancel {
-  background-color: #5bc0de;
-  color: #fff;
 }
