@@ -5,6 +5,17 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        yesLogOut: 'Yes, log out',
+        areYouSure: 'Are you sure you want to log out?',
+        sendCode: 'Send code',
+        email: 'Email',
+        password: 'Password',
+        signIn: 'Sign In',
+        signUp: 'Sign Up',
+        orSignInWithPhone: 'or sign-in with phone',
+        noDevicesFound: 'No devices found',
+        search: 'Search',
+        Search: 'Search',
         thankYouForPurchase: 'Thank you for purchase!',
         completePurchase: 'Complete your purchase',
         None: 'None',
@@ -84,6 +95,17 @@ i18n.use(initReactI18next).init({
     },
     ua: {
       translation: {
+        yesLogOut: 'Так, вийти',
+        areYouSure: 'Ви впевнені, що хочете вийти?',
+        sendCode: 'Відправити код',
+        email: 'Ел. пошта',
+        password: 'Пароль',
+        signIn: 'Увійти',
+        signUp: 'Зареєструватись',
+        orSignInWithPhone: 'або увійдіть через телефон',
+        noDevicesFound: 'Товарів не знайдено',
+        search: 'Пошук',
+        Search: 'Пошук',
         thankYouForPurchase: 'Дякуємо за купівлю!',
         completePurchase: 'Підтвердіть купівлю',
         None: 'Нічим',

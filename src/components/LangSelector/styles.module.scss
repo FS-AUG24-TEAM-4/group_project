@@ -1,13 +1,18 @@
 @import '../../assets/styles/mixins';
+@import '../../assets/styles/_variables';
 
 .flagButton {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 8px;
   transition: transform 0.3s;
 
   box-sizing: border-box;
+
+  @include onTabletWide {
+    border-left: 1px solid $elements;
+  }
 
   @include onDesktop {
     width: 64px;

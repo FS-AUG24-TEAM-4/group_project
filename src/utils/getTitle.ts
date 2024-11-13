@@ -12,5 +12,7 @@ export const getTitle = (titleCategory: DeviceCategory) => {
       return t('tablets');
     case DeviceCategory.ACCESSORIES:
       return t('accessories');
+    case DeviceCategory.SEARCH:
+      return t('Search');
   }
 };

@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, githubProvider } from '../firebase';
-import { useNavigate } from 'react-router-dom';
-import GitHubIcon from '@/assets/images/icons/GitHubIcon.svg';
+import { auth, facebookProvider } from '../firebase';
 import { IconAuthButton } from '@/components/IconAuthButton/IconAuthButton';
-import { SuccessSnackbar, ErrorSnackbar } from '@/components/';
+import FacebookIcon from '@/assets/images/icons/FacebookIcon.svg';
+import { useNavigate } from 'react-router-dom';
+import { SuccessSnackbar } from '@/components/SuccessSnackbar';
+import { ErrorSnackbar } from '@/components/ErrorSnackbar';
 
-export const GitHubAuth: React.FC = () => {
+export const FacebookAuth: React.FC = () => {
   const navigate = useNavigate();
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleGitHubSignIn = async () => {
+  const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, githubProvider);
+      await signInWithPopup(auth, facebookProvider);
       setOpenSuccess(true);
       setTimeout(() => {
         navigate('/');
       }, 2000);
     } catch (error) {
-      setErrorMessage(`GitHub sign-in error: ${(error as Error).message}`);
+      setErrorMessage(`Facebook sign-in error: ${(error as Error).message}`);
       setOpenError(true);
     }
   };
@@ -28,15 +29,15 @@ export const GitHubAuth: React.FC = () => {
   return (
     <>
       <IconAuthButton
-        iconSrc={GitHubIcon}
-        onClick={handleGitHubSignIn}
-        altText="GitHubIcon"
+        iconSrc={FacebookIcon}
+        onClick={handleLogin}
+        altText="FacebookIcon"
       />
 
       <SuccessSnackbar
         open={openSuccess}
         onClose={() => setOpenSuccess(false)}
-        message="Signed in with GitHub!"
+        message="Signed in with Facebook!"
       />
 
       <ErrorSnackbar

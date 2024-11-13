@@ -1,4 +1,5 @@
 @import '../../assets/styles/mixins';
+@import '../../assets/styles/_variables';
 
 .device_list {
   justify-content: center;
@@ -21,4 +22,14 @@
   @include onDesktop {
     grid-template-columns: repeat(4, auto);
   }
+}
+
+.emptySearchContainer {
+  height: 50px;
+  padding: 7px;
+  border: 1px solid $elements;
+  border-radius: 8px;
+  background-color: $white;
+  color: $secondary;
+  margin-bottom: 16px;
 }
