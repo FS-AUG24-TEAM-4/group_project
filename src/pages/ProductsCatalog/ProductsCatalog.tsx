@@ -180,6 +180,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
                 setQuery(event.target.value.trimStart());
               }}
             />
+
             {query && (
               <div
                 className={styles.queryField__clearButton}
@@ -189,6 +190,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
               </div>
             )}
           </form>
+
           <div
             className={cn({
               [styles.queryField__list]: query,

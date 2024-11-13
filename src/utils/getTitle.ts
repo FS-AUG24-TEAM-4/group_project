@@ -11,7 +11,7 @@ export const getTitle = (titleCategory: DeviceCategory) => {
     case DeviceCategory.TABLETS:
       return t('tablets');
     case DeviceCategory.ACCESSORIES:
-      return 'Accessories';
+      return t('accessories');
     case DeviceCategory.SEARCH:
       return 'Search';
     default:

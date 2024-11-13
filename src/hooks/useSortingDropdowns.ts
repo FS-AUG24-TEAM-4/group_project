@@ -1,15 +1,17 @@
 import { SortType } from '@/enums';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const useSortingDropdowns = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const sortingParams = [
-    { value: SortType.NONE, label: 'None' },
-    { value: SortType.NEWEST, label: 'Newest' },
-    { value: SortType.OLDEST, label: 'Oldest' },
-    { value: SortType.PRICE_HIGH, label: 'Price high' },
-    { value: SortType.PRICE_LOW, label: 'Price low' },
+    { value: SortType.NONE, label: `${t('None')}` },
+    { value: SortType.NEWEST, label: `${t('Newest')}` },
+    { value: SortType.OLDEST, label: `${t('Oldest')}` },
+    { value: SortType.PRICE_HIGH, label: `${t('PriceHigh')}` },
+    { value: SortType.PRICE_LOW, label: `${t('PriceLow')}` },
   ];
 
   const itemsPerPage = [

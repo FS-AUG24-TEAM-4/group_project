@@ -17,8 +17,7 @@ import { Indicator } from '../Indicator';
 import { LangSelector } from '../LangSelector/LangSelector';
 import { AuthButton } from '../AuthButton/';
 
-import { useSearchBar } from '@/hooks/useSearchBar';
-import { useProducts } from '@/hooks';
+import { useProducts, useSearchBar } from '@/hooks';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -95,6 +94,7 @@ export const Header = () => {
                 setQuery(event.target.value.trimStart());
               }}
             />
+
             {query && (
               <div
                 className={styles.queryField__clearButton}
@@ -103,6 +103,7 @@ export const Header = () => {
                 x
               </div>
             )}
+
             <div
               className={cn({
                 [styles.queryField__list]: query,
@@ -149,6 +150,7 @@ export const Header = () => {
             })}
           ></div>
         </div>
+
         <div className={styles.lang}>
           <LangSelector />
         </div>
