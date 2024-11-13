@@ -210,7 +210,7 @@
     }
   }
 
-  @include onTablet {
+  @include onTabletWide {
     display: block;
   }
 }
@@ -233,7 +233,7 @@
   background-position: center;
   cursor: pointer;
 
-  @include onTablet {
+  @include onTabletWide {
     display: none;
   }
 }
@@ -248,7 +248,7 @@
   background-position: center;
   cursor: pointer;
 
-  @include onTablet {
+  @include onTabletWide {
     display: none;
   }
 }

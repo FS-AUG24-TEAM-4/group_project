@@ -98,6 +98,7 @@ export const BurgerMenu = () => {
             </div>
           )}
         </NavLink>
+
         <AuthButton className={styles.burger__footer__links} type={'burger'} />
       </footer>
     </menu>

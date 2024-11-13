@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { PrimaryButton } from '../PrimaryButton';
 import { PrimaryButtons } from '@/enums';
+import { useTranslation } from 'react-i18next';
 
 interface LogoutConfirmationModalProps {
   isOpen: boolean;
@@ -12,6 +13,8 @@ interface LogoutConfirmationModalProps {
 export const LogoutConfirmationModal: React.FC<
   LogoutConfirmationModalProps
 > = ({ isOpen, onConfirm, onCancel }) => {
+  const { t } = useTranslation();
+
   if (!isOpen) {
     return null;
   }
@@ -19,19 +22,19 @@ export const LogoutConfirmationModal: React.FC<
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2>Are you sure you want to log out?</h2>
+        <h2>{t('areYouSure')}</h2>
         <div className={styles.buttons}>
           <PrimaryButton
             onClick={onConfirm}
             type={PrimaryButtons.CONFIRMCHECKOUT}
           >
-            Yes, log out
+            {t('yesLogOut')}
           </PrimaryButton>
           <PrimaryButton
             onClick={onCancel}
             type={PrimaryButtons.CANCELCHECKOUT}
           >
-            Cancel
+            {t('cancel')}
           </PrimaryButton>
         </div>
       </div>

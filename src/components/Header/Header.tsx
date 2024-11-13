@@ -78,6 +78,11 @@ export const Header = () => {
           className={navData =>
             getIconLinkClassName(navData, styles.queryFieldMobile)
           }
+          onClick={() => {
+            if (burgerstatus) {
+              dispatch(changeBurgerState());
+            }
+          }}
         />
         <div className={styles.searchContainer}>
           <form
@@ -143,6 +148,7 @@ export const Header = () => {
               </ul>
             </div>
           </form>
+
           <div
             onClick={() => {
               setSearchVisible(prev => !prev);
@@ -157,6 +163,7 @@ export const Header = () => {
         <div className={styles.lang}>
           <LangSelector />
         </div>
+
         <div>
           <NavLink
             to={Paths.FAVORITES}
