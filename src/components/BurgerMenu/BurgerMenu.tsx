@@ -9,12 +9,15 @@ import fav from '@/assets/images/icons/favorites-blank.svg';
 import cart from '@/assets/images/icons/shopping-bag-blank.svg';
 
 import styles from './styles.module.scss';
+
+import { AuthButton } from '../AuthButton';
 import { Indicator } from '../Indicator/Indicator';
 import { RootState } from '@/app/store';
 import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Paths } from '@/enums';
 import { LangSelector } from '../LangSelector/LangSelector';
 import { useTranslation } from 'react-i18next';
+
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
@@ -96,6 +99,7 @@ export const BurgerMenu = () => {
             </div>
           )}
         </NavLink>
+        <AuthButton className={styles.burger__footer__links} type={'burger'} />
       </footer>
     </menu>
   );
