@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
   paginationOfDevice: Product[];
-  category: DeviceCategory;
+  category?: DeviceCategory;
 }
 
 export const ProductsList: React.FC<Props> = ({
