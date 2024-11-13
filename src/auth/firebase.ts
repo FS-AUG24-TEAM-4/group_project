@@ -26,7 +26,7 @@ export const githubProvider = new GithubAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();
 export const setupRecaptcha = (containerId: string): RecaptchaVerifier => {
   if (!auth) {
-    throw new Error('Firebase auth не ініціалізовано');
+    throw new Error('Firebase auth not initialized');
   }
 
   const recaptchaVerifier = new RecaptchaVerifier(auth, containerId, {
