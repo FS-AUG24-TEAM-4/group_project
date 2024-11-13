@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { PaginationItem } from '@mui/material';
+import { FC, useState } from 'react';
+import { InputBase, PaginationItem } from '@mui/material';
 import Select from 'react-select';
 import Pagination from '@mui/material/Pagination';
+import cn from 'classnames';
 
 import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
 import { useProducts } from '@/hooks';
@@ -11,14 +11,40 @@ import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 import { Product } from '@/types';
 import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
+import { useSearchBar } from '@/hooks/useSearchBar';
+import { useSortingDropdowns } from '@/hooks/useSortingDropdowns';
+import { useTranslation } from 'react-i18next';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
+  searchQuery?: string;
 };
 
-export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+export const ProductsCatalog: FC<ProductsCatalogProps> = ({
+  category,
+  searchQuery = '',
+}) => {
+  const { t } = useTranslation();
+
   const { products, loading } = useProducts();
+  const { query, setQuery, handleSubmit } = useSearchBar();
+  const {
+    setSearchParams,
+    sortParams,
+    firstDeviceIndex,
+    lastDeviceIndex,
+    devicesPerPage,
+    customSortingStylesForDropdown,
+    sortingParams,
+    showSortingDropdownValue,
+    customItemDisplayStylesForDropdown,
+    itemsPerPage,
+    showItemsPerPageDropdownValue,
+    currentPage,
+    isPhone,
+  } = useSortingDropdowns();
+  const [, setSearchVisible] = useState(false);
+  const { navigate } = useSearchBar();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -28,37 +54,22 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
       case DeviceCategory.TABLETS:
         return product.category === DeviceCategory.TABLETS;
 
+      case DeviceCategory.SEARCH:
+        return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+
       default:
         return product.category === DeviceCategory.ACCESSORIES;
     }
   });
 
-  const title = getTitle(category);
-
-  const sortingParams = [
-    { value: SortType.NONE, label: 'None' },
-    { value: SortType.NEWEST, label: 'Newest' },
-    { value: SortType.OLDEST, label: 'Oldest' },
-    { value: SortType.PRICE_HIGH, label: 'Price high' },
-    { value: SortType.PRICE_LOW, label: 'Price low' },
-  ];
-
-  const itemsPerPage = [
-    { value: 12, label: '12' },
-    { value: 24, label: '24' },
-    { value: 36, label: '36' },
-    { value: 48, label: '48' },
-    { value: 60, label: '60' },
-  ];
-
-  const sortParams = searchParams.get('sort') || SortType.NONE;
-  const currentPage = Number(searchParams.get('page')) || 1;
-  const devicesPerPage = searchParams.get('devicesPerPage') || '12';
+  const title =
+    category === DeviceCategory.SEARCH
+      ? searchQuery
+        ? `Search: "${searchQuery}"`
+        : 'Search'
+      : getTitle(category);
 
   const sortedPhones = sortDevices(productsOnPage, sortParams);
-
-  const lastDeviceIndex = currentPage * +devicesPerPage;
-  const firstDeviceIndex = lastDeviceIndex - +devicesPerPage;
 
   const paginationOfDevice = sortedPhones.slice(
     firstDeviceIndex,
@@ -79,99 +90,11 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
     );
   };
 
-  const showSortingDropdownValue = () => {
-    const currentParams = sortingParams.find(
-      param => param.value === sortParams,
-    );
-
-    if (currentParams) {
-      return currentParams.value === SortType.NONE ? null : currentParams;
-    }
-
-    return null;
-  };
-
-  const showItemsPerPageDropdownValue = () => {
-    const currentParams = itemsPerPage.find(
-      param => param.value === +devicesPerPage,
-    );
-
-    if (currentParams) {
-      return currentParams;
-    }
-
-    return null;
-  };
-
-  const isPhone = document.body.clientWidth <= 639;
-  const isTablet =
-    document.body.clientWidth > 639 && document.body.clientWidth <= 1199;
-
-  const defaultSortStyles = {
-    width: '136px',
-    height: '40px',
-    border: '1px solid #B4BDC3',
-    borderRadius: '8px',
-    cursor: 'pointer',
-  };
-
-  const customSortingStylesForDropdown = {
-    control: (provided: object) => {
-      if (isPhone) {
-        return {
-          ...provided,
-          ...defaultSortStyles,
-        };
-      }
-
-      if (isTablet) {
-        return {
-          ...provided,
-          ...defaultSortStyles,
-          width: '187px',
-        };
-      }
-
-      return {
-        ...provided,
-        ...defaultSortStyles,
-        width: '176px',
-      };
-    },
-    option: (provided: object) => ({
-      ...provided,
-    }),
-  };
-
-  const defaultItemDisplayStyles = {
-    width: '136px',
-    height: '40px',
-    border: '1px solid #B4BDC3',
-    borderRadius: '8px',
-    cursor: 'pointer',
-  };
-
-  const customItemDisplayStylesForDropdown = {
-    control: (provided: object) => {
-      if (isPhone || isTablet) {
-        return {
-          ...provided,
-          ...defaultItemDisplayStyles,
-        };
-      }
-
-      return {
-        ...provided,
-        ...defaultItemDisplayStyles,
-        width: '128px',
-      };
-    },
-    option: (provided: object) => ({
-      ...provided,
-    }),
-  };
-
   const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
+
+  const foundProducts = products.filter(product =>
+    product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
+  );
 
   return (
     <div className={styles.container}>
@@ -181,16 +104,20 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
       <h1 className={styles.title}>{title}</h1>
 
-      <p className={styles.counter_text}>{sortedPhones.length} models</p>
+      <p className={styles.counter_text}>
+        {' '}
+        {sortedPhones.length} {t('models')}
+      </p>
 
       <div className={styles.dropdowns}>
         <div>
-          <p className={styles.sort_by_text}>Sort by</p>
+          <p className={styles.sort_by_text}>{t('Sortby')}</p>
 
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
             isSearchable={false}
+            placeholder={t('Select')}
             value={showSortingDropdownValue()}
             onChange={value => {
               if (value) {
@@ -209,7 +136,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         </div>
 
         <div>
-          <p className={styles.sort_by_text}>Items on page</p>
+          <p className={styles.sort_by_text}>{t('itemsOnPage')}</p>
 
           <Select
             styles={customItemDisplayStylesForDropdown}
@@ -239,10 +166,76 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         </div>
       </div>
 
+      {category === DeviceCategory.SEARCH && (
+        <div className={styles.pageSearchBarContainer}>
+          <form
+            className={styles.pageSearchBar}
+            onSubmit={value => handleSubmit(value)}
+          >
+            <InputBase
+              className={styles.pageSearchBarField}
+              placeholder="Search"
+              value={query}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setQuery(event.target.value.trimStart());
+              }}
+            />
+
+            {query && (
+              <div
+                className={styles.queryField__clearButton}
+                onClick={() => setQuery('')}
+              >
+                x
+              </div>
+            )}
+          </form>
+
+          <div
+            className={cn({
+              [styles.queryField__list]: query,
+              [styles.queryField__list__off]: !query,
+            })}
+          >
+            <ul>
+              {foundProducts.length ? (
+                <>
+                  {foundProducts.map(product => (
+                    <li
+                      className={styles.queryField__list__element}
+                      key={product.id}
+                      onClick={() => {
+                        navigate(`/${product.category}/${product.itemId}`);
+                        setQuery('');
+                        setSearchVisible(false);
+                      }}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        style={{ height: '38px', marginRight: '8px' }}
+                      />
+                      {product.name}
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <li className={styles.queryField__list__element__empty}>
+                  No devices found
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      )}
+
       {loading ? (
         <SkeletonGrid itemsCount={Number(devicesPerPage)} />
       ) : (
-        <ProductsList paginationOfDevice={paginationOfDevice} />
+        <ProductsList
+          paginationOfDevice={paginationOfDevice}
+          category={category}
+        />
       )}
 
       <Pagination

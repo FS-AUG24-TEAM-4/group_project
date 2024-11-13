@@ -1,15 +1,23 @@
 import cn from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import InputBase from '@mui/material/InputBase';
+import { RootState } from '@/app/store';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
-import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
+import { getCartProducts, getCartProductsQuantity } from '@/utils';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
+import { Indicator } from '../Indicator';
+import { LangSelector } from '../LangSelector/LangSelector';
+import { AuthButton } from '../AuthButton/';
+
+import { useProducts, useSearchBar } from '@/hooks';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -20,10 +28,24 @@ const getIconLinkClassName = (
   });
 
 export const Header = () => {
+  const { query, setQuery, handleSubmit, navigate } = useSearchBar();
+  const { products } = useProducts();
+  const [isSearchVisible, setSearchVisible] = useState(false);
+
   const dispatch = useDispatch();
   const burgerstatus = useSelector(
     (state: RootState) => state.burger.burgerStatus,
   );
+
+  const foundProducts = products.filter(product =>
+    product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
+  );
+  const favItems = useSelector((state: RootState) => state.favorites.items);
+  const favItemsCount = Object.keys(favItems).length;
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartProducts = getCartProducts(cartItems);
+  const cartItemsCount = getCartProductsQuantity(cartProducts);
 
   return (
     <header className={styles.header}>
@@ -43,19 +65,124 @@ export const Header = () => {
             className={styles.logoImage}
           ></img>
         </Link>
+
         <Navigation links={HeaderNavigationLinks} />
       </div>
+
       <div className={styles.iconLinksContainer}>
         <NavLink
-          to={Paths.FAVORITES}
-          className={navData => getIconLinkClassName(navData, styles.favorites)}
-        ></NavLink>
+          to={Paths.SEARCH}
+          className={navData =>
+            getIconLinkClassName(navData, styles.queryFieldMobile)
+          }
+        />
+        <div className={styles.searchContainer}>
+          <form
+            className={styles.queryFieldContainer}
+            onSubmit={event => {
+              handleSubmit(event);
+              setSearchVisible(false);
+            }}
+          >
+            <InputBase
+              className={cn(styles.queryField, {
+                [styles.visible]: isSearchVisible,
+              })}
+              placeholder="Search"
+              value={query}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setQuery(event.target.value.trimStart());
+              }}
+            />
+
+            {query && (
+              <div
+                className={styles.queryField__clearButton}
+                onClick={() => setQuery('')}
+              >
+                x
+              </div>
+            )}
+
+            <div
+              className={cn({
+                [styles.queryField__list]: query,
+                [styles.queryField__list__off]: !query,
+              })}
+            >
+              <ul>
+                {foundProducts.length ? (
+                  <>
+                    {foundProducts.map(product => (
+                      <li
+                        className={styles.queryField__list__element}
+                        key={product.id}
+                        onClick={() => {
+                          navigate(`/${product.category}/${product.itemId}`);
+                          setQuery('');
+                          setSearchVisible(false);
+                        }}
+                      >
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          style={{ height: '38px', marginRight: '8px' }}
+                        />
+                        {product.name}
+                      </li>
+                    ))}
+                  </>
+                ) : (
+                  <li className={styles.queryField__list__element__empty}>
+                    No devices found
+                  </li>
+                )}
+              </ul>
+            </div>
+          </form>
+          <div
+            onClick={() => {
+              setSearchVisible(prev => !prev);
+              setQuery('');
+            }}
+            className={cn(styles.iconLink, {
+              [styles.searchIcon]: true,
+            })}
+          ></div>
+        </div>
+
+        <div className={styles.lang}>
+          <LangSelector />
+        </div>
+        <div>
+          <NavLink
+            to={Paths.FAVORITES}
+            className={navData =>
+              getIconLinkClassName(navData, styles.favorites)
+            }
+          >
+            {!!favItemsCount && (
+              <div className={styles.indicator}>
+                <Indicator>{favItemsCount}</Indicator>
+              </div>
+            )}
+          </NavLink>
+        </div>
+
         <NavLink
           to={Paths.CART}
           className={navData =>
             getIconLinkClassName(navData, styles.shoppingBag)
           }
-        ></NavLink>
+        >
+          {!!cartItemsCount && (
+            <div className={styles.indicator}>
+              <Indicator>{cartItemsCount}</Indicator>
+            </div>
+          )}
+        </NavLink>
+
+        <AuthButton className={styles.iconLink} />
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

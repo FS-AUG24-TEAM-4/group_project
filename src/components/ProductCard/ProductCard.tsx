@@ -8,12 +8,12 @@ import { RootState } from '@/app/store';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import { DeviceCategory, PrimaryButtons } from '@/enums';
 
-import { useCart } from '@/hooks/useCart';
+import { useCart, useFavorites } from '@/hooks';
 import { Link, useLocation } from 'react-router-dom';
-import { Product } from '@/types/Product';
+import { Product } from '@/types';
 import { getSeparetedCapacity, scrollToTop } from '@/utils';
 import classNames from 'classnames';
-import { useFavorites } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 interface ProductCardProps {
   product: Product;
@@ -33,6 +33,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   );
 
   const { addCartButton, removeFromCartButton } = useCart();
+
+  const { t } = useTranslation();
 
   const { toggleFavorite } = useFavorites();
   const { handleToggleFavorite, isFavorite } = toggleFavorite(product);
@@ -83,21 +85,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className={styles.line}></div>
       <div className={styles.specs}>
-        <p className={styles.label}>Screen</p>
+        <p className={styles.label}>{t('screen')}</p>
         <p className={styles.value}>{product.screen.replace(`'`, `''`)}</p>
       </div>
 
       <div className={styles.specs}>
         {category === DeviceCategory.ACCESSORIES ? (
-          <p className={styles.label}>Size</p>
+          <p className={styles.label}>{t('Size')}</p>
         ) : (
-          <p className={styles.label}>Capacity</p>
+          <p className={styles.label}>{t('Capacity')}</p>
         )}
         <p className={styles.value}>{getSeparetedCapacity(product.capacity)}</p>
       </div>
 
       <div className={styles.specs}>
-        <p className={styles.label}>RAM</p>
+        <p className={styles.label}>{t('ram')}</p>
         <p className={styles.value}>{getSeparetedCapacity(product.ram)}</p>
       </div>
 
@@ -107,7 +109,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           onClick={handleClick}
           isActive={clickedBuy}
         >
-          {clickedBuy ? 'Added' : 'Add to cart'}
+          {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
         <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>

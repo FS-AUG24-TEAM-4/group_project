@@ -1,5 +1,6 @@
 @import '/src/assets/styles/variables';
 @import '/src/assets/styles/mixins';
+@import '/src/assets/styles/animations';
 
 .header {
   display: flex;
@@ -48,6 +49,111 @@
   }
 }
 
+.searchContainer {
+  position: relative;
+
+  display: none;
+  gap: 8px;
+  align-items: center;
+
+  @include onTabletWide {
+    display: flex;
+  }
+}
+
+.queryFieldContainer {
+  position: relative;
+}
+
+.queryField {
+  border: 1px solid $elements;
+  border-radius: 10px;
+  padding-inline: 5px;
+  opacity: 0;
+  width: 0;
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+
+  &__clearButton {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 3px 5px;
+    color: grey;
+  }
+
+  &__list__off {
+    display: none;
+  }
+
+  &__list {
+    position: absolute;
+    top: 55px;
+    width: 200px;
+    z-index: 2;
+    background-color: white;
+    border: 1px solid $elements;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    &__element {
+      margin-bottom: 5px;
+      font-size: small;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      transition-duration: 0.5s;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.06);
+      }
+
+      &__empty {
+        margin-bottom: 5px;
+        font-size: small;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+.queryField.visible {
+  display: none;
+  opacity: 1;
+
+  @include onTabletMiddWide {
+    display: block;
+    width: 70px;
+  }
+
+  @include onTabletHighWide {
+    width: 120px;
+  }
+
+  @include onDesktop {
+    width: 200px;
+  }
+}
+
 .iconLinksContainer {
   display: flex;
   height: 100%;
@@ -66,17 +172,22 @@
 }
 
 .favorites,
-.shoppingBag {
+.searchIcon,
+.queryFieldMobile,
+.shoppingBag,
+.lang {
+  position: relative;
+
   display: none;
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: 16px 16px;
 
-  transition: background-size $effectDuration;
+  transition: background-color $effectDuration;
 
   &:hover {
-    background-size: 22px 22px;
+    background-color: $elements;
   }
 
   &.isActive {
@@ -87,10 +198,15 @@
       position: absolute;
       bottom: 0;
       left: 0;
+
       content: '';
+
       height: 3px;
       width: 100%;
+
       background-color: $primary;
+
+      animation: line-grow 0.3s ease-in-out forwards;
     }
   }
 
@@ -99,11 +215,18 @@
   }
 }
 
+.queryFieldMobile {
+  display: block;
+
+  @include onTabletWide {
+    display: none;
+  }
+}
+
 .burgerMenu {
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/burger-icon.svg);
   background-repeat: no-repeat;
@@ -119,7 +242,6 @@
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/close-burger-icon.svg);
   background-repeat: no-repeat;
@@ -137,4 +259,25 @@
 
 .shoppingBag {
   background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+}
+
+.searchIcon {
+  background-image: url(/src/assets/images/icons/search-icon.svg);
+}
+
+.queryFieldMobile {
+  background-image: url(/src/assets/images/icons/search-icon.svg);
+}
+
+.indicator {
+  position: absolute;
+
+  @include onTablet {
+    top: 20%;
+    left: 49%;
+  }
+
+  @include onDesktop {
+    top: 28%;
+  }
 }

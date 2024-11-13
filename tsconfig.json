@@ -28,7 +28,8 @@
     "src/**/*.d.ts",
     "vite.config.ts",
     "vite.config.js",
-    ".eslintrc.json"
+    ".eslintrc.json",
+    "src/i18n.ts"
   ],
   "exclude": ["vite.config.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

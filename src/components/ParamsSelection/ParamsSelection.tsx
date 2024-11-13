@@ -1,12 +1,18 @@
-import { FC, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 
-import { useCart } from '@/hooks';
+import { useCart, useFavorites } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
+import {
+  loadProductsStart,
+  loadProductsSuccess,
+  loadProductsFailure,
+} from '@/features/products/productSlice';
 import { getSeparetedCapacity, replaceParamsInPathname } from '@/utils';
-import { COLORS } from '@/constants/colors';
+import { COLORS } from '@/constants';
 import { PrimaryButtons } from '@/enums';
 import { Device, Product } from '@/types';
 
@@ -17,26 +23,53 @@ import { ColorButton } from '../ColorButton';
 import { ParameterButton } from '../ParameterButton';
 import { PrimaryButton } from '../PrimaryButton';
 import { FavoritesButton } from '../FavoritesButton';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
-  device: Device;
+  device: Device | null;
   cartProduct: Product;
 }
 
 export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
-  const [clickedFav, setClickedFav] = useState(false);
-  const isAccessory = device.category === 'accessories';
+  const { t } = useTranslation();
 
+  const dispatch = useDispatch();
   const location = useLocation();
-
   const { addCartButton, removeFromCartButton } = useCart();
 
-  const clickedBuy = useSelector(
-    (state: RootState) => state.cart.items[cartProduct.id]?.clickedBuy,
+  const { toggleFavorite } = useFavorites();
+
+  const { handleToggleFavorite, isFavorite } = cartProduct
+    ? toggleFavorite(cartProduct)
+    : { handleToggleFavorite: () => {}, isFavorite: false };
+
+  const { products, loading, error } = useSelector(
+    (state: RootState) => state.products,
   );
 
-  const handleRemoveFromCart = removeFromCartButton();
+  const clickedBuy = useSelector((state: RootState) =>
+    cartProduct?.id ? state.cart.items[cartProduct.id]?.clickedBuy : false,
+  );
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!products.length) {
+        try {
+          dispatch(loadProductsStart());
+          const response = await fetch('/group_project/api/products.json');
+          const data = await response.json();
+
+          dispatch(loadProductsSuccess(data));
+        } catch (errorFetching: any) {
+          dispatch(loadProductsFailure(errorFetching.message));
+        }
+      }
+    };
+
+    fetchProducts();
+  }, [dispatch, products.length]);
+
+  const handleRemoveFromCart = removeFromCartButton();
   const handleAddToCart = addCartButton(cartProduct);
 
   const handleClick = () => {
@@ -48,14 +81,26 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
     }
   };
 
+  if (loading) {
+    return <div className={styles.loading}>Loading products...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!device || !cartProduct) {
+    return <div className={styles.loading}>Loading device details...</div>;
+  }
+
+  const isAccessory = device.category === 'accessories';
   const validRam = getSeparetedCapacity(cartProduct.ram);
 
   return (
     <div>
       <div className={styles.colorsOptions}>
         <div className={styles.colorsSubtitle}>
-          <span className={styles.subtitle}>Available colors</span>
-
+          <span className={styles.subtitle}>{t('colors')}</span>
           <span className={styles.productId}>{`ID: ${device.id}`}</span>
         </div>
 
@@ -90,9 +135,9 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
       </div>
 
       <div className={styles.paramsOptions}>
-        <span
-          className={styles.subtitle}
-        >{`Select ${isAccessory ? 'size' : 'capacity'}`}</span>
+        <span className={styles.subtitle}>
+          {`${t('select')} ${isAccessory ? `${t('size')}` : `${t('capacity')}`}`}
+        </span>
 
         <div className={styles.paramsButtons}>
           {device.capacityAvailable.map(capacity => {
@@ -103,7 +148,6 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
             );
 
             const validCapacity = getSeparetedCapacity(capacity);
-
             const isSelected = capacity === device.capacity;
 
             return (
@@ -134,15 +178,12 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           onClick={handleClick}
           isActive={clickedBuy}
         >
-          {clickedBuy ? 'Added' : 'Add to cart'}
+          {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
-        <FavoritesButton
-          onClick={() => setClickedFav(!clickedFav)}
-          isActive={clickedFav}
-        >
+        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
           <img
-            src={clickedFav ? filledIcon : blankIcon}
+            src={isFavorite ? filledIcon : blankIcon}
             alt="Add to favorites"
           />
         </FavoritesButton>
@@ -150,22 +191,22 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
       <div className={styles.params}>
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Screen</span>
+          <span className={styles.param}>{t('screen')}</span>
           <span className={styles.paramValue}>{device.screen}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Resolution</span>
+          <span className={styles.param}>{t('resolution')}</span>
           <span className={styles.paramValue}>{device.resolution}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Processor</span>
+          <span className={styles.param}>{t('processor')}</span>
           <span className={styles.paramValue}>{device.processor}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>RAM</span>
+          <span className={styles.param}>{t('ram')}</span>
           <span className={styles.paramValue}>{validRam}</span>
         </div>
       </div>

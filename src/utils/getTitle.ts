@@ -1,14 +1,20 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { DeviceCategory } from '@/enums';
+import { useTranslation } from 'react-i18next';
 
 export const getTitle = (titleCategory: DeviceCategory) => {
+  const { t } = useTranslation();
+
   switch (titleCategory) {
     case DeviceCategory.PHONES:
-      return 'Mobile phones';
+      return t('phones');
     case DeviceCategory.TABLETS:
-      return 'Tablets';
+      return t('tablets');
     case DeviceCategory.ACCESSORIES:
-      return 'Accessories';
+      return t('accessories');
+    case DeviceCategory.SEARCH:
+      return 'Search';
     default:
-      return 'Products';
+      return t('accessories');
   }
 };

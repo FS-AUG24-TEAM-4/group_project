@@ -1,17 +1,25 @@
-import { CategoriesSection } from '@/components/CategoriesSection';
-import styles from './styles.module.scss';
 import { useProducts } from '@/hooks';
-import { NewModelsSwiper } from '@/components/NewModelsSwiper';
-import { HotPricesSwiper } from '@/components/HotPricesSwiper/HotPricesSwiper';
+
+import styles from './styles.module.scss';
+import {
+  NewModelsSwiper,
+  CategoriesSection,
+  HotPricesSwiper,
+  PromoSlider,
+} from '@/components';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage = () => {
   const { products } = useProducts();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>Welcome to Nice Gadgets store!</h1>
+      <h1 className={styles.title}>{t('welcome')}</h1>
 
-      <div className={styles.slider}></div>
+      <div className={styles.slider}>
+        <PromoSlider />
+      </div>
 
       <div className={styles.newModels}>
         <NewModelsSwiper products={products} />

@@ -1,0 +1,74 @@
+@import '@/assets/styles/variables';
+@import '@/assets/styles/mixins';
+@import '@/assets/styles/animations';
+
+.login {
+  display: none;
+  background-image: url(/src/assets/images/icons/Login.svg);
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+
+  transition: background-size $effectDuration;
+
+  &:hover {
+    background-size: 22px 22px;
+  }
+
+  &.isActive {
+    position: relative;
+    color: $primary;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      content: '';
+
+      height: 3px;
+      width: 100%;
+
+      background-color: $primary;
+
+      animation: line-grow 0.3s ease-in-out forwards;
+    }
+  }
+
+  @include onTablet {
+    display: block;
+  }
+}
+
+.burger__footer__auth {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+
+    width: 100%;
+    height: 64px;
+
+    &__active {
+      position: relative;
+      justify-content: center;
+      align-items: center;
+
+      display: flex;
+
+      width: 100%;
+      height: 64px;
+
+      &::after {
+        content: '';
+
+        position: absolute;
+        bottom: 0;
+
+        width: 100%;
+        border-bottom: 2px solid $links-active;
+      }
+    }
+  }
