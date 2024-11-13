@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { InputBase, PaginationItem } from '@mui/material';
 import Select from 'react-select';
 import Pagination from '@mui/material/Pagination';
+import cn from 'classnames';
 
 import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
 import { useProducts } from '@/hooks';
@@ -12,6 +13,7 @@ import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
 import { useSearchBar } from '@/hooks/useSearchBar';
 import { useSortingDropdowns } from '@/hooks/useSortingDropdowns';
+import { useTranslation } from 'react-i18next';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -22,6 +24,8 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
   category,
   searchQuery = '',
 }) => {
+  const { t } = useTranslation();
+
   const { products, loading } = useProducts();
   const { query, setQuery, handleSubmit } = useSearchBar();
   const {
@@ -39,6 +43,8 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
     currentPage,
     isPhone,
   } = useSortingDropdowns();
+  const [, setSearchVisible] = useState(false);
+  const { navigate } = useSearchBar();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -86,6 +92,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
 
   const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
 
+  const foundProducts = products.filter(product =>
+    product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.breadCrumbs}>
@@ -94,16 +104,20 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
 
       <h1 className={styles.title}>{title}</h1>
 
-      <p className={styles.counter_text}>{sortedPhones.length} models</p>
+      <p className={styles.counter_text}>
+        {' '}
+        {sortedPhones.length} {t('models')}
+      </p>
 
       <div className={styles.dropdowns}>
         <div>
-          <p className={styles.sort_by_text}>Sort by</p>
+          <p className={styles.sort_by_text}>{t('Sortby')}</p>
 
           <Select
             styles={customSortingStylesForDropdown}
             options={sortingParams}
             isSearchable={false}
+            placeholder={t('Select')}
             value={showSortingDropdownValue()}
             onChange={value => {
               if (value) {
@@ -122,7 +136,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
         </div>
 
         <div>
-          <p className={styles.sort_by_text}>Items on page</p>
+          <p className={styles.sort_by_text}>{t('itemsOnPage')}</p>
 
           <Select
             styles={customItemDisplayStylesForDropdown}
@@ -153,27 +167,64 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
       </div>
 
       {category === DeviceCategory.SEARCH && (
-        <form
-          className={styles.pageSearchBar}
-          onSubmit={value => handleSubmit(value)}
-        >
-          <InputBase
-            className={styles.pageSearchBarField}
-            placeholder="Search"
-            value={query}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setQuery(event.target.value.trimStart());
-            }}
-          />
-          {query && (
-            <div
-              className={styles.queryField__clearButton}
-              onClick={() => setQuery('')}
-            >
-              x
-            </div>
-          )}
-        </form>
+        <div className={styles.pageSearchBarContainer}>
+          <form
+            className={styles.pageSearchBar}
+            onSubmit={value => handleSubmit(value)}
+          >
+            <InputBase
+              className={styles.pageSearchBarField}
+              placeholder="Search"
+              value={query}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setQuery(event.target.value.trimStart());
+              }}
+            />
+            {query && (
+              <div
+                className={styles.queryField__clearButton}
+                onClick={() => setQuery('')}
+              >
+                x
+              </div>
+            )}
+          </form>
+          <div
+            className={cn({
+              [styles.queryField__list]: query,
+              [styles.queryField__list__off]: !query,
+            })}
+          >
+            <ul>
+              {foundProducts.length ? (
+                <>
+                  {foundProducts.map(product => (
+                    <li
+                      className={styles.queryField__list__element}
+                      key={product.id}
+                      onClick={() => {
+                        navigate(`/${product.category}/${product.itemId}`);
+                        setQuery('');
+                        setSearchVisible(false);
+                      }}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        style={{ height: '38px', marginRight: '8px' }}
+                      />
+                      {product.name}
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <li className={styles.queryField__list__element__empty}>
+                  No devices found
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
       )}
 
       {loading ? (

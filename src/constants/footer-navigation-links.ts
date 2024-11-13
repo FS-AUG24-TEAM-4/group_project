@@ -4,11 +4,11 @@ export const FooterNavigationLinks = [
     route: 'https://github.com/FS-AUG24-TEAM-4/group_project',
   },
   {
-    title: 'Contacts',
-    route: '/',
+    title: 'creators',
+    route: '/creators',
   },
   {
-    title: 'Rights',
-    route: '/',
+    title: 'rights',
+    route: '/rights',
   },
 ];

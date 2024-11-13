@@ -123,3 +123,117 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+.pageSearchBarContainer {
+  position: relative;
+
+  @include onTabletWide {
+    display: none;
+  }
+}
+
+.queryField {
+  border: 1px solid $elements;
+  border-radius: 10px;
+  padding-inline: 5px;
+  opacity: 0;
+  width: 0;
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+
+  &__clearButton {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 3px 5px;
+    color: grey;
+
+    // @include onTablet {
+    //   top: 4px;
+    //   right: 5px;
+    // }
+  }
+
+  &__list__off {
+    display: none;
+  }
+
+  &__list {
+    position: absolute;
+    top: 50px;
+
+    width: 100%;
+    z-index: 2;
+    background-color: white;
+    border: 1px solid $elements;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    @include onTablet {
+      width: 70%;
+      left: 15%;
+    }
+
+    &__element {
+      margin-bottom: 10px;
+      font-size: 10px;
+      display: flex;
+      padding-left: 27px;
+      text-align: center;
+      align-items: center;
+
+      transition-duration: 0.5s;
+
+      @include onTablet {
+        padding-left: 50px;
+      }
+
+      &:first-child {
+        margin-top: 7px;
+      }
+
+      &:last-child {
+        margin-bottom: 7px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.06);
+      }
+
+      &__empty {
+        margin-bottom: 5px;
+        font-size: small;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+.queryField.visible {
+  display: none;
+  opacity: 1;
+
+  @include onTabletWide {
+    display: block;
+    width: 150px;
+  }
+
+  @include onDesktop {
+    width: 200px;
+  }
+}

@@ -3,15 +3,19 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import InputBase from '@mui/material/InputBase';
+import { RootState } from '@/app/store';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
-import { RootState } from '@/app/store';
 import { Paths } from '@/enums';
+import { getCartProducts, getCartProductsQuantity } from '@/utils';
 
 import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
+import { Indicator } from '../Indicator';
+import { LangSelector } from '../LangSelector/LangSelector';
+import { AuthButton } from '../AuthButton/';
 
 import { useSearchBar } from '@/hooks/useSearchBar';
 import { useProducts } from '@/hooks';
@@ -37,6 +41,12 @@ export const Header = () => {
   const foundProducts = products.filter(product =>
     product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
   );
+  const favItems = useSelector((state: RootState) => state.favorites.items);
+  const favItemsCount = Object.keys(favItems).length;
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartProducts = getCartProducts(cartItems);
+  const cartItemsCount = getCartProductsQuantity(cartProducts);
 
   return (
     <header className={styles.header}>
@@ -56,6 +66,7 @@ export const Header = () => {
             className={styles.logoImage}
           ></img>
         </Link>
+
         <Navigation links={HeaderNavigationLinks} />
       </div>
 
@@ -138,16 +149,38 @@ export const Header = () => {
             })}
           ></div>
         </div>
-        <NavLink
-          to={Paths.FAVORITES}
-          className={navData => getIconLinkClassName(navData, styles.favorites)}
-        ></NavLink>
+        <div className={styles.lang}>
+          <LangSelector />
+        </div>
+        <div>
+          <NavLink
+            to={Paths.FAVORITES}
+            className={navData =>
+              getIconLinkClassName(navData, styles.favorites)
+            }
+          >
+            {!!favItemsCount && (
+              <div className={styles.indicator}>
+                <Indicator>{favItemsCount}</Indicator>
+              </div>
+            )}
+          </NavLink>
+        </div>
+
         <NavLink
           to={Paths.CART}
           className={navData =>
             getIconLinkClassName(navData, styles.shoppingBag)
           }
-        ></NavLink>
+        >
+          {!!cartItemsCount && (
+            <div className={styles.indicator}>
+              <Indicator>{cartItemsCount}</Indicator>
+            </div>
+          )}
+        </NavLink>
+
+        <AuthButton className={styles.iconLink} />
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

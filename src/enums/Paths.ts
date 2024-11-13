@@ -10,4 +10,5 @@ export enum Paths {
   TABLET = '/tablets/:productId',
   ACCESSORIE = '/accessories/:productId',
   SEARCH = '/search',
+  AUTHENTICATION = '/authentication',
 }

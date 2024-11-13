@@ -1,0 +1,21 @@
+@import '../../assets/styles/variables';
+
+.indicator {
+  width: 14px;
+  height: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  border: 1px solid $white;
+  border-radius: 50%;
+
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 11.5px;
+
+  color: $white;
+  background-color: $secondary-accent;
+}

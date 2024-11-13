@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { concatTextInSections } from '@/utils/concatTextInSections';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   description: Array<{ title: string; text: string[] }>;
 }
 
 export const AboutSection: React.FC<Props> = ({ description }) => {
+  const { t } = useTranslation();
+
   const SECTION_ONE = description[0];
   const SECTION_TWO = description[1];
   const SECTION_THREE = description[2];
@@ -17,7 +20,7 @@ export const AboutSection: React.FC<Props> = ({ description }) => {
 
   return (
     <div className={styles.about}>
-      <h3 className={styles.title}>About</h3>
+      <h3 className={styles.title}>{t('about')}</h3>
 
       <div className={styles.line}></div>
 

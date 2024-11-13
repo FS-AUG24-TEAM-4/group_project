@@ -28,3 +28,4 @@ tsconfig.json
 tsconfig.node.json
 vite.config.d.ts
 vite.config.ts
+tsconfig.node.tsbuildinfo

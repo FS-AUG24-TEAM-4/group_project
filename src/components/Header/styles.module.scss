@@ -1,5 +1,6 @@
 @import '/src/assets/styles/variables';
 @import '/src/assets/styles/mixins';
+@import '/src/assets/styles/animations';
 
 .header {
   display: flex;
@@ -139,9 +140,13 @@
   display: none;
   opacity: 1;
 
-  @include onTabletWide {
+  @include onTabletMiddWide {
     display: block;
-    width: 150px;
+    width: 70px;
+  }
+
+  @include onTabletHighWide {
+    width: 120px;
   }
 
   @include onDesktop {
@@ -169,17 +174,20 @@
 .favorites,
 .searchIcon,
 .queryFieldMobile,
-.shoppingBag {
+.shoppingBag,
+.lang {
+  position: relative;
+
   display: none;
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: 16px 16px;
 
-  transition: background-size $effectDuration;
+  transition: background-color $effectDuration;
 
   &:hover {
-    background-size: 22px 22px;
+    background-color: $elements;
   }
 
   &.isActive {
@@ -190,10 +198,15 @@
       position: absolute;
       bottom: 0;
       left: 0;
+
       content: '';
+
       height: 3px;
       width: 100%;
+
       background-color: $primary;
+
+      animation: line-grow 0.3s ease-in-out forwards;
     }
   }
 
@@ -254,4 +267,17 @@
 
 .queryFieldMobile {
   background-image: url(/src/assets/images/icons/search-icon.svg);
+}
+
+.indicator {
+  position: absolute;
+
+  @include onTablet {
+    top: 20%;
+    left: 49%;
+  }
+
+  @include onDesktop {
+    top: 28%;
+  }
 }

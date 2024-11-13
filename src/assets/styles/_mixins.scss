@@ -4,6 +4,18 @@
   }
 }
 
+@mixin onTabletMiddWide {
+  @media (min-width: 641px) {
+    @content;
+  }
+}
+
+@mixin onTabletHighWide {
+  @media (min-width: 871px) {
+    @content;
+  }
+}
+
 @mixin onTabletWide {
   @media (min-width: 768px) {
     @content;

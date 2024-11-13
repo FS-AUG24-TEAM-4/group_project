@@ -28,3 +28,5 @@ export * from './ProductPhotosSlider';
 export * from './EmptyPage';
 export * from './Skeleton';
 export * from './PromoSlider';
+export * from './Indicator';
+export * from './AuthButton';
