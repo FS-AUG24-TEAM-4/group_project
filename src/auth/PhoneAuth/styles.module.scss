@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables';
+
 .phoneAuth {
   display: flex;
   flex-direction: column;
@@ -37,7 +39,8 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #e68a00;
+    cursor: pointer;
+    box-shadow: 0px 3px 13px 0px $shadow;
   }
 
   &:active {
