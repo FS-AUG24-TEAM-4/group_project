@@ -4,6 +4,8 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
   GithubAuthProvider,
+  RecaptchaVerifier,
+  FacebookAuthProvider,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -21,4 +23,22 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const appleProvider = new OAuthProvider('apple.com');
 export const githubProvider = new GithubAuthProvider();
+export const facebookProvider = new FacebookAuthProvider();
+export const setupRecaptcha = (containerId: string): RecaptchaVerifier => {
+  if (!auth) {
+    throw new Error('Firebase auth не ініціалізовано');
+  }
+
+  const recaptchaVerifier = new RecaptchaVerifier(auth, containerId, {
+    size: 'invisible',
+    callback: () => {},
+  });
+
+  recaptchaVerifier.render();
+
+  auth.settings.appVerificationDisabledForTesting = false;
+
+  return recaptchaVerifier;
+};
+
 export default app;
