@@ -42,7 +42,7 @@ export const AuthButton: FC<AuthButtonProps> = ({
   const isActive = location.pathname === Paths.AUTHENTICATION;
 
   if (isLoggedIn) {
-    return <Logout className={className} type="burger" />;
+    return <Logout className={className} type={type} />;
   }
 
   return (
