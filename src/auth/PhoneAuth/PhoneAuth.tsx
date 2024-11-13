@@ -3,6 +3,7 @@ import { ConfirmationResult, signInWithPhoneNumber } from 'firebase/auth';
 import { auth, setupRecaptcha } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
+import { SuccessSnackbar, ErrorSnackbar } from '@/components/';
 
 export const PhoneAuth: React.FC = () => {
   const [phone, setPhone] = useState('');
@@ -10,13 +11,19 @@ export const PhoneAuth: React.FC = () => {
   const [confirmationResult, setConfirmationResult] =
     useState<ConfirmationResult | null>(null);
   const [isCodeSent, setIsCodeSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const navigate = useNavigate();
 
   const handleSendCode = async () => {
-    setError(null);
+    setErrorMessage('');
     if (!phone) {
-      return setError('Enter the phone number');
+      setErrorMessage('Enter the phone number');
+      setOpenError(true);
+
+      return;
     }
 
     try {
@@ -29,8 +36,11 @@ export const PhoneAuth: React.FC = () => {
 
       setConfirmationResult(confirmation);
       setIsCodeSent(true);
+      setSuccessMessage('Code sent successfully!');
+      setOpenSuccess(true);
     } catch (err) {
-      setError((err as Error).message);
+      setErrorMessage((err as Error).message);
+      setOpenError(true);
     }
   };
 
@@ -38,11 +48,18 @@ export const PhoneAuth: React.FC = () => {
     if (confirmationResult && code) {
       try {
         await confirmationResult.confirm(code);
-        alert('Loged in succesfully!');
-        navigate('/');
+        setSuccessMessage('Logged in successfully!');
+        setOpenSuccess(true);
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
       } catch (err) {
-        setError('Wrong number, try again');
+        setErrorMessage('Wrong code, try again');
+        setOpenError(true);
       }
+    } else {
+      setErrorMessage('Please enter the code');
+      setOpenError(true);
     }
   };
 
@@ -76,7 +93,24 @@ export const PhoneAuth: React.FC = () => {
           </button>
         </>
       )}
-      {error && <p className={styles.error}>{error}</p>}
+
+      {/* Відображення помилки */}
+      {errorMessage && (
+        <ErrorSnackbar
+          open={openError}
+          onClose={() => setOpenError(false)}
+          message={errorMessage}
+        />
+      )}
+
+      {/* Відображення успіху */}
+      {successMessage && (
+        <SuccessSnackbar
+          open={openSuccess}
+          onClose={() => setOpenSuccess(false)}
+          message={successMessage}
+        />
+      )}
     </div>
   );
 };
