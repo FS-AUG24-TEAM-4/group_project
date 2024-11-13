@@ -4,6 +4,8 @@ import { auth, Logout } from '../../auth/';
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import { Paths } from '@/enums';
+import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
+import { useDispatch } from 'react-redux';
 
 interface AuthButtonProps {
   className?: string;
@@ -17,6 +19,7 @@ export const AuthButton: FC<AuthButtonProps> = ({
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -30,10 +33,16 @@ export const AuthButton: FC<AuthButtonProps> = ({
     return () => unsubscribe();
   }, [navigate]);
 
+  const handleClick = () => {
+    if (type === 'burger') {
+      dispatch(changeBurgerState());
+    }
+  };
+
   const isActive = location.pathname === Paths.AUTHENTICATION;
 
   if (isLoggedIn) {
-    return <Logout className={className} />;
+    return <Logout className={className} type="burger" />;
   }
 
   return (
@@ -44,6 +53,7 @@ export const AuthButton: FC<AuthButtonProps> = ({
         [styles.isActive]: isActive,
         burger__footer__auth: type === 'burger',
       })}
+      onClick={handleClick}
     ></Link>
   );
 };
