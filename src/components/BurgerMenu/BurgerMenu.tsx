@@ -99,7 +99,7 @@ export const BurgerMenu = () => {
           )}
         </NavLink>
 
-        <AuthButton className={styles.burger__footer__links} type={'burger'} />
+        <AuthButton className={styles.burger__footer__links} />
       </footer>
     </menu>
   );

@@ -84,6 +84,7 @@ export const Header = () => {
             }
           }}
         />
+
         <div className={styles.searchContainer}>
           <form
             className={styles.queryFieldContainer}

@@ -263,6 +263,10 @@
 
 .searchIcon {
   background-image: url(/src/assets/images/icons/search-icon.svg);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .queryFieldMobile {
