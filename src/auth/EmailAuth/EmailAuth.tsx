@@ -12,6 +12,7 @@ import { AuthErrors } from '@/enums/AuthErrors';
 import { SuccessSnackbar } from '@/components/SuccessSnackbar/SuccessSnackbar';
 import { ErrorSnackbar } from '@/components/ErrorSnackbar/ErrorSnackbar';
 import { useTranslation } from 'react-i18next';
+import { PrimaryButtons } from '@/enums';
 
 export const EmailAuth: React.FC = () => {
   const { t } = useTranslation();
@@ -105,8 +106,18 @@ export const EmailAuth: React.FC = () => {
       />
 
       <div className={styles.buttons}>
-        <PrimaryButton onClick={handleSignIn}>{t('signIn')}</PrimaryButton>
-        <PrimaryButton onClick={handleSignUp}>{t('signUp')}</PrimaryButton>
+        <PrimaryButton
+          type={PrimaryButtons.CONFIRMCHECKOUT}
+          onClick={handleSignIn}
+        >
+          {t('signIn')}
+        </PrimaryButton>
+        <PrimaryButton
+          type={PrimaryButtons.CONFIRMCHECKOUT}
+          onClick={handleSignUp}
+        >
+          {t('signUp')}
+        </PrimaryButton>
       </div>
 
       <SuccessSnackbar

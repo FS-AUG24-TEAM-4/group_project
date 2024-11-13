@@ -101,7 +101,7 @@ i18n.use(initReactI18next).init({
         email: 'Ел. пошта',
         password: 'Пароль',
         signIn: 'Увійти',
-        signUp: 'Зареєструватись',
+        signUp: 'Реєстрація',
         orSignInWithPhone: 'або увійдіть через телефон',
         noDevicesFound: 'Товарів не знайдено',
         search: 'Пошук',
