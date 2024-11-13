@@ -50,7 +50,9 @@ export const PhoneAuth: React.FC = () => {
         await confirmationResult.confirm(code);
         setSuccessMessage('Logged in successfully!');
         setOpenSuccess(true);
-        navigate('/');
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
       } catch (err) {
         setErrorMessage('Wrong code, try again');
         setOpenError(true);

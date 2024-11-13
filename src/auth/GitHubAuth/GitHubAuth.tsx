@@ -16,7 +16,9 @@ export const GitHubAuth: React.FC = () => {
     try {
       await signInWithPopup(auth, githubProvider);
       setOpenSuccess(true);
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
       setErrorMessage(`GitHub sign-in error: ${(error as Error).message}`);
       setOpenError(true);

@@ -17,7 +17,9 @@ export const FacebookAuth: React.FC = () => {
     try {
       await signInWithPopup(auth, facebookProvider);
       setOpenSuccess(true);
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
       setErrorMessage(`Facebook sign-in error: ${(error as Error).message}`);
       setOpenError(true);
