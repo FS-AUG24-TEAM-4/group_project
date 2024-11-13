@@ -12,6 +12,7 @@ import {
   AuthPage,
 } from './pages';
 import App from './App';
+import { SearchPage } from './pages/SearchPage/SearchPage';
 import { AuthProvider } from './auth/AuthContext';
 
 export const Root = () => {
@@ -22,7 +23,16 @@ export const Root = () => {
           <Route path={Paths.HOME} element={<App />}>
             <Route index element={<HomePage />} />
 
+            <Route path={Paths.SEARCH}>
+              <Route index element={<SearchPage />} />
+            </Route>
             <Route path={'/authentication'} element={<AuthPage />} />
+
+            <Route
+              index
+              element={<ProductsCatalog category={DeviceCategory.PHONES} />}
+            />
+            <Route path={Paths.PHONE} element={<ProductPage />} />
 
             <Route path={Paths.PHONES}>
               <Route
