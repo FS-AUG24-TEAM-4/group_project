@@ -18,6 +18,7 @@ import { LangSelector } from '../LangSelector/LangSelector';
 import { AuthButton } from '../AuthButton/';
 
 import { useProducts, useSearchBar } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -28,6 +29,8 @@ const getIconLinkClassName = (
   });
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   const { query, setQuery, handleSubmit, navigate } = useSearchBar();
   const { products } = useProducts();
   const [isSearchVisible, setSearchVisible] = useState(false);
@@ -88,7 +91,7 @@ export const Header = () => {
               className={cn(styles.queryField, {
                 [styles.visible]: isSearchVisible,
               })}
-              placeholder="Search"
+              placeholder={t('Search')}
               value={query}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setQuery(event.target.value.trimStart());
@@ -134,7 +137,7 @@ export const Header = () => {
                   </>
                 ) : (
                   <li className={styles.queryField__list__element__empty}>
-                    No devices found
+                    {t('noDevicesFound')}
                   </li>
                 )}
               </ul>

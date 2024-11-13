@@ -18,7 +18,6 @@ import { Paths } from '@/enums';
 import { LangSelector } from '../LangSelector/LangSelector';
 import { useTranslation } from 'react-i18next';
 
-
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
     [styles.burger__nav__links__active]: isActive,

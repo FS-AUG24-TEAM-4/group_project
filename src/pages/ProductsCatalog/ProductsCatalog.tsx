@@ -65,8 +65,8 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
   const title =
     category === DeviceCategory.SEARCH
       ? searchQuery
-        ? `Search: "${searchQuery}"`
-        : 'Search'
+        ? `${t('Search')}: "${searchQuery}"`
+        : `${t('Search')}`
       : getTitle(category);
 
   const sortedPhones = sortDevices(productsOnPage, sortParams);
@@ -174,7 +174,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
           >
             <InputBase
               className={styles.pageSearchBarField}
-              placeholder="Search"
+              placeholder={t('Search')}
               value={query}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setQuery(event.target.value.trimStart());
@@ -221,7 +221,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
                 </>
               ) : (
                 <li className={styles.queryField__list__element__empty}>
-                  No devices found
+                  {t('noDevicesFound')}
                 </li>
               )}
             </ul>

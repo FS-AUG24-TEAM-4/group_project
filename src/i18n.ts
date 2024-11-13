@@ -5,6 +5,9 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        noDevicesFound: 'No devices found',
+        search: 'Search',
+        Search: 'Search',
         thankYouForPurchase: 'Thank you for purchase!',
         completePurchase: 'Complete your purchase',
         None: 'None',
@@ -84,6 +87,9 @@ i18n.use(initReactI18next).init({
     },
     ua: {
       translation: {
+        noDevicesFound: 'Товарів не знайдено',
+        search: 'Пошук',
+        Search: 'Пошук',
         thankYouForPurchase: 'Дякуємо за купівлю!',
         completePurchase: 'Підтвердіть купівлю',
         None: 'Нічим',

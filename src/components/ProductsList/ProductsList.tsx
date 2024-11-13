@@ -6,6 +6,7 @@ import { getProductPath } from '@/utils';
 
 import { ProductCard } from '../ProductCard';
 import styles from './styles.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   paginationOfDevice: Product[];
@@ -16,10 +17,12 @@ export const ProductsList: React.FC<Props> = ({
   paginationOfDevice,
   category,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {category === DeviceCategory.SEARCH && paginationOfDevice.length === 0 ? (
-        <div className={styles.emptySearchContainer}>No devices found</div>
+        <div className={styles.emptySearchContainer}>{t('noDevicesFound')}</div>
       ) : (
         <article className={styles.device_list}>
           {paginationOfDevice.map(device => (
