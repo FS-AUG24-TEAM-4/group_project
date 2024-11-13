@@ -12,3 +12,6 @@ export * from './getQuantityByCategory';
 export * from './getTitle';
 export * from './replaceParamsInPathname';
 export * from './getFavoritesProducts';
+export * from './getCountOfProducts';
+export * from './getTopDiscountProducts';
+export * from './getCountOfProductsForCart';

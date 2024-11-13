@@ -4,7 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Paths, SliderButtons, InnerSliderBtn } from '@/enums';
@@ -16,6 +16,13 @@ import adVideo from '/src/assets/media/iphone-14-video.mp4';
 
 export const PromoSlider = () => {
   const swiperRef = useRef<SwiperRef | null>(null);
+  const video = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (video && video.current?.paused) {
+      video.current?.play();
+    }
+  }, []);
 
   return (
     <div>
@@ -35,10 +42,13 @@ export const PromoSlider = () => {
           <SwiperSlide>
             <Link to={'/phones/apple-iphone-14-pro-512gb-spaceblack'}>
               <video
+                ref={video}
                 className={cn(styles.slide, styles.firstSlide)}
                 autoPlay
                 muted
                 loop
+                playsInline
+                preload="auto"
               >
                 <source src={adVideo} type="video/mp4" />
               </video>

@@ -6,12 +6,14 @@ import { getCapitalizedWord } from '@/utils';
 
 import styles from './styles.module.scss';
 import homeIcon from '@/assets/images/icons/home.svg';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   productName?: string;
 }
 
 export const BreadCrumbs: FC<Props> = ({ productName }) => {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
 
   const pages = pathname.split('/').slice(1);
@@ -24,6 +26,7 @@ export const BreadCrumbs: FC<Props> = ({ productName }) => {
 
       {pages.map((page, index) => {
         const isCurrentPage = index === pages.length - 1;
+        const nameOfPageInBreadCrumbs = getCapitalizedWord(t(page));
 
         return (
           <div className={styles.pageBlock} key={page}>
@@ -31,14 +34,14 @@ export const BreadCrumbs: FC<Props> = ({ productName }) => {
 
             {isCurrentPage ? (
               <span className={styles.currentPage}>
-                {productName ? productName : getCapitalizedWord(page)}
+                {productName ? productName : nameOfPageInBreadCrumbs}
               </span>
             ) : (
               <Link
                 className={styles.previousPage}
                 to={pathname.slice(0, pathname.lastIndexOf('/'))}
               >
-                {getCapitalizedWord(page)}
+                {getCapitalizedWord(t(page))}
               </Link>
             )}
           </div>

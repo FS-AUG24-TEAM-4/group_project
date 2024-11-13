@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 
-import { useCart } from '@/hooks';
+import { useCart, useFavorites } from '@/hooks';
 import { toggleClickedBuy } from '@/features/сart/сartSlice';
 import {
   loadProductsStart,
@@ -23,6 +23,7 @@ import { ColorButton } from '../ColorButton';
 import { ParameterButton } from '../ParameterButton';
 import { PrimaryButton } from '../PrimaryButton';
 import { FavoritesButton } from '../FavoritesButton';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   device: Device | null;
@@ -30,10 +31,17 @@ interface Props {
 }
 
 export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const location = useLocation();
   const { addCartButton, removeFromCartButton } = useCart();
-  const [clickedFav, setClickedFav] = useState(false);
+
+  const { toggleFavorite } = useFavorites();
+
+  const { handleToggleFavorite, isFavorite } = cartProduct
+    ? toggleFavorite(cartProduct)
+    : { handleToggleFavorite: () => {}, isFavorite: false };
 
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products,
@@ -52,8 +60,8 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           const data = await response.json();
 
           dispatch(loadProductsSuccess(data));
-        } catch (errorFething: any) {
-          dispatch(loadProductsFailure(errorFething.message));
+        } catch (errorFetching: any) {
+          dispatch(loadProductsFailure(errorFetching.message));
         }
       }
     };
@@ -92,7 +100,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
     <div>
       <div className={styles.colorsOptions}>
         <div className={styles.colorsSubtitle}>
-          <span className={styles.subtitle}>Available colors</span>
+          <span className={styles.subtitle}>{t('colors')}</span>
           <span className={styles.productId}>{`ID: ${device.id}`}</span>
         </div>
 
@@ -128,7 +136,7 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
       <div className={styles.paramsOptions}>
         <span className={styles.subtitle}>
-          {`Select ${isAccessory ? 'size' : 'capacity'}`}
+          {`${t('select')} ${isAccessory ? `${t('size')}` : `${t('capacity')}`}`}
         </span>
 
         <div className={styles.paramsButtons}>
@@ -170,15 +178,12 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           onClick={handleClick}
           isActive={clickedBuy}
         >
-          {clickedBuy ? 'Added' : 'Add to cart'}
+          {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
-        <FavoritesButton
-          onClick={() => setClickedFav(!clickedFav)}
-          isActive={clickedFav}
-        >
+        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
           <img
-            src={clickedFav ? filledIcon : blankIcon}
+            src={isFavorite ? filledIcon : blankIcon}
             alt="Add to favorites"
           />
         </FavoritesButton>
@@ -186,22 +191,22 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
 
       <div className={styles.params}>
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Screen</span>
+          <span className={styles.param}>{t('screen')}</span>
           <span className={styles.paramValue}>{device.screen}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Resolution</span>
+          <span className={styles.param}>{t('resolution')}</span>
           <span className={styles.paramValue}>{device.resolution}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>Processor</span>
+          <span className={styles.param}>{t('processor')}</span>
           <span className={styles.paramValue}>{device.processor}</span>
         </div>
 
         <div className={styles.paramWrapper}>
-          <span className={styles.param}>RAM</span>
+          <span className={styles.param}>{t('ram')}</span>
           <span className={styles.paramValue}>{validRam}</span>
         </div>
       </div>
