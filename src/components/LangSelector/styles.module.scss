@@ -7,9 +7,12 @@
   cursor: pointer;
   padding: 10px;
   transition: transform 0.3s;
-  border-left: 1px solid $elements;
 
   box-sizing: border-box;
+
+  @include onTablet {
+    border-left: 1px solid $elements;
+  }
 
   @include onDesktop {
     width: 64px;
