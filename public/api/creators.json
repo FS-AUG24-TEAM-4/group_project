@@ -5,7 +5,7 @@
     "age": 20,
     "skills": "Music, Programming",
     "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
-    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+    "photo": "public/img/creators/andrii-picture.jpg"
   },
   {
     "id": "vasilyazhenko-dmytro",
@@ -21,7 +21,7 @@
     "age": 23,
     "skills": "Programming",
     "Linkedin": "https://www.linkedin.com/in/valerii-omelnyk",
-    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+    "photo": "public/img/creators/valera-picture.jpg"
   },
   {
     "id": "coldmelnyk",
@@ -29,14 +29,14 @@
     "age": 23,
     "skills": "Sound-engineering, Coding",
     "Linkedin": "https://www.linkedin.com/in/yevhenii-melnyk-a85213312/",
-    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+    "photo": "public/img/creators/yevhenii-picture.jpg"
   },
   {
-    "id": "pikalov-andrii",
-    "name": "Pikalov Andrii",
-    "age": 20,
-    "skills": "Music, Programming",
-    "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
-    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+    "id": "anna-maksai",
+    "name": "Anna Maksai",
+    "age": "25",
+    "skills": "Programming",
+    "Linkedin": "https://www.linkedin.com/in/anna-maksai-b4643321a/",
+    "photo": "public/img/creators/anna-picture.jpg"
   }
 ]

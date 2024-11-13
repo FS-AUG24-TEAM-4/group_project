@@ -1,4 +1,3 @@
-@import '/src/assets/styles/variables';
 @import '../../assets/styles/mixins';
 
 .container {
@@ -6,7 +5,6 @@
   flex-direction: column;
   justify-content: center;
   display: flex;
-  // that needs for centering on iPhones
   margin: 0 auto;
 
   padding-top: 24px;
@@ -15,19 +13,13 @@
   margin: 0 auto;
 }
 
-.breadCrumbs {
-  margin-bottom: 24px;
-
-  @include onTablet {
-    margin-bottom: 40px;
-  }
-}
-
 .title {
+  margin-top: 40px;
   margin-bottom: 8px;
   font-size: 32px;
   line-height: 41px;
   letter-spacing: -0.01em;
+  font-weight: 800;
 
   @include onTablet {
     font-size: 48px;
@@ -35,48 +27,40 @@
   }
 }
 
-.counter_text {
-  margin-bottom: 32px;
-  color: $secondary;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-}
-
-.dropdowns {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
-  width: fit-content;
-}
-
-.sort_by_text {
-  margin-bottom: 4px;
-  font-size: 12px;
-  line-height: 15.34px;
-  color: $secondary;
-}
-
 .device_list {
   display: grid;
   gap: 40px 16px;
-
   justify-items: center;
+  align-self: flex-start;
 
-  justify-self: center;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    'card1 card2'
+    'card3 card4'
+    'card5 card5';
 
-  grid-template-columns: repeat(1, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   @include onTablet {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'card1 card2 card3'
+      'card4 card5 card5';
   }
 
   @include onTabletWide {
     grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'card1 card2 card3'
+      'card4 card5';
   }
 
   @include onDesktop {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr); // 5 карток в одному ряду
+    grid-template-areas: unset; // Відключаємо grid-template-areas, оскільки ми вже встановили 5 колонок
   }
 }

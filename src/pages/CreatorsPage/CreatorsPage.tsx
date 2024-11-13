@@ -1,5 +1,6 @@
 import { CreatorCard } from '@/components/CreatorsCard/CreatorsCard';
 import { useEffect, useState } from 'react';
+import styles from './styles.module.scss';
 
 export interface CreatorsType {
   id: string;
@@ -20,10 +21,13 @@ export const CreatorsPage = () => {
   }, []);
 
   return (
-    <div>
-      {people.map(creator => (
-        <CreatorCard key={creator.id} creator={creator} />
-      ))}
+    <div className={styles.container}>
+      <div className={styles.title}>Creators</div>
+      <div className={styles.device_list}>
+        {people.map(creator => (
+          <CreatorCard key={creator.id} creator={creator} />
+        ))}
+      </div>
     </div>
   );
 };
