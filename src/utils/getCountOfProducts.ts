@@ -1,10 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Product } from '@/types';
-import { useTranslation } from 'react-i18next';
 
-export const getCountOfProducts = (favProducts: Product[]) => {
+export const getCountOfProducts = (
+  favProducts: Product[],
+  t: (key: string) => string,
+) => {
   const quantity = favProducts.length;
-  const { t } = useTranslation();
 
   if (quantity === 1) {
     return `${quantity} ${t('model')}`;
