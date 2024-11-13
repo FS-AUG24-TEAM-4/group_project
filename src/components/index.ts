@@ -32,3 +32,4 @@ export * from './Indicator';
 export * from './AuthButton';
 export * from './ErrorSnackbar';
 export * from './SuccessSnackbar';
+export * from './LogoutConfirmationModal';
