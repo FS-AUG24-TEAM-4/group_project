@@ -8,10 +8,17 @@ import {
   PromoSlider,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 export const HomePage = () => {
-  const { products } = useProducts();
+  const { products, fetchProducts } = useProducts();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (!products.length) {
+      fetchProducts();
+    }
+  }, [products.length]);
 
   return (
     <div className={styles.wrapper}>

@@ -35,7 +35,7 @@ function App() {
           <main className={styles.main}>
             <TransitionGroup>
               <CSSTransition
-                key={location.pathname}
+                key={location.pathname.split('/')[1]}
                 timeout={700}
                 classNames={{
                   enter: styles['fade-enter'],

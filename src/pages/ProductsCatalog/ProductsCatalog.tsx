@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { InputBase, PaginationItem } from '@mui/material';
 import Select from 'react-select';
 import Pagination from '@mui/material/Pagination';
@@ -26,7 +26,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { products, loading } = useProducts();
+  const { products, loading, fetchProducts } = useProducts();
   const { query, setQuery, handleSubmit } = useSearchBar();
   const {
     setSearchParams,
@@ -95,6 +95,12 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
   const foundProducts = products.filter(product =>
     product.name.toLowerCase().includes(query.toLowerCase().trimStart()),
   );
+
+  useEffect(() => {
+    if (!products.length) {
+      fetchProducts();
+    }
+  }, [products.length]);
 
   return (
     <div className={styles.container}>

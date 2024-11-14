@@ -66,7 +66,7 @@ export const ProductPage = () => {
   }, [category, slug]);
 
   if (!device) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
