@@ -87,7 +87,7 @@ const ProductSkeleton = () => {
   );
 };
 
-export const SkeletonGrid = ({ itemsCount }: { itemsCount: number }) => (
+export const SkeletonSlider = ({ itemsCount }: { itemsCount: number }) => (
   <div className={styles.grid}>
     {[...Array(itemsCount)].map((_, index) => (
       <ProductSkeleton key={index} />

@@ -4,7 +4,7 @@ import Select from 'react-select';
 import Pagination from '@mui/material/Pagination';
 import cn from 'classnames';
 
-import { BreadCrumbs, ProductsList, SkeletonGrid } from '@/components';
+import { BreadCrumbs, ProductsList, SkeletonCatalog } from '@/components';
 import { useProducts } from '@/hooks';
 import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
@@ -230,7 +230,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
       )}
 
       {loading ? (
-        <SkeletonGrid itemsCount={Number(devicesPerPage)} />
+        <SkeletonCatalog itemsCount={Number(devicesPerPage)} />
       ) : (
         <ProductsList
           paginationOfDevice={paginationOfDevice}
