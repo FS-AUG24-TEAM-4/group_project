@@ -19,12 +19,17 @@
 
   @include onTablet {
     width: 32px;
-    height: 190px;
+    height: calc(100vw * (190 / 640));
 
     display: block;
   }
 
   @include onDesktop {
     height: 400px;
+  }
+
+  [theme-mode='dark'] & {
+    background-color: $secondary-dm;
+    border-color: $primary;
   }
 }

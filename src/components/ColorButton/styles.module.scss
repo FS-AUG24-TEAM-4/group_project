@@ -15,6 +15,14 @@
 
   &:hover {
     border-color: $icons;
+
+    [theme-mode='dark'] & {
+      border-color: $white-dm;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $primary;
   }
 }
 
@@ -26,8 +34,16 @@
   border-radius: 36px;
 
   cursor: pointer;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .selected {
   border: 1px solid $primary;
+
+  [theme-mode='dark'] & {
+    border-color: $white-dm;
+  }
 }

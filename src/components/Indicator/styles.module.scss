@@ -18,4 +18,8 @@
 
   color: $white;
   background-color: $secondary-accent;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }

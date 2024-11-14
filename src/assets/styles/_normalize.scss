@@ -8,10 +8,36 @@ body {
   font-family: 'Mont', sans-serif;
 
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+[theme-mode='dark'] {
+  ::-webkit-scrollbar {
+    background-color: $secondary-dm;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $secondary-dm-light;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: $elements-dm;
+  }
+
+  ::-webkit-scrollbar-button {
+    background-color: $secondary-dm;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: $secondary-dm;
+  }
 }

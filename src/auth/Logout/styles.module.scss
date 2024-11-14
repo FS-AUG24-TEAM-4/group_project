@@ -6,6 +6,8 @@
   background-color: transparent;
   cursor: pointer;
 
+  transition: background-color $effectDuration;
+
   &::after {
     content: '';
     position: absolute;
@@ -23,8 +25,8 @@
   }
 
   &:hover {
-    &::after {
-      transform: translate(-50%, -50%) scale(1.4);
+    [theme-mode='dark'] & {
+      background-color: $links-active;
     }
   }
 
@@ -36,4 +38,8 @@
 .logout::after {
   background-image: url(/src/assets/images/icons/Logout.svg);
   background-repeat: no-repeat;
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/Logout.svg);
+  }
 }

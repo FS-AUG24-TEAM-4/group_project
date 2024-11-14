@@ -14,14 +14,24 @@
     width: 100%;
     padding: 15px;
     margin: 10px 0;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1.1rem;
     outline: none;
     transition: border-color 0.3s ease;
 
+    [theme-mode='dark'] & {
+      border-color: $secondary-dm;
+      background-color: $bg-dm-light;
+      color: $white-dm;
+    }
+
     &:focus {
       border-color: #f86800;
+
+      [theme-mode='dark'] & {
+        border-color: $elements-dm;
+      }
     }
   }
 }
@@ -29,18 +39,31 @@
 .button {
   height: 45px;
   padding: 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #f86800;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 21px;
+
+  background-color: $accent;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
+  [theme-mode='dark'] & {
+    background-color: $accent-dm;
+  }
+
   &:hover {
     cursor: pointer;
     box-shadow: 0px 3px 13px 0px $shadow;
+
+    [theme-mode='dark'] & {
+      background-color: $accent;
+    }
   }
 
   &:active {

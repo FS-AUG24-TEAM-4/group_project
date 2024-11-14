@@ -24,14 +24,6 @@
     background-color: $links-active;
   }
 
-  @include onTablet {
-    width: 95px;
-    height: 28px;
-
-    font-size: 7px;
-    font-weight: 400;
-  }
-
   @include onDesktop {
     width: 200px;
     height: 60px;

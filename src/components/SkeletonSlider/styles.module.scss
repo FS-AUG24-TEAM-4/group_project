@@ -34,6 +34,11 @@
   box-sizing: border-box;
   background-color: $white;
 
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
+
   @include onTablet {
     width: 237px;
     height: 506px;

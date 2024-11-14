@@ -18,14 +18,32 @@
   color: $primary;
   background-color: $white;
 
+  transition: border-color $effectDuration;
+
   &:hover {
     border-color: $primary;
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
   }
 
-  &Selected {
-    border-color: $primary;
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    color: $white-dm;
+    background-color: $secondary-dm;
+  }
+}
 
-    color: $white;
-    background-color: $primary;
+.buttonSelected {
+  border-color: $primary;
+
+  color: $white;
+  background-color: $primary;
+
+  [theme-mode='dark'] & {
+    border-color: $white-dm;
+    color: $primary;
+    background-color: $white-dm;
   }
 }

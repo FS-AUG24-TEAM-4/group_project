@@ -5,8 +5,11 @@ import { Paths } from '@/enums';
 import { getCapitalizedWord } from '@/utils';
 
 import styles from './styles.module.scss';
-import homeIcon from '@/assets/images/icons/home.svg';
+import homeIconLightMode from '@/assets/images/icons/home.svg';
+import homeIconDarkMode from '@/assets/images/icons/dark-mode/home.svg';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/hooks/useTheme';
+import { Themes } from '@/enums/Themes';
 
 interface Props {
   productName?: string;
@@ -18,10 +21,16 @@ export const BreadCrumbs: FC<Props> = ({ productName }) => {
 
   const pages = pathname.split('/').slice(1);
 
+  const { theme } = useTheme();
+
   return (
     <div className={styles.wrapper}>
       <Link to={Paths.HOME}>
-        <img className={styles.homeIcon} src={homeIcon} alt="Home" />
+        <img
+          className={styles.homeIcon}
+          src={theme === Themes.DARK ? homeIconDarkMode : homeIconLightMode}
+          alt="Home"
+        />
       </Link>
 
       {pages.map((page, index) => {

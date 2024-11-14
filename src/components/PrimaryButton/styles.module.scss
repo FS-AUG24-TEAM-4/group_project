@@ -11,6 +11,7 @@
   border: 1px solid transparent;
   box-sizing: border-box;
 
+  font-family: inherit;
   font-size: 14px;
   font-weight: 400;
   text-decoration: none;
@@ -35,12 +36,28 @@
     border: 1px solid $elements;
     color: $accent;
     background-color: $white;
+
+    [theme-mode='dark'] & {
+      border: 1px solid $secondary-dm;
+      color: $white;
+      background-color: $accent;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    background-color: $accent-dm;
   }
 }
 
 .buttonCart {
   width: 100%;
   height: 40px;
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $accent;
+    }
+  }
 
   @include onTablet {
     min-width: 125px;
@@ -64,11 +81,29 @@
   border-color: $elements;
   color: $accent;
   background-color: $white;
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    color: $white-dm;
+    background-color: $secondary-dm;
+  }
 }
 
 .buttonCheckout {
   width: 100%;
   height: 48px;
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $accent;
+    }
+  }
 }
 
 .buttonCancelCheckout {
@@ -78,8 +113,26 @@
   color: $accent;
   width: 100px;
 
+  [theme-mode='dark'] & {
+    background-color: $secondary-dm;
+    border-color: $secondary-dm;
+    color: $white-dm;
+  }
+
+  &:hover {
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+      background-color: $secondary-dm;
+    }
+  }
+
   &:active {
     color: $elements;
+
+    [theme-mode='dark'] & {
+      color: $primary;
+      background-color: $elements-dm;
+    }
   }
 }
 
@@ -91,6 +144,12 @@
 .buttonItemCartConfirm {
   width: 100px;
   height: 40px;
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $accent;
+    }
+  }
 
   @include onTablet {
     min-width: 125px;

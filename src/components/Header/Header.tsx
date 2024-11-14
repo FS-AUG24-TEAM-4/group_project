@@ -5,7 +5,9 @@ import { useState } from 'react';
 import InputBase from '@mui/material/InputBase';
 import { RootState } from '@/app/store';
 
-import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
+import logoLigthMode from '@/assets/images/icons/nice-gadgets-logo.svg';
+// eslint-disable-next-line max-len
+import logoDarkMode from '@/assets/images/icons/dark-mode/nice-gadgets-logo.svg';
 import close from '@/assets/images/icons/close.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
@@ -16,6 +18,9 @@ import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { Indicator } from '../Indicator';
 import { LangSelector } from '../LangSelector/LangSelector';
+import { ThemeToggle } from '../ThemeToogle';
+import { useTheme } from '@/hooks/useTheme';
+import { Themes } from '@/enums/Themes';
 import { AuthButton } from '../AuthButton/';
 
 import { useProducts, useSearchBar } from '@/hooks';
@@ -51,6 +56,8 @@ export const Header = () => {
   const cartProducts = getCartProducts(cartItems);
   const cartItemsCount = getCartProductsQuantity(cartProducts);
 
+  const { theme } = useTheme();
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -64,7 +71,7 @@ export const Header = () => {
           className={styles.logo}
         >
           <img
-            src={logo}
+            src={theme === Themes.DARK ? logoDarkMode : logoLigthMode}
             alt="Nice gadgets logo"
             className={styles.logoImage}
           ></img>
@@ -162,6 +169,10 @@ export const Header = () => {
           ></div>
         </div>
 
+        <div className={styles.themeButton}>
+          <ThemeToggle />
+        </div>
+
         <div className={styles.lang}>
           <LangSelector />
         </div>
@@ -195,6 +206,7 @@ export const Header = () => {
         </NavLink>
 
         <AuthButton className={styles.iconLink} />
+
         <div
           onClick={() => dispatch(changeBurgerState())}
           className={cn(styles.iconLink, {

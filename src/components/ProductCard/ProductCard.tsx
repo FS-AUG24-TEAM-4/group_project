@@ -1,6 +1,4 @@
 import styles from './styles.module.scss';
-import blankIcon from '../../assets/images/icons/favorites-blank.svg';
-import filledIcon from '../../assets/images/icons/favorites-filled.svg';
 import { useSelector } from 'react-redux';
 
 import { FavoritesButton, PrimaryButton } from '../index';
@@ -112,12 +110,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
-        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
-          <img
-            src={isFavorite ? filledIcon : blankIcon}
-            alt="Add to favorites"
-          />
-        </FavoritesButton>
+        <FavoritesButton
+          onClick={handleToggleFavorite}
+          isActive={isFavorite}
+        ></FavoritesButton>
       </div>
     </article>
   );

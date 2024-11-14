@@ -18,6 +18,11 @@
 
   transition: box-shadow $effectDuration;
 
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
+
   &:hover {
     box-shadow: 0px 2px 16px 0px $dark-shadow;
   }
@@ -50,6 +55,10 @@
   line-height: 21px;
 
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .price {
@@ -64,11 +73,19 @@
   font-weight: 800;
   font-size: 22px;
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .line {
   margin-bottom: 16px;
   border: 0.5px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .specs {
@@ -94,6 +111,10 @@
   font-size: 12px;
   font-weight: 600;
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .buttons {

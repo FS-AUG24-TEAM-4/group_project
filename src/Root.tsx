@@ -15,6 +15,7 @@ import {
 import App from './App';
 import { SearchPage } from './pages/SearchPage/SearchPage';
 import { AuthProvider } from './auth/AuthContext';
+import { RightsPage } from './pages/RightsPage';
 
 export const Root = () => {
   return (
@@ -27,13 +28,7 @@ export const Root = () => {
             <Route path={Paths.SEARCH}>
               <Route index element={<SearchPage />} />
             </Route>
-            <Route path={'/authentication'} element={<AuthPage />} />
-
-            <Route
-              index
-              element={<ProductsCatalog category={DeviceCategory.PHONES} />}
-            />
-            <Route path={Paths.PHONE} element={<ProductPage />} />
+            <Route path={Paths.AUTHENTICATION} element={<AuthPage />} />
 
             <Route path={Paths.PHONES}>
               <Route
@@ -63,18 +58,7 @@ export const Root = () => {
             <Route path={Paths.FAVORITES} element={<FavPage />} />
             <Route path={Paths.CART} element={<CartPage />} />
             <Route path={Paths.CREATORS} element={<CreatorsPage />} />
-
-            <Route path={Paths.ACCESSORIES}>
-              <Route
-                index
-                element={
-                  <ProductsCatalog category={DeviceCategory.ACCESSORIES} />
-                }
-              />
-              <Route path={Paths.ACCESSORIE} element={<ProductPage />} />
-            </Route>
-            <Route path={Paths.FAVORITES} element={<FavPage />} />
-            <Route path={Paths.CART} element={<CartPage />} />
+            <Route path={Paths.RIGHTS} element={<RightsPage />} />
 
             <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
           </Route>
