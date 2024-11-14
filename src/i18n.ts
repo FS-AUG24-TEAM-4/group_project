@@ -88,6 +88,7 @@ i18n.use(initReactI18next).init({
         emptyCart: 'Your cart is empty',
         notApplicable: 'Not applicable',
         creators: 'Creators',
+        Creators: 'Creators',
         description: `Sorry, we can’t find the page you’re looking for. It may have been
         moved, renamed, or it’s possible the link was incorrect. Please check
         the URL or return to the homepage.`,
@@ -180,6 +181,7 @@ i18n.use(initReactI18next).init({
         emptyCart: 'Ваш кошик порожній',
         notApplicable: 'Не передбачено',
         creators: 'Автори',
+        Creators: 'Автори',
         description: `На жаль, ми не можемо знайти сторінку, яку ви шукаєте. 
         Можливо, її було переміщено, перейменовано або посилання було неправильним. 
         Будь ласка, перевірте URL-адресу або поверніться на головну сторінку.`,
