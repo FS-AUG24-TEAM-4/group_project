@@ -9,12 +9,17 @@
   opacity: 0;
   transform: translateX(-100px);
 }
+
 .fade-enter-active {
   opacity: 1;
   transform: translateX(0);
   transition:
     opacity 500ms ease,
     transform 500ms ease;
+}
+
+.fade-exit {
+  display: none;
 }
 
 .menu-enter {
