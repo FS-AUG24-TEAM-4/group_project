@@ -27,7 +27,7 @@ export const Root = () => {
             <Route path={Paths.SEARCH}>
               <Route index element={<SearchPage />} />
             </Route>
-            <Route path={'/authentication'} element={<AuthPage />} />
+            <Route path={Paths.AUTHENTICATION} element={<AuthPage />} />
 
             <Route path={Paths.PHONES}>
               <Route
