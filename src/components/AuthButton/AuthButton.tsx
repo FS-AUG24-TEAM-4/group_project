@@ -24,6 +24,9 @@ export const AuthButton: FC<AuthButtonProps> = ({
     (state: RootState) => state.burger.burgerStatus,
   );
   const dispatch = useDispatch();
+  const burgerstatus = useSelector(
+    (state: RootState) => state.burger.burgerStatus,
+  );
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -59,7 +62,13 @@ export const AuthButton: FC<AuthButtonProps> = ({
         [styles.isActive]: isActive,
         burger__footer__auth: type === 'burger',
       })}
-      onClick={handleClick}
+      onClick={() => {
+        if (burgerstatus) {
+          dispatch(changeBurgerState());
+        }
+
+        handleClick();
+      }}
     ></Link>
   );
 };
