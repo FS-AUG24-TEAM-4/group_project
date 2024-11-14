@@ -37,24 +37,26 @@
   font-weight: 500;
 }
 
-.image {
-  width: 288px;
-  height: 288px;
-  border-radius: 8px;
+$imageScaleFactor: 1.05;
+$effectDuration: 0.3s;
 
+.image {
+  width: clamp(187px, 25vw, 368px);
+  height: clamp(187px, 25vw, 368px);
+  border-radius: 8px;
   margin-bottom: 24px;
   transition: transform $effectDuration ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale($imageScaleFactor);
   }
 
-  @include onTablet {
-    width: 187px;
-    height: 187px;
+  @media (max-width: 639px) {
+    width: 288px;
+    height: 288px;
   }
 
-  @include onDesktop {
+  @media (min-width: 1200px) {
     width: 368px;
     height: 368px;
   }

@@ -6,6 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import { RootState } from '@/app/store';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
+import close from '@/assets/images/icons/close.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
 import { Paths } from '@/enums';
@@ -18,6 +19,7 @@ import { LangSelector } from '../LangSelector/LangSelector';
 import { AuthButton } from '../AuthButton/';
 
 import { useProducts, useSearchBar } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -28,6 +30,8 @@ const getIconLinkClassName = (
   });
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   const { query, setQuery, handleSubmit, navigate } = useSearchBar();
   const { products } = useProducts();
   const [isSearchVisible, setSearchVisible] = useState(false);
@@ -75,7 +79,13 @@ export const Header = () => {
           className={navData =>
             getIconLinkClassName(navData, styles.queryFieldMobile)
           }
+          onClick={() => {
+            if (burgerstatus) {
+              dispatch(changeBurgerState());
+            }
+          }}
         />
+
         <div className={styles.searchContainer}>
           <form
             className={styles.queryFieldContainer}
@@ -88,7 +98,7 @@ export const Header = () => {
               className={cn(styles.queryField, {
                 [styles.visible]: isSearchVisible,
               })}
-              placeholder="Search"
+              placeholder={t('Search')}
               value={query}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setQuery(event.target.value.trimStart());
@@ -100,7 +110,7 @@ export const Header = () => {
                 className={styles.queryField__clearButton}
                 onClick={() => setQuery('')}
               >
-                x
+                <img src={close} alt="delete query" />
               </div>
             )}
 
@@ -134,12 +144,13 @@ export const Header = () => {
                   </>
                 ) : (
                   <li className={styles.queryField__list__element__empty}>
-                    No devices found
+                    {t('noDevicesFound')}
                   </li>
                 )}
               </ul>
             </div>
           </form>
+
           <div
             onClick={() => {
               setSearchVisible(prev => !prev);
@@ -154,6 +165,7 @@ export const Header = () => {
         <div className={styles.lang}>
           <LangSelector />
         </div>
+
         <div>
           <NavLink
             to={Paths.FAVORITES}

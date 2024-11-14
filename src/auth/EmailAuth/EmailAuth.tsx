@@ -11,8 +11,12 @@ import { PrimaryButton } from '@/components';
 import { AuthErrors } from '@/enums/AuthErrors';
 import { SuccessSnackbar } from '@/components/SuccessSnackbar/SuccessSnackbar';
 import { ErrorSnackbar } from '@/components/ErrorSnackbar/ErrorSnackbar';
+import { useTranslation } from 'react-i18next';
+import { PrimaryButtons } from '@/enums';
 
 export const EmailAuth: React.FC = () => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -92,28 +96,36 @@ export const EmailAuth: React.FC = () => {
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
-        placeholder="Email"
+        placeholder={t('email')}
       />
       <input
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
-        placeholder="Password"
+        placeholder={t('password')}
       />
 
       <div className={styles.buttons}>
-        <PrimaryButton onClick={handleSignIn}>Sign In</PrimaryButton>
-        <PrimaryButton onClick={handleSignUp}>Sign Up</PrimaryButton>
+        <PrimaryButton
+          type={PrimaryButtons.CONFIRMCHECKOUT}
+          onClick={handleSignIn}
+        >
+          {t('signIn')}
+        </PrimaryButton>
+        <PrimaryButton
+          type={PrimaryButtons.CONFIRMCHECKOUT}
+          onClick={handleSignUp}
+        >
+          {t('signUp')}
+        </PrimaryButton>
       </div>
 
-      {/* Snackbar для успішних повідомлень */}
       <SuccessSnackbar
         open={openSuccess}
         onClose={() => setOpenSuccess(false)}
         message={successMessage}
       />
 
-      {/* Snackbar для помилок */}
       <ErrorSnackbar
         open={openError}
         onClose={() => setOpenError(false)}

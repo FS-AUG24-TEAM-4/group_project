@@ -5,3 +5,5 @@ export * from './DeviceCategory';
 export * from './PathToJSON';
 export * from './InnerSliderBtn';
 export * from './SliderButtons';
+export * from './AuthErrors';
+export * from './InnerSliderBtn';

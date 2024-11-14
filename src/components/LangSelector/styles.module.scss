@@ -5,12 +5,12 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 8px;
   transition: transform 0.3s;
 
   box-sizing: border-box;
 
-  @include onTablet {
+  @include onTabletWide {
     border-left: 1px solid $elements;
   }
 

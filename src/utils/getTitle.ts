@@ -13,8 +13,6 @@ export const getTitle = (titleCategory: DeviceCategory) => {
     case DeviceCategory.ACCESSORIES:
       return t('accessories');
     case DeviceCategory.SEARCH:
-      return 'Search';
-    default:
-      return t('accessories');
+      return t('Search');
   }
 };

@@ -1,3 +1,5 @@
+@import '../../assets/styles/mixins';
+
 .auth_page {
   display: flex;
   justify-content: center;
@@ -13,22 +15,32 @@
 }
 
 .email_auth_wrapper {
-  width: 400px;
+  max-width: 300px;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  @include onTablet {
+    max-width: 400px;
+  }
 }
 
 .social_auth_wrapper {
   display: flex;
   gap: 20px;
-  width: 400px;
+  max-width: 300px;
+  width: 100%;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   justify-content: center;
+  margin-bottom: 64px;
+
+  @include onTablet {
+    max-width: 400px;
+  }
 }
 
 .divider {

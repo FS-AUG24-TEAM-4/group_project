@@ -18,7 +18,6 @@ import { Paths } from '@/enums';
 import { LangSelector } from '../LangSelector/LangSelector';
 import { useTranslation } from 'react-i18next';
 
-
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
     [styles.burger__nav__links__active]: isActive,
@@ -51,7 +50,6 @@ export const BurgerMenu = () => {
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
           <LangSelector />
-
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}
@@ -99,7 +97,8 @@ export const BurgerMenu = () => {
             </div>
           )}
         </NavLink>
-        <AuthButton className={styles.burger__footer__links} type={'burger'} />
+
+        <AuthButton className={styles.burger__footer__links} />
       </footer>
     </menu>
   );

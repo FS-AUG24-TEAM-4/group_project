@@ -4,8 +4,11 @@ import { auth, setupRecaptcha } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { SuccessSnackbar, ErrorSnackbar } from '@/components/';
+import { useTranslation } from 'react-i18next';
 
 export const PhoneAuth: React.FC = () => {
+  const { t } = useTranslation();
+
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
   const [confirmationResult, setConfirmationResult] =
@@ -76,7 +79,7 @@ export const PhoneAuth: React.FC = () => {
             className={styles.input}
           />
           <button onClick={handleSendCode} className={styles.button}>
-            Send code
+            {t('sendCode')}
           </button>
         </>
       ) : (
