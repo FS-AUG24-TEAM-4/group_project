@@ -4,7 +4,6 @@ import {
   loadProductsStart,
   loadProductsSuccess,
 } from '@/features/products/productSlice';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useProducts = () => {
@@ -15,7 +14,6 @@ export const useProducts = () => {
 
   const fetchProducts = () => {
     dispatch(loadProductsStart());
-
     fetch('/group_project/api/products.json')
       .then(response => {
         if (!response.ok) {
@@ -34,11 +32,5 @@ export const useProducts = () => {
       });
   };
 
-  useEffect(() => {
-    if (products.length === 0) {
-      fetchProducts();
-    }
-  }, []);
-
-  return { products, loading, error };
+  return { products, loading, error, fetchProducts };
 };

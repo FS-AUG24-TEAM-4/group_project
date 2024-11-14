@@ -12,4 +12,5 @@ export enum Paths {
   SEARCH = '/search',
   AUTHENTICATION = '/authentication',
   CREATORS = '/creators',
+  RIGHTS = '/rights',
 }

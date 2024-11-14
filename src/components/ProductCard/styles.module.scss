@@ -147,6 +147,7 @@
 
 .specs {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
   font-weight: 400;
@@ -158,6 +159,9 @@
 }
 
 .value {
+  justify-content: end;
+  width: 100%;
+  display: flex;
   font-size: 12px;
   font-weight: 600;
   color: $primary;

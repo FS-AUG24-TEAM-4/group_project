@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -88,9 +89,20 @@ i18n.use(initReactI18next).init({
         emptyCart: 'Your cart is empty',
         notApplicable: 'Not applicable',
         creators: 'Creators',
+        Creators: 'Creators',
         description: `Sorry, we can’t find the page you’re looking for. It may have been
         moved, renamed, or it’s possible the link was incorrect. Please check
         the URL or return to the homepage.`,
+        rightsAndConditions: 'Rights and conditions',
+        termsOfUse: 'Terms of use',
+        first:
+          'By using this website, you agree to all of the terms and conditions set forth below. Please read them carefully before using the site.',
+        privacy: 'Privacy',
+        second:
+          'We respect your privacy and are committed to protecting your personal data. All information you provide will be used solely to improve our services.',
+        copyright: 'Copyright',
+        third:
+          'All materials on this site are protected by copyright. Any copying, distribution or use is prohibited content without prior written consent.',
       },
     },
     ua: {
@@ -180,9 +192,20 @@ i18n.use(initReactI18next).init({
         emptyCart: 'Ваш кошик порожній',
         notApplicable: 'Не передбачено',
         creators: 'Автори',
+        Creators: 'Автори',
         description: `На жаль, ми не можемо знайти сторінку, яку ви шукаєте. 
         Можливо, її було переміщено, перейменовано або посилання було неправильним. 
         Будь ласка, перевірте URL-адресу або поверніться на головну сторінку.`,
+        rightsAndConditions: 'Права та умови користування',
+        termsOfUse: 'Умови використання',
+        first:
+          'Використовуючи цей вебсайт, ви погоджуєтеся з усіма положеннями та умовами, зазначеними нижче. Будь ласка, прочитайте їх уважно перед використанням сайту.',
+        privacy: 'Конфіденційність',
+        second:
+          'Ми поважаємо вашу конфіденційність і прагнемо захищати ваші персональні дані. Вся інформація, яку ви надаєте, буде використовуватися виключно для покращення наших послуг.',
+        copyright: 'Авторські права',
+        third:
+          'Всі матеріали на цьому сайті захищені авторським правом. Заборонено копіювати, поширювати або використовувати будь-який контент без попередньої письмової згоди.',
       },
     },
   },

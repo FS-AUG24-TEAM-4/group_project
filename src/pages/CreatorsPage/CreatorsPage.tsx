@@ -2,6 +2,7 @@ import { CreatorCard } from '@/components/CreatorsCard/CreatorsCard';
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { PathToJSON } from '@/enums';
+import { useTranslation } from 'react-i18next';
 
 export interface CreatorsType {
   id: string;
@@ -14,6 +15,7 @@ export interface CreatorsType {
 
 export const CreatorsPage = () => {
   const [people, setPeople] = useState<CreatorsType[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(PathToJSON.CREATORS)
@@ -23,7 +25,7 @@ export const CreatorsPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Creators</div>
+      <div className={styles.title}>{t('Creators')}</div>
       <div className={styles.device_list}>
         {people.map(creator => (
           <CreatorCard key={creator.id} creator={creator} />
