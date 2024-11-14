@@ -26,7 +26,9 @@ export const AuthButton: FC<AuthButtonProps> = ({
       if (user) {
         setIsLoggedIn(true);
       } else {
-        setIsLoggedIn(false);
+        setTimeout(() => {
+          setIsLoggedIn(false);
+        }, 2000);
       }
     });
 
