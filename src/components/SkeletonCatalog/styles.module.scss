@@ -7,7 +7,7 @@
   grid-template-columns: repeat(1, 287px);
   width: 100%;
   max-width: 1200px;
-  justify-content: center;
+  flex-shrink: 0;
 
   @include onTablet {
     grid-template-columns: repeat(2, 287px);

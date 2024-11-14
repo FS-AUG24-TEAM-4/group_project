@@ -26,9 +26,11 @@ export const Logout: React.FC<LogoutButtonProps> = ({ className }) => {
     await logout();
     setOpenSuccess(true);
     setShowModal(false);
-    if (burgerstatus) {
-      dispatch(changeBurgerState());
-    }
+    setTimeout(() => {
+      if (burgerstatus) {
+        dispatch(changeBurgerState());
+      }
+    }, 1500);
   };
 
   return (

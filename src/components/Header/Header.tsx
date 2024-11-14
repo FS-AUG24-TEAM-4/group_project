@@ -8,6 +8,7 @@ import { RootState } from '@/app/store';
 import logoLigthMode from '@/assets/images/icons/nice-gadgets-logo.svg';
 // eslint-disable-next-line max-len
 import logoDarkMode from '@/assets/images/icons/dark-mode/nice-gadgets-logo.svg';
+import close from '@/assets/images/icons/close.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
 import { Paths } from '@/enums';
@@ -116,7 +117,7 @@ export const Header = () => {
                 className={styles.queryField__clearButton}
                 onClick={() => setQuery('')}
               >
-                x
+                <img src={close} alt="delete query" />
               </div>
             )}
 

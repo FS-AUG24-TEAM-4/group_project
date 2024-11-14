@@ -35,10 +35,10 @@ export const useProducts = () => {
   };
 
   useEffect(() => {
-    if (!products.length) {
+    if (products.length === 0) {
       fetchProducts();
     }
-  }, [dispatch]);
+  }, []);
 
   return { products, loading, error };
 };

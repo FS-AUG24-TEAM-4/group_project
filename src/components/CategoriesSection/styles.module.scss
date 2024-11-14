@@ -16,7 +16,10 @@
 
 .img_title_quantity_container {
   display: flex;
+  align-items: center;
   flex-direction: column;
+
+  width: 100%;
 }
 
 .title {
@@ -37,24 +40,26 @@
   font-weight: 500;
 }
 
+$imageScaleFactor: 1.05;
+$effectDuration: 0.3s;
+
 .image {
   width: 288px;
   height: 288px;
   border-radius: 8px;
-
   margin-bottom: 24px;
   transition: transform $effectDuration ease;
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   @include onTablet {
-    width: 187px;
-    height: 187px;
+    width: 100%;
+    height: 100%;
   }
 
-  @include onDesktop {
+  &:hover {
+    transform: scale($imageScaleFactor);
+  }
+
+  @media (min-width: 1200px) {
     width: 368px;
     height: 368px;
   }

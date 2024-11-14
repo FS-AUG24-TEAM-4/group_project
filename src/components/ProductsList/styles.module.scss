@@ -26,10 +26,15 @@
 
 .emptySearchContainer {
   height: 50px;
-  padding: 7px;
+  padding: 10px;
   border: 1px solid $elements;
   border-radius: 8px;
   background-color: $white;
   color: $secondary;
   margin-bottom: 16px;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
 }

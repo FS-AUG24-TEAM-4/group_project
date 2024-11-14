@@ -9,7 +9,7 @@ import { ProductCard } from '../ProductCard';
 import { Product } from '@/types';
 import { IconButton } from '../IconButton';
 import { useProducts } from '@/hooks';
-import { SkeletonGrid } from '../Skeleton';
+import { SkeletonSlider } from '../SkeletonSlider';
 
 interface ProductSliderProps {
   products: Product[];
@@ -59,7 +59,7 @@ export const ProductSlider: FC<ProductSliderProps> = ({
                 className={styles.swiper_slide}
                 key={`skeleton-${index}`}
               >
-                <SkeletonGrid itemsCount={1} />
+                <SkeletonSlider itemsCount={1} />
               </SwiperSlide>
             ))
           : products.map(product => (

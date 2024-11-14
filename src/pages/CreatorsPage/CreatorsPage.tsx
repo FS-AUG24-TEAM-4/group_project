@@ -1,6 +1,7 @@
 import { CreatorCard } from '@/components/CreatorsCard/CreatorsCard';
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
+import { PathToJSON } from '@/enums';
 
 export interface CreatorsType {
   id: string;
@@ -15,7 +16,7 @@ export const CreatorsPage = () => {
   const [people, setPeople] = useState<CreatorsType[]>([]);
 
   useEffect(() => {
-    fetch('public/api/creators.json')
+    fetch(PathToJSON.CREATORS)
       .then(res => res.json())
       .then(data => setPeople(data));
   }, []);
