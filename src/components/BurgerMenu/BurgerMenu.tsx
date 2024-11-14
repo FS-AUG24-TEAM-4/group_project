@@ -50,7 +50,6 @@ export const BurgerMenu = () => {
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
           <LangSelector />
-
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}
