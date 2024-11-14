@@ -20,17 +20,38 @@
 
   &:hover {
     border-color: $primary;
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: transparent;
   }
 }
 
 .arrow-top {
   background-image: url(/src/assets/images/icons/arrow-top.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/arrow-top.svg);
+  }
 }
 
 .arrow-left {
   background-image: url(/src/assets/images/icons/arrow-left.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/arrow-left.svg);
+  }
 }
 
 .arrow-rigth {
   background-image: url(/src/assets/images/icons/arrow-right.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/arrow-right.svg);
+  }
 }

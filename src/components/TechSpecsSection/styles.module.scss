@@ -7,13 +7,22 @@
   font-weight: 700;
   font-size: 22px;
   line-height: 30.8px;
+
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .line {
   margin-bottom: 25px;
 
   border: 0.5px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .list {
@@ -26,17 +35,23 @@
     justify-content: space-between;
 
     &__key {
-      color: #89939a;
       font-weight: 100;
       font-size: 14px;
       line-height: 21px;
+
+      color: $secondary;
     }
 
     &__value {
-      color: #0f0f11;
       font-weight: 100;
       font-size: 14px;
       line-height: 21px;
+
+      color: $primary;
+
+      [theme-mode='dark'] & {
+        color: $white-dm;
+      }
     }
   }
 }

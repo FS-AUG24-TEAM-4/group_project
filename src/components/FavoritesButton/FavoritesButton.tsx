@@ -1,15 +1,23 @@
 import cn from 'classnames';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
 import styles from './styles.module.scss';
+import blankIconDark from '../../assets/images/icons/favorites-blank.svg';
+// eslint-disable-next-line max-len
+import blankIconLight from '../../assets/images/icons/dark-mode/favorites-blank.svg';
+import filledIcon from '../../assets/images/icons/favorites-filled.svg';
+import { useTheme } from '@/hooks/useTheme';
 
 interface Props {
-  children: ReactNode;
   isActive: boolean;
   onClick?: () => void;
 }
 
-export const FavoritesButton: FC<Props> = ({ children, isActive, onClick }) => {
+export const FavoritesButton: FC<Props> = ({ isActive, onClick }) => {
+  const { theme } = useTheme();
+
+  const blankIcon = theme ? blankIconLight : blankIconDark;
+
   return (
     <button
       className={cn(styles.favorites_button, {
@@ -17,7 +25,7 @@ export const FavoritesButton: FC<Props> = ({ children, isActive, onClick }) => {
       })}
       onClick={onClick}
     >
-      {children}
+      <img src={isActive ? filledIcon : blankIcon} />
     </button>
   );
 };

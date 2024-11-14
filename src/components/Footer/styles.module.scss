@@ -3,6 +3,11 @@
 
 .footer {
   border-top: 1px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
 }
 
 .logo {

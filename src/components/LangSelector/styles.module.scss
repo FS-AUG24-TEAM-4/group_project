@@ -2,30 +2,35 @@
 @import '../../assets/styles/_variables';
 
 .flagButton {
+  width: 48px;
+  height: 48px;
+
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 8px;
+
   transition: transform 0.3s;
 
   box-sizing: border-box;
-
-  @include onTabletWide {
-    border-left: 1px solid $elements;
-  }
 
   @include onDesktop {
     width: 64px;
     height: 64px;
   }
-}
-
-.flag {
-  transition: transform 0.3s ease;
-  width: 28px;
-  height: 28px;
 
   &:hover {
-    transform: scale(1.1);
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
+
+  .flag {
+    transition: transform 0.3s ease;
+    width: 24px;
+    height: 20px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }

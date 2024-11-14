@@ -14,6 +14,9 @@ import styles from './styles.module.scss';
 import { useSearchBar } from '@/hooks/useSearchBar';
 import { useSortingDropdowns } from '@/hooks/useSortingDropdowns';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/hooks/useTheme';
+import { Themes } from '@/enums/Themes';
+import '../../assets/styles/_variables.scss';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -45,6 +48,8 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
   } = useSortingDropdowns();
   const [, setSearchVisible] = useState(false);
   const { navigate } = useSearchBar();
+
+  const { theme } = useTheme();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -263,14 +268,14 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
           return (
             <PaginationItem
               sx={{
-                border: '1px solid #e2e6e9',
-                color: '#0f0f11',
+                border: `1px solid ${theme === Themes.DARK ? '#2c2d31' : '#e2e6e9'}`,
+                color: `${theme === Themes.DARK ? '#cecece' : '#0f0f11'}`,
                 minHeight: '40px',
                 minWidth: '40px',
                 borderRadius: '20px',
                 '&:hover': {
-                  borderColor: '#0f0f11',
-                  backgroundColor: '#fff',
+                  borderColor: `${theme === Themes.DARK ? '#8e969c' : '#0f0f11'}`,
+                  backgroundColor: `${theme === Themes.LIGHT ? '#fff' : ''}`,
                 },
                 '&:active': {
                   color: '#fff',
@@ -278,9 +283,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
                 },
                 '&.Mui-selected': {
                   color: '#ffffff',
-                  backgroundColor: '#0f0f11',
+                  backgroundColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
+                  borderColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
                   '&:hover': {
-                    backgroundColor: '#0f0f11',
+                    backgroundColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
                   },
                 },
               }}

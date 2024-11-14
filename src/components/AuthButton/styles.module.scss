@@ -10,10 +10,18 @@
   background-position: center;
   background-size: 16px 16px;
 
-  transition: background-size $effectDuration;
+  transition: background-color $effectDuration;
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/Login.svg);
+  }
 
   &:hover {
-    background-size: 22px 22px;
+    background-color: $elements;
+
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
   }
 
   &.isActive {
@@ -33,6 +41,10 @@
       background-color: $primary;
 
       animation: line-grow 0.3s ease-in-out forwards;
+
+      [theme-mode='dark'] & {
+        background-color: $elements-dm;
+      }
     }
   }
 

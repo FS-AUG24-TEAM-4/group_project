@@ -22,7 +22,8 @@ export const LogoutConfirmationModal: React.FC<
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2>{t('areYouSure')}</h2>
+        <h2 className={styles.title}>{t('areYouSure')}</h2>
+
         <div className={styles.buttons}>
           <PrimaryButton
             onClick={onConfirm}

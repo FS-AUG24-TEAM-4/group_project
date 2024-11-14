@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables';
+
 .authButton {
   display: flex;
   align-items: center;
@@ -9,13 +11,24 @@
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: #fff;
+  color: $white;
   font-size: 16px;
   padding: 0;
   overflow: hidden;
 
+  [theme-mode='dark'] & {
+    border: 1px solid $secondary-dm;
+    background-color: $bg-dm-light;
+  }
+
   &:hover {
-    background-color: #f86800;
+    [theme-mode='light'] & {
+      background-color: #f86800;
+    }
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
   }
 
   .icon {

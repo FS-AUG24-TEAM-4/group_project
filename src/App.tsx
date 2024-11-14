@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
 import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
 import styles from './App.module.scss';
+import { useTheme } from './hooks/useTheme';
+
+import { useEffect } from 'react';
+import { Themes } from './enums/Themes';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function App() {
@@ -11,12 +15,22 @@ function App() {
     (state: RootState) => state.burger.burgerStatus,
   );
 
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    if (theme === Themes.DARK) {
+      document.documentElement.setAttribute('theme-mode', 'dark');
+    } else {
+      document.documentElement.setAttribute('theme-mode', 'light');
+    }
+  }, [theme]);
+
   const location = useLocation();
 
   return (
     <>
       <Header />
-      <TransitionGroup>
+      <>
         {burgerstatus ? (
           <CSSTransition
             key={location.key}
@@ -51,7 +65,7 @@ function App() {
             </TransitionGroup>
           </main>
         )}
-      </TransitionGroup>
+      </>
       <Footer />
     </>
   );

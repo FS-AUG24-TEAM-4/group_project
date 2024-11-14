@@ -1,13 +1,19 @@
 import { FC } from 'react';
+
 import styles from './styles.module.scss';
 import { CreatorsType } from '@/pages/CreatorsPage';
-import linkedin from '@/assets/images/icons/link.svg';
+import { useTheme } from '@/hooks/useTheme';
+import linkImgLightMode from '@/assets/images/icons/link.svg';
+import linkImgDarkMode from '@/assets/images/icons/dark-mode/link.svg';
+import { Themes } from '@/enums/Themes';
 
 interface CreatorCardProps {
   creator: CreatorsType;
 }
 
 export const CreatorCard: FC<CreatorCardProps> = ({ creator }) => {
+  const { theme } = useTheme();
+
   return (
     <article className={styles.card}>
       <img src={creator.photo} alt={creator.name} className={styles.picture} />
@@ -33,7 +39,10 @@ export const CreatorCard: FC<CreatorCardProps> = ({ creator }) => {
             rel="noopener noreferrer"
             className={styles.linkedinLink}
           >
-            <img src={linkedin} alt="link to Linkedin" />
+            <img
+              src={theme === Themes.DARK ? linkImgDarkMode : linkImgLightMode}
+              alt="link to Linkedin"
+            />
           </a>
         </p>
       </div>

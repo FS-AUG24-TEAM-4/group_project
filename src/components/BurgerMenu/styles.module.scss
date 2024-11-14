@@ -12,6 +12,10 @@
   height: calc(100vh - 48px);
   width: 100%;
 
+  [theme-mode='dark'] & {
+    background-color: $primary;
+  }
+
   &__logo {
     width: 64px;
     height: 22px;
@@ -42,6 +46,10 @@
       &:hover {
         color: $links-active;
 
+        [theme-mode='dark'] & {
+          color: $white-dm;
+        }
+
         &::after {
           content: '';
 
@@ -53,6 +61,10 @@
 
           width: 100%;
           border-bottom: 2px solid $links-active;
+
+          [theme-mode='dark'] & {
+            border-color: $white-dm;
+          }
         }
       }
 
@@ -71,6 +83,10 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
 
+        [theme-mode='dark'] & {
+          color: $white-dm;
+        }
+
         &::after {
           content: '';
 
@@ -80,6 +96,10 @@
 
           width: 100%;
           border-bottom: 2px solid $links-active;
+
+          [theme-mode='dark'] & {
+            border-color: $white-dm;
+          }
         }
 
         &:last-child {
@@ -103,6 +123,10 @@
   height: 64px;
   border-top: 1px solid $elements;
 
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
+
   &__links {
     position: relative;
     justify-content: center;
@@ -112,6 +136,20 @@
 
     width: 100%;
     height: 64px;
+
+    transition: background-color $effectDuration;
+
+    [theme-mode='dark'] & {
+      background-color: $primary;
+    }
+
+    &:hover {
+      background-color: $elements;
+
+      [theme-mode='dark'] & {
+        background-color: $links-active;
+      }
+    }
 
     &__active {
       position: relative;
@@ -130,7 +168,11 @@
         bottom: 0;
 
         width: 100%;
-        border-bottom: 2px solid $links-active;
+        border-bottom: 4px solid $links-active;
+
+        [theme-mode='dark'] & {
+          border-color: $elements-dm;
+        }
       }
     }
 
@@ -152,6 +194,10 @@
 
       border-right: 1px solid $elements;
       height: 100%;
+
+      [theme-mode='dark'] & {
+        border-right-color: $secondary-dm;
+      }
     }
 
     &:last-child::before {
@@ -162,6 +208,10 @@
 
       border-left: 1px solid $elements;
       height: 100%;
+
+      [theme-mode='dark'] & {
+        border-left-color: $secondary-dm;
+      }
     }
   }
 }

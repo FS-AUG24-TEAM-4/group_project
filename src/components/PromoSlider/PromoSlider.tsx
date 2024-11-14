@@ -56,16 +56,18 @@ export const PromoSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className={cn(styles.slide, styles.secondSlide)}>
-              <div className={styles.secondSlideBtn}>
-                <InnerSliderButton
-                  path={'/phones/apple-iphone-14-pro-256gb-spaceblack'}
-                  theme={InnerSliderBtn.LIGHT}
-                >
-                  Order now
-                </InnerSliderButton>
+            <Link to={'/phones/apple-iphone-14-pro-256gb-spaceblack'}>
+              <div className={cn(styles.slide, styles.secondSlide)}>
+                <div className={styles.secondSlideBtn}>
+                  <InnerSliderButton
+                    path={'/phones/apple-iphone-14-pro-256gb-spaceblack'}
+                    theme={InnerSliderBtn.LIGHT}
+                  >
+                    Order now
+                  </InnerSliderButton>
+                </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
 
           <SwiperSlide>

@@ -6,6 +6,7 @@ import burgerReducer from '@/features/burgermenu/burgerSlice';
 import persistedCartReducer from '@/features/сart/persistedCartReducer';
 import persistedFavoritesReducer from '@/features/favorites/persistedFavoritesReducer';
 import languageReducer from '@/features/language/languageSlice';
+import persistedThemeReducer from '@/features/theme/persistedThemeReducer';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     cart: persistedCartReducer,
     favorites: persistedFavoritesReducer,
     language: languageReducer,
+    theme: persistedThemeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
