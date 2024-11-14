@@ -30,7 +30,6 @@ export const CartPage = () => {
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCartEmpty, setIsCartEmpty] = useState(!cartProducts.length);
 
   const handleClickCheckout = () => {
     setIsModalOpen(true);
@@ -38,10 +37,6 @@ export const CartPage = () => {
 
   const handleClickCancel = () => {
     setIsModalOpen(false);
-  };
-
-  const handleCartEmpty = () => {
-    setIsCartEmpty(true);
   };
 
   useEffect(() => {
@@ -56,49 +51,55 @@ export const CartPage = () => {
     };
   }, [isModalOpen]);
 
+  if (cartProducts.length === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.backButton}>
+          <BackButton />
+        </div>
+        <h1 className={styles.title}>{t('cart')} </h1>
+        <EmptyPage title={t('emptyCart')} background="cart" />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.backButton}>
         <BackButton />
       </div>
-
       <h1 className={styles.title}>{t('cart')} </h1>
-
-      {isCartEmpty ? (
-        <EmptyPage title={t('emptyCart')} background="cart" />
-      ) : (
-        <>
-          <div className={styles.cardList}>
-            {cartProducts.map(product => (
-              <CartProductCard product={product} key={product.id} />
-            ))}
+      <>
+        <div className={styles.cardList}>
+          {cartProducts.map(product => (
+            <CartProductCard product={product} key={product.id} />
+          ))}
+        </div>
+        <div className={styles.checkout}>
+          <div className={styles.checkoutTop}>
+            <p className={styles.totalCost}>${totalCost}</p>
+            <p
+              className={styles.itemsCount}
+            >{`${t('totalFor')} ${quantity}`}</p>
           </div>
-          <div className={styles.checkout}>
-            <div className={styles.checkoutTop}>
-              <p className={styles.totalCost}>${totalCost}</p>
-              <p
-                className={styles.itemsCount}
-              >{`${t('totalFor')} ${quantity}`}</p>
-            </div>
 
-            <div className={styles.buttonCheckout}>
-              <PrimaryButton
-                type={PrimaryButtons.CHECKOUT}
-                onClick={handleClickCheckout}
-              >
-                {t('checkout')}
-              </PrimaryButton>
+          <div className={styles.buttonCheckout}>
+            <PrimaryButton
+              type={PrimaryButtons.CHECKOUT}
+              onClick={handleClickCheckout}
+            >
+              {t('checkout')}
+            </PrimaryButton>
 
-              <ModalWindowCheckout
-                isOpen={isModalOpen}
-                onClickCancel={handleClickCancel}
-                setIsModalOpen={setIsModalOpen}
-                onCartEmpty={handleCartEmpty}
-              />
-            </div>
+            <ModalWindowCheckout
+              isOpen={isModalOpen}
+              onClickCancel={handleClickCancel}
+              setIsModalOpen={setIsModalOpen}
+              onCartEmpty={() => {}}
+            />
           </div>
-        </>
-      )}
+        </div>
+      </>
     </div>
   );
 };
