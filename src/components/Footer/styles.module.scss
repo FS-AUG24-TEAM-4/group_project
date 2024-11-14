@@ -8,8 +8,10 @@
 .logo {
   transition: transform $effectDuration ease;
 
-  &:hover {
-    transform: scale(1.1);
+  @include onDesktop {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
