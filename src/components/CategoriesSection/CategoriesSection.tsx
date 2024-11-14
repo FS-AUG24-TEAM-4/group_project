@@ -19,7 +19,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
       <h2 className={styles.title}>{t('shopByCategory')}</h2>
 
       <div className={styles.container}>
-        <div className="img_title_quantity_container">
+        <div className={styles.img_title_quantity_container}>
           <Link to={Paths.PHONES}>
             <img
               src={PathToSrcImages.PHONES}
@@ -36,7 +36,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
           </div>
         </div>
 
-        <div className="img_title_quantity_container">
+        <div className={styles.img_title_quantity_container}>
           <Link to={Paths.TABLETS}>
             <img
               src={PathToSrcImages.TABLETS}
@@ -53,7 +53,7 @@ export const CategoriesSection: FC<CategoriesSectionProps> = ({ products }) => {
           </div>
         </div>
 
-        <div className="img_title_quantity_container">
+        <div className={styles.img_title_quantity_container}>
           <Link to={Paths.ACCESSORIES}>
             <img
               src={PathToSrcImages.ACCESSORIES}
