@@ -6,6 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import { RootState } from '@/app/store';
 
 import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
+import close from '@/assets/images/icons/close.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
 import { Paths } from '@/enums';
@@ -109,7 +110,7 @@ export const Header = () => {
                 className={styles.queryField__clearButton}
                 onClick={() => setQuery('')}
               >
-                x
+                <img src={close} alt="delete query" />
               </div>
             )}
 
