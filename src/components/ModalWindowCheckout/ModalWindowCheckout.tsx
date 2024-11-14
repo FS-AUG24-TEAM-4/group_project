@@ -46,9 +46,11 @@ export const ModalWindowCheckout: FC<PropsModalWindow> = ({
       onCartEmpty();
     }, 2000);
 
-    cartItems.forEach(cartItem => {
-      handleRemove(cartItem.id);
-    });
+    setTimeout(() => {
+      cartItems.forEach(cartItem => {
+        handleRemove(cartItem.id);
+      });
+    }, 2000);
   };
 
   return (
