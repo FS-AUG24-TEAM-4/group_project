@@ -16,6 +16,7 @@
 
 .img_title_quantity_container {
   display: flex;
+align-items: center;
   flex-direction: column;
 
   width: 100%;
@@ -43,11 +44,16 @@ $imageScaleFactor: 1.05;
 $effectDuration: 0.3s;
 
 .image {
-  width: 100%;
-  height: 100%;
+  width: 288px;
+  height: 288px;
   border-radius: 8px;
   margin-bottom: 24px;
   transition: transform $effectDuration ease;
+
+  @include onTablet {
+    width: 100%;
+    height: 100%;
+  }
 
   &:hover {
     transform: scale($imageScaleFactor);
