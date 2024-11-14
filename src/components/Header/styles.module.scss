@@ -15,6 +15,11 @@
     height: 64px;
     padding-left: 24px;
   }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
 }
 
 .navContainer {
@@ -61,6 +66,10 @@
   height: 100%;
   border-left: 1px solid $elements;
 
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
+
   @include onDesktop {
     width: 64px;
   }
@@ -81,6 +90,10 @@
 
   &:hover {
     background-color: $elements;
+
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
   }
 
   &.isActive {
@@ -100,6 +113,10 @@
       background-color: $primary;
 
       animation: line-grow 0.3s ease-in-out forwards;
+
+      [theme-mode='dark'] & {
+        background-color: $elements-dm;
+      }
     }
   }
 
@@ -119,6 +136,20 @@
   background-position: center;
   cursor: pointer;
 
+  [theme-mode='dark'] & {
+    box-shadow: -1px 0 0 0 $secondary-dm;
+  }
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/burger-icon.svg);
+  }
+
   @include onTablet {
     display: none;
   }
@@ -134,6 +165,20 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  
+  [theme-mode='dark'] & {
+    box-shadow: -1px 0 0 0 $secondary-dm;
+  }
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/close-burger-icon.svg);
+  }
 
   @include onTablet {
     display: none;
@@ -142,10 +187,18 @@
 
 .favorites {
   background-image: url(/src/assets/images/icons/favorites-blank.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/favorites-blank.svg);
+  }
 }
 
 .shoppingBag {
   background-image: url(/src/assets/images/icons/shopping-bag-blank.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/shopping-bag-blank.svg);
+  }
 }
 
 .indicator {
@@ -159,4 +212,10 @@
   @include onDesktop {
     top: 28%;
   }
+}
+
+.themeButton {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
 }

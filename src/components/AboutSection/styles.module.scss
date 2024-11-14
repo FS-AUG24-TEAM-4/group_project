@@ -12,11 +12,20 @@
   font-size: 22px;
   line-height: 30.8px;
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .line {
   margin-bottom: 32px;
+
   border: 0.5px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .sections:not(:last-child) {
@@ -29,7 +38,12 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 25.56px;
+
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .section_text {

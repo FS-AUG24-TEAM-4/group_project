@@ -12,6 +12,9 @@ import { Product } from '@/types';
 import { DeviceCategory, SortType } from '@/enums';
 import styles from './styles.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/hooks/useTheme';
+import { Themes } from '@/enums/Themes';
+import '../../assets/styles/_variables.scss';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -22,6 +25,8 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { products, loading } = useProducts();
+
+  const { theme } = useTheme();
 
   const productsOnPage = products.filter((product: Product) => {
     switch (category) {
@@ -110,12 +115,43 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
   const isTablet =
     document.body.clientWidth > 639 && document.body.clientWidth <= 1199;
 
+  const optionStyles = (provided: object, state: { isFocused: boolean }) => ({
+    ...provided,
+    backgroundColor: `${state.isFocused && theme === Themes.DARK ? '#2c2d31' : state.isFocused ? '#f86800' : theme === Themes.DARK ? '#8e969c' : '#fff'}`,
+    color: `${state.isFocused && theme === Themes.DARK ? '#cecece' : state.isFocused ? '#fff' : '#0f0f11'}`,
+    margin: '0',
+    cursor: 'pointer',
+    ':active': {
+      backgroundColor: theme === Themes.DARK ? '#414345' : '#ff7b00',
+      color: theme === Themes.DARK ? '#ececec' : '#fff',
+    },
+  });
+
+  const menuStyles = (provided: object) => ({
+    ...provided,
+    borderRadius: '12px',
+  });
+
+  const menuListStyles = (provided: object) => ({
+    ...provided,
+    padding: '0',
+    border: `${theme === Themes.DARK ? '1px solid #2c2d31' : '1px solid #B4BDC3'}`,
+    borderRadius: '8px',
+  });
+
+  const singleValueStyles = (provided: object) => ({
+    ...provided,
+    color: `${theme === Themes.DARK ? '#cecece' : '#0f0f11'}`,
+  });
+
   const defaultSortStyles = {
     width: '136px',
     height: '40px',
-    border: '1px solid #B4BDC3',
+    color: `${theme === Themes.DARK ? '#cecece' : '#0f0f11'}`,
+    border: `${theme === Themes.DARK ? '1px solid #2c2d31' : '1px solid #B4BDC3'}`,
     borderRadius: '8px',
     cursor: 'pointer',
+    backgroundColor: `${theme === Themes.DARK ? '#17171a' : '#fff'}`,
   };
 
   const customSortingStylesForDropdown = {
@@ -141,17 +177,20 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         width: '176px',
       };
     },
-    option: (provided: object) => ({
-      ...provided,
-    }),
+    option: optionStyles,
+    menu: menuStyles,
+    menuList: menuListStyles,
+    singleValue: singleValueStyles,
   };
 
   const defaultItemDisplayStyles = {
     width: '136px',
     height: '40px',
-    border: '1px solid #B4BDC3',
+    color: `${theme === Themes.DARK ? '#cecece' : '#0f0f11'}`,
+    border: `${theme === Themes.DARK ? '1px solid #2c2d31' : '1px solid #B4BDC3'}`,
     borderRadius: '8px',
     cursor: 'pointer',
+    backgroundColor: `${theme === Themes.DARK ? '#17171a' : '#fff'}`,
   };
 
   const customItemDisplayStylesForDropdown = {
@@ -169,9 +208,11 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
         width: '128px',
       };
     },
-    option: (provided: object) => ({
-      ...provided,
-    }),
+
+    option: optionStyles,
+    menu: menuStyles,
+    menuList: menuListStyles,
+    singleValue: singleValueStyles,
   };
 
   const totalPages = Math.ceil(sortedPhones.length / +devicesPerPage);
@@ -271,14 +312,14 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
           return (
             <PaginationItem
               sx={{
-                border: '1px solid #e2e6e9',
-                color: '#0f0f11',
+                border: `1px solid ${theme === Themes.DARK ? '#2c2d31' : '#e2e6e9'}`,
+                color: `${theme === Themes.DARK ? '#cecece' : '#0f0f11'}`,
                 minHeight: '40px',
                 minWidth: '40px',
                 borderRadius: '20px',
                 '&:hover': {
-                  borderColor: '#0f0f11',
-                  backgroundColor: '#fff',
+                  borderColor: `${theme === Themes.DARK ? '#8e969c' : '#0f0f11'}`,
+                  backgroundColor: `${theme === Themes.LIGHT ? '#fff' : ''}`,
                 },
                 '&:active': {
                   color: '#fff',
@@ -286,9 +327,10 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({ category }) => {
                 },
                 '&.Mui-selected': {
                   color: '#ffffff',
-                  backgroundColor: '#0f0f11',
+                  backgroundColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
+                  borderColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
                   '&:hover': {
-                    backgroundColor: '#0f0f11',
+                    backgroundColor: `${theme === Themes.DARK ? '#2c2d31' : '#0f0f11'}`,
                   },
                 },
               }}

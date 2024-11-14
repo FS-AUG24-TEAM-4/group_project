@@ -3,7 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 
-import logo from '@/assets/images/icons/nice-gadgets-logo.svg';
+import logoLigthMode from '@/assets/images/icons/nice-gadgets-logo.svg';
+// eslint-disable-next-line max-len
+import logoDarkMode from '@/assets/images/icons/dark-mode/nice-gadgets-logo.svg';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
 import { HeaderNavigationLinks } from '@/constants';
 import { Paths } from '@/enums';
@@ -13,6 +15,9 @@ import { Navigation } from '../Navigation';
 import styles from './styles.module.scss';
 import { Indicator } from '../Indicator';
 import { LangSelector } from '../LangSelector/LangSelector';
+import { ThemeToggle } from '../ThemeToogle';
+import { useTheme } from '@/hooks/useTheme';
+import { Themes } from '@/enums/Themes';
 
 const getIconLinkClassName = (
   { isActive }: { isActive: boolean },
@@ -35,6 +40,8 @@ export const Header = () => {
   const cartProducts = getCartProducts(cartItems);
   const cartItemsCount = getCartProductsQuantity(cartProducts);
 
+  const { theme } = useTheme();
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -48,7 +55,7 @@ export const Header = () => {
           className={styles.logo}
         >
           <img
-            src={logo}
+            src={theme === Themes.DARK ? logoDarkMode : logoLigthMode}
             alt="Nice gadgets logo"
             className={styles.logoImage}
           ></img>
@@ -58,23 +65,24 @@ export const Header = () => {
       </div>
 
       <div className={styles.iconLinksContainer}>
-        <div className={styles.lang}>
+        <div className={styles.themeButton}>
+          <ThemeToggle />
+        </div>
+
+        <div className={(styles.lang, styles.iconLink)}>
           <LangSelector />
         </div>
-        <div>
-          <NavLink
-            to={Paths.FAVORITES}
-            className={navData =>
-              getIconLinkClassName(navData, styles.favorites)
-            }
-          >
-            {!!favItemsCount && (
-              <div className={styles.indicator}>
-                <Indicator>{favItemsCount}</Indicator>
-              </div>
-            )}
-          </NavLink>
-        </div>
+
+        <NavLink
+          to={Paths.FAVORITES}
+          className={navData => getIconLinkClassName(navData, styles.favorites)}
+        >
+          {!!favItemsCount && (
+            <div className={styles.indicator}>
+              <Indicator>{favItemsCount}</Indicator>
+            </div>
+          )}
+        </NavLink>
 
         <NavLink
           to={Paths.CART}

@@ -3,4 +3,8 @@
 .main {
   background-color: $bg;
   flex: 1;
+
+  [theme-mode='dark'] & {
+    background-color: $primary;
+  }
 }

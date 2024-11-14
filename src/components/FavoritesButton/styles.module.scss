@@ -18,10 +18,18 @@
   &:hover {
     border-color: $primary;
     cursor: pointer;
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
   }
 
   &:active {
     border-color: $elements;
+
+    [theme-mode='dark'] & {
+      border-color: $secondary-dm;
+    }
   }
 
   &.active {
@@ -30,6 +38,15 @@
 
     &:hover {
       border-color: $primary;
+
+      [theme-mode='dark'] & {
+        border-color: $elements-dm;
+      }
     }
+  }
+
+  [theme-mode='dark'] & {
+    background-color: $bg-dm-light;
+    border-color: $secondary-dm;
   }
 }

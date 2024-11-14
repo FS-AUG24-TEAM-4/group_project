@@ -32,6 +32,10 @@
     width: 442px;
     height: 442px;
   }
+
+  [theme-mode='dark'] & {
+    background-color: $primary;
+  }
 }
 
 .secondaryPhotos {
@@ -64,9 +68,12 @@
 
   transition: border-color $effectDuration;
 
-  &:hover,
-  &Selected {
+  &:hover {
     border-color: $primary;
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
   }
 
   @include onTablet {
@@ -77,5 +84,18 @@
   @include onDesktop {
     width: 80px;
     height: 80px;
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $secondary-dm;
+  }
+}
+
+.secondaryPhotoSelected {
+  border-color: $primary;
+
+  [theme-mode='dark'] & {
+    border-color: $elements-dm;
   }
 }

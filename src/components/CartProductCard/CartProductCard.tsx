@@ -54,7 +54,9 @@ export const CartProductCard: FC<INCartProductCard> = ({ product }) => {
             })}
             onClick={() => dispatch(decreaseQuantity(product.id))}
           ></button>
+
           <span className={styles.quantity}>{product.quantity}</span>
+
           <button
             className={classNames(styles.button, styles.increase)}
             onClick={() => dispatch(increaseQuantity(product.id))}

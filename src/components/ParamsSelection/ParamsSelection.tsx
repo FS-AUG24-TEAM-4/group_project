@@ -17,8 +17,6 @@ import { PrimaryButtons } from '@/enums';
 import { Device, Product } from '@/types';
 
 import styles from './styles.module.scss';
-import blankIcon from '@/assets/images/icons/favorites-blank.svg';
-import filledIcon from '@/assets/images/icons/favorites-filled.svg';
 import { ColorButton } from '../ColorButton';
 import { ParameterButton } from '../ParameterButton';
 import { PrimaryButton } from '../PrimaryButton';
@@ -181,12 +179,10 @@ export const ParamsSelection: FC<Props> = ({ device, cartProduct }) => {
           {clickedBuy ? `${t('added')}` : `${t('addToCart')}`}
         </PrimaryButton>
 
-        <FavoritesButton onClick={handleToggleFavorite} isActive={isFavorite}>
-          <img
-            src={isFavorite ? filledIcon : blankIcon}
-            alt="Add to favorites"
-          />
-        </FavoritesButton>
+        <FavoritesButton
+          onClick={handleToggleFavorite}
+          isActive={isFavorite}
+        ></FavoritesButton>
       </div>
 
       <div className={styles.params}>

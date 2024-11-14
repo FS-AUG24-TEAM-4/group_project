@@ -17,6 +17,11 @@
   background-size: auto 280px;
   background-position: center 70px;
 
+  [theme-mode='dark'] & {
+    color: $white-dm;
+    background-image: url('/public/img/page-not-found-dm.png');
+  }
+
   @include onTablet {
     padding-top: 450px;
 

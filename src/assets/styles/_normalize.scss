@@ -8,6 +8,10 @@ body {
   font-family: 'Mont', sans-serif;
 
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 #root {

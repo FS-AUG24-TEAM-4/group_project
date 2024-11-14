@@ -40,9 +40,14 @@
   text-transform: uppercase;
 
   transition: color $effectDuration;
+  
 
   &:hover {
     color: $primary;
+
+    [theme-mode='dark'] & {
+      color: $white;
+    }
   }
 
   &.isActive {
@@ -62,12 +67,24 @@
       background-color: $primary;
 
       animation: line-grow 0.3s ease-in-out forwards;
+
+      [theme-mode='dark'] & {
+        background-color: $elements-dm;
+      }
+    }
+
+    [theme-mode='dark'] & {
+      color: $white;
     }
   }
 
   @include onDesktop {
     height: 64px;
     line-height: 64px;
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $white-dm;
   }
 }
 

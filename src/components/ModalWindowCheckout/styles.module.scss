@@ -18,6 +18,10 @@
   padding: 20px;
   border-radius: 10px;
 
+  [theme-mode='dark'] & {
+    background-color: $bg-dm-light;
+  }
+
   @include onDesktop {
     width: 500px;
   }
@@ -26,6 +30,10 @@
 .modal__title {
   padding-bottom: 10px;
   font-size: 20px;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .modal__actions {
@@ -44,18 +52,32 @@
   width: 100%;
   border-spacing: 0;
 
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
+
   th,
   td {
     border: 1px solid $elements;
     padding: 8px;
     text-align: left;
     max-width: 1800px;
+
+    [theme-mode='dark'] & {
+      border-color: $primary;
+      background-color: $secondary-dm;
+    }
   }
 
   th {
     background-color: $accent;
     font-weight: 400;
     color: $white;
+
+    [theme-mode='dark'] & {
+      background-color: $accent-dm;
+      color: $white-dm;
+    }
   }
 }
 

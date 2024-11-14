@@ -29,6 +29,10 @@
   padding-bottom: 24px;
 
   border-bottom: 1px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .colorsSubtitle {
@@ -54,6 +58,10 @@
   margin-bottom: 32px;
 
   border-bottom: 1px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
 }
 
 .paramsButtons {
@@ -76,6 +84,10 @@
   letter-spacing: -1%;
 
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .old_price {
@@ -97,6 +109,10 @@
 
     background-color: $secondary;
     transform: translateY(-50%);
+  }
+
+  [theme-mode='dark'] & {
+    background-color: $primary;
   }
 }
 

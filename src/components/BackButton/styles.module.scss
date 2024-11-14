@@ -23,6 +23,10 @@
 
   &:hover {
     color: $primary;
+
+    [theme-mode='dark'] & {
+      color: $white;
+    }
   }
 
   &:hover &Icon {
@@ -38,6 +42,14 @@
     background-position: left center;
 
     transition: transform $effectDuration;
+
+    [theme-mode='dark'] & {
+      background-image: url(/src/assets/images/icons/dark-mode/arrow-left.svg);
+    }
+  }
+
+  [theme-mode='dark'] & {
+    background-color: $primary;
   }
 }
 

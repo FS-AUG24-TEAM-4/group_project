@@ -27,8 +27,16 @@
 
 .cart {
   background-image: url('/public/img/cart-is-empty.png');
+
+  [theme-mode='dark'] & {
+    background-image: url('/public/img/cart-is-empty-dm.png');
+  }
 }
 
 .favorites {
   background-image: url('/public/img/product-not-found.png');
+
+  [theme-mode='dark'] & {
+    background-image: url('/public/img/product-not-found-dm.png');
+  }
 }

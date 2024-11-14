@@ -1,14 +1,24 @@
 @import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
 
 .flagButton {
+  width: 48px;
+  height: 48px;
+
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  
+
   transition: transform 0.3s;
 
   box-sizing: border-box;
-  border-left: 1px solid #e2e6e9;
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
 
   @include onDesktop {
     width: 64px;

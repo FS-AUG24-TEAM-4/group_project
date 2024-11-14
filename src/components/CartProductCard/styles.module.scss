@@ -11,11 +11,16 @@
   position: relative;
 
   background-color: $white;
-
+  
   @include onTablet {
     flex-direction: row;
     justify-content: space-between;
     padding: 24px;
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
   }
 }
 
@@ -54,7 +59,10 @@
 
   &:hover {
     transform: scale(1.4);
-    background-image: url('/src/assets/images/icons/close-active.svg');
+
+    [theme-mode='light'] & {
+      background-image: url('/src/assets/images/icons/close-active.svg');
+    }
   }
 }
 
@@ -86,6 +94,10 @@
   &:hover {
     transform: scale(1.05);
   }
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .buttons {
@@ -107,29 +119,51 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
+
   background-color: $white;
   background-size: 16px 16px;
   background-repeat: no-repeat;
   background-position: center;
+
   border: 1px solid $icons;
   border-radius: 50%;
-  transition: transform $effectDuration ease;
+
+  transition: transform $effectDuration ease, border-color $effectDuration;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
 
   &.increase {
     background-image: url('/src/assets/images/icons/plus.svg');
+
+    [theme-mode='dark'] & {
+      background-image: url('/src/assets/images/icons/dark-mode/plus.svg');
+    }
   }
 
   &.decrease {
     background-image: url('/src/assets/images/icons/minus.svg');
 
+    [theme-mode='dark'] & {
+      background-image: url('/src/assets/images/icons/dark-mode/minus.svg');
+    }
+
     &.active {
-      border: 1px solid $elements;
-      background-image: url('/src/assets/images/icons/inactive-minus.svg');
+      [theme-mode='light'] & {
+        border: 1px solid $elements;
+        background-image: url('/src/assets/images/icons/inactive-minus.svg');
+      }
     }
   }
 
-  &:hover {
-    border: 1px solid $primary;
+  &:not(.active):hover {
+    border-color: $primary;
+
+    [theme-mode='dark'] & {
+      border-color: $elements-dm;
+    }
   }
 }
 

@@ -84,6 +84,14 @@
     @include onDesktop {
       padding-bottom: 24px;
     }
+
+    [theme-mode='dark'] & {
+      border-color: $secondary-dm;
+    }
+  }
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
   }
 }
 
@@ -94,6 +102,10 @@
   letter-spacing: -1%;
 
   color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
 }
 
 .itemsCount {
