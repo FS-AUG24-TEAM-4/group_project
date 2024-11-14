@@ -24,9 +24,6 @@ export const AuthButton: FC<AuthButtonProps> = ({
     (state: RootState) => state.burger.burgerStatus,
   );
   const dispatch = useDispatch();
-  const burgerstatus = useSelector(
-    (state: RootState) => state.burger.burgerStatus,
-  );
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
