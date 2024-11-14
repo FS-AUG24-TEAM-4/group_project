@@ -5,7 +5,7 @@
     "age": 20,
     "skills": "Programming, Music",
     "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
-    "photo": "public/img/creators/andrii-picture.jpg"
+    "photo": "img/creators/andrii-picture.jpg"
   },
   {
     "id": "vasilyazhenko-dmytro",
@@ -13,7 +13,7 @@
     "age": 21,
     "skills": "Programming, video games",
     "Linkedin": "https://www.linkedin.com/in/nywoo/",
-    "photo": "public/img/creators/dima-picture.jpg"
+    "photo": "img/creators/dima-picture.jpg"
   },
   {
     "id": "omelnyk-valerii",
@@ -21,7 +21,7 @@
     "age": 23,
     "skills": "Programming",
     "Linkedin": "https://www.linkedin.com/in/valerii-omelnyk",
-    "photo": "public/img/creators/valera-picture.jpg"
+    "photo": "img/creators/valera-picture.jpg"
   },
   {
     "id": "coldmelnyk",
@@ -29,7 +29,7 @@
     "age": 23,
     "skills": "Sound-engineering, Coding",
     "Linkedin": "https://www.linkedin.com/in/yevhenii-melnyk-a85213312/",
-    "photo": "public/img/creators/yevhenii-picture.jpg"
+    "photo": "img/creators/yevhenii-picture.jpg"
   },
   {
     "id": "anna-maksai",
@@ -37,6 +37,6 @@
     "age": "25",
     "skills": "Programming",
     "Linkedin": "https://www.linkedin.com/in/anna-maksai-b4643321a/",
-    "photo": "public/img/creators/anna-picture.jpg"
+    "photo": "img/creators/anna-picture.jpg"
   }
 ]
