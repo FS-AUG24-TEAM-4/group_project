@@ -5,7 +5,8 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 import { Paths } from '@/enums';
 import { changeBurgerState } from '@/features/burgermenu/burgerSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 interface AuthButtonProps {
   className?: string;
@@ -19,6 +20,9 @@ export const AuthButton: FC<AuthButtonProps> = ({
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const burgerstatus = useSelector(
+    (state: RootState) => state.burger.burgerStatus,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export const AuthButton: FC<AuthButtonProps> = ({
   }, [navigate]);
 
   const handleClick = () => {
-    if (type === 'burger') {
+    if (burgerstatus) {
       dispatch(changeBurgerState());
     }
   };
