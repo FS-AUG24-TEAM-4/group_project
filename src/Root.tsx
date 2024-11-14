@@ -15,6 +15,7 @@ import {
 import App from './App';
 import { SearchPage } from './pages/SearchPage/SearchPage';
 import { AuthProvider } from './auth/AuthContext';
+import { RightsPage } from './pages/RightsPage';
 
 export const Root = () => {
   return (
@@ -57,6 +58,7 @@ export const Root = () => {
             <Route path={Paths.FAVORITES} element={<FavPage />} />
             <Route path={Paths.CART} element={<CartPage />} />
             <Route path={Paths.CREATORS} element={<CreatorsPage />} />
+            <Route path={Paths.RIGHTS} element={<RightsPage />} />
 
             <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
           </Route>
