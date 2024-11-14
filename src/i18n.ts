@@ -100,6 +100,9 @@ i18n.use(initReactI18next).init({
         privacy: 'Privacy',
         second:
           'We respect your privacy and are committed to protecting your personal data. All information you provide will be used solely to improve our services.',
+        copyright: 'Copyright',
+        third:
+          'All materials on this site are protected by copyright. Any copying, distribution or use is prohibited content without prior written consent.',
       },
     },
     ua: {
@@ -200,6 +203,9 @@ i18n.use(initReactI18next).init({
         privacy: 'Конфіденційність',
         second:
           'Ми поважаємо вашу конфіденційність і прагнемо захищати ваші персональні дані. Вся інформація, яку ви надаєте, буде використовуватися виключно для покращення наших послуг.',
+        copyright: 'Авторські права',
+        third:
+          'Всі матеріали на цьому сайті захищені авторським правом. Заборонено копіювати, поширювати або використовувати будь-який контент без попередньої письмової згоди.',
       },
     },
   },
