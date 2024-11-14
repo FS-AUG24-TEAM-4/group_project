@@ -12,14 +12,10 @@
 .fade-enter-active {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 500ms ease, transform 500ms ease;
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
 }
-// .fade-exit-active {
-//   opacity: 0;
-//   transform: translateX(100px);
-//   transition: opacity 500ms ease, transform 500ms ease;
-// }
-
 
 .menu-enter {
   transform: translateX(-100%);
