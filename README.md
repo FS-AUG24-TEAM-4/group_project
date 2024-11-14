@@ -2,6 +2,9 @@
 
 Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** and **TypeScript**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
 
+
+![DEMO](src/assets/images/DEMO_GIF.gif)
+
 ---
 
 ## Project Purpose
