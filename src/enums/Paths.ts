@@ -11,4 +11,5 @@ export enum Paths {
   ACCESSORIE = '/accessories/:productId',
   SEARCH = '/search',
   AUTHENTICATION = '/authentication',
+  CREATORS = '/creators',
 }
