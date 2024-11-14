@@ -12,12 +12,16 @@ import favDarkMode from '@/assets/images/icons/dark-mode/favorites-blank.svg';
 import cartDarkMode from '@/assets/images/icons/dark-mode/shopping-bag-blank.svg';
 
 import styles from './styles.module.scss';
+
+import { AuthButton } from '../AuthButton';
 import { Indicator } from '../Indicator/Indicator';
 import { RootState } from '@/app/store';
 import { getCartProducts, getCartProductsQuantity } from '@/utils';
 import { Paths } from '@/enums';
 import { useTheme } from '@/hooks/useTheme';
 import { Themes } from '@/enums/Themes';
+import { LangSelector } from '../LangSelector/LangSelector';
+import { useTranslation } from 'react-i18next';
 
 const getActiveNavLinkOnBurger = ({ isActive }: { isActive: boolean }) => {
   return classNames(styles.burger__nav__links, {
@@ -36,6 +40,7 @@ const getActiveNavLinkOnBurgerFooter = ({
 };
 
 export const BurgerMenu = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const favItems = useSelector((state: RootState) => state.favorites.items);
@@ -51,6 +56,7 @@ export const BurgerMenu = () => {
     <menu className={styles.burger}>
       <div className={styles.container}>
         <nav className={styles.burger__nav}>
+          <LangSelector />
           {HeaderNavigationLinks.map(nav => (
             <NavLink
               key={nav.title}
@@ -58,7 +64,7 @@ export const BurgerMenu = () => {
               className={getActiveNavLinkOnBurger}
               to={nav.route}
             >
-              {nav.title}
+              {t(nav.title)}
             </NavLink>
           ))}
         </nav>
@@ -98,6 +104,8 @@ export const BurgerMenu = () => {
             </div>
           )}
         </NavLink>
+
+        <AuthButton className={styles.burger__footer__links} />
       </footer>
     </menu>
   );

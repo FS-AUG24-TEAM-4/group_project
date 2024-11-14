@@ -1,0 +1,65 @@
+@import '../../assets/styles/mixins';
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+
+  padding-top: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-top: 40px;
+  margin-bottom: 8px;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.device_list {
+  display: grid;
+  gap: 40px 16px;
+  justify-items: center;
+  align-self: flex-start;
+  margin-top: 56px;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    'card1 card2'
+    'card3 card4'
+    'card5 card5';
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include onTablet {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'card1 card2 card3'
+      'card4 card5 card5';
+  }
+
+  @include onTabletWide {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'card1 card2 card3'
+      'card4 card5';
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: unset;
+  }
+}

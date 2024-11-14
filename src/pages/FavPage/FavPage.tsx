@@ -13,12 +13,12 @@ export const FavPage = () => {
   const { t } = useTranslation();
 
   const favProducts = getFavoritesProducts(fav.items);
-  const isFavEmpty = !!favProducts.length;
+  const isFavEmpty = favProducts.length === 0;
 
   return (
     <div
       className={cn(styles.wrapper, {
-        [styles.wrapperFilled]: isFavEmpty,
+        [styles.wrapperFilled]: !isFavEmpty,
       })}
     >
       <div className={styles.breadCrumbs}>
@@ -28,14 +28,14 @@ export const FavPage = () => {
       <h1 className={styles.title}>{t('favorites')}</h1>
 
       {isFavEmpty ? (
+        <EmptyPage title={t('noFavorites')} background="favorites" />
+      ) : (
         <>
           <p className={styles.counter_text}>
-            {getCountOfProducts(favProducts)}
+            {getCountOfProducts(favProducts, t)}
           </p>
           <ProductsList paginationOfDevice={favProducts} />
         </>
-      ) : (
-        <EmptyPage title={t('noFavorites')} background="favorites" />
       )}
     </div>
   );

@@ -21,6 +21,7 @@
   @include onDesktop {
     width: 500px;
   }
+  
   [theme-mode='dark'] & {
     background-color: $bg-dm-light;
   }

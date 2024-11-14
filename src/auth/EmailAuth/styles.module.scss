@@ -1,0 +1,45 @@
+@import '../../assets/styles/variables';
+
+.email_auth_form {
+  [theme-mode='dark'] & {
+    background-color: $bg-dm-light;
+  }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    [theme-mode='dark'] & {
+      border-color: $secondary-dm;
+      background-color: $bg-dm-light;
+      color: $white-dm;
+    }
+
+    &:focus {
+      border-color: #f86800;
+
+      [theme-mode='dark'] & {
+        border-color: $elements-dm;
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: 26px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+
+    font-family: inherit;
+  }
+}

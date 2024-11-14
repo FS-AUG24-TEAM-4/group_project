@@ -54,6 +54,121 @@
   }
 }
 
+.searchContainer {
+  position: relative;
+
+  display: none;
+  gap: 8px;
+  align-items: center;
+
+  @include onTabletWide {
+    display: flex;
+  }
+}
+
+.queryFieldContainer {
+  position: relative;
+}
+
+.queryField {
+  border: 1px solid $elements;
+  border-radius: 10px;
+  padding-inline: 5px;
+  opacity: 0;
+  width: 0;
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    color: $white-dm;
+  }
+
+  &__clearButton {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 3px 5px;
+    color: grey;
+  }
+
+  &__list__off {
+    display: none;
+  }
+
+  &__list {
+    position: absolute;
+    top: 55px;
+    width: 200px;
+    z-index: 2;
+    background-color: white;
+    border: 1px solid $elements;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    [theme-mode='dark'] & {
+      border-color: $secondary-dm;
+      background-color: $bg-dm-light;
+    }
+
+    &__element {
+      margin-bottom: 5px;
+      font-size: small;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      transition-duration: 0.5s;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.06);
+      }
+
+      &__empty {
+        margin-bottom: 5px;
+        font-size: small;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+.queryField.visible {
+  display: none;
+  opacity: 1;
+
+  @include onTabletMiddWide {
+    display: block;
+    width: 70px;
+  }
+
+  @include onTabletHighWide {
+    width: 120px;
+  }
+
+  @include onDesktop {
+    width: 200px;
+  }
+}
+
 .iconLinksContainer {
   display: flex;
   height: 100%;
@@ -76,6 +191,8 @@
 }
 
 .favorites,
+.searchIcon,
+.queryFieldMobile,
 .shoppingBag,
 .lang {
   position: relative;
@@ -120,8 +237,16 @@
     }
   }
 
-  @include onTablet {
+  @include onTabletWide {
     display: block;
+  }
+}
+
+.queryFieldMobile {
+  display: block;
+
+  @include onTabletWide {
+    display: none;
   }
 }
 
@@ -129,7 +254,6 @@
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/burger-icon.svg);
   background-repeat: no-repeat;
@@ -141,6 +265,8 @@
   }
 
   &:hover {
+    background-color: $elements;
+
     [theme-mode='dark'] & {
       background-color: $links-active;
     }
@@ -150,7 +276,7 @@
     background-image: url(/src/assets/images/icons/dark-mode/burger-icon.svg);
   }
 
-  @include onTablet {
+  @include onTabletWide {
     display: none;
   }
 }
@@ -159,7 +285,6 @@
   display: inline-block;
   width: 48px;
   height: 100%;
-  box-shadow: -1px 0 0 0 $elements;
   display: block;
   background-image: url(/src/assets/images/icons/close-burger-icon.svg);
   background-repeat: no-repeat;
@@ -171,6 +296,8 @@
   }
 
   &:hover {
+    background-color: $elements;
+
     [theme-mode='dark'] & {
       background-color: $links-active;
     }
@@ -180,7 +307,7 @@
     background-image: url(/src/assets/images/icons/dark-mode/close-burger-icon.svg);
   }
 
-  @include onTablet {
+  @include onTabletWide {
     display: none;
   }
 }
@@ -201,6 +328,28 @@
   }
 }
 
+.searchIcon {
+  border-left: 0;
+
+  background-image: url(/src/assets/images/icons/search-icon.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/search-icon.svg);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.queryFieldMobile {
+  background-image: url(/src/assets/images/icons/search-icon.svg);
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/search-icon.svg);
+  }
+}
+
 .indicator {
   position: absolute;
 
@@ -215,7 +364,7 @@
 }
 
 .themeButton {
-  margin-right: 15px;
+  margin: 0 10px;
   display: flex;
   align-items: center;
 }

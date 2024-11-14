@@ -1,0 +1,159 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.card {
+  display: flex;
+  width: 287px;
+  height: 440px;
+  padding: 32px;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 1px solid $elements;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  background-color: $white;
+
+  transition: box-shadow $effectDuration;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+    background-color: $bg-dm-light;
+  }
+
+  &:hover {
+    box-shadow: 0px 2px 16px 0px $dark-shadow;
+  }
+
+  &:last-child {
+    margin-bottom: 56px;
+  }
+}
+
+.picture {
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0px;
+  height: 42px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
+}
+
+.price {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+  gap: 8px;
+}
+
+.actual_price {
+  line-height: 30.8px;
+  font-weight: 800;
+  font-size: 22px;
+  color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
+}
+
+.line {
+  margin-bottom: 16px;
+  border: 0.5px solid $elements;
+
+  [theme-mode='dark'] & {
+    border-color: $secondary-dm;
+  }
+}
+
+.specs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 400;
+  align-items: center;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.label {
+  font-size: 12px;
+  color: $secondary;
+}
+
+.value {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary;
+
+  [theme-mode='dark'] & {
+    color: $white-dm;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.slider_card {
+  @extend .card;
+  width: 212px;
+
+  @include onTablet {
+    width: 236px;
+  }
+
+  @include onTabletWide {
+    width: 236px;
+  }
+
+  @include onDesktop {
+    width: 272px;
+  }
+}
+
+.linkedinLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // Вирівнювання праворуч
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -1,5 +1,5 @@
 @import '../../assets/styles/mixins';
-@import '../../assets/styles/variables';
+@import '../../assets/styles/_variables';
 
 .flagButton {
   width: 48px;
@@ -13,24 +13,24 @@
 
   box-sizing: border-box;
 
+  @include onDesktop {
+    width: 64px;
+    height: 64px;
+  }
+
   &:hover {
     [theme-mode='dark'] & {
       background-color: $links-active;
     }
   }
 
-  @include onDesktop {
-    width: 64px;
-    height: 64px;
-  }
-}
+  .flag {
+    transition: transform 0.3s ease;
+    width: 24px;
+    height: 20px;
 
-.flag {
-  transition: transform 0.3s ease;
-  width: 28px;
-  height: 28px;
-
-  &:hover {
-    transform: scale(1.1);
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }

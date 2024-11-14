@@ -1,0 +1,45 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.logout {
+  display: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: background-color $effectDuration;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+
+    transform: translate(-50%, -50%);
+    transition: transform $effectDuration;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &:hover {
+    [theme-mode='dark'] & {
+      background-color: $links-active;
+    }
+  }
+
+  @include onTabletWide {
+    display: block;
+  }
+}
+
+.logout::after {
+  background-image: url(/src/assets/images/icons/Logout.svg);
+  background-repeat: no-repeat;
+
+  [theme-mode='dark'] & {
+    background-image: url(/src/assets/images/icons/dark-mode/Logout.svg);
+  }
+}

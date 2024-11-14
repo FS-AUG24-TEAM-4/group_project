@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './styles.module.scss';
 import GB_FLAG from '../../assets/images/icons/GB_flag.svg';
 import UA_FLAG from '../../assets/images/icons/UA_flag.svg';
 
-export const LangSelector: React.FC = () => {
+export const LangSelector: FC = () => {
   const { i18n } = useTranslation();
   const [selectedLang, setSelectedLang] = useState(
     localStorage.getItem('language') || 'en',

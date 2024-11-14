@@ -1,0 +1,60 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.auth_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.auth_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.email_auth_wrapper {
+  max-width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  [theme-mode='dark'] & {
+    background-color: $bg-dm-light;
+  }
+
+  @include onTablet {
+    max-width: 400px;
+  }
+}
+
+.social_auth_wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 300px;
+  width: 100%;
+  padding: 20px;
+  background-color: $white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  margin-bottom: 64px;
+
+  [theme-mode='dark'] & {
+    background-color: $bg-dm-light;
+  }
+
+  @include onTablet {
+    max-width: 400px;
+  }
+}
+
+.divider {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}
