@@ -3,7 +3,7 @@
     "id": "pikalov-andrii",
     "name": "Pikalov Andrii",
     "age": 20,
-    "skills": "Music, Programming",
+    "skills": "Programming, Music",
     "Linkedin": "https://www.linkedin.com/in/andrii-pikalov-60897629a/",
     "photo": "public/img/creators/andrii-picture.jpg"
   },
@@ -13,7 +13,7 @@
     "age": 21,
     "skills": "Programming, video games",
     "Linkedin": "https://www.linkedin.com/in/nywoo/",
-    "photo": "public/img/phones/apple-iphone-14-pro/gold/00.webp"
+    "photo": "public/img/creators/dima-picture.jpg"
   },
   {
     "id": "omelnyk-valerii",

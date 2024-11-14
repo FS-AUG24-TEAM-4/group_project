@@ -22,43 +22,16 @@
     box-shadow: 0px 2px 16px 0px $dark-shadow;
   }
 
-  @include onTablet {
-    max-width: 288px;
-    height: 506px;
-  }
-
-  @include onTabletWide {
-    max-width: 229px;
-    height: 506px;
-  }
-
-  @include onDesktop {
-    max-width: 210px;
-    height: 406px;
-  }
-
   &:last-child {
-    margin-bottom: 80px;
+    margin-bottom: 56px;
   }
 }
 
 .picture {
-  display: flex;
-  justify-content: start;
-  height: 129px;
-
+  height: 240px;
+  object-fit: cover;
   border-radius: 8px;
-  object-fit: contain;
-
   transition: transform $effectDuration ease;
-
-  @include onTablet {
-    height: 173px;
-  }
-
-  @include onDesktop {
-    height: 150px;
-  }
 
   &:hover {
     transform: scale(1.05);
@@ -66,42 +39,31 @@
 }
 
 .title {
-  margin-top: 24px;
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0px;
   height: 42px;
 
   font-weight: 700;
   font-size: 14px;
   line-height: 21px;
-  text-overflow: ellipsis;
 
   color: $primary;
-
-  transition: transform $effectDuration ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 }
 
-.linkedinLink {
-  display: inline-flex;
-  align-items: flex-end;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  transition:
-    background-color 0.2s,
-    transform $effectDuration ease;
+.price {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+  gap: 8px;
+}
 
-  img {
-    width: 16px;
-    height: 16px;
-  }
-
-  &:hover {
-    transform: scale(1.2);
-  }
+.actual_price {
+  line-height: 30.8px;
+  font-weight: 800;
+  font-size: 22px;
+  color: $primary;
 }
 
 .line {
@@ -114,6 +76,11 @@
   justify-content: space-between;
   margin-bottom: 8px;
   font-weight: 400;
+  align-items: center;
+
+  &:last-child {
+    margin: 0;
+  }
 }
 
 .label {
@@ -122,19 +89,50 @@
 }
 
 .value {
-  font-size: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
   font-weight: 600;
   color: $primary;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+}
 
-  font-weight: 100;
-  font-size: 14px;
-  line-height: 21px;
-  text-overflow: ellipsis;
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
 
-  color: $primary;
+.slider_card {
+  @extend .card;
+  width: 212px;
 
-  overflow: hidden;
+  @include onTablet {
+    width: 236px;
+  }
+
+  @include onTabletWide {
+    width: 236px;
+  }
+
+  @include onDesktop {
+    width: 272px;
+  }
+}
+
+.linkedinLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // Вирівнювання праворуч
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform $effectDuration ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
 }

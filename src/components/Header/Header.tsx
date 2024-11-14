@@ -61,6 +61,7 @@ export const Header = () => {
         <div className={styles.lang}>
           <LangSelector />
         </div>
+
         <div>
           <NavLink
             to={Paths.FAVORITES}

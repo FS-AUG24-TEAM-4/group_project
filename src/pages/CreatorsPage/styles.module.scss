@@ -1,14 +1,12 @@
 @import '../../assets/styles/mixins';
 
 .container {
-  justify-self: center;
-  flex-direction: column;
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   margin: 0 auto;
 
   padding-top: 24px;
-  width: fit-content;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -32,6 +30,7 @@
   gap: 40px 16px;
   justify-items: center;
   align-self: flex-start;
+  margin-top: 56px;
 
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -60,7 +59,7 @@
   }
 
   @include onDesktop {
-    grid-template-columns: repeat(5, 1fr); // 5 карток в одному ряду
-    grid-template-areas: unset; // Відключаємо grid-template-areas, оскільки ми вже встановили 5 колонок
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: unset;
   }
 }
