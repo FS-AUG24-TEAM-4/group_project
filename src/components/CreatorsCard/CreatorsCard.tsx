@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './styles.module.scss';
 import { CreatorsType } from '@/pages/CreatorsPage';
+import linkedin from '@/assets/images/icons/link.svg';
 
 interface CreatorCardProps {
   creator: CreatorsType;
@@ -32,10 +33,7 @@ export const CreatorCard: FC<CreatorCardProps> = ({ creator }) => {
             rel="noopener noreferrer"
             className={styles.linkedinLink}
           >
-            <img
-              src="src/assets/images/icons/link.svg"
-              alt="link to Linkedin"
-            />
+            <img src={linkedin} alt="link to Linkedin" />
           </a>
         </p>
       </div>
