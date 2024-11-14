@@ -6,7 +6,6 @@
   user-select: none;
 }
 
-
 .slider {
   width: 46px;
   height: 20px;
@@ -15,7 +14,6 @@
   position: relative;
   transition: background-color 0.3s ease-in-out;
 }
-
 
 .slider.active {
   background-color: $elements-dm;

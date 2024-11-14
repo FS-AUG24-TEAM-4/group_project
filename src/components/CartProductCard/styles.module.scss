@@ -11,7 +11,7 @@
   position: relative;
 
   background-color: $white;
-  
+
   @include onTablet {
     flex-direction: row;
     justify-content: space-between;
@@ -128,7 +128,9 @@
   border: 1px solid $icons;
   border-radius: 50%;
 
-  transition: transform $effectDuration ease, border-color $effectDuration;
+  transition:
+    transform $effectDuration ease,
+    border-color $effectDuration;
 
   [theme-mode='dark'] & {
     border-color: $secondary-dm;
