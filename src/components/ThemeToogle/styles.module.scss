@@ -12,6 +12,10 @@
   border-radius: 12px;
   position: relative;
   transition: background-color 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
 }
 
 .slider.active {
@@ -39,4 +43,29 @@
 
 .slider.active .circle {
   left: 28px;
+}
+
+.sun-icon,
+.moon-icon {
+  font-size: 10px;
+  color: $white;
+  position: absolute;
+}
+
+.sun-icon {
+  left: 6px;
+  opacity: 1;
+}
+
+.moon-icon {
+  right: 6px;
+  opacity: 0;
+}
+
+.slider.active .sun-icon {
+  opacity: 0;
+}
+
+.slider.active .moon-icon {
+  opacity: 1;
 }
