@@ -9,14 +9,14 @@ import { useProducts } from '@/hooks';
 import { sortDevices, scrollToTop, getSearchWith, getTitle } from '@/utils';
 
 import { Product } from '@/types';
-import { DeviceCategory, SortType } from '@/enums';
+import { DeviceCategory, SortType, Themes } from '@/enums';
 import styles from './styles.module.scss';
 import { useSearchBar } from '@/hooks/useSearchBar';
 import { useSortingDropdowns } from '@/hooks/useSortingDropdowns';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/hooks/useTheme';
-import { Themes } from '@/enums/Themes';
 import '../../assets/styles/_variables.scss';
+import close from '@/assets/images/icons/close.svg';
 
 type ProductsCatalogProps = {
   category: DeviceCategory;
@@ -197,7 +197,7 @@ export const ProductsCatalog: FC<ProductsCatalogProps> = ({
                 className={styles.queryField__clearButton}
                 onClick={() => setQuery('')}
               >
-                x
+                <img src={close} alt="delete query" />
               </div>
             )}
           </form>

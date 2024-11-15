@@ -106,13 +106,29 @@
     z-index: 2;
     background-color: white;
     border: 1px solid $elements;
-    border-radius: 8px;
     max-height: 250px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     [theme-mode='dark'] & {
       border-color: $secondary-dm;
       background-color: $bg-dm-light;
+      ::-webkit-scrollbar {
+        width: 8px; /* Ширина скролбару */
+        border-radius: 8px; /* Заокруглення скролбару */
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Колір фону скролбару */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888; /* Колір "рукоятки" скролбару */
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Колір "рукоятки" при наведенні */
+      }
     }
 
     &__element {
@@ -237,7 +253,7 @@
     }
   }
 
-  @include onTabletWide {
+  @media (min-width: 920px) {
     display: block;
   }
 }
@@ -276,7 +292,7 @@
     background-image: url(/src/assets/images/icons/dark-mode/burger-icon.svg);
   }
 
-  @include onTabletWide {
+  @media (min-width: 920px) {
     display: none;
   }
 }
@@ -307,7 +323,7 @@
     background-image: url(/src/assets/images/icons/dark-mode/close-burger-icon.svg);
   }
 
-  @include onTabletWide {
+  @media (min-width: 920px) {
     display: none;
   }
 }

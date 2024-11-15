@@ -96,16 +96,6 @@
   }
 }
 
-.queryField__clearButton {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 3px 5px;
-  color: grey;
-}
-
 .device_list {
   display: grid;
   gap: 40px 16px;
@@ -155,7 +145,7 @@
     right: 5px;
     font-size: 1rem;
     cursor: pointer;
-    padding: 3px 5px;
+    padding: 4px;
     color: grey;
   }
 
