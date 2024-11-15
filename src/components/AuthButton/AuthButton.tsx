@@ -60,10 +60,6 @@ export const AuthButton: FC<AuthButtonProps> = ({
         burger__footer__auth: type === 'burger',
       })}
       onClick={() => {
-        if (burgerstatus) {
-          dispatch(changeBurgerState());
-        }
-
         handleClick();
       }}
     ></Link>
