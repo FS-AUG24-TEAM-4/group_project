@@ -14,9 +14,13 @@ export const ThemeToggle = () => {
           [styles.active]: theme === Themes.DARK,
         })}
       >
-        <FaSun className={styles.sunIcon} />
-        <FaMoon className={styles.moonIcon} />
-        <div className={styles.circle}></div>
+        <div className={styles.circle}>
+          {theme === Themes.DARK ? (
+            <FaMoon className={styles.moonIcon} />
+          ) : (
+            <FaSun className={styles.sunIcon} />
+          )}
+        </div>
       </div>
     </div>
   );

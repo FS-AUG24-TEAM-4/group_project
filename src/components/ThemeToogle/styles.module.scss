@@ -27,6 +27,9 @@
 }
 
 .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16px;
   height: 16px;
   background-color: $white;
@@ -37,7 +40,7 @@
   transition: left 0.3s ease-in-out;
 
   [theme-mode='dark'] & {
-    background-color: $bg-dm-light;
+    background-color: $secondary-dm;
   }
 }
 
@@ -45,20 +48,19 @@
   left: 28px;
 }
 
-.sun-icon,
-.moon-icon {
+.sunIcon,
+.moonIcon {
   font-size: 10px;
   color: $white;
   position: absolute;
 }
 
-.sun-icon {
-  left: 6px;
+.sunIcon {
   opacity: 1;
+  color: rgb(199, 150, 17);
 }
 
 .moon-icon {
-  right: 6px;
   opacity: 0;
 }
 
